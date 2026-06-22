@@ -1,0 +1,29 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
+
+# Account replacement only — validates against grooming shapes without
+# cross-module Phase typing conflicts from sextortion phase nodes.
+
+<urn:uuid:45678901-cdef-0123-4567-89abcdef0123> rdf:type uco-observable:Account ;
+    rdfs:label "Banned Production Account"@en ;
+    uco-core:description "Platform-banned account used for initial victim contact on messaging service." .
+
+<urn:uuid:56789012-def0-1234-5678-9abcdef01234> rdf:type uco-observable:Account ;
+    rdfs:label "Replacement Account"@en ;
+    uco-core:description "New account created after platform ban to resume contact with victims." .
+
+<urn:uuid:67890123-ef01-2345-6789-abcdef012345> rdf:type cacontology-grooming:InitialContactPhase ,
+        cacontology-grooming:GroomingPhase ;
+    rdfs:label "Resumed Initial Contact"@en ;
+    uco-core:description "Offender returned to initial contact phase using replacement account." .
+
+<urn:uuid:78901234-f012-3456-789a-bcdef0123456> rdf:type cacontology-grooming:AccountReplacementEvent ;
+    rdfs:label "Post-Ban Account Replacement"@en ;
+    uco-core:description "Offender created new account after platform ban and resumed grooming at initial contact." ;
+    cacontology-grooming:triggeredBy "platform_ban" ;
+    cacontology-grooming:resumesAt <urn:uuid:67890123-ef01-2345-6789-abcdef012345> ;
+    cacontology-grooming:originalAccountId <urn:uuid:45678901-cdef-0123-4567-89abcdef0123> ;
+    cacontology-grooming:replacementAccountId <urn:uuid:56789012-def0-1234-5678-9abcdef01234> .

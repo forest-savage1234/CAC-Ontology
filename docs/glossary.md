@@ -68,8 +68,10 @@ The stable top-level class hierarchy introduced in v3.0.0 (`cac-core:` namespace
 - **ProductionOffense**: Child sexual abuse material production activity
 - **CustodialRelationship**: Trust relationship involving authority over children
 - **GroomingSolicitation**: Grooming or solicitation of children for sexual purposes
+- **AccountReplacementEvent** (`cacontology-grooming:AccountReplacementEvent`): Offender creates a new account after ban or block and resumes at an earlier grooming phase (typically `InitialContactPhase`); lifecycle reset, not a coercion loop
 - **SexualConsequenceGameGrooming**: Physical-space, multi-victim grooming pattern where a perpetrator uses structured “games with sexual consequences” involving several juveniles
 - **Sextortion**: Sexual extortion incidents involving children
+- **CoercionCycle** (`cacontology-sextortion:CoercionCycle`): Self-sustaining sextortion loop where retained imagery is redeployed as perpetual leverage; distinct from linear `progressionStage` or single `ExtortionDemand` events
 - **LiveStreamingCSA**: Live streaming of child sexual abuse
 - **DigitallyGeneratedCSAMIncident**: AI-generated or manipulated CSAM
 
@@ -122,6 +124,9 @@ The stable top-level class hierarchy introduced in v3.0.0 (`cac-core:` namespace
 - **PhotoDNAHash**: Microsoft PhotoDNA hash value for image matching
 - **DetectionResult**: Outcome of automated content analysis
 - **SocialMediaPlatform**: Online platform used for communication or content sharing
+- **ChannelMigrationEvent** (`cacontology-platforms:ChannelMigrationEvent`): Deliberate move of contact from one platform to another before escalation (capability upgrade and/or evidence trail severance)
+- **PlatformAffordance** (`cacontology-platforms:PlatformAffordance`): Platform capability taxonomy (Anonymity, Ephemerality, UnmonitoredCommunication, etc.) usable for transition-level annotation
+- **AffordanceMisuse** (`cacontology-platforms:AffordanceMisuse`): Links a platform affordance to the phase transition it enabled (affordances on offense edges, not platform nodes alone)
 - **ContentModerationCapability**: Platform's ability to detect and remove illegal content
 
 ### Athletic Coaching Roles
@@ -133,6 +138,14 @@ The stable top-level class hierarchy introduced in v3.0.0 (`cac-core:` namespace
 
 ### Properties
 - **reportedBy**: Links a report to its reporter
+- **cac-core:precedes**: Temporal ordering property linking a Phase instance to the Phase that follows it in the documented offense lifecycle (canonical definition in `cacontology-core-spine.ttl`)
+- **sustainedBy** (`cacontology-sextortion:sustainedBy`): Links a coercion cycle to retained leverage material
+- **cyclesBetween** (`cacontology-sextortion:cyclesBetween`): Links a coercion cycle to the phase instances forming the loop
+- **fromPlatform** / **toPlatform** (`cacontology-platforms:`): Originating and destination platforms for a channel migration event
+- **occursBetween** (`cacontology-platforms:occursBetween`): Phase instances separated by a channel migration or similar transition event
+- **affordanceClass** (`cacontology-platforms:affordanceClass`): Platform affordance category misused to enable a phase transition
+- **enablesTransitionFrom** / **enablesTransitionTo** (`cacontology-platforms:`): Source and target phases for affordance misuse
+- **resumesAt** (`cacontology-grooming:resumesAt`): Grooming phase the offender returns to after account replacement
 - **hasEvidence**: Links a report to its evidence
 - **triggersAction**: Links a report to actions taken
 - **performedBy**: Links an action to its performer

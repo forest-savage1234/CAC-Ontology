@@ -579,4 +579,37 @@ cacontology-sextortion:providesEvidence rdf:type owl:ObjectProperty ;
     rdfs:label "provides evidence"@en ;
     rdfs:comment "Links sextortion investigation to evidence provided for prosecution."@en ;
     rdfs:domain cacontology-sextortion:SextortionInvestigation ;
-    rdfs:range uco-observable:ObservableObject . 
+    rdfs:range uco-observable:ObservableObject .
+
+# =============================================================================
+# COERCION CYCLE (sextortion self-sustaining leverage loop)
+# =============================================================================
+
+cacontology-sextortion:CoercionCycle rdf:type owl:Class ;
+    rdfs:label "Coercion Cycle"@en ;
+    rdfs:comment "Self-sustaining sextortion loop in which retained imagery becomes perpetual leverage: the offender redeploys the same retained material to demand new content, extending leverage further without acquiring new initial leverage. Structurally distinct from a single threat-delivery event; the cycle has no natural termination except apprehension or removal of material."@en ;
+    rdfs:subClassOf cac-core:Situation, cac-core:ExploitationEvent .
+
+cacontology-sextortion:sustainedBy rdf:type owl:ObjectProperty ;
+    rdfs:label "sustained by"@en ;
+    rdfs:comment "Retained material or artifact that powers the coercion cycle (e.g., intimate images retained from prior exploitation)."@en ;
+    rdfs:domain cacontology-sextortion:CoercionCycle ;
+    rdfs:range cac-core:Artifact .
+
+cacontology-sextortion:cyclesBetween rdf:type owl:ObjectProperty ;
+    rdfs:label "cycles between"@en ;
+    rdfs:comment "Phase instances that form the coercion loop (typically threat delivery and exploitation phases in sextortion, or equivalent phase nodes in other offense trajectories)."@en ;
+    rdfs:domain cacontology-sextortion:CoercionCycle ;
+    rdfs:range cac-core:Phase .
+
+cacontology-sextortion:terminationCondition rdf:type owl:DatatypeProperty ;
+    rdfs:label "termination condition"@en ;
+    rdfs:comment "How the coercion cycle ended if known (apprehension, material_removal, victim_ceased_response, unknown)."@en ;
+    rdfs:domain cacontology-sextortion:CoercionCycle ;
+    rdfs:range xsd:string .
+
+cacontology-sextortion:coercionCycleDemandType rdf:type owl:DatatypeProperty ;
+    rdfs:label "coercion cycle demand type"@en ;
+    rdfs:comment "Type of demand driving a coercion cycle iteration (imagery_quota, live_conduct, financial, victim_recruitment)."@en ;
+    rdfs:domain cacontology-sextortion:CoercionCycle ;
+    rdfs:range xsd:string . 

@@ -1,0 +1,31 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "cac-sextortion": "https://cacontology.projectvic.org/sextortion#",
+    "cac-platforms": "https://cacontology.projectvic.org/platforms#",
+    "cac-grooming": "https://cacontology.projectvic.org/grooming#",
+    "cac-core": "https://cacontology.projectvic.org/core#",
+    "uco": "https://ontology.unifiedcyberontology.org/uco/core#",
+    "CoercionCycle": "cac-sextortion:CoercionCycle",
+    "ChannelMigrationEvent": "cac-platforms:ChannelMigrationEvent",
+    "AffordanceMisuse": "cac-platforms:AffordanceMisuse",
+    "AccountReplacementEvent": "cac-grooming:AccountReplacementEvent",
+    "sustainedBy": { "@id": "cac-sextortion:sustainedBy", "@type": "@id" },
+    "cyclesBetween": { "@id": "cac-sextortion:cyclesBetween", "@type": "@id" },
+    "coercionCycleDemandType": "cac-sextortion:coercionCycleDemandType",
+    "terminationCondition": "cac-sextortion:terminationCondition",
+    "fromPlatform": { "@id": "cac-platforms:fromPlatform", "@type": "@id" },
+    "toPlatform": { "@id": "cac-platforms:toPlatform", "@type": "@id" },
+    "migrationRationale": "cac-platforms:migrationRationale",
+    "occursBetween": { "@id": "cac-platforms:occursBetween", "@type": "@id" },
+    "affordanceClass": { "@id": "cac-platforms:affordanceClass", "@type": "@id" },
+    "enablesTransitionFrom": { "@id": "cac-platforms:enablesTransitionFrom", "@type": "@id" },
+    "enablesTransitionTo": { "@id": "cac-platforms:enablesTransitionTo", "@type": "@id" },
+    "platform": { "@id": "cac-platforms:platform", "@type": "@id" },
+    "misuseDescription": "cac-platforms:misuseDescription",
+    "triggeredBy": "cac-grooming:triggeredBy",
+    "resumesAt": { "@id": "cac-grooming:resumesAt", "@type": "@id" },
+    "originalAccountId": { "@id": "cac-grooming:originalAccountId", "@type": "@id" },
+    "replacementAccountId": { "@id": "cac-grooming:replacementAccountId", "@type": "@id" }
+  }
+}

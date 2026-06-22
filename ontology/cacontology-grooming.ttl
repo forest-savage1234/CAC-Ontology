@@ -991,4 +991,37 @@ cacontology-grooming:transitionsToLocation rdf:type owl:ObjectProperty ;
     rdfs:label "transitions to location"@en ;
     rdfs:comment "Links public-to-private grooming to exploitation location."@en ;
     rdfs:domain cacontology-grooming:PublicToPrivateGrooming ;
-    rdfs:range uco-location:Location . 
+    rdfs:range uco-location:Location .
+
+# =============================================================================
+# ACCOUNT REPLACEMENT EVENT (ban evasion trajectory reset)
+# =============================================================================
+
+cacontology-grooming:AccountReplacementEvent rdf:type owl:Class ;
+    rdfs:label "Account Replacement Event"@en ;
+    rdfs:comment "Pattern where an offender whose account is banned or blocked creates a new account and returns to an earlier offense phase (typically initial contact). The lifecycle resets rather than terminates — structurally distinct from a coercion cycle."@en ;
+    rdfs:subClassOf cac-core:ExploitationEvent .
+
+cacontology-grooming:triggeredBy rdf:type owl:DatatypeProperty ;
+    rdfs:label "triggered by"@en ;
+    rdfs:comment "What triggered account replacement (victim_block, platform_ban, detection_risk, voluntary)."@en ;
+    rdfs:domain cacontology-grooming:AccountReplacementEvent ;
+    rdfs:range xsd:string .
+
+cacontology-grooming:resumesAt rdf:type owl:ObjectProperty ;
+    rdfs:label "resumes at"@en ;
+    rdfs:comment "Phase instance the offender returns to after account replacement (typically InitialContactPhase)."@en ;
+    rdfs:domain cacontology-grooming:AccountReplacementEvent ;
+    rdfs:range cacontology-grooming:GroomingPhase .
+
+cacontology-grooming:originalAccountId rdf:type owl:ObjectProperty ;
+    rdfs:label "original account id"@en ;
+    rdfs:comment "Reference to the banned or blocked account if known."@en ;
+    rdfs:domain cacontology-grooming:AccountReplacementEvent ;
+    rdfs:range uco-observable:Account .
+
+cacontology-grooming:replacementAccountId rdf:type owl:ObjectProperty ;
+    rdfs:label "replacement account id"@en ;
+    rdfs:comment "Reference to the new account used to resume contact if known."@en ;
+    rdfs:domain cacontology-grooming:AccountReplacementEvent ;
+    rdfs:range uco-observable:Account . 

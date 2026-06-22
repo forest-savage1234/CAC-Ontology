@@ -823,6 +823,69 @@ GROUP BY ?tier
 ORDER BY DESC(?violationCount)
 ```
 
+ORDER BY DESC(?violationCount)
+```
+
+## CaseLinker State Machine Extensions
+
+Four offense-trajectory classes support mapping extracted case features to a formal state machine (phases as states, typed events as transitions). Phase ordering uses existing `cac-core:precedes` (defined in `ontology/cacontology-core-spine.ttl`).
+
+| Class / property | IRI |
+|------------------|-----|
+| CoercionCycle | `https://cacontology.projectvic.org/sextortion#CoercionCycle` |
+| ChannelMigrationEvent | `https://cacontology.projectvic.org/platforms#ChannelMigrationEvent` |
+| AffordanceMisuse | `https://cacontology.projectvic.org/platforms#AffordanceMisuse` |
+| AccountReplacementEvent | `https://cacontology.projectvic.org/grooming#AccountReplacementEvent` |
+| precedes (phase sequencing) | `https://cacontology.projectvic.org/core#precedes` |
+
+### Example knowledge graph
+
+```bash
+pyshacl -s ontology/cacontology-sextortion-shapes.ttl \
+  -d examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl
+pyshacl -s ontology/cacontology-platforms-shapes.ttl \
+  -d examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl
+pyshacl -s ontology/cacontology-grooming-shapes.ttl \
+  -d examples_knowledge_graphs/caselinker-account-replacement-example.ttl
+```
+
+Reference instance files:
+- `examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl` (CoercionCycle, ChannelMigrationEvent, AffordanceMisuse)
+- `examples_knowledge_graphs/caselinker-account-replacement-example.ttl` (AccountReplacementEvent)
+
+Per-class JSON-LD examples: `examples_knowledge_graphs/jsonld/`
+
+JSON-LD contexts: `contexts/cacontology-sextortion.jsonld`, `contexts/cacontology-platforms.jsonld`, `contexts/cacontology-grooming.jsonld`, `contexts/cacontology-state-machine-extensions.jsonld`
+
+### SPARQL analytics
+
+```bash
+# Load both example graphs to query all four class types
+sparql --query example_SPARQL_queries/caselinker-state-machine-analytics.rq \
+  --data examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl \
+  --data examples_knowledge_graphs/caselinker-account-replacement-example.ttl
+```
+
+### Optional Python SDK
+
+```python
+from cacontology import CoercionCycle, ChannelMigrationEvent, AffordanceMisuse, AccountReplacementEvent
+
+cycle = CoercionCycle(
+    id="urn:uuid:...",
+    sustained_by="urn:uuid:...",
+    cycles_between=["urn:uuid:phase-a", "urn:uuid:phase-b"],
+    coercion_cycle_demand_type="imagery_quota",
+)
+graph = cycle.to_graph()  # serialize for RDF store import
+```
+
+Bindings live in `sdk/python/cacontology/`. Run unit tests:
+
+```bash
+python testing/test_state_machine_extensions.py
+```
+
 ## Validation and Quality Assurance
 
 ### 1. Using pySHACL ✅ **COMPREHENSIVE COVERAGE COMPLETED**

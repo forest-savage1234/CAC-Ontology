@@ -1,0 +1,31 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://cacontology.projectvic.org/grooming#",
+    "cacontology": "https://cacontology.projectvic.org#",
+    "cacontology-grooming": "https://cacontology.projectvic.org/grooming#",
+    "cac-core": "https://cacontology.projectvic.org/core#",
+    "uco": "https://ontology.unifiedcyberontology.org/uco/core#",
+    "AccountReplacementEvent": {
+      "@id": "cacontology-grooming:AccountReplacementEvent",
+      "@type": "@id"
+    },
+    "triggeredBy": "cacontology-grooming:triggeredBy",
+    "resumesAt": {
+      "@id": "cacontology-grooming:resumesAt",
+      "@type": "@id"
+    },
+    "originalAccountId": {
+      "@id": "cacontology-grooming:originalAccountId",
+      "@type": "@id"
+    },
+    "replacementAccountId": {
+      "@id": "cacontology-grooming:replacementAccountId",
+      "@type": "@id"
+    },
+    "precedes": {
+      "@id": "cac-core:precedes",
+      "@type": "@id"
+    }
+  }
+}

@@ -5,7 +5,49 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
 
+### Added - CaseLinker State Machine Extensions
+
+Adds four offense-trajectory constructs for state-machine mapping (phases as states, transitions as typed events). Grounded in sextortion, production, and cross-platform offense patterns.
+
+#### Sextortion module (`cacontology-sextortion`)
+
+- `cacontology-sextortion:CoercionCycle` — self-sustaining leverage loop (subClassOf `cac-core:Situation`, `cac-core:ExploitationEvent`)
+- `cacontology-sextortion:sustainedBy` — retained leverage artifact powering the cycle
+- `cacontology-sextortion:cyclesBetween` — phase instances forming the loop
+- `cacontology-sextortion:coercionCycleDemandType` — cycle demand enum (`imagery_quota`, `live_conduct`, `financial`, `victim_recruitment`); separate from `ExtortionDemand.demandType` to preserve existing semantics
+- `cacontology-sextortion:terminationCondition` — cycle end condition enum
+- `cacontology-sextortion:CoercionCycleShape` in `cacontology-sextortion-shapes.ttl`
+
+#### Platforms module (`cacontology-platforms`)
+
+- `cacontology-platforms:PlatformAffordance` taxonomy: `Anonymity`, `Ephemerality`, `UnmonitoredCommunication`, `ContactDiscovery`, `DistributionInfrastructure`, `GenerativeSynthesis`, `Coordination`, `CoercionLeverage`
+- `cacontology-platforms:ChannelMigrationEvent` — cross-platform contact migration with `fromPlatform`, `toPlatform`, `migrationRationale`, `occursBetween`
+- `cacontology-platforms:AffordanceMisuse` — transition-level affordance annotation with `affordanceClass`, `enablesTransitionFrom`, `enablesTransitionTo`, `platform`, `misuseDescription`
+- `ChannelMigrationEventShape`, `AffordanceMisuseShape` in `cacontology-platforms-shapes.ttl`
+
+#### Grooming module (`cacontology-grooming`)
+
+- `cacontology-grooming:AccountReplacementEvent` — post-ban/block account reset with `triggeredBy`, `resumesAt`, `originalAccountId`, `replacementAccountId`
+- `AccountReplacementEventShape` in `cacontology-grooming-shapes.ttl`
+
+#### Examples, queries, contexts, and developer bindings
+
+- `examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl` — CoercionCycle, ChannelMigrationEvent, AffordanceMisuse
+- `examples_knowledge_graphs/caselinker-account-replacement-example.ttl` — AccountReplacementEvent (separate file for grooming SHACL cross-validation)
+- `examples_knowledge_graphs/jsonld/*-example.jsonld` — one JSON-LD document per new class
+- `contexts/cacontology-sextortion.jsonld`, `contexts/cacontology-platforms.jsonld`, `contexts/cacontology-grooming.jsonld` — per-module JSON-LD contexts
+- `contexts/cacontology-state-machine-extensions.jsonld` — combined JSON-LD context for all four classes
+- `example_SPARQL_queries/caselinker-state-machine-analytics.rq`
+- `sdk/python/cacontology/` — optional Python dataclass bindings (`CoercionCycle`, `ChannelMigrationEvent`, `AffordanceMisuse`, `AccountReplacementEvent`)
+- `testing/test_state_machine_extensions.py` — SHACL pass/fail unit tests (8 tests)
+- `testing/shacl_validation.py` — domain cross-checks for new example graphs
+
+#### Core / semantic spine (`cacontology-core-spine`, `cacontology-core-shapes`)
+
+- Clarify existing `cac-core:precedes` for phase sequencing in state machine traversal (`rdfs:isDefinedBy`, updated `rdfs:comment` in `ontology/cacontology-core-spine.ttl`; not a new property)
+- `PhasePrecedesShape` and `PrecedesPropertyShape` in `ontology/cacontology-core-shapes.ttl`
 
 ## v3.0.0 - 16 March 2026
 

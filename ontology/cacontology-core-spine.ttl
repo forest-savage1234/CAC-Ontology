@@ -183,6 +183,13 @@ cac-core:isPhaseOf a owl:ObjectProperty ;
     rdfs:domain cac-core:Phase ;
     owl:inverseOf cac-core:hasPhase .
 
+cac-core:precedes a owl:ObjectProperty ;
+    rdfs:label "precedes"@en ;
+    rdfs:comment "Asserts that one exploitation phase or event directly precedes another in the documented offense timeline. Used to build temporally ordered traversal graphs for state machine analysis of case lifecycles. The subject phase occurs before the object phase in the same investigation."@en ;
+    rdfs:domain cac-core:Phase ;
+    rdfs:range cac-core:Phase ;
+    rdfs:isDefinedBy <https://cacontology.projectvic.org#> .
+
 cac-core:assesses a owl:ObjectProperty ;
     rdfs:label "assesses"@en ;
     rdfs:comment "Links an assessment result to the entity it evaluates."@en ;

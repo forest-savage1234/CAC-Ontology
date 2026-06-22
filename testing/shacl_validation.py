@@ -184,6 +184,9 @@ domain_validations = [
     ('examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl', 'ontology/cacontology-legal-outcomes-shapes.ttl'),
     ('examples_knowledge_graphs/k2p-soe-information-example.ttl', 'ontology/cacontology-sadistic-online-exploitation-shapes.ttl'),
     ('examples_knowledge_graphs/k2p-soe-information-example.ttl', 'ontology/cacontology-sextortion-shapes.ttl'),
+    ('examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl', 'ontology/cacontology-sextortion-shapes.ttl'),
+    ('examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl', 'ontology/cacontology-platforms-shapes.ttl'),
+    ('examples_knowledge_graphs/caselinker-account-replacement-example.ttl', 'ontology/cacontology-grooming-shapes.ttl'),
 ]
 
 domain_passed = 0
