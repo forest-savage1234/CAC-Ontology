@@ -138,7 +138,7 @@ The stable top-level class hierarchy introduced in v3.0.0 (`cac-core:` namespace
 
 ### Properties
 - **reportedBy**: Links a report to its reporter
-- **cac-core:precedes**: Temporal ordering property linking a Phase instance to the Phase that follows it in the documented offense lifecycle (canonical definition in `cacontology-core-spine.ttl`)
+- **cac-core:precedes**: **New in CaseLinker state machine extensions.** Spine-level temporal ordering property linking one `cac-core:Phase` instance to the next in a documented offense lifecycle (`ontology/cacontology-core-spine.ttl`). Related but distinct from pre-existing properties: `cacontology:transitionsTo` (investigation phases in `cacontology-core.ttl`), `cacontology-temporal:temporallyPrecedes` (subPropertyOf `gufo:precedes`), and `cacontology-usa-federal:precedesPhase` (federal legal phases). Not defined in UCO or CASE.
 - **sustainedBy** (`cacontology-sextortion:sustainedBy`): Links a coercion cycle to retained leverage material
 - **cyclesBetween** (`cacontology-sextortion:cyclesBetween`): Links a coercion cycle to the phase instances forming the loop
 - **fromPlatform** / **toPlatform** (`cacontology-platforms:`): Originating and destination platforms for a channel migration event

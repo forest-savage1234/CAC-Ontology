@@ -60,7 +60,7 @@ Record results here before PR:
 | Example vs sextortion shapes | Yes | `caselinker-state-machine-extensions-example.ttl` |
 | Example vs platforms shapes | Yes | same file |
 | Example vs grooming shapes | Yes | `caselinker-account-replacement-example.ttl` (separate file avoids cross-module Phase shape conflicts) |
-| `cac-core:precedes` SHACL | Yes | Defined in `cacontology-core-spine.ttl`; shapes in `cacontology-core-shapes.ttl` |
+| `cac-core:precedes` SHACL | Yes | **New property** in `cacontology-core-spine.ttl` (not on main before this branch); shapes in `cacontology-core-shapes.ttl` |
 | Module JSON-LD contexts | Yes | `contexts/cacontology-{sextortion,platforms,grooming}.jsonld` |
 | ROBOT (optional) | | See below |
 
@@ -98,7 +98,7 @@ Signed-off-by: Your Name <your.email@example.com>
 
 **Validation:** pyshacl 158/158 pass; unit tests 8/8. ROBOT validation not run (not installed locally).
 
-**Note for reviewers:** `coercionCycleDemandType` is intentionally separate from `ExtortionDemand.demandType`. `cac-core:precedes` already existed in the semantic spine; this PR clarifies it and adds SHACL only. `sdk/python/` is optional — happy to drop or relocate per project preference.
+**Note for reviewers:** `coercionCycleDemandType` is intentionally separate from `ExtortionDemand.demandType`. `cac-core:precedes` is a **new** spine property introduced in this PR (git blame: commit `1a9deca`); prior ordering used module-local properties (`transitionsTo`, `temporallyPrecedes`, `precedesPhase`). UCO/CASE define no equivalent. `sdk/python/` is optional — happy to drop or relocate per project preference.
 
 ## Files touched (review `git diff`)
 

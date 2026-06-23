@@ -828,7 +828,7 @@ ORDER BY DESC(?violationCount)
 
 ## CaseLinker State Machine Extensions
 
-Four offense-trajectory classes support mapping extracted case features to a formal state machine (phases as states, typed events as transitions). Phase ordering uses existing `cac-core:precedes` (defined in `ontology/cacontology-core-spine.ttl`).
+Four offense-trajectory classes support mapping extracted case features to a formal state machine (phases as states, typed events as transitions). Phase ordering uses **`cac-core:precedes`**, introduced in this release in `ontology/cacontology-core-spine.ttl` (not present on main before the state-machine-extensions branch). It is spine-scoped to `cac-core:Phase` offense trajectories and is separate from earlier module-local ordering properties (`cacontology:transitionsTo`, `cacontology-temporal:temporallyPrecedes`, `cacontology-usa-federal:precedesPhase`).
 
 | Class / property | IRI |
 |------------------|-----|

@@ -46,7 +46,7 @@ Adds four offense-trajectory constructs for state-machine mapping (phases as sta
 
 #### Core / semantic spine (`cacontology-core-spine`, `cacontology-core-shapes`)
 
-- Clarify existing `cac-core:precedes` for phase sequencing in state machine traversal (`rdfs:isDefinedBy`, updated `rdfs:comment` in `ontology/cacontology-core-spine.ttl`; not a new property)
+- **New** `cac-core:precedes` — spine-level phase sequencing for offense-trajectory state machines (`rdfs:domain` / `rdfs:range` `cac-core:Phase`; defined in `ontology/cacontology-core-spine.ttl`). Not present on main before this branch. Distinct from pre-existing module-local ordering properties (`cacontology:transitionsTo`, `cacontology-temporal:temporallyPrecedes`, `cacontology-usa-federal:precedesPhase`). UCO and CASE imported ontologies do not define an equivalent property.
 - `PhasePrecedesShape` and `PrecedesPropertyShape` in `ontology/cacontology-core-shapes.ttl`
 
 ## v3.0.0 - 16 March 2026
