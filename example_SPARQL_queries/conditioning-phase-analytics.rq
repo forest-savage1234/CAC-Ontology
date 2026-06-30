@@ -1,0 +1,35 @@
+# Query: conditioning_phase_analytics
+# Purpose: Distribution of conditioningMode tags and offense-trajectory phase paths
+#          (InitialContact → Conditioning → Exploitation → Maintenance)
+# Data: examples_knowledge_graphs/conditioning-phase-offense-trajectory-example.ttl
+#       examples_knowledge_graphs/wa-sextortion-case-example.ttl
+#       examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX cac-core: <https://cacontology.projectvic.org/core#>
+PREFIX cacontology-grooming: <https://cacontology.projectvic.org/grooming#>
+
+# Part 1: conditioningMode distribution across macro ConditioningPhase instances
+SELECT ?conditioningMode (COUNT(?phase) AS ?phaseCount)
+WHERE {
+    ?phase a cacontology-grooming:ConditioningPhase ;
+           cac-core:conditioningMode ?conditioningMode .
+}
+GROUP BY ?conditioningMode
+ORDER BY DESC(?phaseCount) ?conditioningMode
+
+# Part 2 (uncomment to walk Contact → Conditioning → Exploitation → Maintenance paths):
+# SELECT ?contact ?contactLabel ?conditioning ?conditioningMode ?exploitation ?maintenance
+# WHERE {
+#     ?contact a cacontology-grooming:InitialContactPhase ;
+#              rdfs:label ?contactLabel ;
+#              cac-core:precedes ?conditioning .
+#     ?conditioning a cacontology-grooming:ConditioningPhase ;
+#                   cac-core:conditioningMode ?conditioningMode ;
+#                   cac-core:precedes ?exploitation .
+#     ?exploitation a cacontology-grooming:ExploitationPhase ;
+#                   cac-core:precedes ?maintenance .
+#     ?maintenance a cacontology-grooming:MaintenancePhase .
+# }
+# ORDER BY ?contactLabel

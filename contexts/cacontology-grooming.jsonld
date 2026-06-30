@@ -26,6 +26,15 @@
     "precedes": {
       "@id": "cac-core:precedes",
       "@type": "@id"
-    }
+    },
+    "ConditioningPhase": {
+      "@id": "cacontology-grooming:ConditioningPhase",
+      "@type": "@id"
+    },
+    "Phase": {
+      "@id": "cac-core:Phase",
+      "@type": "@id"
+    },
+    "conditioningMode": "cac-core:conditioningMode"
   }
 }

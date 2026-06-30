@@ -260,7 +260,8 @@ CAC Ontology v3.0.0 introduces the **semantic spine** — a thin, stable abstrac
 
 | Spine Class | Upstream Alignment | Domain Usage |
 |-------------|-------------------|--------------|
-| `cac-core:Phase` | `gufo:Phase` | Investigation phases, lifecycle stages |
+| `cac-core:Phase` | `gufo:Phase` | Investigation phases, lifecycle stages, offense-trajectory state-machine states |
+| `cac-core:ConditioningPhase` | `gufo:Phase` (via `cac-core:Phase`) | Macro preparatory phase in offense trajectories; optional `conditioningMode` |
 | `cac-core:Role` | `gufo:Role` | Investigator, victim, offender, and organizational roles |
 | `cac-core:Event` | `gufo:Event` | Actions, incidents, operational events |
 | `cac-core:LegalEvent` | `gufo:Event` | Court hearings, filings, legal proceedings |
@@ -288,6 +289,20 @@ cacontology-grooming:OnlineGroomingSituation
 ```
 
 This pattern ensures that when gUFO or UCO releases a breaking change, only the bridge files require updating — all 30+ domain modules remain untouched.
+
+#### 7.5 Offense-trajectory ConditioningPhase
+
+`cac-core:ConditioningPhase` is the spine-level macro preparatory phase between initial contact and exploitation in ICAC offense-trajectory state-machine graphs. It is distinct from variant refinement sub-stages (`SexualizationPhase`, `IsolationPhase`) that may appear as separate sequential nodes when a case documents a distinct stage after macro-conditioning.
+
+| Concept | IRI | Notes |
+|---------|-----|-------|
+| ConditioningPhase (spine) | `cac-core:ConditioningPhase` | Macro preparatory phase class |
+| ConditioningPhase (grooming instances) | `cacontology-grooming:ConditioningPhase` | Canonical instance type; requires `cac-core:Phase` on every instance (SHACL) |
+| conditioningMode | `cac-core:conditioningMode` | Dominant mechanism on macro ConditioningPhase instances |
+| Phase ordering | `cac-core:precedes` | Links consecutive phase instances in a trajectory |
+| Deprecated label | `TrustBuildingPhase` | Subclass of `ConditioningPhase`; `conditioningMode: trust_rapport` for new graphs |
+
+Example trajectory pattern: `InitialContactPhase` → `ConditioningPhase` → `ExploitationPhase` → `MaintenancePhase`. See `examples_knowledge_graphs/conditioning-phase-offense-trajectory-example.ttl` and `docs/glossary.md` (Offense-trajectory state machine) for authoring guidance.
 
 ## Technical Design
 

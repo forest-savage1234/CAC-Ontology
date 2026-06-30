@@ -3,6 +3,7 @@
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Account replacement only — validates against grooming shapes without
 # cross-module Phase typing conflicts from sextortion phase nodes.
@@ -16,7 +17,7 @@
     uco-core:description "New account created after platform ban to resume contact with victims." .
 
 <urn:uuid:67890123-ef01-2345-6789-abcdef012345> rdf:type cacontology-grooming:InitialContactPhase ,
-        cacontology-grooming:GroomingPhase ;
+        cac-core:Phase ;
     rdfs:label "Resumed Initial Contact"@en ;
     uco-core:description "Offender returned to initial contact phase using replacement account." .
 

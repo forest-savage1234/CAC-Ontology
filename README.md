@@ -16,6 +16,7 @@ The CAC Ontology Family consists of **35+ specialized modules** organized into s
 
 - **35+ Specialized Modules**: Comprehensive coverage of child exploitation investigation domains
 - **Semantic Spine (v3.0.0)**: Stable `cac-core:` class hierarchy organizing all domain classes by ontological kind (Entity, Event, Situation, Role, Phase)
+- **Offense-trajectory phases (unreleased)**: `cac-core:ConditioningPhase` and `cac-core:conditioningMode` on the spine; grooming-module phase typing for ICAC state-machine graphs
 - **gUFO Integration**: Enhanced semantic precision with foundational ontology patterns, mediated through spine and bridge modules
 - **SHACL Validation**: 20+ validation modules with comprehensive business rules, including spine shapes
 - **UCO/CASE Compatibility**: Seamless integration with Unified Cyber Ontology and CASE frameworks via bridge modules
@@ -46,7 +47,7 @@ The CAC Ontology Family consists of **35+ specialized modules** organized into s
 ### High-Priority Criminal Activities (5+ modules)
 - `cacontology-production.ttl` - CSAM production operations
 - `cacontology-custodial.ttl` - Custodial relationships & positions of trust
-- `cacontology-grooming.ttl` - Online grooming & enticement
+- `cacontology-grooming.ttl` - Online grooming & enticement (`ConditioningPhase`, `conditioningMode`; deprecated `TrustBuildingPhase`)
 - `cacontology-sextortion.ttl` - Sexual extortion incidents
 - `cacontology-athletic-exploitation.ttl` - Athletic coaching exploitation
 
@@ -131,6 +132,8 @@ The repository includes 30+ real-world example files based on actual law enforce
 - `examples_knowledge_graphs/arkansas-operation-cyber-highway-safety-check-example.ttl` - Large-scale operations
 - `examples_knowledge_graphs/operation-restore-justice-example.ttl` - Nationwide coordination
 - `examples_knowledge_graphs/utah-dominic-christensen-example.ttl` - Utah recidivism, registry compliance, and NCMEC-driven investigation
+- `examples_knowledge_graphs/conditioning-phase-offense-trajectory-example.ttl` - Macro offense-trajectory phases with `ConditioningPhase`, dual-typing, and `conditioningMode`
+- `examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl` - State-machine extensions (CoercionCycle, ChannelMigration, AffordanceMisuse, ConditioningPhase)
 - And many more...
 
 See the `examples_knowledge_graphs/` directory for complete list.

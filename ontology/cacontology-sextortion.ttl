@@ -8,6 +8,7 @@
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-sextortion: <https://cacontology.projectvic.org/sextortion#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 # Ontology Declaration
 <https://cacontology.projectvic.org/sextortion/3.0.0> rdf:type owl:Ontology ;
@@ -70,12 +71,16 @@ cacontology-sextortion:SextortionProgression rdf:type owl:Class ;
 cacontology-sextortion:InitialDeceptionPhase rdf:type owl:Class ;
     rdfs:label "Initial Deception Phase"@en ;
     rdfs:comment "First phase involving age deception and false identity establishment."@en ;
-    rdfs:subClassOf cac-core:Phase .
+    rdfs:subClassOf cac-core:Phase ;
+    skos:scopeNote "InitialDeceptionPhase captures identity fabrication and false persona establishment at the point of first contact. It is distinct from cacontology-grooming:ConditioningPhase with conditioningMode: deception, which captures deception as the dominant preparatory mechanism after contact is established and before the primary exploitation act."@en .
 
 cacontology-sextortion:TrustBuildingPhase rdf:type owl:Class ;
     rdfs:label "Trust Building Phase"@en ;
     rdfs:comment "Phase focused on building trust and rapport with victim."@en ;
-    rdfs:subClassOf cac-core:Phase .
+    rdfs:subClassOf cac-core:ConditioningPhase ;
+    owl:deprecated true ;
+    rdfs:seeAlso cac-core:ConditioningPhase ;
+    skos:editorialNote "Deprecated sextortion progression label. For new offense-trajectory graphs, type as cacontology-grooming:ConditioningPhase and cac-core:Phase with cac-core:conditioningMode (e.g. deception)."@en .
 
 cacontology-sextortion:SexualSolicitationPhase rdf:type owl:Class ;
     rdfs:label "Sexual Solicitation Phase"@en ;

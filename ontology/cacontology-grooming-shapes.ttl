@@ -34,7 +34,7 @@ cacontology-grooming:GroomingEventTypeValidationShape rdf:type sh:NodeShape ;
 
 # Phases validation for grooming stages
 cacontology-grooming:GroomingPhaseValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass cac-core:Phase ;
+    sh:targetClass cacontology-grooming:GroomingPhase ;
     sh:not [
         sh:property [
             sh:path rdfs:subClassOf ;
@@ -114,8 +114,8 @@ cacontology-grooming:GroomingBehaviorShape rdf:type sh:NodeShape ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:in ( "initial_contact" "trust_building" "isolation" "dependency_creation" "sexual_introduction" "maintenance" "control" ) ;
-        sh:message "Grooming behavior must specify grooming stage from the allowed list."@en
+        sh:in ( "initial_contact" "conditioning" "trust_building" "isolation" "dependency_creation" "sexualization" "sexual_introduction" "maintenance" "control" ) ;
+        sh:message "Grooming behavior must specify grooming stage from the allowed list (trust_building and sexual_introduction are legacy behavior-axis values)."@en
     ] ;
     sh:property [
         sh:path cacontology-grooming:behaviorType ;
@@ -168,6 +168,37 @@ cacontology-grooming:GroomingBehaviorShape rdf:type sh:NodeShape ;
         sh:maxCount 1 ;
         sh:message "Grooming behavior may have an end time."@en
     ] .
+
+cacontology-grooming:ConditioningPhaseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:ConditioningPhase ;
+    rdfs:label "Conditioning Phase Shape"@en ;
+    rdfs:comment "Validation shape for grooming offense-trajectory conditioning phase instances."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue cac-core:Phase ;
+        sh:minCount 1 ;
+        sh:message "ConditioningPhase instances must always be dual-typed with cac-core:Phase."@en     ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Conditioning phase must have a human-readable label."@en     ] ;
+    sh:property [
+        sh:path cac-core:conditioningMode ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "trust_rapport" "deception" "isolation" "normalization" "desensitization" "compliance_shaping" "dependency_creation" "fear_priming" "platform_confidence" ) ;
+        sh:message "conditioningMode must be from the allowed offense-trajectory mechanism list."@en     ] ;
+    sh:property [
+        sh:path cacontology-grooming:hasGroomingPhaseBeginPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Conditioning phase may have begin timestamp."@en     ] ;
+    sh:property [
+        sh:path cacontology-grooming:hasGroomingPhaseEndPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Conditioning phase may have end timestamp."@en     ] .
 
 cacontology-grooming:TrustBuildingShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-grooming:TrustBuilding ;
@@ -849,7 +880,7 @@ cacontology-grooming:AccountReplacementEventShape rdf:type sh:NodeShape ;
     ] ;
     sh:property [
         sh:path cacontology-grooming:resumesAt ;
-        sh:class cacontology-grooming:GroomingPhase ;
+        sh:class cac-core:Phase ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:message "Account replacement must specify the phase resumed via resumesAt."@en

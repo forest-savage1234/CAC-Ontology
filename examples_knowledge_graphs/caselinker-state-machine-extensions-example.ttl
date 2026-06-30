@@ -38,10 +38,11 @@
     rdfs:label "Extortion Phase"@en ;
     cacontology-sextortion:progressionStage 5 .
 
-<urn:uuid:e5f6a7b8-c9d0-1234-ef01-345678901234> rdf:type cacontology-sextortion:TrustBuildingPhase ,
+<urn:uuid:e5f6a7b8-c9d0-1234-ef01-345678901234> rdf:type cacontology-grooming:ConditioningPhase ,
         cac-core:Phase ;
-    rdfs:label "Trust Building Phase"@en ;
-    cacontology-sextortion:progressionStage 2 .
+    rdfs:label "Deception and Rapport Conditioning"@en ;
+    uco-core:description "False peer identity and age deception while building rapport on Instagram DMs (WA sextortion motif)." ;
+    cac-core:conditioningMode "deception" .
 
 # --- Retained leverage material ---
 <urn:uuid:f6a7b8c9-d0e1-2345-f012-456789012345> rdf:type uco-observable:Image, cac-core:Artifact ;

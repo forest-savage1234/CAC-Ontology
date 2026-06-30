@@ -26,6 +26,16 @@
     "triggeredBy": "cac-grooming:triggeredBy",
     "resumesAt": { "@id": "cac-grooming:resumesAt", "@type": "@id" },
     "originalAccountId": { "@id": "cac-grooming:originalAccountId", "@type": "@id" },
-    "replacementAccountId": { "@id": "cac-grooming:replacementAccountId", "@type": "@id" }
+    "replacementAccountId": { "@id": "cac-grooming:replacementAccountId", "@type": "@id" },
+    "ConditioningPhase": {
+      "@id": "cac-grooming:ConditioningPhase",
+      "@type": "@id"
+    },
+    "Phase": {
+      "@id": "cac-core:Phase",
+      "@type": "@id"
+    },
+    "conditioningMode": "cac-core:conditioningMode",
+    "precedes": { "@id": "cac-core:precedes", "@type": "@id" }
   }
 }

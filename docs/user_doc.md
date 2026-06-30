@@ -823,24 +823,39 @@ GROUP BY ?tier
 ORDER BY DESC(?violationCount)
 ```
 
-ORDER BY DESC(?violationCount)
-```
-
 ## CaseLinker State Machine Extensions
 
-Four offense-trajectory classes support mapping extracted case features to a formal state machine (phases as states, typed events as transitions). Phase ordering uses **`cac-core:precedes`**, introduced in this release in `ontology/cacontology-core-spine.ttl` (not present on main before the state-machine-extensions branch). It is spine-scoped to `cac-core:Phase` offense trajectories and is separate from earlier module-local ordering properties (`cacontology:transitionsTo`, `cacontology-temporal:temporallyPrecedes`, `cacontology-usa-federal:precedesPhase`).
+Offense-trajectory graphs use `cac-core:Phase` instances linked by `cac-core:precedes` (`ontology/cacontology-core-spine.ttl`). Phase ordering is spine-scoped and distinct from `cacontology:transitionsTo`, `cacontology-temporal:temporallyPrecedes`, and `cacontology-usa-federal:precedesPhase`. Authoring rules and phase tables: `docs/glossary.md` (Offense-trajectory state machine).
 
-| Class / property | IRI |
-|------------------|-----|
-| CoercionCycle | `https://cacontology.projectvic.org/sextortion#CoercionCycle` |
-| ChannelMigrationEvent | `https://cacontology.projectvic.org/platforms#ChannelMigrationEvent` |
-| AffordanceMisuse | `https://cacontology.projectvic.org/platforms#AffordanceMisuse` |
-| AccountReplacementEvent | `https://cacontology.projectvic.org/grooming#AccountReplacementEvent` |
-| precedes (phase sequencing) | `https://cacontology.projectvic.org/core#precedes` |
+### 1. ConditioningPhase trajectory
 
-### Example knowledge graph
+`cac-core:ConditioningPhase` is the macro preparatory phase between initial contact and exploitation. Instances use `cacontology-grooming:ConditioningPhase` with required `cac-core:Phase` dual typing; set `cac-core:conditioningMode` on the macro node. Deprecated `TrustBuildingPhase` maps to `ConditioningPhase` with `conditioningMode: trust_rapport` or `deception` as appropriate.
+
+```turtle
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix cac-grooming: <https://cacontology.projectvic.org/grooming#> .
+
+<urn:uuid:example-contact> a cac-grooming:InitialContactPhase , cac-core:Phase ;
+    rdfs:label "Platform Contact" ;
+    cac-core:precedes <urn:uuid:example-conditioning> .
+
+<urn:uuid:example-conditioning> a cac-grooming:ConditioningPhase , cac-core:Phase ;
+    rdfs:label "Deception Conditioning" ;
+    cac-core:conditioningMode "deception" ;
+    cac-core:precedes <urn:uuid:example-exploitation> .
+```
+
+Example files: `examples_knowledge_graphs/conditioning-phase-offense-trajectory-example.ttl`, `examples_knowledge_graphs/wa-sextortion-case-example.ttl`.
+
+### 2. Typed transition events
+
+`cacontology-sextortion:CoercionCycle`, `cacontology-platforms:ChannelMigrationEvent`, `cacontology-platforms:AffordanceMisuse`, and `cacontology-grooming:AccountReplacementEvent` annotate transitions between phases. Example: `examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl` (CoercionCycle, ChannelMigrationEvent, AffordanceMisuse); `examples_knowledge_graphs/caselinker-account-replacement-example.ttl` (AccountReplacementEvent). Per-class JSON-LD: `examples_knowledge_graphs/jsonld/`. Contexts: `contexts/cacontology-sextortion.jsonld`, `contexts/cacontology-platforms.jsonld`, `contexts/cacontology-grooming.jsonld`, `contexts/cacontology-state-machine-extensions.jsonld`.
+
+### 3. SHACL validation
 
 ```bash
+pyshacl -s ontology/cacontology-grooming-shapes.ttl \
+  -d examples_knowledge_graphs/conditioning-phase-offense-trajectory-example.ttl
 pyshacl -s ontology/cacontology-sextortion-shapes.ttl \
   -d examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl
 pyshacl -s ontology/cacontology-platforms-shapes.ttl \
@@ -849,42 +864,24 @@ pyshacl -s ontology/cacontology-grooming-shapes.ttl \
   -d examples_knowledge_graphs/caselinker-account-replacement-example.ttl
 ```
 
-Reference instance files:
-- `examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl` (CoercionCycle, ChannelMigrationEvent, AffordanceMisuse)
-- `examples_knowledge_graphs/caselinker-account-replacement-example.ttl` (AccountReplacementEvent)
-
-Per-class JSON-LD examples: `examples_knowledge_graphs/jsonld/`
-
-JSON-LD contexts: `contexts/cacontology-sextortion.jsonld`, `contexts/cacontology-platforms.jsonld`, `contexts/cacontology-grooming.jsonld`, `contexts/cacontology-state-machine-extensions.jsonld`
-
-### SPARQL analytics
+### 4. SPARQL analytics
 
 ```bash
-# Load both example graphs to query all four class types
+# conditioningMode distribution and phase-path queries
+sparql --query example_SPARQL_queries/conditioning-phase-analytics.rq \
+  --data examples_knowledge_graphs/conditioning-phase-offense-trajectory-example.ttl \
+  --data examples_knowledge_graphs/wa-sextortion-case-example.ttl \
+  --data examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl
+```
+
+```bash
+# Typed transition events (CoercionCycle, ChannelMigration, etc.)
 sparql --query example_SPARQL_queries/caselinker-state-machine-analytics.rq \
   --data examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl \
   --data examples_knowledge_graphs/caselinker-account-replacement-example.ttl
 ```
 
-### Optional Python SDK
-
-```python
-from cacontology import CoercionCycle, ChannelMigrationEvent, AffordanceMisuse, AccountReplacementEvent
-
-cycle = CoercionCycle(
-    id="urn:uuid:...",
-    sustained_by="urn:uuid:...",
-    cycles_between=["urn:uuid:phase-a", "urn:uuid:phase-b"],
-    coercion_cycle_demand_type="imagery_quota",
-)
-graph = cycle.to_graph()  # serialize for RDF store import
-```
-
-Bindings live in `sdk/python/cacontology/`. Run unit tests:
-
-```bash
-python testing/test_state_machine_extensions.py
-```
+Unit tests: `python testing/test_state_machine_extensions.py`, `python testing/test_conditioning_phase.py`.
 
 ## Validation and Quality Assurance
 

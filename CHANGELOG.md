@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added - Conditioning Phase (offense-trajectory macro phase)
+
+Introduces spine-level `cac-core:ConditioningPhase` for ICAC state-machine modeling: contact → conditioning → exploitation → maintenance.
+
+- `cac-core:ConditioningPhase` and `cac-core:conditioningMode` in `ontology/cacontology-core-spine.ttl`
+- `cacontology-grooming:ConditioningPhase` (grooming specialization); `TrustBuildingPhase`, `IsolationPhase`, `SexualizationPhase` re-parented as conditioning micro-phases
+- `cacontology-grooming:ConditioningBehavior`, `TrustBuilding`, `IsolationTactics` behavior classes; trust-building datatype properties declared in grooming module
+- `cacontology-sextortion:TrustBuildingPhase` deprecated; subclasses `cac-core:ConditioningPhase`
+- SHACL: `ConditioningPhaseShape` in `cacontology-core-spine-shapes.ttl` and `cacontology-grooming-shapes.ttl`
+- Example: `examples_knowledge_graphs/conditioning-phase-offense-trajectory-example.ttl`
+- JSON-LD contexts updated for `ConditioningPhase` and `conditioningMode`
+
+### Fixed - Conditioning phase authoring consistency
+
+- Canonical instance type: `cacontology-grooming:ConditioningPhase` dual-typed with `cac-core:Phase` per grooming SHACL shapes; aligned grooming/sextortion deprecation notes and JSON-LD contexts
+- Documented variant-phase rule: `SexualizationPhase` and `IsolationPhase` are optional refinement sub-stages, distinct from the macro ConditioningPhase node
+- `grooming:conditioningMode` domain extended to `ConditioningBehavior`; `groomingStage` SHACL adds `sexualization` and documents legacy `trust_building` / `sexual_introduction` behavior-axis values
+
+### Known gaps — addressed in follow-up PR
+
+- **Sextortion non-conditioning phase dual-typing:** `wa-sextortion-case-example.ttl` types `SexualSolicitationPhase`, `ImageAcquisitionPhase`, and `ExtortionPhase` instances without the `cac-core:Phase` dual type that CaseLinker offense-trajectory graphs require for conditioning nodes; aligning those sextortion progression phases is a separate sextortion-module authoring pass, not part of the ConditioningPhase spine addition.
+- **`conditioningMode` optional vs. required:** Spine and grooming SHACL shapes allow `conditioningMode` with `sh:minCount 0`, so macro ConditioningPhase instances validate without a mechanism tag; requiring a mode for all graphs would break non-PACER legacy data and behavior-only graphs that use `ConditioningBehavior` without a state-machine phase node — tightening that constraint belongs in a dedicated validation-profile PR.
+- **Duplicate `conditioningMode` property IRI:** `cac-core:conditioningMode` and `cacontology-grooming:conditioningMode` (subPropertyOf the spine property, union domain on phase and behavior) coexist by design for module-local authoring; collapsing to a single IRI or resolving JSON-LD compact-term ambiguity is an interoperability cleanup outside the offense-trajectory state-machine scope of this PR.
+
 ### Added - CaseLinker State Machine Extensions
 
 Adds four offense-trajectory constructs for state-machine mapping (phases as states, transitions as typed events). Grounded in sextortion, production, and cross-platform offense patterns.
@@ -32,7 +56,7 @@ Adds four offense-trajectory constructs for state-machine mapping (phases as sta
 - `cacontology-grooming:AccountReplacementEvent` — post-ban/block account reset with `triggeredBy`, `resumesAt`, `originalAccountId`, `replacementAccountId`
 - `AccountReplacementEventShape` in `cacontology-grooming-shapes.ttl`
 
-#### Examples, queries, contexts, and developer bindings
+#### Examples, queries, and contexts
 
 - `examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl` — CoercionCycle, ChannelMigrationEvent, AffordanceMisuse
 - `examples_knowledge_graphs/caselinker-account-replacement-example.ttl` — AccountReplacementEvent (separate file for grooming SHACL cross-validation)
@@ -40,7 +64,6 @@ Adds four offense-trajectory constructs for state-machine mapping (phases as sta
 - `contexts/cacontology-sextortion.jsonld`, `contexts/cacontology-platforms.jsonld`, `contexts/cacontology-grooming.jsonld` — per-module JSON-LD contexts
 - `contexts/cacontology-state-machine-extensions.jsonld` — combined JSON-LD context for all four classes
 - `example_SPARQL_queries/caselinker-state-machine-analytics.rq`
-- `sdk/python/cacontology/` — optional Python dataclass bindings (`CoercionCycle`, `ChannelMigrationEvent`, `AffordanceMisuse`, `AccountReplacementEvent`)
 - `testing/test_state_machine_extensions.py` — SHACL pass/fail unit tests (8 tests)
 - `testing/shacl_validation.py` — domain cross-checks for new example graphs
 

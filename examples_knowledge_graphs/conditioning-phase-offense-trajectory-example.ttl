@@ -1,0 +1,47 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
+@prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
+
+# =============================================================================
+# Conditioning Phase — offense-trajectory macro phase example
+# Pattern: InitialContact → Conditioning → Exploitation → Maintenance
+# Grounded in cross-offense ICAC state-machine modeling (enticement + sextortion motifs).
+# =============================================================================
+
+<urn:uuid:cond-ex-contact-001> rdf:type cacontology-grooming:InitialContactPhase ,
+        cac-core:Phase ;
+    rdfs:label "Anonymous Platform Contact"@en ;
+    uco-core:description "Offender initiated contact through pseudonymous messaging." ;
+    cac-core:precedes <urn:uuid:cond-ex-conditioning-001> .
+
+<urn:uuid:cond-ex-conditioning-001> rdf:type cacontology-grooming:ConditioningPhase ,
+        cac-core:Phase ;
+    rdfs:label "Normalization and Rapport Conditioning"@en ;
+    uco-core:description "Flattery, reciprocal disclosure, and normalization of sexual topics before first compliance." ;
+    cac-core:conditioningMode "normalization" ;
+    cac-core:precedes <urn:uuid:cond-ex-exploitation-001> .
+
+<urn:uuid:cond-ex-exploitation-001> rdf:type cacontology-grooming:ExploitationPhase ,
+        cac-core:Phase ;
+    rdfs:label "Directed Production Solicitation"@en ;
+    uco-core:description "First explicit solicitation fulfilled; primary exploitation act." ;
+    cac-core:precedes <urn:uuid:cond-ex-maintenance-001> .
+
+<urn:uuid:cond-ex-maintenance-001> rdf:type cacontology-grooming:MaintenancePhase ,
+        cac-core:Phase ;
+    rdfs:label "Material Retained"@en ;
+    uco-core:description "CSAM retained as leverage and record of offense." .
+
+<urn:uuid:cond-ex-affordance-unmonitored-comm> rdf:type cacontology-platforms:PlatformAffordance ;
+    rdfs:label "Unmonitored Communication Affordance"@en .
+
+<urn:uuid:cond-ex-affordance-001> rdf:type cacontology-platforms:AffordanceMisuse ;
+    rdfs:label "Private Channel Enabled Conditioning"@en ;
+    cacontology-platforms:affordanceClass <urn:uuid:cond-ex-affordance-unmonitored-comm> ;
+    cacontology-platforms:enablesTransitionFrom <urn:uuid:cond-ex-contact-001> ;
+    cacontology-platforms:enablesTransitionTo <urn:uuid:cond-ex-conditioning-001> ;
+    cacontology-platforms:misuseDescription "Unmonitored private messaging enabled rapport and normalization before escalation." .

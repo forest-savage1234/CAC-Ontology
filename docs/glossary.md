@@ -75,6 +75,25 @@ The stable top-level class hierarchy introduced in v3.0.0 (`cac-core:` namespace
 - **LiveStreamingCSA**: Live streaming of child sexual abuse
 - **DigitallyGeneratedCSAMIncident**: AI-generated or manipulated CSAM
 
+### Offense-trajectory state machine (ConditioningPhase)
+
+Spine-level `cac-core:ConditioningPhase` models the macro preparatory phase between initial contact and exploitation in ICAC offense-trajectory state machines (contact → conditioning → exploitation → maintenance). Grooming-module instances use `cacontology-grooming:ConditioningPhase` as the canonical instance type.
+
+| Macro phase | Canonical instance type | Notes |
+|-------------|-------------------------|-------|
+| Initial contact | `cacontology-grooming:InitialContactPhase` | First documented approach |
+| Conditioning | `cacontology-grooming:ConditioningPhase` + `cac-core:Phase` | Macro preparatory phase; `cac-core:conditioningMode` attaches here |
+| Exploitation | `cacontology-grooming:ExploitationPhase` | Primary harm act |
+| Maintenance | `cacontology-grooming:MaintenancePhase` | Ongoing control / retention |
+
+- **ConditioningPhase** (`cac-core:ConditioningPhase` / `cacontology-grooming:ConditioningPhase`): Spine-level and grooming-module class for the macro preparatory phase between initial contact and exploitation. This structure supports cross-case offense-trajectory analysis.
+- **Dual typing:** Every macro conditioning node carries both `cacontology-grooming:ConditioningPhase` and `cac-core:Phase`. Spine and grooming SHACL shapes require the `cac-core:Phase` type (`sh:hasValue` with `sh:minCount 1`); instances that omit it fail validation.
+- **`conditioningMode`:** The dominant preparatory mechanism (`trust_rapport`, `deception`, `isolation`, `normalization`, `desensitization`, `compliance_shaping`, `dependency_creation`, `fear_priming`, `platform_confidence`) is recorded on the macro ConditioningPhase node, not on variant sub-stage nodes. The `platform_confidence` value denotes preparatory conduct in which the offender models and develops operational confidence in a platform's affordances, detection characteristics, and community norms prior to exploitation — applicable to mainstream platforms, encrypted messaging apps, dark web forums, and generative AI tools; it is offender- and platform-directed, not victim-directed rapport or trust building.
+- **Subclass vs. macro node:** `SexualizationPhase` and `IsolationPhase` are subclasses of `ConditioningPhase` because they are conditioning mechanisms — that is the correct taxonomic relationship, not a modeling workaround. In state-machine graphs, conditioning is represented as a single macro node with `conditioningMode` by default; `SexualizationPhase` or `IsolationPhase` appear as their own sequential nodes only when a case documents that sub-stage as a distinct, separate step.
+- **Deprecated label:** `TrustBuildingPhase` in the grooming and sextortion modules subclasses `ConditioningPhase`. Legacy instances remain valid; new graphs express rapport-heavy cases as `ConditioningPhase` with `conditioningMode: trust_rapport`.
+- **Behavior axis vs phase axis:** `groomingStage` on `GroomingBehavior` tags behavior records separately from phase typing. Legacy values `trust_building` and `sexual_introduction` remain in SHACL for older behavior graphs; `conditioning` and `sexualization` are the preferred values for new behavior tagging.
+- **Sextortion deception distinction:** For sextortion cases, note that InitialDeceptionPhase (identity fabrication at first contact) is distinct from ConditioningPhase + conditioningMode: deception (preparatory deception after contact is established); see cacontology-sextortion.ttl.
+
 ### Athletic Coaching Exploitation Classes
 - **AthleticCoachingExploitation**: Child sexual exploitation by athletic coaches using sports authority and team dynamics
 - **TravelTeamExploitation**: Exploitation within travel or club sports teams with enhanced coach authority
@@ -138,7 +157,8 @@ The stable top-level class hierarchy introduced in v3.0.0 (`cac-core:` namespace
 
 ### Properties
 - **reportedBy**: Links a report to its reporter
-- **cac-core:precedes**: **New in CaseLinker state machine extensions.** Spine-level temporal ordering property linking one `cac-core:Phase` instance to the next in a documented offense lifecycle (`ontology/cacontology-core-spine.ttl`). Related but distinct from pre-existing properties: `cacontology:transitionsTo` (investigation phases in `cacontology-core.ttl`), `cacontology-temporal:temporallyPrecedes` (subPropertyOf `gufo:precedes`), and `cacontology-usa-federal:precedesPhase` (federal legal phases). Not defined in UCO or CASE.
+- **cac-core:precedes**: Spine-level temporal ordering property linking one `cac-core:Phase` instance to the next in a documented offense lifecycle (`ontology/cacontology-core-spine.ttl`). Introduced in the CaseLinker state machine extensions release. Related but distinct from `cacontology:transitionsTo` (investigation phases in `cacontology-core.ttl`), `cacontology-temporal:temporallyPrecedes` (subPropertyOf `gufo:precedes`), and `cacontology-usa-federal:precedesPhase` (federal legal phases). Not defined in UCO or CASE.
+- **conditioningMode** (`cac-core:conditioningMode`): Dominant conditioning mechanism on a ConditioningPhase instance or `ConditioningBehavior` instance; see [Offense-trajectory state machine (ConditioningPhase)](#offense-trajectory-state-machine-conditioningphase)
 - **sustainedBy** (`cacontology-sextortion:sustainedBy`): Links a coercion cycle to retained leverage material
 - **cyclesBetween** (`cacontology-sextortion:cyclesBetween`): Links a coercion cycle to the phase instances forming the loop
 - **fromPlatform** / **toPlatform** (`cacontology-platforms:`): Originating and destination platforms for a channel migration event
