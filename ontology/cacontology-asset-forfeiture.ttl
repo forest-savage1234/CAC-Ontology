@@ -465,9 +465,12 @@ cacontology-asset-forfeiture:previousPhase rdf:type owl:ObjectProperty ;
 
 cacontology-asset-forfeiture:phaseStatus rdf:type owl:DatatypeProperty ;
     rdfs:label "phase status"@en ;
-    rdfs:comment "Status of an operational phase (e.g., 'active', 'completed', 'pending')."@en ;
+    rdfs:comment "DEPRECATED: use cacontology-legal-outcomes:phaseStatus (domain cac-core:Phase) as the canonical phase status property. This module-local copy is retained for backward compatibility with existing asset-forfeiture graphs and shapes and is owl:equivalentProperty to the legal-outcomes declaration."@en ;
+    owl:deprecated "true"^^xsd:boolean ;
+    owl:equivalentProperty <https://cacontology.projectvic.org/legal-outcomes#phaseStatus> ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:string ;
+    rdfs:seeAlso <https://cacontology.projectvic.org/legal-outcomes#phaseStatus> .
 
 cacontology-asset-forfeiture:involvesJurisdiction rdf:type owl:ObjectProperty ;
     rdfs:label "involves jurisdiction"@en ;
