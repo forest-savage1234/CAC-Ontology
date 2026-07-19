@@ -1,0 +1,120 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix cacontology-forensics: <https://cacontology.projectvic.org/forensics#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix ex: <https://cacontology.projectvic.org/examples/synthetic-attribution-account-ip#> .
+
+# =============================================================================
+# SYNTHETIC ATTRIBUTION & ACCOUNT-IP CORRELATION EXEMPLAR (Issue #35)
+#
+# Fully synthetic abstract pattern for acceptance testing. Zero real case
+# material. Demonstrates:
+#   - AttributionAssessment (cac-core:AssessmentResult)
+#   - IPCorrelationEvidence (ObservableObject + Artifact)
+#   - correlationMethod, timeWindowStart/End, overlappingIPs, sharedAccounts,
+#     deviceFingerprint, confidenceScore, assessedBy, supportsAttributionOf
+#   - Linkage chain: Account A + Account B → overlapping IPs → device →
+#     ALLEGED subject via AttributionAssessment
+#
+# IP addresses use RFC 5737 documentation ranges only (TEST-NET-1/2/3):
+#   192.0.2.0/24, 198.51.100.0/24, 203.0.113.0/24
+# Pattern only — no real subscriber IDs, dockets, or live account handles.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Persons (synthetic identities only; subject is ALLEGED / unadjudicated)
+# -----------------------------------------------------------------------------
+
+ex:Analyst_Riley_Nguyen a uco-identity:Person ;
+    rdfs:label "Riley Nguyen (synthetic analyst)"@en ;
+    uco-core:name "Riley Nguyen"@en ;
+    uco-core:description "Fully synthetic person node representing a digital forensics analyst who issues an attribution assessment. Not a real individual."@en .
+
+ex:Subject_Alex_Morgan_Alleged a uco-identity:Person ;
+    rdfs:label "Alex Morgan (synthetic ALLEGED subject)"@en ;
+    uco-core:name "Alex Morgan"@en ;
+    uco-core:description "Fully synthetic person node standing for an ALLEGED subject in a complaint-stage attribution graph. Not a real individual; no adjudication implied."@en .
+
+# -----------------------------------------------------------------------------
+# Platform accounts (abstract DigitalAccount observables)
+# -----------------------------------------------------------------------------
+
+ex:Account_PlatformA a uco-observable:DigitalAccount , uco-observable:ObservableObject ;
+    rdfs:label "Synthetic Platform-A account (handle: user_alpha_demo)"@en ;
+    uco-core:description "Abstract digital account on fictional Platform A. Handle is synthetic and non-operational. Typed as ObservableObject as well so local SHACL class checks succeed without full UCO import closure."@en .
+
+ex:Account_PlatformB a uco-observable:DigitalAccount , uco-observable:ObservableObject ;
+    rdfs:label "Synthetic Platform-B account (handle: user_beta_demo)"@en ;
+    uco-core:description "Abstract digital account on fictional Platform B. Handle is synthetic and non-operational. Typed as ObservableObject as well so local SHACL class checks succeed without full UCO import closure."@en .
+
+# -----------------------------------------------------------------------------
+# IP address observables (RFC 5737 documentation addresses only)
+# -----------------------------------------------------------------------------
+
+ex:IP_192_0_2_10 a uco-observable:ObservableObject ;
+    rdfs:label "Documentation IPv4 192.0.2.10 (TEST-NET-1)"@en ;
+    uco-core:description "RFC 5737 TEST-NET-1 documentation address used only for synthetic linkage. Not a live endpoint."@en ;
+    uco-core:name "192.0.2.10"@en .
+
+ex:IP_198_51_100_25 a uco-observable:ObservableObject ;
+    rdfs:label "Documentation IPv4 198.51.100.25 (TEST-NET-2)"@en ;
+    uco-core:description "RFC 5737 TEST-NET-2 documentation address used only for synthetic linkage. Not a live endpoint."@en ;
+    uco-core:name "198.51.100.25"@en .
+
+ex:IP_203_0_113_77 a uco-observable:ObservableObject ;
+    rdfs:label "Documentation IPv4 203.0.113.77 (TEST-NET-3)"@en ;
+    uco-core:description "RFC 5737 TEST-NET-3 documentation address used only for synthetic linkage. Not a live endpoint."@en ;
+    uco-core:name "203.0.113.77"@en .
+
+# -----------------------------------------------------------------------------
+# Device fingerprint / seized-device abstract node
+# -----------------------------------------------------------------------------
+
+ex:Device_Fingerprint_DemoPhone a uco-observable:ObservableObject , cac-core:Artifact ;
+    rdfs:label "Synthetic device fingerprint record (demo handset)"@en ;
+    uco-core:description "Abstract device/fingerprint artifact co-observed with both platform sessions. Fully synthetic; no real IMEI or serial."@en .
+
+# -----------------------------------------------------------------------------
+# IPCorrelationEvidence — overlapping IP usage across Platform A and B
+# -----------------------------------------------------------------------------
+
+ex:IPCorrelationEvidence_PlatformA_B a cacontology-forensics:IPCorrelationEvidence ;
+    rdfs:label "Synthetic IP correlation evidence (Platform A ↔ Platform B)"@en ;
+    uco-core:description "Abstract evidence package: comparative session-log review found overlapping documentation IPs across two platform accounts within a 14-day window. Schema demonstration only."@en ;
+    cacontology-forensics:correlationMethod "timestamp_overlap" ;
+    cacontology-forensics:timeWindowStart "2025-06-01T00:00:00Z"^^xsd:dateTime ;
+    cacontology-forensics:timeWindowEnd "2025-06-14T23:59:59Z"^^xsd:dateTime ;
+    cacontology-forensics:overlappingIPs ex:IP_192_0_2_10 , ex:IP_198_51_100_25 ;
+    cacontology-forensics:sharedAccounts ex:Account_PlatformA , ex:Account_PlatformB ;
+    cacontology-forensics:deviceFingerprint ex:Device_Fingerprint_DemoPhone ;
+    cacontology-forensics:confidenceScore "0.87"^^xsd:decimal ;
+    cacontology-forensics:assessedBy ex:Analyst_Riley_Nguyen ;
+    cacontology-forensics:supportsAttributionOf ex:Subject_Alex_Morgan_Alleged .
+
+# -----------------------------------------------------------------------------
+# AttributionAssessment — account + IP + device → ALLEGED subject
+# -----------------------------------------------------------------------------
+
+ex:AttributionAssessment_Alex_Morgan a cacontology-forensics:AttributionAssessment ;
+    rdfs:label "Synthetic attribution assessment (ALLEGED subject Alex Morgan)"@en ;
+    uco-core:description "Abstract assessment that Platform-A and Platform-B accounts, overlapping documentation IPs, and the demo device fingerprint support attribution of the ALLEGED subject. Complaint-stage / investigative pattern only; no guilt asserted."@en ;
+    cacontology-forensics:correlationMethod "comparative_log_review" ;
+    cacontology-forensics:timeWindowStart "2025-06-01T00:00:00Z"^^xsd:dateTime ;
+    cacontology-forensics:timeWindowEnd "2025-06-14T23:59:59Z"^^xsd:dateTime ;
+    cacontology-forensics:overlappingIPs ex:IP_192_0_2_10 , ex:IP_198_51_100_25 , ex:IP_203_0_113_77 ;
+    cacontology-forensics:sharedAccounts ex:Account_PlatformA , ex:Account_PlatformB ;
+    cacontology-forensics:deviceFingerprint ex:Device_Fingerprint_DemoPhone ;
+    cacontology-forensics:confidenceScore "0.91"^^xsd:decimal ;
+    cacontology-forensics:assessedBy ex:Analyst_Riley_Nguyen ;
+    cacontology-forensics:supportsAttributionOf ex:Subject_Alex_Morgan_Alleged ;
+    cacontology-forensics:hasIPCorrelationEvidence ex:IPCorrelationEvidence_PlatformA_B ;
+    cacontology-forensics:correlatesObservable ex:Account_PlatformA , ex:Account_PlatformB ,
+        ex:IP_192_0_2_10 , ex:IP_198_51_100_25 , ex:IP_203_0_113_77 ,
+        ex:Device_Fingerprint_DemoPhone ;
+    cac-core:assesses ex:Subject_Alex_Morgan_Alleged ;
+    cac-core:hasConfidence "0.91"^^xsd:decimal ;
+    cac-core:issuedAtTime "2025-06-20T15:30:00Z"^^xsd:dateTimeStamp .

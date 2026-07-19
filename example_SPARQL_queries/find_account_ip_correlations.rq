@@ -1,0 +1,52 @@
+# Query: find_account_ip_correlations (Issue #35)
+# Purpose: List IP correlation evidence linking two or more digital accounts
+#          via overlapping IP observables, with confidence and time window.
+# Security: Fully synthetic-safe; no operational filters required for the
+#           acceptance exemplar. Extend with TLP filters for production graphs.
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX cacontology-forensics: <https://cacontology.projectvic.org/forensics#>
+PREFIX cac-core: <https://cacontology.projectvic.org/core#>
+
+# -----------------------------------------------------------------------------
+# 1) Pairwise accounts sharing overlapping IPs within correlation evidence
+# -----------------------------------------------------------------------------
+SELECT ?evidence ?accountA ?accountB ?ip ?ipLabel ?method ?confidence ?windowStart ?windowEnd ?subject ?analyst
+WHERE {
+    ?evidence a cacontology-forensics:IPCorrelationEvidence ;
+              cacontology-forensics:sharedAccounts ?accountA , ?accountB ;
+              cacontology-forensics:overlappingIPs ?ip .
+
+    FILTER (STR(?accountA) < STR(?accountB))
+
+    OPTIONAL { ?ip rdfs:label ?ipLabel }
+    OPTIONAL { ?ip uco-core:name ?ipLabel }
+
+    OPTIONAL { ?evidence cacontology-forensics:correlationMethod ?method }
+    OPTIONAL { ?evidence cacontology-forensics:confidenceScore ?confidence }
+    OPTIONAL { ?evidence cacontology-forensics:timeWindowStart ?windowStart }
+    OPTIONAL { ?evidence cacontology-forensics:timeWindowEnd ?windowEnd }
+    OPTIONAL { ?evidence cacontology-forensics:supportsAttributionOf ?subject }
+    OPTIONAL { ?evidence cacontology-forensics:assessedBy ?analyst }
+}
+ORDER BY DESC(?confidence) ?evidence ?accountA ?accountB ?ip
+
+# -----------------------------------------------------------------------------
+# 2) Attribution assessments supported by IP correlation evidence
+#    (uncomment to run as a separate query)
+# -----------------------------------------------------------------------------
+# SELECT ?assessment ?assessmentLabel ?subject ?evidence ?confidence ?method
+# WHERE {
+#     ?assessment a cacontology-forensics:AttributionAssessment ;
+#                 cacontology-forensics:hasIPCorrelationEvidence ?evidence .
+#     OPTIONAL { ?assessment rdfs:label ?assessmentLabel }
+#     OPTIONAL { ?assessment cacontology-forensics:supportsAttributionOf ?subject }
+#     OPTIONAL { ?assessment cacontology-forensics:confidenceScore ?confidence }
+#     OPTIONAL { ?assessment cacontology-forensics:correlationMethod ?method }
+# }
+# ORDER BY DESC(?confidence)

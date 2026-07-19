@@ -10,6 +10,8 @@
 @prefix cacontology-forensics: <https://cacontology.projectvic.org/forensics#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 
 # Ontology Declaration
 <https://cacontology.projectvic.org/forensics/shapes/3.0.0> rdf:type owl:Ontology ;
@@ -18,7 +20,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/forensics/shapes/3.0.0> ;
     owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-07-19"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/forensics/3.0.0> ,
                 <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
@@ -683,4 +685,228 @@ cacontology-forensics:TemporalConsistencyBusinessRule rdf:type sh:NodeShape ;
                 $this cacontology-forensics:temporalAccuracy ?accuracy .
                 FILTER (?accuracy < 0.9)
             }
-        """     ] . 
+        """     ] .
+
+# =============================================================================
+# ATTRIBUTION & ACCOUNT-IP CORRELATION SHAPES (Issue #35)
+# Mild constraints so existing graphs are not broken; synthetic exemplar
+# exercises required temporal links and confidence bounds.
+# =============================================================================
+
+cacontology-forensics:AttributionAssessmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:AttributionAssessment ;
+    rdfs:label "Attribution Assessment Shape"@en ;
+    rdfs:comment "Validation shape for attribution assessments linking accounts, IPs, devices, and (alleged) subjects. Constraints are mild for backward compatibility; new exemplars exercise confidence, method, and temporal window properties."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "AttributionAssessment must have an rdfs:label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:confidenceScore ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "confidenceScore, when provided, must be a single xsd:decimal between 0.0 and 1.0 inclusive."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:correlationMethod ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:message "correlationMethod, when provided, must be xsd:string."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:timeWindowStart ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "timeWindowStart, when provided, must be a single xsd:dateTime."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:timeWindowEnd ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "timeWindowEnd, when provided, must be a single xsd:dateTime."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:assessedBy ;
+        sh:class uco-identity:Person ;
+        sh:minCount 0 ;
+        sh:message "assessedBy, when provided, must point to a uco-identity:Person."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:supportsAttributionOf ;
+        sh:class uco-identity:Person ;
+        sh:minCount 0 ;
+        sh:message "supportsAttributionOf, when provided, must point to a uco-identity:Person (ALLEGED subject in complaint-stage graphs)."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:hasIPCorrelationEvidence ;
+        sh:class cacontology-forensics:IPCorrelationEvidence ;
+        sh:minCount 0 ;
+        sh:message "hasIPCorrelationEvidence must point to IPCorrelationEvidence."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:sharedAccounts ;
+        sh:class uco-observable:DigitalAccount ;
+        sh:minCount 0 ;
+        sh:message "sharedAccounts must point to uco-observable:DigitalAccount."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:overlappingIPs ;
+        sh:class uco-observable:ObservableObject ;
+        sh:minCount 0 ;
+        sh:message "overlappingIPs must point to an ObservableObject (IP address node)."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:deviceFingerprint ;
+        sh:class uco-observable:ObservableObject ;
+        sh:minCount 0 ;
+        sh:message "deviceFingerprint must point to an ObservableObject (device or fingerprint record)."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:correlatesObservable ;
+        sh:class uco-observable:ObservableObject ;
+        sh:minCount 0 ;
+        sh:message "correlatesObservable must point to an ObservableObject."@en
+    ] ;
+    sh:sparql [
+        sh:message "timeWindowEnd must not be earlier than timeWindowStart when both are present."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "cacontology-forensics" ;
+                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this cacontology-forensics:timeWindowStart ?start .
+                $this cacontology-forensics:timeWindowEnd ?end .
+                FILTER (?end < ?start)
+            }
+        """
+    ] .
+
+cacontology-forensics:IPCorrelationEvidenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:IPCorrelationEvidence ;
+    rdfs:label "IP Correlation Evidence Shape"@en ;
+    rdfs:comment "Validation shape for IP correlation evidence artifacts. Requires a label; when timestamp_overlap method is used, expects a temporal window (start and end) for auditability."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "IPCorrelationEvidence must have an rdfs:label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:confidenceScore ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "confidenceScore, when provided, must be a single xsd:decimal between 0.0 and 1.0 inclusive."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:correlationMethod ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:message "correlationMethod, when provided, must be xsd:string."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:timeWindowStart ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "timeWindowStart, when provided, must be a single xsd:dateTime."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:timeWindowEnd ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "timeWindowEnd, when provided, must be a single xsd:dateTime."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:overlappingIPs ;
+        sh:class uco-observable:ObservableObject ;
+        sh:minCount 0 ;
+        sh:message "overlappingIPs must point to an ObservableObject (IP address node)."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:sharedAccounts ;
+        sh:class uco-observable:DigitalAccount ;
+        sh:minCount 0 ;
+        sh:message "sharedAccounts must point to uco-observable:DigitalAccount."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:deviceFingerprint ;
+        sh:class uco-observable:ObservableObject ;
+        sh:minCount 0 ;
+        sh:message "deviceFingerprint must point to an ObservableObject."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:assessedBy ;
+        sh:class uco-identity:Person ;
+        sh:minCount 0 ;
+        sh:message "assessedBy, when provided, must point to a uco-identity:Person."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:supportsAttributionOf ;
+        sh:class uco-identity:Person ;
+        sh:minCount 0 ;
+        sh:message "supportsAttributionOf, when provided, must point to a uco-identity:Person."@en
+    ] ;
+    sh:sparql [
+        sh:message "timeWindowEnd must not be earlier than timeWindowStart when both are present."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "cacontology-forensics" ;
+                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this cacontology-forensics:timeWindowStart ?start .
+                $this cacontology-forensics:timeWindowEnd ?end .
+                FILTER (?end < ?start)
+            }
+        """
+    ] ;
+    sh:sparql [
+        sh:message "When correlationMethod is timestamp_overlap, both timeWindowStart and timeWindowEnd should be provided."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "cacontology-forensics" ;
+                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this cacontology-forensics:correlationMethod ?method .
+                FILTER (LCASE(STR(?method)) = "timestamp_overlap")
+                FILTER NOT EXISTS { $this cacontology-forensics:timeWindowStart ?s }
+            }
+        """
+    ] ;
+    sh:sparql [
+        sh:message "When correlationMethod is timestamp_overlap, both timeWindowStart and timeWindowEnd should be provided."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "cacontology-forensics" ;
+                sh:namespace "https://cacontology.projectvic.org/forensics#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this cacontology-forensics:correlationMethod ?method .
+                FILTER (LCASE(STR(?method)) = "timestamp_overlap")
+                FILTER NOT EXISTS { $this cacontology-forensics:timeWindowEnd ?e }
+            }
+        """
+    ] .

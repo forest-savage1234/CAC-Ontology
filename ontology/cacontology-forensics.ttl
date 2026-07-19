@@ -21,7 +21,7 @@
     owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-07-19"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/> ,
                 <https://ontology.unifiedcyberontology.org/uco/action/> ,
@@ -998,4 +998,113 @@ cacontology-forensics:identifiesNetworkAnomalies rdf:type owl:ObjectProperty ;
     rdfs:label "identifies network anomalies"@en ;
     rdfs:comment "Links network analysis to anomalies identified."@en ;
     rdfs:domain cacontology-forensics:NetworkTrafficAnalysis ;
-    rdfs:range uco-observable:ObservableObject . 
+    rdfs:range uco-observable:ObservableObject .
+
+# =============================================================================
+# ATTRIBUTION & ACCOUNT-IP CORRELATION (Issue #35)
+# First-class evidence primitives for identity linkage across platform accounts,
+# IP addresses, devices, and (alleged) subjects in CAC investigations.
+# Placement: forensics (investigative/digital-evidence correlation), not
+# legal-outcomes. Complements ContentCorrelationAnalysis (content networks)
+# with subject-attribution and account↔IP linkage semantics.
+# Shape: AttributionAssessmentShape / IPCorrelationEvidenceShape in
+#        cacontology-forensics-shapes.ttl
+# Reuse: cac-core:AssessmentResult, cac-core:Artifact, cac-core:assesses,
+#        cac-core:hasConfidence, cac-core:usesMethod, cac-core:issuedAtTime;
+#        UCO DigitalAccount / ObservableObject for IP and device endpoints.
+# =============================================================================
+
+cacontology-forensics:AttributionAssessment rdf:type owl:Class ;
+    rdfs:label "Attribution Assessment"@en ;
+    rdfs:comment "Analytic conclusion that two or more cyber observables (platform accounts, IP addresses, devices, subscriber records) are controlled by or linked to the same subject. Intended for complaint-stage and investigative graphs; documentation should treat linked persons as ALLEGED where source material is unadjudicated. Modeled as a cac-core:AssessmentResult (assessment outcome, not a storable evidence file)."@en ;
+    rdfs:subClassOf cac-core:AssessmentResult ;
+    dcterms:source "Issue #35 (Project VIC CAC-Ontology); federal criminal complaint practice establishing identity via comparative IP/timestamp analysis across platform logs and subscriber records; NIST SP 800-86 Guide to Integrating Forensic Techniques into Incident Response."@en ;
+    rdfs:seeAlso <https://github.com/Project-VIC-International/CAC-Ontology/issues/35> ,
+                 <https://csrc.nist.gov/publications/detail/sp/800-86/final> .
+
+cacontology-forensics:IPCorrelationEvidence rdf:type owl:Class ;
+    rdfs:label "IP Correlation Evidence"@en ;
+    rdfs:comment "Structured evidence artifact documenting overlapping IP address usage across accounts, platforms, or sessions within a defined time window. Supports AttributionAssessment by recording which IPs, accounts, and devices co-occur. Modeled as a storable evidentiary artifact (UCO ObservableObject + cac-core:Artifact)."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject , cac-core:Artifact ;
+    dcterms:source "Issue #35 (Project VIC CAC-Ontology); comparative IP log analysis patterns in online CSEA investigations (e.g., platform session IPs vs. Facebook/carrier access logs); RFC 5737 documentation address ranges for synthetic exemplars."@en ;
+    rdfs:seeAlso <https://github.com/Project-VIC-International/CAC-Ontology/issues/35> ,
+                 <https://www.rfc-editor.org/rfc/rfc5737> .
+
+# --- Attribution / correlation properties ---
+
+cacontology-forensics:correlationMethod rdf:type owl:DatatypeProperty ;
+    rdfs:label "correlation method"@en ;
+    rdfs:comment "Method used to establish account-IP or multi-observable correlation. Recommended values include: 'timestamp_overlap' (comparative session/log timing), 'geolocation' (location concurrence), 'behavioral' (usage pattern similarity), 'comparative_log_review' (manual multi-platform log review), 'subscriber_production' (carrier/ISP subscriber records), 'court_ordered_logs' (legal process production of platform IP logs). Free-text is allowed when no controlled vocabulary term fits."@en ;
+    rdfs:domain [ owl:unionOf ( cacontology-forensics:AttributionAssessment cacontology-forensics:IPCorrelationEvidence ) ] ;
+    rdfs:range xsd:string ;
+    dcterms:source "Issue #35; NIST SP 800-86 forensic analysis methods; investigative comparative log review practice."@en .
+
+cacontology-forensics:timeWindowStart rdf:type owl:DatatypeProperty ;
+    rdfs:label "time window start"@en ;
+    rdfs:comment "Inclusive start of the temporal window over which IP/account correlation was assessed. Pair with timeWindowEnd. Reuses core-spine temporal discipline (xsd:dateTime bounds on assessment/evidence scope); complements cac-core:issuedAtTime (when the assessment was issued) which is distinct from the analysis window."@en ;
+    rdfs:domain [ owl:unionOf ( cacontology-forensics:AttributionAssessment cacontology-forensics:IPCorrelationEvidence ) ] ;
+    rdfs:range xsd:dateTime ;
+    dcterms:source "Issue #35; temporal bounding of comparative IP/session analysis in investigative practice."@en .
+
+cacontology-forensics:timeWindowEnd rdf:type owl:DatatypeProperty ;
+    rdfs:label "time window end"@en ;
+    rdfs:comment "Inclusive end of the temporal window over which IP/account correlation was assessed. Pair with timeWindowStart. Must not precede timeWindowStart (enforced in SHACL when both are present)."@en ;
+    rdfs:domain [ owl:unionOf ( cacontology-forensics:AttributionAssessment cacontology-forensics:IPCorrelationEvidence ) ] ;
+    rdfs:range xsd:dateTime ;
+    dcterms:source "Issue #35; temporal bounding of comparative IP/session analysis in investigative practice."@en .
+
+cacontology-forensics:overlappingIPs rdf:type owl:ObjectProperty ;
+    rdfs:label "overlapping IPs"@en ;
+    rdfs:comment "Links correlation evidence or an attribution assessment to IP address observables that appear in common across the correlated accounts/sessions (e.g., IPv4 addresses observed in multiple platform access logs). Range is uco-observable:ObservableObject so UCO IPAddress / IPv4Address / IPv6Address instances (or equivalent) may be used without hard-coding a single UCO IP class."@en ;
+    rdfs:domain [ owl:unionOf ( cacontology-forensics:AttributionAssessment cacontology-forensics:IPCorrelationEvidence ) ] ;
+    rdfs:range uco-observable:ObservableObject ;
+    dcterms:source "Issue #35; multi-platform IP overlap analysis in online CSEA attribution."@en .
+
+cacontology-forensics:sharedAccounts rdf:type owl:ObjectProperty ;
+    rdfs:label "shared accounts"@en ;
+    rdfs:comment "Links correlation evidence or an attribution assessment to digital accounts (platform identities) that share overlapping IPs, devices, or other correlation indicators within the analysis window."@en ;
+    rdfs:domain [ owl:unionOf ( cacontology-forensics:AttributionAssessment cacontology-forensics:IPCorrelationEvidence ) ] ;
+    rdfs:range uco-observable:DigitalAccount ;
+    dcterms:source "Issue #35; UCO DigitalAccount as the standard account observable endpoint."@en .
+
+cacontology-forensics:deviceFingerprint rdf:type owl:ObjectProperty ;
+    rdfs:label "device fingerprint"@en ;
+    rdfs:comment "Links correlation evidence or an attribution assessment to a device or device-fingerprint observable used in identity linkage (e.g., seized handset, browser/device fingerprint record, IMEI-bearing device node). Range is ObservableObject for UCO Device and related artifact flexibility."@en ;
+    rdfs:domain [ owl:unionOf ( cacontology-forensics:AttributionAssessment cacontology-forensics:IPCorrelationEvidence ) ] ;
+    rdfs:range uco-observable:ObservableObject ;
+    dcterms:source "Issue #35; device-based linkage in multi-account attribution chains."@en .
+
+cacontology-forensics:confidenceScore rdf:type owl:DatatypeProperty ;
+    rdfs:label "confidence score"@en ;
+    rdfs:comment "Numeric confidence in the correlation or attribution conclusion on a 0.0–1.0 scale (0 = no confidence, 1 = highest confidence). Complements cac-core:hasConfidence on AssessmentResult; use this property for query-stable attribution/correlation scoring on both AttributionAssessment and IPCorrelationEvidence."@en ;
+    rdfs:domain [ owl:unionOf ( cacontology-forensics:AttributionAssessment cacontology-forensics:IPCorrelationEvidence ) ] ;
+    rdfs:range xsd:decimal ;
+    dcterms:source "Issue #35; consistent with cac-core:hasConfidence (0–1) and detection-module confidenceScore practice."@en .
+
+cacontology-forensics:assessedBy rdf:type owl:ObjectProperty ;
+    rdfs:label "assessed by"@en ;
+    rdfs:comment "Links an attribution assessment or correlation evidence package to the person (analyst, examiner, investigator) who performed or signed the assessment. For role-only modeling, pair the person with ForensicExaminerRole or equivalent via existing role mechanisms."@en ;
+    rdfs:domain [ owl:unionOf ( cacontology-forensics:AttributionAssessment cacontology-forensics:IPCorrelationEvidence ) ] ;
+    rdfs:range uco-identity:Person ;
+    dcterms:source "Issue #35; investigative report authorship / examiner attribution practice."@en .
+
+cacontology-forensics:correlatesObservable rdf:type owl:ObjectProperty ;
+    rdfs:label "correlates observable"@en ;
+    rdfs:comment "Links an AttributionAssessment to any cyber observable included in the attribution set (accounts, IPs, devices, subscriber records, etc.). Broader than sharedAccounts/overlappingIPs; use those for typed multi-account IP linkage and this for general membership in the correlated set."@en ;
+    rdfs:domain cacontology-forensics:AttributionAssessment ;
+    rdfs:range uco-observable:ObservableObject ;
+    dcterms:source "Issue #35 proposed correlatesObservable property."@en .
+
+cacontology-forensics:hasIPCorrelationEvidence rdf:type owl:ObjectProperty ;
+    rdfs:label "has IP correlation evidence"@en ;
+    rdfs:comment "Links an AttributionAssessment to one or more IPCorrelationEvidence artifacts that support the assessment."@en ;
+    rdfs:domain cacontology-forensics:AttributionAssessment ;
+    rdfs:range cacontology-forensics:IPCorrelationEvidence ;
+    dcterms:source "Issue #35; evidence-to-assessment packaging pattern."@en .
+
+cacontology-forensics:supportsAttributionOf rdf:type owl:ObjectProperty ;
+    rdfs:label "supports attribution of"@en ;
+    rdfs:comment "Links attribution assessment or IP correlation evidence to the person (subject) whose identity linkage is supported. In complaint-stage and unadjudicated graphs, treat the target as ALLEGED; do not encode guilt. Prefer non-stigmatizing labels in instance data."@en ;
+    rdfs:domain [ owl:unionOf ( cacontology-forensics:AttributionAssessment cacontology-forensics:IPCorrelationEvidence ) ] ;
+    rdfs:range uco-identity:Person ;
+    dcterms:source "Issue #35 proposed supportsAttributionOf; ALLEGED-aware complaint-stage modeling guidance."@en .

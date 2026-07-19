@@ -5,7 +5,42 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
 
+### Added - Attribution & account-IP correlation (Issue #35)
+
+First-class evidence primitives for identity linkage and account–IP correlation in CAC investigations (linking cyber accounts, devices, and IPs across timelines). Closes the gap where graphs could only represent accounts/IPs separately or via ad hoc relationship strings.
+
+#### Placement decision
+
+- Terms live in **`cacontology-forensics`** (investigative / digital-evidence correlation), **not** legal-outcomes. Complements existing `ContentCorrelationAnalysis` (content networks) with subject-attribution and account↔IP linkage semantics. No new standalone attribution module in this PR (avoids module sprawl; forensics already owns correlation patterns).
+
+#### Class hierarchy and property reuse
+
+- `AttributionAssessment` — `rdfs:subClassOf cac-core:AssessmentResult` (assessment outcome; reuses spine `assesses`, `hasConfidence`, `issuedAtTime`, `usesMethod` / `generatedBy` as needed)
+- `IPCorrelationEvidence` — `rdfs:subClassOf uco-observable:ObservableObject , cac-core:Artifact` (storable evidence package)
+- New typed properties for stable SPARQL: `correlationMethod`, `timeWindowStart`/`timeWindowEnd`, `overlappingIPs`, `sharedAccounts`, `deviceFingerprint`, `confidenceScore` (0–1), `assessedBy`, plus `correlatesObservable`, `hasIPCorrelationEvidence`, `supportsAttributionOf` (ALLEGED-aware)
+- UCO endpoints reused: `DigitalAccount`, `ObservableObject` (IP/device nodes); documentation IPs via RFC 5737 in the exemplar
+
+#### `ontology/cacontology-forensics.ttl`
+
+- `cacontology-forensics:AttributionAssessment` — owl:Class (`cac-core:AssessmentResult`)
+- `cacontology-forensics:IPCorrelationEvidence` — owl:Class (`ObservableObject` + `Artifact`)
+- Properties above with `rdfs:label` / `rdfs:comment` / `dcterms:source` and domains/ranges
+
+#### `ontology/cacontology-forensics-shapes.ttl`
+
+- `AttributionAssessmentShape`, `IPCorrelationEvidenceShape` — mild instance constraints (label; confidence 0–1; typed optional properties)
+- SPARQL rules: `timeWindowEnd` not earlier than `timeWindowStart`; when `correlationMethod` is `timestamp_overlap`, temporal window start/end expected
+
+#### Examples / queries
+
+- Added: `examples_knowledge_graphs/synthetic-attribution-account-ip-example.ttl` — fully synthetic acceptance exemplar (RFC 5737 IPs; account → IP correlation → ALLEGED subject)
+- Added: `example_SPARQL_queries/find_account_ip_correlations.rq` — pairwise accounts sharing overlapping IPs via `IPCorrelationEvidence`
+
+#### Minimal example impact
+
+- No rewrites of existing example graphs. New shapes target only the new classes.
 
 ## v3.0.0 - 16 March 2026
 
