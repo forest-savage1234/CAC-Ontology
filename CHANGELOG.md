@@ -5,7 +5,60 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
 
+### Added - Victim vulnerability context (Issue #32)
+
+Abstract, trauma-informed, non-stigmatizing modeling of elevated exploitation/trafficking risk circumstances and protective affirming supports (SOGI-related social context, family rejection, housing instability).
+
+#### Placement decision
+
+- Terms live in **`cacontology-victim-impact`** (victimology / safeguarding context next to `ResilienceFactors`, `VictimSupport`, and impact assessments).
+- **Not** core/spine: too domain-specific; avoids bloating foundational kinds.
+- **Not** a new victimology module: reuses the existing victim-impact home rather than introducing parallel namespace sprawl.
+- **Not** sex-trafficking-only: vulnerability context applies across exploitation domains; trafficking and prevention modules can link via `hasVulnerabilityContext` / `informsPreventionIntervention`.
+
+#### Granularity decision
+
+- **Named subclasses** (`SOGIVulnerabilityContext`, `FamilyRejectionVulnerability`, `HousingInstabilityVulnerability`) plus abstract base `VulnerabilityContext`, **not** a single generic class with a type enum. Enables stable SPARQL type filters and per-class trauma-informed documentation.
+- `ProtectiveAffirmingSupport` is a specialized `VictimSupport` (strengths/protective side), linkable via `mitigatedByProtectiveSupport`.
+
+#### Non-stigmatizing language / sources
+
+- All new class and property comments state that these terms model **contextual circumstances and service needs**, never inherent risk labels attached to sexual orientation, gender identity, expression, or community membership.
+- `dcterms:source` / `rdfs:seeAlso` point to Issue #32 and public child-protection / anti-trafficking literature framing (family rejection, housing instability, affirming supports).
+- Synthetic exemplar uses abstract factor strings only — no real victim data.
+
+#### Class hierarchy and properties
+
+- `VulnerabilityContext` — `rdfs:subClassOf uco-observable:ObservableObject , cac-core:Situation`
+- `SOGIVulnerabilityContext` — subClassOf `VulnerabilityContext`
+- `FamilyRejectionVulnerability` — subClassOf `VulnerabilityContext`
+- `HousingInstabilityVulnerability` — subClassOf `VulnerabilityContext`
+- `ProtectiveAffirmingSupport` — subClassOf `VictimSupport`
+- Object: `hasVulnerabilityContext`, `concernsSubject`, `associatedWithVictimRole`, `associatedWithEvent`, `mitigatedByProtectiveSupport`, `associatedWithFamilyRejection`, `associatedWithHousingInstability`, `informsPreventionIntervention`
+- Datatype: `vulnerabilityFactor`, `protectiveFactor`; `severityLevel` domain expanded to include `VulnerabilityContext`
+
+#### Links to Subject / VictimRole / Event
+
+- `concernsSubject` → `uco-identity:Person` (soft CASE Subject alignment)
+- `associatedWithVictimRole` → `cac-core:Role` (use with `cacontology:VictimRole`)
+- `associatedWithEvent` → `cac-core:Event` (support, exploitation, or related occurrents)
+- `hasVulnerabilityContext` attaches context from person/role/event/assessment hosts (open domain)
+
+#### Files
+
+- `ontology/cacontology-victim-impact.ttl` — classes and properties above
+- `ontology/cacontology-victim-impact-shapes.ttl` — mild SHACL (labels; optional severity list; class-checked links)
+- `examples_knowledge_graphs/synthetic-victim-vulnerability-context-example.ttl` — fully synthetic abstract factors only
+- `example_SPARQL_queries/find_victim_vulnerability_context.rq` — SOGI context + protective support query
+- `testing/shacl_validation.py` — Stage 4 entry for the exemplar against victim-impact shapes
+
+#### Minimal example impact
+
+- No rewrites of existing example graphs. New shapes target only the new vulnerability-context classes (and `hasVulnerabilityContext` subjects).
+
+Closes #32.
 
 ## v3.0.0 - 16 March 2026
 

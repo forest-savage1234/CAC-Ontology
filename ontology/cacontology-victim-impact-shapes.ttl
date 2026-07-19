@@ -5,6 +5,8 @@
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix cacontology-impact: <https://cacontology.projectvic.org/victim-impact#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
@@ -15,7 +17,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/victim-impact/shapes/3.0.0> ;
     owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-03-13"^^xsd:date ;
+    dcterms:modified "2026-07-19"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/victim-impact/3.0.0> ,
                 <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
@@ -303,7 +305,7 @@ cacontology-impact:VictimSupportShape rdf:type sh:NodeShape ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:in ( "victim_advocacy" "safety_planning" "educational_support" "legal_support" "family_support" "peer_support" ) ;
+        sh:in ( "victim_advocacy" "safety_planning" "educational_support" "legal_support" "family_support" "peer_support" "affirming_support" ) ;
         sh:message "Victim support must specify a supported service type from the allowed list."@en
     ] ;
     sh:property [
@@ -658,4 +660,145 @@ cacontology-impact:DataQualityShape rdf:type sh:NodeShape ;
         sh:minLength 10 ;
         sh:maxLength 1000 ;
         sh:message "Comment should be between 10 and 1000 characters when provided."@en
-    ] . 
+    ] .
+
+# =============================================================================
+# VICTIM VULNERABILITY CONTEXT SHAPES (Issue #32)
+# Mild constraints: require labels; class-check links; optional severity list.
+# Do not force identity fields — trauma-informed, abstract-factor only.
+# =============================================================================
+
+cacontology-impact:VulnerabilityContextShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:VulnerabilityContext ;
+    rdfs:label "Vulnerability Context Shape"@en ;
+    rdfs:comment "Validation shape for VulnerabilityContext instances. Requires a human-readable label; optional abstract factor strings and protective/role/event links are class-checked when present."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "VulnerabilityContext must have an rdfs:label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:vulnerabilityFactor ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:message "vulnerabilityFactor, when provided, must be xsd:string (abstract circumstance text only)."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:protectiveFactor ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:message "protectiveFactor, when provided, must be xsd:string."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:severityLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "minimal" "mild" "moderate" "severe" "extreme" "catastrophic" ) ;
+        sh:message "severityLevel on VulnerabilityContext, when provided, must be from the allowed severity list."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:concernsSubject ;
+        sh:class uco-identity:Person ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "concernsSubject, when provided, must point to uco-identity:Person."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:associatedWithVictimRole ;
+        sh:class cac-core:Role ;
+        sh:minCount 0 ;
+        sh:message "associatedWithVictimRole, when provided, must point to cac-core:Role."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:associatedWithEvent ;
+        sh:class cac-core:Event ;
+        sh:minCount 0 ;
+        sh:message "associatedWithEvent, when provided, must point to cac-core:Event."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:mitigatedByProtectiveSupport ;
+        sh:class cacontology-impact:VictimSupport ;
+        sh:minCount 0 ;
+        sh:message "mitigatedByProtectiveSupport, when provided, must point to VictimSupport (including ProtectiveAffirmingSupport)."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:associatedWithFamilyRejection ;
+        sh:class cacontology-impact:FamilyRejectionVulnerability ;
+        sh:minCount 0 ;
+        sh:message "associatedWithFamilyRejection, when provided, must point to FamilyRejectionVulnerability."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:associatedWithHousingInstability ;
+        sh:class cacontology-impact:HousingInstabilityVulnerability ;
+        sh:minCount 0 ;
+        sh:message "associatedWithHousingInstability, when provided, must point to HousingInstabilityVulnerability."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:informsPreventionIntervention ;
+        sh:class cac-core:SupportEvent ;
+        sh:minCount 0 ;
+        sh:message "informsPreventionIntervention, when provided, must point to cac-core:SupportEvent."@en
+    ] .
+
+cacontology-impact:SOGIVulnerabilityContextShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:SOGIVulnerabilityContext ;
+    rdfs:label "SOGI Vulnerability Context Shape"@en ;
+    rdfs:comment "Validation shape for SOGIVulnerabilityContext. Requires label; encourages at least one abstract vulnerabilityFactor for trauma-informed documentation of circumstance (not identity)."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "SOGIVulnerabilityContext must have an rdfs:label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:vulnerabilityFactor ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:message "vulnerabilityFactor should describe abstract circumstances (e.g. rejection, housing instability), never identity-as-risk labels."@en
+    ] .
+
+cacontology-impact:FamilyRejectionVulnerabilityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:FamilyRejectionVulnerability ;
+    rdfs:label "Family Rejection Vulnerability Shape"@en ;
+    rdfs:comment "Validation shape for FamilyRejectionVulnerability instances."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "FamilyRejectionVulnerability must have an rdfs:label."@en
+    ] .
+
+cacontology-impact:HousingInstabilityVulnerabilityShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:HousingInstabilityVulnerability ;
+    rdfs:label "Housing Instability Vulnerability Shape"@en ;
+    rdfs:comment "Validation shape for HousingInstabilityVulnerability instances."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "HousingInstabilityVulnerability must have an rdfs:label."@en
+    ] .
+
+cacontology-impact:ProtectiveAffirmingSupportShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:ProtectiveAffirmingSupport ;
+    rdfs:label "Protective Affirming Support Shape"@en ;
+    rdfs:comment "Validation shape for ProtectiveAffirmingSupport instances. Requires label; optional protectiveFactor string documents the affirming resource abstractly."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "ProtectiveAffirmingSupport must have an rdfs:label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:protectiveFactor ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:message "protectiveFactor, when provided, must be xsd:string."@en
+    ] .
+
+cacontology-impact:HasVulnerabilityContextShape rdf:type sh:NodeShape ;
+    sh:targetSubjectsOf cacontology-impact:hasVulnerabilityContext ;
+    rdfs:label "Has Vulnerability Context Shape"@en ;
+    rdfs:comment "When hasVulnerabilityContext is used, the object must be a VulnerabilityContext."@en ;
+    sh:property [
+        sh:path cacontology-impact:hasVulnerabilityContext ;
+        sh:class cacontology-impact:VulnerabilityContext ;
+        sh:message "hasVulnerabilityContext must point to VulnerabilityContext."@en
+    ] .

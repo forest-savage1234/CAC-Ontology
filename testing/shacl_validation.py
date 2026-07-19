@@ -184,6 +184,8 @@ domain_validations = [
     ('examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl', 'ontology/cacontology-legal-outcomes-shapes.ttl'),
     ('examples_knowledge_graphs/k2p-soe-information-example.ttl', 'ontology/cacontology-sadistic-online-exploitation-shapes.ttl'),
     ('examples_knowledge_graphs/k2p-soe-information-example.ttl', 'ontology/cacontology-sextortion-shapes.ttl'),
+    # Issue #32 — Victim vulnerability context (SOGI / housing / family rejection)
+    ('examples_knowledge_graphs/synthetic-victim-vulnerability-context-example.ttl', 'ontology/cacontology-victim-impact-shapes.ttl'),
 ]
 
 domain_passed = 0

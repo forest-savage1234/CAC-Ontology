@@ -22,7 +22,7 @@
     owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-03-13"^^xsd:date ;
+    dcterms:modified "2026-07-19"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/> ,
@@ -244,6 +244,130 @@ cacontology-impact:ResilienceFactors rdf:type owl:Class ;
     rdfs:subClassOf uco-observable:ObservableObject, gufo:IntrinsicMoment .
 
 # =============================================================================
+# VICTIM VULNERABILITY CONTEXT (Issue #32)
+# Trauma-informed, non-stigmatizing modeling of elevated risk circumstances
+# and protective/affirming supports. These classes model CONTEXT and SERVICE
+# NEED — never inherent risk labels attached to identity or community.
+# =============================================================================
+#
+# Placement decision: victim-impact (not core, not a new victimology module).
+#   - Complements ResilienceFactors, VictimSupport, and impact assessments.
+#   - Too domain-specific for the spine; trafficking/prevention can link in.
+# Granularity decision: named subclasses (not a single VulnerabilityContext
+#   plus type enum) for stable SPARQL and per-class trauma-informed docs.
+# =============================================================================
+
+cacontology-impact:VulnerabilityContext rdf:type owl:Class ;
+    rdfs:label "Vulnerability Context"@en ;
+    rdfs:comment """Abstract situation representing elevated exploitation or trafficking risk factors and/or protective supports observed in a minor's environment or care pathway. TRAUMA-INFORMED / NON-STIGMATIZING: this class models contextual circumstances and service needs (e.g., family rejection, housing instability, barriers to reporting). It MUST NOT be used to treat sexual orientation, gender identity, expression, or community membership as inherent risk labels. Prefer observed circumstances, safeguarding needs, and protective resources over unsupported inferences about a person."""@en ;
+    rdfs:subClassOf uco-observable:ObservableObject , cac-core:Situation ;
+    dcterms:source "Issue #32 (Project VIC CAC-Ontology); public child-protection and anti-trafficking literature on contextual risk and protective factors (family rejection, housing instability, affirming supports)."@en ;
+    rdfs:seeAlso <https://github.com/Project-VIC-International/CAC-Ontology/issues/32> .
+
+cacontology-impact:SOGIVulnerabilityContext rdf:type owl:Class ;
+    rdfs:label "SOGI Vulnerability Context"@en ;
+    rdfs:comment """A vulnerability context in which sexual orientation, gender identity, and/or gender expression (SOGI) intersect with social marginalization factors — such as caregiver rejection, housing instability, lack of trusted adults, coercive dependency, or barriers to reporting and services — that public literature associates with elevated child exploitation and trafficking risk. TRAUMA-INFORMED / NON-STIGMATIZING: SOGI itself is not modeled as a risk; the context captures external circumstances and access barriers that may elevate harm. Do not use this class to pathologize identity. Use vulnerabilityFactor for abstract circumstance descriptions only; never encode real names or operational case details in synthetic graphs."""@en ;
+    rdfs:subClassOf cacontology-impact:VulnerabilityContext ;
+    dcterms:source "Issue #32 (Project VIC CAC-Ontology); public anti-trafficking and youth-safeguarding literature discussing LGBTQ+ youth exploitation risk in terms of rejection, homelessness, and service barriers — not identity as cause."@en ;
+    rdfs:seeAlso <https://github.com/Project-VIC-International/CAC-Ontology/issues/32> .
+
+cacontology-impact:FamilyRejectionVulnerability rdf:type owl:Class ;
+    rdfs:label "Family Rejection Vulnerability"@en ;
+    rdfs:comment """A vulnerability context in which rejection, hostility, or withdrawal of support by caregivers or family contributes to isolation, housing instability risk, economic or emotional dependency on unsafe adults, and/or reduced options for disclosure and help-seeking. TRAUMA-INFORMED / NON-STIGMATIZING: models a relational and environmental circumstance, not a judgment of the child or of families as a class. Capture only abstract factors relevant to safeguarding and service planning."""@en ;
+    rdfs:subClassOf cacontology-impact:VulnerabilityContext ;
+    dcterms:source "Issue #32 (Project VIC CAC-Ontology); family-acceptance and youth-homelessness research linking caregiver rejection to elevated exploitation vulnerability."@en ;
+    rdfs:seeAlso <https://github.com/Project-VIC-International/CAC-Ontology/issues/32> .
+
+cacontology-impact:HousingInstabilityVulnerability rdf:type owl:Class ;
+    rdfs:label "Housing Instability Vulnerability"@en ;
+    rdfs:comment """A vulnerability context in which unstable housing — including homelessness, runaway status, couch-surfing, shelter cycling, or lack of a safe fixed residence — increases susceptibility to grooming, coercion, trafficking, or survival-based exploitation and may impede reporting or continuous service access. TRAUMA-INFORMED / NON-STIGMATIZING: models housing circumstance and related safeguarding need, not character judgments about the youth."""@en ;
+    rdfs:subClassOf cacontology-impact:VulnerabilityContext ;
+    dcterms:source "Issue #32 (Project VIC CAC-Ontology); public research on runaway/homeless youth and trafficking/exploitation risk."@en ;
+    rdfs:seeAlso <https://github.com/Project-VIC-International/CAC-Ontology/issues/32> .
+
+cacontology-impact:ProtectiveAffirmingSupport rdf:type owl:Class ;
+    rdfs:label "Protective Affirming Support"@en ;
+    rdfs:comment """A protective support resource or relationship that affirms the youth's dignity and identity while improving safety, access to services, or capacity to disclose and recover — for example affirming caregivers, school personnel, advocates, shelters, peer supports, or community resources. TRAUMA-INFORMED / NON-STIGMATIZING: emphasizes strengths and protective factors alongside risk context. Complements ResilienceFactors and VictimSupport; use when the affirming character of the support is analytically relevant to risk mitigation."""@en ;
+    rdfs:subClassOf cacontology-impact:VictimSupport ;
+    dcterms:source "Issue #32 (Project VIC CAC-Ontology); trauma-informed and affirming-care practice in youth safeguarding and anti-trafficking services."@en ;
+    rdfs:seeAlso <https://github.com/Project-VIC-International/CAC-Ontology/issues/32> .
+
+# --- Vulnerability context object properties ---
+
+cacontology-impact:hasVulnerabilityContext rdf:type owl:ObjectProperty ;
+    rdfs:label "has vulnerability context"@en ;
+    rdfs:comment "Links a person (subject), victim role, event, impact assessment, or related investigative/support node to a VulnerabilityContext that documents elevated risk circumstances and/or protective supports. Domain is intentionally open so graphs may attach context to Subject/Person, VictimRole, Event, or AssessmentResult without forcing a single host type."@en ;
+    rdfs:range cacontology-impact:VulnerabilityContext ;
+    dcterms:source "Issue #32."@en .
+
+cacontology-impact:concernsSubject rdf:type owl:ObjectProperty ;
+    rdfs:label "concerns subject"@en ;
+    rdfs:comment "Links a VulnerabilityContext to the person (investigation subject / minor) whose circumstances the context describes. Soft-aligned with CASE Subject patterns; range is Person so graphs remain valid without a hard CASE import. TRAUMA-INFORMED: the link associates context with a person; it does not label identity as risk."@en ;
+    rdfs:domain cacontology-impact:VulnerabilityContext ;
+    rdfs:range uco-identity:Person ;
+    dcterms:source "Issue #32; soft CASE Subject alignment."@en .
+
+cacontology-impact:associatedWithVictimRole rdf:type owl:ObjectProperty ;
+    rdfs:label "associated with victim role"@en ;
+    rdfs:comment "Links a VulnerabilityContext to the VictimRole (or specialized victim role) for which the contextual risk or protective factors are relevant."@en ;
+    rdfs:domain cacontology-impact:VulnerabilityContext ;
+    rdfs:range cac-core:Role ;
+    dcterms:source "Issue #32."@en .
+
+cacontology-impact:associatedWithEvent rdf:type owl:ObjectProperty ;
+    rdfs:label "associated with event"@en ;
+    rdfs:comment "Links a VulnerabilityContext to an Event (exploitation, detection, support, or related occurrent) for which the context informs risk assessment, response, or prevention."@en ;
+    rdfs:domain cacontology-impact:VulnerabilityContext ;
+    rdfs:range cac-core:Event ;
+    dcterms:source "Issue #32."@en .
+
+cacontology-impact:mitigatedByProtectiveSupport rdf:type owl:ObjectProperty ;
+    rdfs:label "mitigated by protective support"@en ;
+    rdfs:comment "Links a VulnerabilityContext to a ProtectiveAffirmingSupport (or broader VictimSupport) that mitigates or counters elevated risk circumstances. TRAUMA-INFORMED: records strengths and protective resources alongside risk context."@en ;
+    rdfs:domain cacontology-impact:VulnerabilityContext ;
+    rdfs:range cacontology-impact:VictimSupport ;
+    dcterms:source "Issue #32."@en .
+
+cacontology-impact:associatedWithFamilyRejection rdf:type owl:ObjectProperty ;
+    rdfs:label "associated with family rejection"@en ;
+    rdfs:comment "Links a VulnerabilityContext (typically SOGIVulnerabilityContext) to a FamilyRejectionVulnerability factor that co-occurs in the same safeguarding picture. Prefer this typed edge when family/caregiver rejection is an explicit factor; use vulnerabilityFactor text only for abstract non-structured notes."@en ;
+    rdfs:domain cacontology-impact:VulnerabilityContext ;
+    rdfs:range cacontology-impact:FamilyRejectionVulnerability ;
+    dcterms:source "Issue #32."@en .
+
+cacontology-impact:associatedWithHousingInstability rdf:type owl:ObjectProperty ;
+    rdfs:label "associated with housing instability"@en ;
+    rdfs:comment "Links a VulnerabilityContext (typically SOGIVulnerabilityContext) to a HousingInstabilityVulnerability factor that co-occurs in the same safeguarding picture."@en ;
+    rdfs:domain cacontology-impact:VulnerabilityContext ;
+    rdfs:range cacontology-impact:HousingInstabilityVulnerability ;
+    dcterms:source "Issue #32."@en .
+
+cacontology-impact:informsPreventionIntervention rdf:type owl:ObjectProperty ;
+    rdfs:label "informs prevention intervention"@en ;
+    rdfs:comment "Links a VulnerabilityContext to a prevention, outreach, safeguarding, service-referral, or related support intervention that the context informs. Range is SupportEvent so prevention and victim-support actions may both be used without a hard prevention-module import."@en ;
+    rdfs:domain cacontology-impact:VulnerabilityContext ;
+    rdfs:range cac-core:SupportEvent ;
+    dcterms:source "Issue #32."@en .
+
+# --- Vulnerability context datatype properties ---
+
+cacontology-impact:vulnerabilityFactor rdf:type owl:DatatypeProperty ;
+    rdfs:label "vulnerability factor"@en ;
+    rdfs:comment "Abstract, non-identifying description of an elevated risk circumstance (e.g. 'caregiver rejection after disclosure of identity', 'unstable housing / couch-surfing', 'lack of trusted adult'). TRAUMA-INFORMED: describe circumstances and service needs only; do not encode identity labels as risk, real names, or operational case material."@en ;
+    rdfs:domain cacontology-impact:VulnerabilityContext ;
+    rdfs:range xsd:string ;
+    dcterms:source "Issue #32."@en .
+
+cacontology-impact:protectiveFactor rdf:type owl:DatatypeProperty ;
+    rdfs:label "protective factor"@en ;
+    rdfs:comment "Abstract description of a protective or affirming resource present in the youth's environment (e.g. 'affirming school counselor', 'LGBTQ+ youth shelter access', 'trusted non-offending caregiver'). Complements mitigatedByProtectiveSupport when a full support node is not modeled."@en ;
+    rdfs:domain [ owl:unionOf ( cacontology-impact:VulnerabilityContext cacontology-impact:ProtectiveAffirmingSupport ) ] ;
+    rdfs:range xsd:string ;
+    dcterms:source "Issue #32."@en .
+
+# severityLevel already exists for VictimImpactAssessment; domain expanded to cover VulnerabilityContext.
+
+# =============================================================================
 # VICTIM ROLES (gUFO Role anti-rigid modeling)
 # =============================================================================
 
@@ -335,8 +459,8 @@ cacontology-impact:assessmentType rdf:type owl:DatatypeProperty ;
 
 cacontology-impact:severityLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "severity level"@en ;
-    rdfs:comment "Overall severity of victim impact (minimal, mild, moderate, severe, extreme)."@en ;
-    rdfs:domain cacontology-impact:VictimImpactAssessment ;
+    rdfs:comment "Overall severity level for victim impact assessments or vulnerability contexts. Recommended values: minimal, mild, moderate, severe, extreme (assessments may also use catastrophic). For VulnerabilityContext: expresses the assessed intensity of elevated risk circumstances — not a judgment of the person. TRAUMA-INFORMED: severity describes context/need intensity for service planning, never identity."@en ;
+    rdfs:domain [ owl:unionOf ( cacontology-impact:VictimImpactAssessment cacontology-impact:VulnerabilityContext ) ] ;
     rdfs:range xsd:string .
 
 cacontology-impact:functioningLevel rdf:type owl:DatatypeProperty ;
