@@ -5,7 +5,30 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
 
+### Added - Supervised release special conditions + payment schedules (Issue #37)
+
+Queryable structure for AO 245B special conditions of supervised release and criminal monetary payment schedules in `cacontology-legal-outcomes`.
+
+#### Design decisions
+
+- **Condition granularity**: Typed subclasses of `SupervisedReleaseCondition` for common CAC/AO 245B conditions (SORNA, sex-offender treatment, minor contact, computer monitoring, probation search, substance abuse, restitution compliance). Optional `conditionType` string supports residual conditions without a dedicated class. Prefer subclasses for cross-case SPARQL.
+- **PaymentSchedule modeling**: Class hierarchy (`PaymentSchedule` → `LumpSumPaymentSchedule` | `InstallmentPaymentSchedule` | `IncomeBasedPaymentSchedule` | `DeferredPaymentSchedule`) with properties (`totalAmount`, `amount`, `frequency`, `dueTiming`, `includesPenalty`, `paymentApplicationOrder`). Prefer types over string-only facets; optional `scheduleType` remains for residual labels. Existing RestitutionOrderShape string `paymentSchedule` is unchanged (undeclared interim facet).
+- **Links / reuse**: `hasSpecialCondition` on `SupervisedRelease` / `ProbationSentence`; `hasPaymentSchedule` on `LegalProceeding` / `CriminalSentence`. Reuses existing `SentencingHearing`, `PrisonSentence`, `SupervisedRelease`, `MonetaryPenalty`, `OnlineEnticement`, `resultsSentence`, `hasCharge`, `appliesTo`. Parent `SentencingCondition` rehomes `ProfessionalLicenseSurrenderCondition`. Assessment subclasses: `SpecialAssessment`, `AVAAAssessment`, `JVTAAssessment`. Complements #34/#35/#36 when those land; does not require them.
+
+#### Migration note
+
+Replace interim CASE-UCO SDK patterns (`supervision-condition:*` tags on generic `UcoObject` + `ContentDataFacet` key=value strings; `payment-schedule:lump-sum-immediate` tags) with typed condition and `PaymentSchedule` nodes.
+
+#### Files
+
+- `ontology/cacontology-legal-outcomes.ttl` — condition + schedule classes and properties
+- `ontology/cacontology-legal-outcomes-shapes.ttl` — SHACL for conditions, schedules, optional links
+- `examples_knowledge_graphs/synthetic-supervised-release-payment-schedules-example.ttl` — synthetic acceptance exemplar
+- `testing/shacl_validation.py` — Stage 4 entry for the exemplar
+
+Closes #37.
 
 ## v3.0.0 - 16 March 2026
 

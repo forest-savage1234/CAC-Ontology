@@ -19,7 +19,7 @@
     owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-02-16"^^xsd:date ;
+    dcterms:modified "2026-07-19"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/> ,
@@ -322,12 +322,86 @@ cacontology-legal-outcomes:SexualExploitationOfMinorCharge rdf:type owl:Class ;
 # PLEA / SENTENCING CONDITIONS (gUFO Object)
 # =============================================================================
 
+cacontology-legal-outcomes:SentencingCondition rdf:type owl:Class ;
+    rdfs:label "Sentencing Condition"@en ;
+    rdfs:comment "Abstract condition associated with a plea agreement, judgment, or supervised-release term. Superclass for plea-specific conditions and AO 245B special conditions of supervision. Modeled as gUFO Object / spine Artifact."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Artifact ;
+    dcterms:source "AO 245B Judgment in a Criminal Case (U.S. Courts)."@en ;
+    rdfs:seeAlso <https://www.uscourts.gov/forms/criminal-judgment-forms/judgment-criminal-case-0> .
+
 cacontology-legal-outcomes:ProfessionalLicenseSurrenderCondition rdf:type owl:Class ;
     rdfs:label "Professional License Surrender Condition"@en ;
     rdfs:comment "Condition associated with a plea agreement or sentencing outcome requiring the defendant to surrender a professional license (e.g., a nursing license)."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Artifact ;
+    rdfs:subClassOf cacontology-legal-outcomes:SentencingCondition ;
     dcterms:source "Georgia Office of the Attorney General press release, 2026-02-14."@en ;
     rdfs:seeAlso <https://law.georgia.gov/press-releases/2026-02-14/carr-hart-county-man-convicted-trafficking-teen-targeting-victim-snapchat> .
+
+# =============================================================================
+# SUPERVISED RELEASE SPECIAL CONDITIONS (AO 245B) — Issue #37
+# Typed subclasses preferred for cross-case SPARQL; optional conditionType
+# string supports open-ended residual conditions without a dedicated class.
+# =============================================================================
+
+cacontology-legal-outcomes:SupervisedReleaseCondition rdf:type owl:Class ;
+    rdfs:label "Supervised Release Condition"@en ;
+    rdfs:comment "Special condition of federal supervised release (or analogous state post-release supervision) as imposed on a criminal judgment such as AO 245B. Prefer typed subclasses for common CAC conditions; use conditionType for residual conditions. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:SentencingCondition ;
+    dcterms:source "AO 245B Judgment in a Criminal Case; 18 U.S.C. § 3583 (supervised release)."@en ;
+    rdfs:seeAlso <https://www.uscourts.gov/forms/criminal-judgment-forms/judgment-criminal-case-0> ,
+                 <https://www.law.cornell.edu/uscode/text/18/3583> .
+
+cacontology-legal-outcomes:SORNARegistrationCondition rdf:type owl:Class ;
+    rdfs:label "SORNA Registration Condition"@en ;
+    rdfs:comment "Special condition requiring compliance with the Sex Offender Registration and Notification Act (SORNA), 34 U.S.C. § 20901 et seq. Complements registry-module RegistrationRequirement when modeling judgment-imposed supervision conditions."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    skos:altLabel "SORNA Compliance Condition"@en ;
+    dcterms:source "34 U.S.C. § 20901 et seq. (SORNA); AO 245B special conditions."@en ;
+    rdfs:seeAlso <https://www.law.cornell.edu/uscode/text/34/20901> .
+
+cacontology-legal-outcomes:SexOffenderTreatmentCondition rdf:type owl:Class ;
+    rdfs:label "Sex Offender Treatment Condition"@en ;
+    rdfs:comment "Special condition requiring participation in a sex-offender treatment program, often including polygraph examination and confidentiality waiver as directed by the probation office."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    dcterms:source "AO 245B special conditions of supervised release (sex offender treatment)."@en ;
+    rdfs:seeAlso <https://www.uscourts.gov/forms/criminal-judgment-forms/judgment-criminal-case-0> .
+
+cacontology-legal-outcomes:MinorContactRestrictionCondition rdf:type owl:Class ;
+    rdfs:label "Minor Contact Restriction Condition"@en ;
+    rdfs:comment "Special condition restricting contact with minors (and related no-contact orders protecting victims or other protected persons), including approval, adult-present, and reporting requirements. Use for AO 245B minor-contact and analogous no-contact special conditions."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    skos:altLabel "No Contact Order Condition"@en ;
+    skos:altLabel "NoContactOrder"@en ;
+    dcterms:source "AO 245B special conditions (contact with minors / no-contact)."@en ;
+    rdfs:seeAlso <https://www.uscourts.gov/forms/criminal-judgment-forms/judgment-criminal-case-0> .
+
+cacontology-legal-outcomes:ComputerInternetMonitoringCondition rdf:type owl:Class ;
+    rdfs:label "Computer and Internet Monitoring Condition"@en ;
+    rdfs:comment "Special condition requiring computer/internet monitoring, device inventory, credential disclosure, unannounced examination consent, and related technology restrictions (e.g., encryption or data-erasure tool prohibitions)."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    skos:altLabel "Computer Monitoring Condition"@en ;
+    dcterms:source "AO 245B special conditions (computer/internet monitoring)."@en ;
+    rdfs:seeAlso <https://www.uscourts.gov/forms/criminal-judgment-forms/judgment-criminal-case-0> .
+
+cacontology-legal-outcomes:ProbationSearchCondition rdf:type owl:Class ;
+    rdfs:label "Probation Search Condition"@en ;
+    rdfs:comment "Special condition authorizing probation/pretrial services search of the person, property, residence, vehicle, papers, computers, and electronic communications with reasonable suspicion and related notice/refusal consequences."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    dcterms:source "AO 245B special conditions (search authority)."@en ;
+    rdfs:seeAlso <https://www.uscourts.gov/forms/criminal-judgment-forms/judgment-criminal-case-0> .
+
+cacontology-legal-outcomes:SubstanceAbuseTreatmentCondition rdf:type owl:Class ;
+    rdfs:label "Substance Abuse Treatment Condition"@en ;
+    rdfs:comment "Special condition requiring substance testing and/or residential or outpatient substance-abuse treatment, often including alcohol abstinence and cost allocation to the defendant."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    dcterms:source "AO 245B special conditions (substance abuse testing/treatment)."@en ;
+    rdfs:seeAlso <https://www.uscourts.gov/forms/criminal-judgment-forms/judgment-criminal-case-0> .
+
+cacontology-legal-outcomes:RestitutionCondition rdf:type owl:Class ;
+    rdfs:label "Restitution Condition"@en ;
+    rdfs:comment "Special condition requiring compliance with a restitution obligation as a term of supervision. Distinct from MonetaryPenalty / payment-schedule nodes that record the monetary obligation itself; this class records the supervision condition to pay or remain current."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    dcterms:source "18 U.S.C. § 3663A (MVRA); AO 245B criminal monetary penalties / special conditions."@en ;
+    rdfs:seeAlso <https://www.law.cornell.edu/uscode/text/18/3663A> .
 
 # =============================================================================
 # SENTENCE CLASSES (extending UCO Observable with gUFO Object)
@@ -366,10 +440,69 @@ cacontology-legal-outcomes:MonetaryPenalty rdf:type owl:Class ;
     rdfs:comment "Financial penalty including fines, restitution, or forfeiture. Modeled as gUFO Object."@en ;
     rdfs:subClassOf cacontology-legal-outcomes:CriminalSentence .
 
+# Assessment / specialized monetary penalties (Issue #37)
+cacontology-legal-outcomes:SpecialAssessment rdf:type owl:Class ;
+    rdfs:label "Special Assessment"@en ;
+    rdfs:comment "Statutory special assessment imposed under 18 U.S.C. § 3013 (typically $100 per felony count for an individual). Modeled as a MonetaryPenalty."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:MonetaryPenalty ;
+    dcterms:source "18 U.S.C. § 3013; AO 245B Schedule of Payments."@en ;
+    rdfs:seeAlso <https://www.law.cornell.edu/uscode/text/18/3013> .
+
+cacontology-legal-outcomes:AVAAAssessment rdf:type owl:Class ;
+    rdfs:label "AVAA Assessment"@en ;
+    rdfs:comment "Assessment under the Amy, Vicky, and Andy Child Pornography Victim Assistance Act (AVAA), Pub. L. 115-299. Modeled as a MonetaryPenalty."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:MonetaryPenalty ;
+    dcterms:source "Pub. L. 115-299 (AVAA); AO 245B criminal monetary penalties."@en ;
+    rdfs:seeAlso <https://www.congress.gov/115/plaws/publ299/PLAW-115publ299.pdf> .
+
+cacontology-legal-outcomes:JVTAAssessment rdf:type owl:Class ;
+    rdfs:label "JVTA Assessment"@en ;
+    rdfs:comment "Assessment under the Justice for Victims of Trafficking Act (JVTA), Pub. L. 114-22. Modeled as a MonetaryPenalty."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:MonetaryPenalty ;
+    dcterms:source "Pub. L. 114-22 (JVTA); AO 245B criminal monetary penalties."@en ;
+    rdfs:seeAlso <https://www.congress.gov/114/plaws/publ22/PLAW-114publ22.pdf> .
+
 cacontology-legal-outcomes:CommunityService rdf:type owl:Class ;
     rdfs:label "Community Service"@en ;
     rdfs:comment "Sentence requiring unpaid work for community benefit. Modeled as gUFO Object."@en ;
     rdfs:subClassOf cacontology-legal-outcomes:CriminalSentence .
+
+# =============================================================================
+# PAYMENT SCHEDULE HIERARCHY (Issue #37)
+# Class hierarchy preferred over string-only facets so schedule kind is
+# queryable by type. Optional scheduleType string remains for residual labels.
+# =============================================================================
+
+cacontology-legal-outcomes:PaymentSchedule rdf:type owl:Class ;
+    rdfs:label "Payment Schedule"@en ;
+    rdfs:comment "Judgment payment plan for criminal monetary penalties (AO 245B Schedule of Payments). Prefer typed subclasses (lump sum, installment, income-based, deferred). Link component MonetaryPenalty nodes via includesPenalty. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Artifact ;
+    dcterms:source "AO 245B Judgment in a Criminal Case — Schedule of Payments."@en ;
+    rdfs:seeAlso <https://www.uscourts.gov/forms/criminal-judgment-forms/judgment-criminal-case-0> .
+
+cacontology-legal-outcomes:LumpSumPaymentSchedule rdf:type owl:Class ;
+    rdfs:label "Lump Sum Payment Schedule"@en ;
+    rdfs:comment "Payment schedule requiring a single (or combined) lump-sum payment, often due immediately or on a fixed date (e.g., special assessment + AVAA/JVTA due immediately)."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:PaymentSchedule ;
+    dcterms:source "AO 245B Schedule of Payments (lump sum)."@en .
+
+cacontology-legal-outcomes:InstallmentPaymentSchedule rdf:type owl:Class ;
+    rdfs:label "Installment Payment Schedule"@en ;
+    rdfs:comment "Payment schedule requiring periodic installments (e.g., monthly minimum) with a commencement trigger such as release from imprisonment or a fixed start date."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:PaymentSchedule ;
+    dcterms:source "AO 245B Schedule of Payments (installments)."@en .
+
+cacontology-legal-outcomes:IncomeBasedPaymentSchedule rdf:type owl:Class ;
+    rdfs:label "Income Based Payment Schedule"@en ;
+    rdfs:comment "Payment schedule whose installment amount or obligation is tied to the defendant's income (e.g., percentage of disposable income while on supervision)."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:PaymentSchedule ;
+    dcterms:source "AO 245B Schedule of Payments (income-based)."@en .
+
+cacontology-legal-outcomes:DeferredPaymentSchedule rdf:type owl:Class ;
+    rdfs:label "Deferred Payment Schedule"@en ;
+    rdfs:comment "Payment schedule deferring monetary obligations until a future trigger (e.g., after release from imprisonment or upon employment)."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:PaymentSchedule ;
+    dcterms:source "AO 245B Schedule of Payments (deferred)."@en .
 
 # =============================================================================
 # LEGAL ROLES (gUFO Role anti-rigid modeling)
@@ -702,6 +835,255 @@ cacontology-legal-outcomes:requiresLicenseSurrender rdf:type owl:ObjectProperty 
 
 cacontology-legal-outcomes:conditionAppliesToPerson rdf:type owl:ObjectProperty ;
     rdfs:label "condition applies to person"@en ;
-    rdfs:comment "Links a plea/sentencing condition to the person it applies to (typically the defendant)."@en ;
-    rdfs:domain cacontology-legal-outcomes:ProfessionalLicenseSurrenderCondition ;
+    rdfs:comment "Links a plea/sentencing or supervised-release condition to the person it applies to (typically the defendant)."@en ;
+    rdfs:domain cacontology-legal-outcomes:SentencingCondition ;
     rdfs:range uco-identity:Person .
+
+# =============================================================================
+# SUPERVISED RELEASE + PAYMENT SCHEDULE PROPERTIES (Issue #37)
+# =============================================================================
+
+# --- Object properties: structure links ---
+
+cacontology-legal-outcomes:hasSpecialCondition rdf:type owl:ObjectProperty ;
+    rdfs:label "has special condition"@en ;
+    rdfs:comment "Links a SupervisedRelease (or ProbationSentence) term to a typed special condition of supervision (AO 245B special conditions). Replaces interim supervision-condition:* tags on generic UcoObject nodes."@en ;
+    rdfs:domain [
+        a owl:Class ;
+        owl:unionOf (
+            cacontology-legal-outcomes:SupervisedRelease
+            cacontology-legal-outcomes:ProbationSentence
+        )
+    ] ;
+    rdfs:range cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    dcterms:source "AO 245B special conditions of supervision."@en .
+
+cacontology-legal-outcomes:hasPaymentSchedule rdf:type owl:ObjectProperty ;
+    rdfs:label "has payment schedule"@en ;
+    rdfs:comment "Links a LegalProceeding (e.g., sentencing hearing / judgment graph) or CriminalSentence (typically MonetaryPenalty or the overall sentence package) to a PaymentSchedule describing how criminal monetary penalties are to be paid."@en ;
+    rdfs:domain [
+        a owl:Class ;
+        owl:unionOf (
+            cacontology-legal-outcomes:LegalProceeding
+            cacontology-legal-outcomes:CriminalSentence
+        )
+    ] ;
+    rdfs:range cacontology-legal-outcomes:PaymentSchedule ;
+    dcterms:source "AO 245B Schedule of Payments."@en .
+
+cacontology-legal-outcomes:includesPenalty rdf:type owl:ObjectProperty ;
+    rdfs:label "includes penalty"@en ;
+    rdfs:comment "Links a PaymentSchedule to component MonetaryPenalty nodes covered by the schedule (e.g., special assessment, AVAA/JVTA assessment, fine, restitution)."@en ;
+    rdfs:domain cacontology-legal-outcomes:PaymentSchedule ;
+    rdfs:range cacontology-legal-outcomes:MonetaryPenalty ;
+    dcterms:source "AO 245B Schedule of Payments."@en .
+
+# --- Shared condition datatype properties ---
+
+cacontology-legal-outcomes:conditionType rdf:type owl:DatatypeProperty ;
+    rdfs:label "condition type"@en ;
+    rdfs:comment "Optional residual label for a supervised-release condition when a dedicated subclass is not used, or as a secondary tag on a typed condition (e.g., residual custom AO 245B text). Prefer typed subclasses for common CAC conditions. Controlled values when used for residual conditions: sorna_registration | sex_offender_treatment | minor_contact_restriction | computer_monitoring | probation_search | substance_abuse_treatment | restitution | other."@en ;
+    rdfs:domain cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    rdfs:range xsd:string .
+
+cacontology-legal-outcomes:durationMonths rdf:type owl:DatatypeProperty ;
+    rdfs:label "duration in months"@en ;
+    rdfs:comment "Duration of a supervised-release condition or related obligation expressed as a whole number of months, when stated on the judgment or order. Optional; omit when duration is 'until released by probation officer' or life of supervision."@en ;
+    rdfs:domain [
+        a owl:Class ;
+        owl:unionOf (
+            cacontology-legal-outcomes:SupervisedReleaseCondition
+            cacontology-legal-outcomes:PaymentSchedule
+        )
+    ] ;
+    rdfs:range xsd:integer .
+
+cacontology-legal-outcomes:governingStatute rdf:type owl:DatatypeProperty ;
+    rdfs:label "governing statute"@en ;
+    rdfs:comment "Primary statute or public-law citation governing a condition or assessment (e.g., '34 U.S.C. § 20901 et seq.', '18 U.S.C. § 3013', 'Pub. L. 115-299')."@en ;
+    rdfs:range xsd:string .
+
+cacontology-legal-outcomes:defendantPaysCost rdf:type owl:DatatypeProperty ;
+    rdfs:label "defendant pays cost"@en ;
+    rdfs:comment "Whether the defendant is ordered to pay the cost of a treatment, monitoring, or testing program required by a special condition."@en ;
+    rdfs:domain cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    rdfs:range xsd:boolean .
+
+# --- Sex offender treatment condition properties ---
+
+cacontology-legal-outcomes:polygraphPermitted rdf:type owl:DatatypeProperty ;
+    rdfs:label "polygraph permitted"@en ;
+    rdfs:comment "Whether polygraph examination is authorized as part of a sex-offender treatment condition."@en ;
+    rdfs:domain cacontology-legal-outcomes:SexOffenderTreatmentCondition ;
+    rdfs:range xsd:boolean .
+
+cacontology-legal-outcomes:confidentialityWaived rdf:type owl:DatatypeProperty ;
+    rdfs:label "confidentiality waived"@en ;
+    rdfs:comment "Whether the defendant must waive confidentiality of treatment disclosures as directed by the probation office."@en ;
+    rdfs:domain cacontology-legal-outcomes:SexOffenderTreatmentCondition ;
+    rdfs:range xsd:boolean .
+
+cacontology-legal-outcomes:refusalIsViolation rdf:type owl:DatatypeProperty ;
+    rdfs:label "refusal is violation"@en ;
+    rdfs:comment "Whether refusal to participate in required treatment or testing constitutes a violation of supervised release."@en ;
+    rdfs:domain cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    rdfs:range xsd:boolean .
+
+# --- Minor contact / no-contact properties ---
+
+cacontology-legal-outcomes:maxContactAge rdf:type owl:DatatypeProperty ;
+    rdfs:label "maximum contact age"@en ;
+    rdfs:comment "Maximum age (in years) of persons with whom the defendant may have restricted contact under a minor-contact condition (typically 18)."@en ;
+    rdfs:domain cacontology-legal-outcomes:MinorContactRestrictionCondition ;
+    rdfs:range xsd:integer .
+
+cacontology-legal-outcomes:requiresWrittenProbationApproval rdf:type owl:DatatypeProperty ;
+    rdfs:label "requires written probation approval"@en ;
+    rdfs:comment "Whether contact with minors (or other protected persons) requires prior written approval of the probation officer."@en ;
+    rdfs:domain cacontology-legal-outcomes:MinorContactRestrictionCondition ;
+    rdfs:range xsd:boolean .
+
+cacontology-legal-outcomes:requiresResponsibleAdultPresent rdf:type owl:DatatypeProperty ;
+    rdfs:label "requires responsible adult present"@en ;
+    rdfs:comment "Whether any permitted contact with minors requires a responsible adult who has been advised of the defendant's history to be present."@en ;
+    rdfs:domain cacontology-legal-outcomes:MinorContactRestrictionCondition ;
+    rdfs:range xsd:boolean .
+
+cacontology-legal-outcomes:unauthorizedContactReportWithinHours rdf:type owl:DatatypeProperty ;
+    rdfs:label "unauthorized contact report within hours"@en ;
+    rdfs:comment "Hours within which the defendant must report unauthorized contact with a minor or protected person to the probation officer."@en ;
+    rdfs:domain cacontology-legal-outcomes:MinorContactRestrictionCondition ;
+    rdfs:range xsd:integer .
+
+# --- Computer / internet monitoring properties ---
+
+cacontology-legal-outcomes:monitoringProgramRequired rdf:type owl:DatatypeProperty ;
+    rdfs:label "monitoring program required"@en ;
+    rdfs:comment "Whether the defendant must participate in a computer/internet monitoring program approved by the probation office."@en ;
+    rdfs:domain cacontology-legal-outcomes:ComputerInternetMonitoringCondition ;
+    rdfs:range xsd:boolean .
+
+cacontology-legal-outcomes:deviceInventoryRequired rdf:type owl:DatatypeProperty ;
+    rdfs:label "device inventory required"@en ;
+    rdfs:comment "Whether the defendant must maintain and disclose an inventory of devices capable of accessing the internet or storing digital media."@en ;
+    rdfs:domain cacontology-legal-outcomes:ComputerInternetMonitoringCondition ;
+    rdfs:range xsd:boolean .
+
+cacontology-legal-outcomes:pseudonymsPasswordsLogonsRequired rdf:type owl:DatatypeProperty ;
+    rdfs:label "pseudonyms passwords logons required"@en ;
+    rdfs:comment "Whether the defendant must provide all usernames, passwords, and logon information for devices and accounts as directed."@en ;
+    rdfs:domain cacontology-legal-outcomes:ComputerInternetMonitoringCondition ;
+    rdfs:range xsd:boolean .
+
+cacontology-legal-outcomes:unannouncedExaminationConsent rdf:type owl:DatatypeProperty ;
+    rdfs:label "unannounced examination consent"@en ;
+    rdfs:comment "Whether the defendant consents to unannounced examination of digital devices and media by the probation office or its designee."@en ;
+    rdfs:domain cacontology-legal-outcomes:ComputerInternetMonitoringCondition ;
+    rdfs:range xsd:boolean .
+
+cacontology-legal-outcomes:encryptionProhibited rdf:type owl:DatatypeProperty ;
+    rdfs:label "encryption prohibited"@en ;
+    rdfs:comment "Whether the defendant is prohibited from using encryption, wiping, or data-erasure tools that hinder monitoring or examination (as specified in the judgment)."@en ;
+    rdfs:domain cacontology-legal-outcomes:ComputerInternetMonitoringCondition ;
+    rdfs:range xsd:boolean .
+
+cacontology-legal-outcomes:dataErasureToolsProhibited rdf:type owl:DatatypeProperty ;
+    rdfs:label "data erasure tools prohibited"@en ;
+    rdfs:comment "Whether use of data-erasure or anti-forensic tools is prohibited under the computer/internet monitoring condition."@en ;
+    rdfs:domain cacontology-legal-outcomes:ComputerInternetMonitoringCondition ;
+    rdfs:range xsd:boolean .
+
+# --- Probation search properties ---
+
+cacontology-legal-outcomes:searchAuthority rdf:type owl:DatatypeProperty ;
+    rdfs:label "search authority"@en ;
+    rdfs:comment "Narrative or categorical description of probation search authority (e.g., person, property, residence, vehicle, papers, computers, electronic communications)."@en ;
+    rdfs:domain cacontology-legal-outcomes:ProbationSearchCondition ;
+    rdfs:range xsd:string .
+
+cacontology-legal-outcomes:reasonableSuspicionStandard rdf:type owl:DatatypeProperty ;
+    rdfs:label "reasonable suspicion standard"@en ;
+    rdfs:comment "Whether searches under the probation search condition are authorized upon reasonable suspicion (as opposed to probable cause or other standards)."@en ;
+    rdfs:domain cacontology-legal-outcomes:ProbationSearchCondition ;
+    rdfs:range xsd:boolean .
+
+cacontology-legal-outcomes:revocationGroundIfRefused rdf:type owl:DatatypeProperty ;
+    rdfs:label "revocation ground if refused"@en ;
+    rdfs:comment "Whether refusal to submit to a search under the condition is grounds for revocation of supervised release."@en ;
+    rdfs:domain cacontology-legal-outcomes:ProbationSearchCondition ;
+    rdfs:range xsd:boolean .
+
+# --- Substance abuse properties ---
+
+cacontology-legal-outcomes:maxUrinalysisPerMonth rdf:type owl:DatatypeProperty ;
+    rdfs:label "maximum urinalysis per month"@en ;
+    rdfs:comment "Maximum number of urinalysis or drug tests per month authorized under a substance-abuse condition, when stated."@en ;
+    rdfs:domain cacontology-legal-outcomes:SubstanceAbuseTreatmentCondition ;
+    rdfs:range xsd:integer .
+
+cacontology-legal-outcomes:alcoholAbstinence rdf:type owl:DatatypeProperty ;
+    rdfs:label "alcohol abstinence"@en ;
+    rdfs:comment "Whether the defendant must abstain from alcohol under a substance-abuse special condition."@en ;
+    rdfs:domain cacontology-legal-outcomes:SubstanceAbuseTreatmentCondition ;
+    rdfs:range xsd:boolean .
+
+cacontology-legal-outcomes:residentialOrOutpatientTreatment rdf:type owl:DatatypeProperty ;
+    rdfs:label "residential or outpatient treatment"@en ;
+    rdfs:comment "Treatment modality for substance-abuse condition: residential | outpatient | either_as_directed | none_testing_only."@en ;
+    rdfs:domain cacontology-legal-outcomes:SubstanceAbuseTreatmentCondition ;
+    rdfs:range xsd:string .
+
+# --- Payment schedule datatype properties ---
+
+cacontology-legal-outcomes:amount rdf:type owl:DatatypeProperty ;
+    rdfs:label "amount"@en ;
+    rdfs:comment "Monetary amount in USD associated with a penalty component or payment schedule total (use totalAmount when distinguishing schedule total from installment amount)."@en ;
+    rdfs:range xsd:decimal .
+
+cacontology-legal-outcomes:totalAmount rdf:type owl:DatatypeProperty ;
+    rdfs:label "total amount"@en ;
+    rdfs:comment "Total USD amount due under a PaymentSchedule (sum of component penalties when paid as a package)."@en ;
+    rdfs:domain cacontology-legal-outcomes:PaymentSchedule ;
+    rdfs:range xsd:decimal .
+
+cacontology-legal-outcomes:installmentAmount rdf:type owl:DatatypeProperty ;
+    rdfs:label "installment amount"@en ;
+    rdfs:comment "Minimum or fixed installment amount in USD for an InstallmentPaymentSchedule or income-based schedule floor."@en ;
+    rdfs:domain cacontology-legal-outcomes:PaymentSchedule ;
+    rdfs:range xsd:decimal .
+
+cacontology-legal-outcomes:frequency rdf:type owl:DatatypeProperty ;
+    rdfs:label "frequency"@en ;
+    rdfs:comment "Payment frequency for installment or income-based schedules. Controlled values: monthly | quarterly | annual | weekly | biweekly | other."@en ;
+    rdfs:domain cacontology-legal-outcomes:PaymentSchedule ;
+    rdfs:range xsd:string .
+
+cacontology-legal-outcomes:dueTiming rdf:type owl:DatatypeProperty ;
+    rdfs:label "due timing"@en ;
+    rdfs:comment "When payment is due under a schedule. Controlled values: immediately | on_date | after_release | upon_employment | deferred | other."@en ;
+    rdfs:domain cacontology-legal-outcomes:PaymentSchedule ;
+    rdfs:range xsd:string .
+
+cacontology-legal-outcomes:scheduleType rdf:type owl:DatatypeProperty ;
+    rdfs:label "schedule type"@en ;
+    rdfs:comment "Optional residual string facet for payment schedule kind when not fully captured by class hierarchy. Controlled values: lump_sum | installment | income_based | deferred | other. Prefer typed PaymentSchedule subclasses for new graphs."@en ;
+    rdfs:domain cacontology-legal-outcomes:PaymentSchedule ;
+    rdfs:range xsd:string .
+
+cacontology-legal-outcomes:paymentApplicationOrder rdf:type owl:DatatypeProperty ;
+    rdfs:label "payment application order"@en ;
+    rdfs:comment "Narrative of the order in which payments are applied to component obligations (e.g., assessment then restitution then AVAA then fine then JVTA per AO 245B)."@en ;
+    rdfs:domain cacontology-legal-outcomes:PaymentSchedule ;
+    rdfs:range xsd:string .
+
+cacontology-legal-outcomes:publicLawCitation rdf:type owl:DatatypeProperty ;
+    rdfs:label "public law citation"@en ;
+    rdfs:comment "Public law citation for a specialized assessment (e.g., 'Pub. L. 115-299' for AVAA, 'Pub. L. 114-22' for JVTA)."@en ;
+    rdfs:domain cacontology-legal-outcomes:MonetaryPenalty ;
+    rdfs:range xsd:string .
+
+cacontology-legal-outcomes:commencementTrigger rdf:type owl:DatatypeProperty ;
+    rdfs:label "commencement trigger"@en ;
+    rdfs:comment "Event that starts installment or deferred payments (e.g., release_from_imprisonment, employment, fixed_date)."@en ;
+    rdfs:domain cacontology-legal-outcomes:PaymentSchedule ;
+    rdfs:range xsd:string .

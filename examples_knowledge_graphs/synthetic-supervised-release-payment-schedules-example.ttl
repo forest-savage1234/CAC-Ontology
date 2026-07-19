@@ -1,0 +1,184 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
+@prefix ex: <https://cacontology.projectvic.org/examples/synthetic-supervised-release-payment-schedules#> .
+
+# =============================================================================
+# SYNTHETIC SUPERVISED RELEASE + PAYMENT SCHEDULES EXEMPLAR (Issue #37)
+#
+# Fully synthetic abstract pattern for acceptance testing. Zero real case
+# material, dockets, or victim identifiers. Demonstrates AO 245B-style:
+#   - SentencingHearing → PrisonSentence + SupervisedRelease + monetary
+#   - SupervisedRelease hasSpecialCondition → typed condition classes
+#   - LegalProceeding hasPaymentSchedule → LumpSumPaymentSchedule
+#   - includesPenalty → SpecialAssessment + AVAAAssessment components
+#
+# Pattern only — abstract federal online-enticement sentencing structure.
+# Migration note: prefer these typed classes over interim
+# supervision-condition:* tags / ContentDataFacet key=value strings.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Parties (fully synthetic)
+# -----------------------------------------------------------------------------
+
+ex:Defendant_Synthetic a uco-identity:Person ;
+    rdfs:label "Synthetic defendant (abstract)"@en ;
+    uco-core:description "Abstract defendant node for schema demonstration only. No real person."@en .
+
+# -----------------------------------------------------------------------------
+# Charge + sentencing proceeding
+# -----------------------------------------------------------------------------
+
+ex:Charge_OnlineEnticement a cacontology-legal-outcomes:OnlineEnticement ,
+        cacontology-legal-outcomes:FederalCharge ;
+    rdfs:label "Synthetic federal online enticement charge"@en ;
+    uco-core:description "Abstract 18 U.S.C. § 2422(b)-style count for structure demo. Synthetic statute reference only."@en ;
+    cacontology-legal-outcomes:governingStatute "18 U.S.C. § 2422(b)" .
+
+ex:Sentencing_Hearing a cacontology-legal-outcomes:SentencingHearing ;
+    rdfs:label "Synthetic sentencing hearing (AO 245B pattern)"@en ;
+    uco-core:description "Abstract sentencing proceeding linking imprisonment, supervised release, special conditions, and monetary payment schedule."@en ;
+    cacontology-legal-outcomes:hasCharge ex:Charge_OnlineEnticement ;
+    cacontology-legal-outcomes:resultsSentence ex:Prison_156Months ,
+        ex:SupervisedRelease_7Years ;
+    cacontology-legal-outcomes:hasPaymentSchedule ex:PaymentSchedule_LumpSum_5100 ;
+    cacontology-legal-outcomes:hasProceedingBeginPoint "2025-06-15T14:00:00Z"^^xsd:dateTimeStamp .
+
+# -----------------------------------------------------------------------------
+# Sentences
+# -----------------------------------------------------------------------------
+
+ex:Prison_156Months a cacontology-legal-outcomes:PrisonSentence ;
+    rdfs:label "Synthetic prison sentence — 156 months"@en ;
+    uco-core:description "Abstract imprisonment term (156 months). Fully synthetic."@en ;
+    cacontology-legal-outcomes:sentenceDuration "P156M"^^xsd:duration ;
+    cacontology-legal-outcomes:appliesTo ex:Charge_OnlineEnticement .
+
+ex:SupervisedRelease_7Years a cacontology-legal-outcomes:SupervisedRelease ;
+    rdfs:label "Synthetic supervised release — 7 years"@en ;
+    uco-core:description "Abstract seven-year supervised release term with AO 245B-style special conditions."@en ;
+    cacontology-legal-outcomes:sentenceDuration "P84M"^^xsd:duration ;
+    cacontology-legal-outcomes:appliesTo ex:Charge_OnlineEnticement ;
+    cacontology-legal-outcomes:hasSpecialCondition
+        ex:Condition_SORNA ,
+        ex:Condition_SexOffenderTreatment ,
+        ex:Condition_MinorContact ,
+        ex:Condition_ComputerMonitoring ,
+        ex:Condition_ProbationSearch ,
+        ex:Condition_SubstanceAbuse ,
+        ex:Condition_Restitution .
+
+# -----------------------------------------------------------------------------
+# Typed special conditions (queryable subclasses)
+# -----------------------------------------------------------------------------
+
+# Dual-typed with SupervisedReleaseCondition so SHACL sh:class checks pass
+# without OWL reasoning (same pattern as spine dual-typing).
+
+ex:Condition_SORNA a cacontology-legal-outcomes:SORNARegistrationCondition ,
+        cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    rdfs:label "Synthetic SORNA registration condition"@en ;
+    uco-core:description "Abstract SORNA compliance special condition. Complements registry-module RegistrationRequirement when used in full case graphs."@en ;
+    cacontology-legal-outcomes:conditionType "sorna_registration" ;
+    cacontology-legal-outcomes:governingStatute "34 U.S.C. § 20901 et seq." ;
+    cacontology-legal-outcomes:conditionAppliesToPerson ex:Defendant_Synthetic .
+
+ex:Condition_SexOffenderTreatment a cacontology-legal-outcomes:SexOffenderTreatmentCondition ,
+        cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    rdfs:label "Synthetic sex-offender treatment condition"@en ;
+    uco-core:description "Abstract treatment condition with polygraph permitted and confidentiality waived as directed by probation."@en ;
+    cacontology-legal-outcomes:conditionType "sex_offender_treatment" ;
+    cacontology-legal-outcomes:polygraphPermitted true ;
+    cacontology-legal-outcomes:confidentialityWaived true ;
+    cacontology-legal-outcomes:defendantPaysCost true ;
+    cacontology-legal-outcomes:refusalIsViolation true ;
+    cacontology-legal-outcomes:conditionAppliesToPerson ex:Defendant_Synthetic .
+
+ex:Condition_MinorContact a cacontology-legal-outcomes:MinorContactRestrictionCondition ,
+        cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    rdfs:label "Synthetic minor contact restriction (no-contact) condition"@en ;
+    uco-core:description "Abstract minor-contact restriction / no-contact special condition. Fully synthetic."@en ;
+    cacontology-legal-outcomes:conditionType "minor_contact_restriction" ;
+    cacontology-legal-outcomes:maxContactAge 18 ;
+    cacontology-legal-outcomes:requiresWrittenProbationApproval true ;
+    cacontology-legal-outcomes:requiresResponsibleAdultPresent true ;
+    cacontology-legal-outcomes:unauthorizedContactReportWithinHours 72 ;
+    cacontology-legal-outcomes:conditionAppliesToPerson ex:Defendant_Synthetic .
+
+ex:Condition_ComputerMonitoring a cacontology-legal-outcomes:ComputerInternetMonitoringCondition ,
+        cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    rdfs:label "Synthetic computer/internet monitoring condition"@en ;
+    uco-core:description "Abstract computer monitoring condition with device inventory and encryption prohibition for analytics demos."@en ;
+    cacontology-legal-outcomes:conditionType "computer_monitoring" ;
+    cacontology-legal-outcomes:monitoringProgramRequired true ;
+    cacontology-legal-outcomes:deviceInventoryRequired true ;
+    cacontology-legal-outcomes:pseudonymsPasswordsLogonsRequired true ;
+    cacontology-legal-outcomes:unannouncedExaminationConsent true ;
+    cacontology-legal-outcomes:encryptionProhibited true ;
+    cacontology-legal-outcomes:dataErasureToolsProhibited true ;
+    cacontology-legal-outcomes:defendantPaysCost true ;
+    cacontology-legal-outcomes:conditionAppliesToPerson ex:Defendant_Synthetic .
+
+ex:Condition_ProbationSearch a cacontology-legal-outcomes:ProbationSearchCondition ,
+        cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    rdfs:label "Synthetic probation search condition"@en ;
+    uco-core:description "Abstract reasonable-suspicion search authority special condition."@en ;
+    cacontology-legal-outcomes:conditionType "probation_search" ;
+    cacontology-legal-outcomes:searchAuthority "person_property_residence_vehicle_papers_computers_electronic_communications" ;
+    cacontology-legal-outcomes:reasonableSuspicionStandard true ;
+    cacontology-legal-outcomes:revocationGroundIfRefused true ;
+    cacontology-legal-outcomes:conditionAppliesToPerson ex:Defendant_Synthetic .
+
+ex:Condition_SubstanceAbuse a cacontology-legal-outcomes:SubstanceAbuseTreatmentCondition ,
+        cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    rdfs:label "Synthetic substance abuse testing/treatment condition"@en ;
+    uco-core:description "Abstract substance testing condition with outpatient treatment as directed."@en ;
+    cacontology-legal-outcomes:conditionType "substance_abuse_treatment" ;
+    cacontology-legal-outcomes:maxUrinalysisPerMonth 8 ;
+    cacontology-legal-outcomes:residentialOrOutpatientTreatment "either_as_directed" ;
+    cacontology-legal-outcomes:alcoholAbstinence true ;
+    cacontology-legal-outcomes:defendantPaysCost true ;
+    cacontology-legal-outcomes:conditionAppliesToPerson ex:Defendant_Synthetic .
+
+ex:Condition_Restitution a cacontology-legal-outcomes:RestitutionCondition ,
+        cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    rdfs:label "Synthetic restitution compliance condition"@en ;
+    uco-core:description "Abstract supervision condition to remain current on restitution. Distinct from monetary penalty nodes."@en ;
+    cacontology-legal-outcomes:conditionType "restitution" ;
+    cacontology-legal-outcomes:conditionAppliesToPerson ex:Defendant_Synthetic .
+
+# -----------------------------------------------------------------------------
+# Monetary penalties + lump-sum payment schedule ($5,100 immediately pattern)
+# -----------------------------------------------------------------------------
+
+# Dual-typed with MonetaryPenalty / PaymentSchedule for SHACL sh:class without OWL reasoning.
+
+ex:Penalty_SpecialAssessment a cacontology-legal-outcomes:SpecialAssessment ,
+        cacontology-legal-outcomes:MonetaryPenalty ;
+    rdfs:label "Synthetic special assessment — $100"@en ;
+    uco-core:description "Abstract 18 U.S.C. § 3013 special assessment component."@en ;
+    cacontology-legal-outcomes:amount 100.00 ;
+    cacontology-legal-outcomes:governingStatute "18 U.S.C. § 3013" .
+
+ex:Penalty_AVAA a cacontology-legal-outcomes:AVAAAssessment ,
+        cacontology-legal-outcomes:MonetaryPenalty ;
+    rdfs:label "Synthetic AVAA assessment — $5,000"@en ;
+    uco-core:description "Abstract AVAA (Pub. L. 115-299) assessment component. Synthetic amount only."@en ;
+    cacontology-legal-outcomes:amount 5000.00 ;
+    cacontology-legal-outcomes:publicLawCitation "Pub. L. 115-299" ;
+    cacontology-legal-outcomes:governingStatute "Pub. L. 115-299 (AVAA)" .
+
+ex:PaymentSchedule_LumpSum_5100 a cacontology-legal-outcomes:LumpSumPaymentSchedule ,
+        cacontology-legal-outcomes:PaymentSchedule ;
+    rdfs:label "Synthetic lump-sum payment schedule — $5,100 due immediately"@en ;
+    uco-core:description "Abstract AO 245B Schedule of Payments: combined special assessment and AVAA due immediately. Demonstrates PaymentSchedule hierarchy + includesPenalty."@en ;
+    cacontology-legal-outcomes:scheduleType "lump_sum" ;
+    cacontology-legal-outcomes:totalAmount 5100.00 ;
+    cacontology-legal-outcomes:amount 5100.00 ;
+    cacontology-legal-outcomes:dueTiming "immediately" ;
+    cacontology-legal-outcomes:paymentApplicationOrder "special_assessment then AVAA assessment (synthetic order)" ;
+    cacontology-legal-outcomes:includesPenalty ex:Penalty_SpecialAssessment , ex:Penalty_AVAA .

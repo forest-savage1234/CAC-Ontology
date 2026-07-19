@@ -15,7 +15,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/legal-outcomes/shapes/3.0.0> ;
     owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-02-16"^^xsd:date ;
+    dcterms:modified "2026-07-19"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/legal-outcomes/3.0.0> ,
                 <https://cacontology.projectvic.org/sex-offender-registry/3.0.0> ,
                 <http://purl.org/nemo/gufo#> ,
@@ -900,4 +900,321 @@ cacontology-legal-outcomes:ContributingToDelinquencyShape rdf:type sh:NodeShape 
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "May specify if contribution to child delinquency occurred."@en
-    ] . 
+    ] .
+
+# =============================================================================
+# SUPERVISED RELEASE SPECIAL CONDITIONS + PAYMENT SCHEDULES (Issue #37)
+# Optional links on SupervisedRelease so existing graphs without conditions
+# remain valid. Node shapes constrain typed condition and schedule instances.
+# =============================================================================
+
+cacontology-legal-outcomes:SupervisedReleaseSpecialConditionsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:SupervisedRelease ;
+    rdfs:label "Supervised Release Special Conditions Shape"@en ;
+    rdfs:comment "Optional hasSpecialCondition links from SupervisedRelease to typed SupervisedReleaseCondition nodes (AO 245B). minCount 0 preserves legacy graphs."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:hasSpecialCondition ;
+        sh:class cacontology-legal-outcomes:SupervisedReleaseCondition ;
+        sh:minCount 0 ;
+        sh:message "Special conditions of supervised release must be SupervisedReleaseCondition instances."@en
+    ] .
+
+cacontology-legal-outcomes:ProbationSentenceSpecialConditionsShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:ProbationSentence ;
+    rdfs:label "Probation Sentence Special Conditions Shape"@en ;
+    rdfs:comment "Optional hasSpecialCondition links from ProbationSentence to typed conditions."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:hasSpecialCondition ;
+        sh:class cacontology-legal-outcomes:SupervisedReleaseCondition ;
+        sh:minCount 0 ;
+        sh:message "Special conditions on probation must be SupervisedReleaseCondition instances."@en
+    ] .
+
+cacontology-legal-outcomes:SupervisedReleaseConditionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    rdfs:label "Supervised Release Condition Shape"@en ;
+    rdfs:comment "Baseline constraints for special conditions of supervised release."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:conditionType ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in (
+            "sorna_registration"
+            "sex_offender_treatment"
+            "minor_contact_restriction"
+            "computer_monitoring"
+            "probation_search"
+            "substance_abuse_treatment"
+            "restitution"
+            "other"
+        ) ;
+        sh:message "conditionType must be from the controlled residual list when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:durationMonths ;
+        sh:datatype xsd:integer ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 1200 ;
+        sh:message "durationMonths must be between 0 and 1200 when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:defendantPaysCost ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "defendantPaysCost must be boolean when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:governingStatute ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 3 ;
+        sh:maxLength 200 ;
+        sh:message "governingStatute should be 3–200 characters when present."@en
+    ] .
+
+cacontology-legal-outcomes:SexOffenderTreatmentConditionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:SexOffenderTreatmentCondition ;
+    rdfs:label "Sex Offender Treatment Condition Shape"@en ;
+    rdfs:comment "Constraints for sex-offender treatment special conditions."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:polygraphPermitted ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "polygraphPermitted must be boolean when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:confidentialityWaived ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "confidentialityWaived must be boolean when present."@en
+    ] .
+
+cacontology-legal-outcomes:MinorContactRestrictionConditionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:MinorContactRestrictionCondition ;
+    rdfs:label "Minor Contact Restriction Condition Shape"@en ;
+    rdfs:comment "Constraints for minor-contact / no-contact special conditions."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:maxContactAge ;
+        sh:datatype xsd:integer ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 21 ;
+        sh:message "maxContactAge must be between 0 and 21 when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:requiresWrittenProbationApproval ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "requiresWrittenProbationApproval must be boolean when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:unauthorizedContactReportWithinHours ;
+        sh:datatype xsd:integer ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 168 ;
+        sh:message "unauthorizedContactReportWithinHours must be 1–168 when present."@en
+    ] .
+
+cacontology-legal-outcomes:ComputerInternetMonitoringConditionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:ComputerInternetMonitoringCondition ;
+    rdfs:label "Computer Internet Monitoring Condition Shape"@en ;
+    rdfs:comment "Constraints for computer/internet monitoring special conditions."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:monitoringProgramRequired ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "monitoringProgramRequired must be boolean when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:deviceInventoryRequired ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "deviceInventoryRequired must be boolean when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:encryptionProhibited ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "encryptionProhibited must be boolean when present."@en
+    ] .
+
+cacontology-legal-outcomes:SubstanceAbuseTreatmentConditionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:SubstanceAbuseTreatmentCondition ;
+    rdfs:label "Substance Abuse Treatment Condition Shape"@en ;
+    rdfs:comment "Constraints for substance-abuse testing/treatment special conditions."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:maxUrinalysisPerMonth ;
+        sh:datatype xsd:integer ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 31 ;
+        sh:message "maxUrinalysisPerMonth must be 0–31 when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:residentialOrOutpatientTreatment ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "residential" "outpatient" "either_as_directed" "none_testing_only" ) ;
+        sh:message "residentialOrOutpatientTreatment must be from the allowed list when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:alcoholAbstinence ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "alcoholAbstinence must be boolean when present."@en
+    ] .
+
+cacontology-legal-outcomes:PaymentScheduleShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:PaymentSchedule ;
+    rdfs:label "Payment Schedule Shape"@en ;
+    rdfs:comment "Constraints for AO 245B-style criminal monetary payment schedules."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:totalAmount ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 100000000.0 ;
+        sh:message "totalAmount must be between 0 and 100,000,000 when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:amount ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 100000000.0 ;
+        sh:message "amount must be between 0 and 100,000,000 when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:frequency ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "monthly" "quarterly" "annual" "weekly" "biweekly" "other" ) ;
+        sh:message "frequency must be from the allowed list when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:dueTiming ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "immediately" "on_date" "after_release" "upon_employment" "deferred" "other" ) ;
+        sh:message "dueTiming must be from the allowed list when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:scheduleType ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "lump_sum" "installment" "income_based" "deferred" "other" ) ;
+        sh:message "scheduleType must be from the allowed list when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:includesPenalty ;
+        sh:class cacontology-legal-outcomes:MonetaryPenalty ;
+        sh:minCount 0 ;
+        sh:message "includesPenalty must link to MonetaryPenalty instances."@en
+    ] .
+
+cacontology-legal-outcomes:LumpSumPaymentScheduleShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:LumpSumPaymentSchedule ;
+    rdfs:label "Lump Sum Payment Schedule Shape"@en ;
+    rdfs:comment "Lump-sum schedules should state total amount and due timing when known."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:totalAmount ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:message "Lump-sum totalAmount should be non-negative when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:dueTiming ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "immediately" "on_date" "after_release" "upon_employment" "deferred" "other" ) ;
+        sh:message "Lump-sum dueTiming must be from the allowed list when present."@en
+    ] .
+
+cacontology-legal-outcomes:InstallmentPaymentScheduleShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:InstallmentPaymentSchedule ;
+    rdfs:label "Installment Payment Schedule Shape"@en ;
+    rdfs:comment "Installment schedules may state frequency, installment amount, and commencement trigger."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:frequency ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "monthly" "quarterly" "annual" "weekly" "biweekly" "other" ) ;
+        sh:message "Installment frequency must be from the allowed list when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:installmentAmount ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:message "installmentAmount must be non-negative when present."@en
+    ] .
+
+cacontology-legal-outcomes:HasPaymentScheduleOnProceedingShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:LegalProceeding ;
+    rdfs:label "Has Payment Schedule On Proceeding Shape"@en ;
+    rdfs:comment "Optional hasPaymentSchedule on LegalProceeding (e.g., sentencing hearing / judgment)."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:hasPaymentSchedule ;
+        sh:class cacontology-legal-outcomes:PaymentSchedule ;
+        sh:minCount 0 ;
+        sh:message "hasPaymentSchedule must link to PaymentSchedule instances."@en
+    ] .
+
+cacontology-legal-outcomes:HasPaymentScheduleOnSentenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:CriminalSentence ;
+    rdfs:label "Has Payment Schedule On Sentence Shape"@en ;
+    rdfs:comment "Optional hasPaymentSchedule on CriminalSentence (including MonetaryPenalty packages)."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:hasPaymentSchedule ;
+        sh:class cacontology-legal-outcomes:PaymentSchedule ;
+        sh:minCount 0 ;
+        sh:message "hasPaymentSchedule must link to PaymentSchedule instances."@en
+    ] .
+
+cacontology-legal-outcomes:SpecialAssessmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:SpecialAssessment ;
+    rdfs:label "Special Assessment Shape"@en ;
+    rdfs:comment "Constraints for 18 U.S.C. § 3013 special assessments."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:amount ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 10000.0 ;
+        sh:message "Special assessment amount should be 0–10000 when present."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:governingStatute ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Special assessment may cite governingStatute (e.g., 18 U.S.C. § 3013)."@en
+    ] .

@@ -184,6 +184,8 @@ domain_validations = [
     ('examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl', 'ontology/cacontology-legal-outcomes-shapes.ttl'),
     ('examples_knowledge_graphs/k2p-soe-information-example.ttl', 'ontology/cacontology-sadistic-online-exploitation-shapes.ttl'),
     ('examples_knowledge_graphs/k2p-soe-information-example.ttl', 'ontology/cacontology-sextortion-shapes.ttl'),
+    # Issue #37 — Supervised release special conditions + payment schedules
+    ('examples_knowledge_graphs/synthetic-supervised-release-payment-schedules-example.ttl', 'ontology/cacontology-legal-outcomes-shapes.ttl'),
 ]
 
 domain_passed = 0
