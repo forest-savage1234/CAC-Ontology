@@ -1,0 +1,148 @@
+# CAC Ontology ingestion manifest (single-document) — C2.A1 Phase -1 + Phase 0
+# Source: NCMEC 2025 CyberTipline public aggregate statistics page
+# Path A caseId: ncmec-cybertipline-data
+
+batch:
+  uco-core:id: "urn:uuid:6e03e099-e6fe-5486-bab5-e498c172459a"
+  uco-core:name: "NCMEC 2025 CyberTipline Data page collection"
+  uco-core:objectCreatedTime: "2026-07-19T05:03:58Z"
+
+  agentOrchestration:
+    enabled: false
+    fetchMethod: "manual"
+    preprocessingPipeline:
+      - "http_get_html"
+      - "manual_substantive_extract"
+      - "whitespace_normalize"
+      - "strip_nav_chrome"
+      - "strip_script_noise"
+      - "strip_donation_chrome"
+      - "omit_archive_pdf_link_lists"
+      - "keypoint_normalize"
+    deconflictionEnabled: false
+
+documents:
+  - uco-core:id: "urn:uuid:c4f17b95-50da-5f23-a352-3d142f1ee68c"
+    uco-core:name: "NCMEC CyberTipline Data — 2025 CyberTipline Report (public page)"
+
+    # Source location
+    observable:url: "https://www.missingkids.org/cybertiplinedata"
+    observable:filePath: "analytics_demonstration/collected_sources/ncmec-cybertipline-data/source.html"
+
+    collectionAction:
+      uco-core:id: "urn:uuid:d40757a2-0bf4-5a13-861a-0a2688fadf1a"
+      uco-action:startTime: "2026-07-19T05:03:58Z"
+      uco-action:performer: "urn:uuid:b4e0227c-13ba-5997-aa36-d043becda92e"
+      uco-core:description: "manual (HTTP GET via PowerShell Invoke-WebRequest) by CAC Ontology Path A agent; public page only"
+
+    # Raw content metadata (HTML bytes as collected)
+    observable:mimeType: "text/html"
+    observable:sizeInBytes: 725977
+    observable:hash:
+      types:hashMethod: "SHA-256"
+      types:hashValue: "db3cf9214fb28679b5f709ec54a36aff3aa0fa0bd431ae6fff3bb52d75e9e9c4"
+
+    # Intermediate clean extract (full prose, still pre-keypoint)
+    intermediateCleanText:
+      observable:filePath: "analytics_demonstration/collected_sources/ncmec-cybertipline-data/source.txt"
+      observable:mimeType: "text/plain"
+      observable:sizeInBytes: 22420
+      observable:hash:
+        types:hashMethod: "SHA-256"
+        types:hashValue: "4b4e83f0c20e47b3289292441149cf98bbc4d6af622712015a09a2c73b8c95e6"
+
+    # Normalized output (line-stable keypoints for evidence pointers)
+    normalizationAction:
+      uco-core:id: "urn:uuid:d8bb8c02-d826-5735-992f-bc4306e3d092"
+      uco-core:description: "manual_substantive_extract + whitespace_normalize + strip_nav/script/donation chrome + keypoint_normalize (numbered statements)"
+      uco-action:startTime: "2026-07-19T05:03:58Z"
+      uco-action:result: "urn:uuid:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c"
+
+    normalizedOutput:
+      uco-core:id: "urn:uuid:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c"
+      observable:filePath: "analytics_demonstration/collected_sources/ncmec-cybertipline-data/normalized.txt"
+      observable:mimeType: "text/plain"
+      observable:sizeInBytes: 8746
+      observable:hash:
+        types:hashMethod: "SHA-256"
+        types:hashValue: "f0d8b0431066a09a0b5b444f618bf874083ad088c861ade132b23ea891a9a617"
+
+# UUIDs used (UUIDv5 for determinism; document namespace = UUID5(DNS, source URL))
+# DNS NS: 6ba7b810-9dad-11d1-80b4-00c04fd430c8
+# document namespace: 3163ddce-323b-5805-b7d2-89b277787002 = uuid5(DNS, "https://www.missingkids.org/cybertiplinedata")
+uuids:
+  document_namespace: "3163ddce-323b-5805-b7d2-89b277787002"
+  batch: "6e03e099-e6fe-5486-bab5-e498c172459a"
+  raw_doc: "c4f17b95-50da-5f23-a352-3d142f1ee68c"
+  normalized_doc: "7e33c023-a82f-5fe5-b9d1-0b74e3a8513c"
+  collection_action: "d40757a2-0bf4-5a13-861a-0a2688fadf1a"
+  normalization_action: "d8bb8c02-d826-5735-992f-bc4306e3d092"
+  provenance_record: "b29c9903-8cb7-5634-8649-207aebc50295"
+  agent: "b4e0227c-13ba-5997-aa36-d043becda92e"
+
+# Scope decision (Phase 0)
+caseId: "ncmec-cybertipline-data"
+mode: "single-document"
+path: "A"
+output_example_declared: "examples_knowledge_graphs/ncmec-cybertipline-data-example.ttl"
+
+scope:
+  status: "IN_SCOPE"
+  rationale: >
+    Public high-level NCMEC aggregate statistics and program description of CyberTipline
+    operations (reporting categories, ESP/public flows, referrals, hash sharing, domestic/global
+    LE referral, CMT). Maps to existing CAC modules (us-ncmec, hotlines, platforms, partnerships,
+    international, taskforce metrics) without requiring case-level investigative content.
+  categories:
+    - "NCMEC CyberTipline aggregate statistics"
+    - "ESP and public reporting workflows"
+    - "Report triage (referral vs informational)"
+    - "Hash matching and hash sharing"
+    - "Content removal notices"
+    - "Domestic ICAC / federal LE availability"
+    - "International LE and NGO partnerships"
+    - "Case Management Tool (CMT)"
+    - "OJJDP / REPORT Act / 18 USC 2258A legal context (high-level)"
+  excluded_topics:
+    - "Individual victim identities or case dockets (none present on source)"
+    - "CSAM content or file payloads (none present; counts only)"
+    - "Non-public tip detail or investigative holdings"
+    - "Interactive map/chart raw data not exposed as static text (pie charts showing 0 in HTML scrape)"
+    - "Archive PDF link inventories (provenance pointer only; not modeled as primary content)"
+  privacy_harm:
+    - "No named child victims"
+    - "No CSAM imagery or hashes of CSAM files"
+    - "Company names appear only as public NCMEC transparency statements about report quality"
+    - "Suicide statistic retained only as aggregate page statement (no individual identifiers)"
+
+# Candidate modules (Phase 0 ceiling — search-first reuse only; no TBox change default)
+candidate_modules:
+  primary:
+    - "ontology/cacontology-us-ncmec.ttl"
+    - "ontology/cacontology-hotlines.ttl"
+    - "ontology/cacontology-platforms.ttl"
+    - "ontology/cacontology-partnerships.ttl"
+    - "ontology/cacontology-international.ttl"
+    - "ontology/cacontology-taskforce.ttl"
+  secondary_as_needed:
+    - "ontology/cacontology-detection.ttl"
+    - "ontology/cacontology-sextortion.ttl"
+    - "ontology/cacontology-sex-trafficking.ttl"
+    - "ontology/cacontology-sadistic-online-exploitation.ttl"
+    - "ontology/cacontology-ai-csam.ttl"
+    - "ontology/cacontology-prevention.ttl"
+  foundational:
+    - "UCO (identity, action, observable, types)"
+    - "CASE investigation (InvestigativeAction, ProvenanceRecord)"
+  do_not_modify_tbox_default: true
+
+working_assumptions:
+  - "caseId = ncmec-cybertipline-data (kebab-case, source-derived)"
+  - "Single-document Path A; no batch ER / Graph DB required"
+  - "No new classes/properties by default (Phase 3 skip unless governance-justified later)"
+  - "UUIDv5 instance IRIs for deterministic regeneration"
+  - "Model page as public report/listing of aggregate program facts + statement actions, not a fictional case file"
+  - "Prefer statement/listing Actions for statistics rather than inventing individual Cybertip instances for each million reports"
+  - "Interactive charts without numeric text are out of evidence set"
+  - "cac-core spine rules apply to any domain class use; Path A ABox types use domain/UCO/CASE classes"
+  - "Do not commit testing/c* or docker-compose.override.yml"
