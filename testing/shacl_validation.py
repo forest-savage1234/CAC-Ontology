@@ -184,6 +184,8 @@ domain_validations = [
     ('examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl', 'ontology/cacontology-legal-outcomes-shapes.ttl'),
     ('examples_knowledge_graphs/k2p-soe-information-example.ttl', 'ontology/cacontology-sadistic-online-exploitation-shapes.ttl'),
     ('examples_knowledge_graphs/k2p-soe-information-example.ttl', 'ontology/cacontology-sextortion-shapes.ttl'),
+    # Issue #31 — CyberTip identifier extraction and jurisdiction routing
+    ('examples_knowledge_graphs/synthetic-cybertip-identifier-extraction-routing-example.ttl', 'ontology/cacontology-us-ncmec-shapes.ttl'),
 ]
 
 domain_passed = 0

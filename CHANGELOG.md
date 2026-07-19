@@ -5,7 +5,56 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
 
+### Added - CyberTip identifier extraction and jurisdiction routing (Issue #31)
+
+First-class CAC workflow terms for OCR/document extraction of actionable identifiers from CyberTipline reports, packaging of the extracted set, and downstream jurisdiction/routing triage assessment.
+
+#### Placement decision
+
+- Terms live in **`cacontology-us-ncmec`** (CyberTip-specific; reuses `NCMECCybertipReport` and the existing tip processing / enrichment / referral family).
+- **Not** forensics: `MetadataExtractionAction` remains the general-purpose extraction action; this PR is CyberTip-workflow-specific.
+- **Not** hotlines: hotlines models generic hotline lifecycle, not NCMEC CyberTip OCR→route.
+- **Not** core: too domain-specific for the spine; avoids module sprawl of a new triage module.
+
+#### Granularity decision
+
+- One **`CybertipExtractedIdentifierSet`** result object per extraction action (typed properties for screen name / phone / IP plus a generic `extractedIdentifiers` bag), **not** one action per identifier. Keeps triage SPARQL stable and matches Issue #31’s proposed set object.
+
+#### Soft reuse of Issue #41 jurisdiction / case identity
+
+- `routingJurisdiction` (and synonym `recommendedJurisdiction`) are string jurisdiction labels soft-aligned with core `cacontology:jurisdiction` when #41 lands; this PR does not require #41 on `main`.
+- `relatedCaseNumber` soft-aligns with core `cacontology:caseNumber` / `uco-core:externalIdentifier` pattern for optional case linkage.
+- `relatedInvestigation` links extraction/routing nodes to `cacontology:CACInvestigation` when opened.
+
+#### Class hierarchy and properties
+
+- `CybertipIdentifierExtractionAction` — `rdfs:subClassOf cac-core:InvestigativeAction`
+- `CybertipExtractedIdentifierSet` — `rdfs:subClassOf uco-observable:ObservableObject , cac-core:Artifact`
+- `CybertipJurisdictionRoutingAssessment` — `rdfs:subClassOf cac-core:AssessmentResult`
+- Action: `extractsIdentifierFromCybertip`, `producedIdentifierSet`, `extractionMethod`, `extractionConfidence`
+- Set: `extractedIdentifiers`, `hasExtractedScreenName`, `hasExtractedPhoneNumber`, `hasExtractedIPAddress`, `sourceCybertipReport`, `supportsJurisdictionRoutingAssessment`
+- Routing: `usesExtractedIdentifierSet`, `routingJurisdiction` / `recommendedJurisdiction` (equivalent), `routingAssessmentMethod`, `routingConfidence`, `routesToAgency`, `relatedCaseNumber`, `relatedInvestigation`
+- UCO reuse: `DigitalAccount`, `ObservableObject` (phone/IP nodes); RFC 5737 documentation IPs in the exemplar
+
+#### Files
+
+- `ontology/cacontology-us-ncmec.ttl` — classes and properties above
+- `ontology/cacontology-us-ncmec-shapes.ttl` — mild SHACL (labels; extraction requires source report; confidence 0–1; SPARQL nudges for non-empty identifier set and routing jurisdiction string)
+- `examples_knowledge_graphs/synthetic-cybertip-identifier-extraction-routing-example.ttl` — fully synthetic abstract report flow
+- `example_SPARQL_queries/find_cybertip_identifier_routing.rq` — extraction → routing pipeline query
+- `testing/shacl_validation.py` — Stage 4 entry for the exemplar against us-ncmec shapes
+
+#### Minimal example impact
+
+- No rewrites of existing example graphs. New shapes target only the new classes (plus existing NCMEC report shapes exercised by the synthetic report node).
+
+#### Shapes hygiene (required for Stage 4)
+
+- Corrected pre-existing SPARQL `sh:prefix` mismatches in `cacontology-us-ncmec-shapes.ttl` (`icacus` / `icac` declared while queries used `cacontology-us-ncmec` / `cacontology`). Without this fix, any instance of `NCMECCybertipReport` fails pySHACL with “Unknown namespace prefix”.
+
+Closes #31.
 
 ## v3.0.0 - 16 March 2026
 

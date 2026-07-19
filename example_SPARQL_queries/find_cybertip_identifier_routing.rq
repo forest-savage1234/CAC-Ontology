@@ -1,0 +1,65 @@
+# Query: find_cybertip_identifier_routing (Issue #31)
+# Purpose: Trace CyberTip → identifier extraction → extracted set (screen/phone/IP)
+#          → jurisdiction routing assessment for triage analytics.
+# Security: Fully synthetic-safe; no operational filters required for the
+#           acceptance exemplar. Extend with TLP / agency filters in production.
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/>
+PREFIX cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec#>
+PREFIX cac-core: <https://cacontology.projectvic.org/core#>
+
+# -----------------------------------------------------------------------------
+# 1) Full extraction → routing pipeline
+# -----------------------------------------------------------------------------
+SELECT ?cybertip ?cybertipLabel ?extraction ?method ?extractConf
+       ?identifierSet ?screenName ?phone ?ip
+       ?assessment ?routingJurisdiction ?routingMethod ?routingConf ?caseNumber
+WHERE {
+    ?cybertip a cacontology-us-ncmec:NCMECCybertipReport .
+    OPTIONAL { ?cybertip rdfs:label ?cybertipLabel }
+
+    ?extraction a cacontology-us-ncmec:CybertipIdentifierExtractionAction ;
+                cacontology-us-ncmec:extractsIdentifierFromCybertip ?cybertip .
+
+    OPTIONAL { ?extraction cacontology-us-ncmec:extractionMethod ?method }
+    OPTIONAL { ?extraction cacontology-us-ncmec:extractionConfidence ?extractConf }
+    OPTIONAL { ?extraction cacontology-us-ncmec:producedIdentifierSet ?identifierSet }
+
+    OPTIONAL {
+        ?identifierSet cacontology-us-ncmec:hasExtractedScreenName ?screenName .
+    }
+    OPTIONAL {
+        ?identifierSet cacontology-us-ncmec:hasExtractedPhoneNumber ?phone .
+    }
+    OPTIONAL {
+        ?identifierSet cacontology-us-ncmec:hasExtractedIPAddress ?ip .
+    }
+
+    OPTIONAL {
+        ?assessment a cacontology-us-ncmec:CybertipJurisdictionRoutingAssessment ;
+                    cacontology-us-ncmec:usesExtractedIdentifierSet ?identifierSet .
+        OPTIONAL { ?assessment cacontology-us-ncmec:routingJurisdiction ?routingJurisdiction }
+        OPTIONAL { ?assessment cacontology-us-ncmec:recommendedJurisdiction ?routingJurisdiction }
+        OPTIONAL { ?assessment cacontology-us-ncmec:routingAssessmentMethod ?routingMethod }
+        OPTIONAL { ?assessment cacontology-us-ncmec:routingConfidence ?routingConf }
+        OPTIONAL { ?assessment cacontology-us-ncmec:relatedCaseNumber ?caseNumber }
+    }
+}
+ORDER BY DESC(?routingConf) ?cybertip ?extraction
+
+# -----------------------------------------------------------------------------
+# 2) Routing assessments without an identifier set (data quality check)
+#    (uncomment to run as a separate query)
+# -----------------------------------------------------------------------------
+# SELECT ?assessment ?assessmentLabel
+# WHERE {
+#     ?assessment a cacontology-us-ncmec:CybertipJurisdictionRoutingAssessment .
+#     OPTIONAL { ?assessment rdfs:label ?assessmentLabel }
+#     FILTER NOT EXISTS {
+#         ?assessment cacontology-us-ncmec:usesExtractedIdentifierSet ?set .
+#     }
+# }

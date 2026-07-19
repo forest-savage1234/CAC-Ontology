@@ -488,7 +488,7 @@ cacontology-us-ncmec:ReportIncidentTypeCrossReferenceShape rdf:type sh:NodeShape
         sh:message "NCMEC report should have valid incident type relationship."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icacus" ;
+                sh:prefix "cacontology-us-ncmec" ;
                 sh:namespace "https://cacontology.projectvic.org/us/ncmec#"^^xsd:anyURI             ]
         ] ;
         sh:select """
@@ -509,7 +509,7 @@ cacontology-us-ncmec:AnalysisReportCrossReferenceShape rdf:type sh:NodeShape ;
         sh:message "Tip analysis should analyze valid NCMEC reports."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icacus" ;
+                sh:prefix "cacontology-us-ncmec" ;
                 sh:namespace "https://cacontology.projectvic.org/us/ncmec#"^^xsd:anyURI             ]
         ] ;
         sh:select """
@@ -530,10 +530,10 @@ cacontology-us-ncmec:TriggerInvestigationCrossReferenceShape rdf:type sh:NodeSha
         sh:message "Investigation trigger should result in actual investigation."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icacus" ;
+                sh:prefix "cacontology-us-ncmec" ;
                 sh:namespace "https://cacontology.projectvic.org/us/ncmec#"^^xsd:anyURI             ] ;
             sh:declare [
-                sh:prefix "icac" ;
+                sh:prefix "cacontology" ;
                 sh:namespace "https://cacontology.projectvic.org#"^^xsd:anyURI             ]
         ] ;
         sh:select """
@@ -554,7 +554,7 @@ cacontology-us-ncmec:PlatformCooperationCrossReferenceShape rdf:type sh:NodeShap
         sh:message "Platform cooperation should involve digital services."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icacus" ;
+                sh:prefix "cacontology-us-ncmec" ;
                 sh:namespace "https://cacontology.projectvic.org/us/ncmec#"^^xsd:anyURI             ] ;
             sh:declare [
                 sh:prefix "uco-observable" ;
@@ -603,7 +603,7 @@ cacontology-us-ncmec:ProcessingSequenceValidationShape rdf:type sh:NodeShape ;
         sh:message "Investigation trigger should occur after tip processing."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icacus" ;
+                sh:prefix "cacontology-us-ncmec" ;
                 sh:namespace "https://cacontology.projectvic.org/us/ncmec#"^^xsd:anyURI             ] ;
             sh:declare [
                 sh:prefix "uco-core" ;
@@ -654,7 +654,7 @@ cacontology-us-ncmec:ConfidenceValidationShape rdf:type sh:NodeShape ;
         sh:message "High confidence analysis should have supporting evidence."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icacus" ;
+                sh:prefix "cacontology-us-ncmec" ;
                 sh:namespace "https://cacontology.projectvic.org/us/ncmec#"^^xsd:anyURI             ]
         ] ;
         sh:select """
@@ -675,7 +675,7 @@ cacontology-us-ncmec:UrgencyConsistencyValidationShape rdf:type sh:NodeShape ;
         sh:message "Immediate urgency should have appropriate trigger criteria."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icacus" ;
+                sh:prefix "cacontology-us-ncmec" ;
                 sh:namespace "https://cacontology.projectvic.org/us/ncmec#"^^xsd:anyURI             ]
         ] ;
         sh:select """
@@ -696,7 +696,7 @@ cacontology-us-ncmec:ProcessingTimeValidationShape rdf:type sh:NodeShape ;
         sh:message "Processing time should be consistent with start and end times."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icacus" ;
+                sh:prefix "cacontology-us-ncmec" ;
                 sh:namespace "https://cacontology.projectvic.org/us/ncmec#"^^xsd:anyURI             ] ;
             sh:declare [
                 sh:prefix "uco-core" ;
@@ -720,7 +720,7 @@ cacontology-us-ncmec:CooperationLevelValidationShape rdf:type sh:NodeShape ;
         sh:message "Full cooperation should provide comprehensive data."@en ;
         sh:prefixes [
             sh:declare [
-                sh:prefix "icacus" ;
+                sh:prefix "cacontology-us-ncmec" ;
                 sh:namespace "https://cacontology.projectvic.org/us/ncmec#"^^xsd:anyURI             ]
         ] ;
         sh:select """
@@ -733,3 +733,203 @@ cacontology-us-ncmec:CooperationLevelValidationShape rdf:type sh:NodeShape ;
                 }
             }
         """     ] . 
+# =============================================================================
+# CYBERTIP IDENTIFIER EXTRACTION AND JURISDICTION ROUTING SHAPES (Issue #31)
+# Mild constraints so existing graphs are not broken; synthetic exemplar
+# exercises required extraction → set → routing links and confidence bounds.
+# =============================================================================
+
+cacontology-us-ncmec:CybertipIdentifierExtractionActionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:CybertipIdentifierExtractionAction ;
+    rdfs:label "CyberTip Identifier Extraction Action Shape"@en ;
+    rdfs:comment "Validation shape for CyberTip identifier extraction actions. Requires a label and a source CyberTip report when instances are present; confidence and method are typed when provided."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "CybertipIdentifierExtractionAction must have an rdfs:label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:extractsIdentifierFromCybertip ;
+        sh:class cacontology-us-ncmec:NCMECCybertipReport ;
+        sh:minCount 1 ;
+        sh:message "CybertipIdentifierExtractionAction must link to the source NCMECCybertipReport via extractsIdentifierFromCybertip."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:producedIdentifierSet ;
+        sh:class cacontology-us-ncmec:CybertipExtractedIdentifierSet ;
+        sh:minCount 0 ;
+        sh:message "producedIdentifierSet, when provided, must point to CybertipExtractedIdentifierSet."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:extractionMethod ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "extractionMethod, when provided, must be a single xsd:string."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:extractionConfidence ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "extractionConfidence, when provided, must be a single xsd:decimal between 0.0 and 1.0 inclusive."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:relatedCaseNumber ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "relatedCaseNumber, when provided, must be a single xsd:string."@en
+    ] .
+
+cacontology-us-ncmec:CybertipExtractedIdentifierSetShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:CybertipExtractedIdentifierSet ;
+    rdfs:label "CyberTip Extracted Identifier Set Shape"@en ;
+    rdfs:comment "Validation shape for extracted identifier sets. Requires a label; typed identifier edges are optional but class-checked when present."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "CybertipExtractedIdentifierSet must have an rdfs:label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:extractedIdentifiers ;
+        sh:class uco-observable:ObservableObject ;
+        sh:minCount 0 ;
+        sh:message "extractedIdentifiers must point to uco-observable:ObservableObject."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:hasExtractedScreenName ;
+        sh:class uco-observable:DigitalAccount ;
+        sh:minCount 0 ;
+        sh:message "hasExtractedScreenName must point to uco-observable:DigitalAccount."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:hasExtractedPhoneNumber ;
+        sh:class uco-observable:ObservableObject ;
+        sh:minCount 0 ;
+        sh:message "hasExtractedPhoneNumber must point to an ObservableObject (phone number node)."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:hasExtractedIPAddress ;
+        sh:class uco-observable:ObservableObject ;
+        sh:minCount 0 ;
+        sh:message "hasExtractedIPAddress must point to an ObservableObject (IP address node)."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:sourceCybertipReport ;
+        sh:class cacontology-us-ncmec:NCMECCybertipReport ;
+        sh:minCount 0 ;
+        sh:message "sourceCybertipReport, when provided, must point to NCMECCybertipReport."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:supportsJurisdictionRoutingAssessment ;
+        sh:class cacontology-us-ncmec:CybertipJurisdictionRoutingAssessment ;
+        sh:minCount 0 ;
+        sh:message "supportsJurisdictionRoutingAssessment must point to CybertipJurisdictionRoutingAssessment."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:extractionConfidence ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "extractionConfidence, when provided, must be a single xsd:decimal between 0.0 and 1.0 inclusive."@en
+    ] ;
+    sh:sparql [
+        sh:message "CybertipExtractedIdentifierSet should contain at least one extracted identifier (extractedIdentifiers, screen name, phone, or IP)."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "ncmec" ;
+                sh:namespace "https://cacontology.projectvic.org/us/ncmec#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                FILTER NOT EXISTS { $this ncmec:extractedIdentifiers ?any }
+                FILTER NOT EXISTS { $this ncmec:hasExtractedScreenName ?s }
+                FILTER NOT EXISTS { $this ncmec:hasExtractedPhoneNumber ?p }
+                FILTER NOT EXISTS { $this ncmec:hasExtractedIPAddress ?i }
+            }
+        """
+    ] .
+
+cacontology-us-ncmec:CybertipJurisdictionRoutingAssessmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:CybertipJurisdictionRoutingAssessment ;
+    rdfs:label "CyberTip Jurisdiction Routing Assessment Shape"@en ;
+    rdfs:comment "Validation shape for CyberTip jurisdiction routing assessments. Requires a label; expects a routing jurisdiction string and an input identifier set when present."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "CybertipJurisdictionRoutingAssessment must have an rdfs:label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:usesExtractedIdentifierSet ;
+        sh:class cacontology-us-ncmec:CybertipExtractedIdentifierSet ;
+        sh:minCount 0 ;
+        sh:message "usesExtractedIdentifierSet, when provided, must point to CybertipExtractedIdentifierSet."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:routingJurisdiction ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 2 ;
+        sh:message "routingJurisdiction, when provided, must be a single non-empty xsd:string."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:recommendedJurisdiction ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minLength 2 ;
+        sh:message "recommendedJurisdiction, when provided, must be a single non-empty xsd:string."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:routingAssessmentMethod ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "routingAssessmentMethod, when provided, must be a single xsd:string."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:routingConfidence ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "routingConfidence, when provided, must be a single xsd:decimal between 0.0 and 1.0 inclusive."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:sourceCybertipReport ;
+        sh:class cacontology-us-ncmec:NCMECCybertipReport ;
+        sh:minCount 0 ;
+        sh:message "sourceCybertipReport, when provided, must point to NCMECCybertipReport."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:relatedCaseNumber ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "relatedCaseNumber, when provided, must be a single xsd:string."@en
+    ] ;
+    sh:sparql [
+        sh:message "CybertipJurisdictionRoutingAssessment should provide routingJurisdiction or recommendedJurisdiction."@en ;
+        sh:prefixes [
+            sh:declare [
+                sh:prefix "ncmec" ;
+                sh:namespace "https://cacontology.projectvic.org/us/ncmec#"^^xsd:anyURI
+            ]
+        ] ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                FILTER NOT EXISTS { $this ncmec:routingJurisdiction ?rj }
+                FILTER NOT EXISTS { $this ncmec:recommendedJurisdiction ?rec }
+            }
+        """
+    ] .

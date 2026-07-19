@@ -1,0 +1,125 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
+@prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix ex: <https://cacontology.projectvic.org/examples/synthetic-cybertip-extraction-routing#> .
+
+# =============================================================================
+# SYNTHETIC CYBERTIP IDENTIFIER EXTRACTION & JURISDICTION ROUTING (Issue #31)
+#
+# Fully synthetic abstract workflow for acceptance testing. Zero real CyberTip
+# content, zero real case material. Demonstrates:
+#   - CybertipIdentifierExtractionAction (OCR/parse of abstract report doc)
+#   - CybertipExtractedIdentifierSet (screen name, phone, IP)
+#   - CybertipJurisdictionRoutingAssessment (routingJurisdiction + method)
+#   - Soft links: relatedCaseNumber (aligns with #41 caseNumber pattern)
+#
+# IP addresses use RFC 5737 documentation ranges only (TEST-NET-1):
+#   192.0.2.0/24
+# Phone uses a fictional NANP-style pattern (555 exchange = directory fiction).
+# Pattern only — no operational CyberTipline IDs or live account handles.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Source CyberTip report (abstract NCMEC report node)
+# -----------------------------------------------------------------------------
+
+ex:IncidentType_OnlineEnticement a cacontology-us-ncmec:OnlineEnticementIncident ,
+        cacontology-us-ncmec:NCMECIncidentType ;
+    rdfs:label "Online Enticement (synthetic incident type instance)"@en ;
+    uco-core:name "Online Enticement of Children for Sexual Acts" ;
+    cacontology-us-ncmec:incidentCode "OE" .
+
+ex:CybertipReport_SYN_2025_0001 a cacontology-us-ncmec:NCMECCybertipReport ,
+        uco-observable:ObservableObject ;
+    rdfs:label "Synthetic CyberTipline report SYN-2025-0001"@en ;
+    uco-core:name "Synthetic CyberTipline Report SYN-2025-0001"^^xsd:string ;
+    uco-core:description "Fully abstract NCMEC CyberTipline report node used only to demonstrate identifier extraction and jurisdiction routing. No real CyberTip content."^^xsd:string ;
+    uco-core:createdTime "2025-09-10T14:22:00Z"^^xsd:dateTime ;
+    cacontology-us-ncmec:hasNCMECIncidentType ex:IncidentType_OnlineEnticement .
+
+# -----------------------------------------------------------------------------
+# Extracted identifier observables (UCO reuse; synthetic values only)
+# -----------------------------------------------------------------------------
+
+ex:Account_Handle_demo_user_alpha a uco-observable:DigitalAccount ,
+        uco-observable:ObservableObject ;
+    rdfs:label "Synthetic screen name / account (handle: demo_user_alpha)"@en ;
+    uco-core:name "demo_user_alpha"@en ;
+    uco-core:description "Abstract digital account handle extracted from a synthetic CyberTip PDF via OCR. Non-operational."@en .
+
+ex:Phone_555_0100 a uco-observable:ObservableObject ;
+    rdfs:label "Synthetic phone number +1-555-0100"@en ;
+    uco-core:name "+1-555-0100"@en ;
+    uco-core:description "Fictional directory-style phone number (555 exchange). Schema demonstration only; not a real subscriber."@en .
+
+ex:IP_192_0_2_44 a uco-observable:ObservableObject ;
+    rdfs:label "Documentation IPv4 192.0.2.44 (TEST-NET-1)"@en ;
+    uco-core:name "192.0.2.44"@en ;
+    uco-core:description "RFC 5737 TEST-NET-1 documentation address used only for synthetic routing. Not a live endpoint."@en .
+
+# -----------------------------------------------------------------------------
+# Extraction action → identifier set
+# -----------------------------------------------------------------------------
+
+ex:ExtractionAction_SYN_2025_0001 a cacontology-us-ncmec:CybertipIdentifierExtractionAction ,
+        cac-core:InvestigativeAction ;
+    rdfs:label "Synthetic CyberTip identifier extraction (OCR hybrid)"@en ;
+    uco-core:description "Abstract OCR + document-parse action over synthetic CyberTip report SYN-2025-0001. Produces an identifier set for enrichment and routing. No real document processed."@en ;
+    cacontology-us-ncmec:extractsIdentifierFromCybertip ex:CybertipReport_SYN_2025_0001 ;
+    cacontology-us-ncmec:producedIdentifierSet ex:IdentifierSet_SYN_2025_0001 ;
+    cacontology-us-ncmec:extractionMethod "hybrid" ;
+    cacontology-us-ncmec:extractionConfidence "0.88"^^xsd:decimal ;
+    cacontology-us-ncmec:relatedCaseNumber "SYN-ICAC-2025-EX-0042" .
+
+ex:IdentifierSet_SYN_2025_0001 a cacontology-us-ncmec:CybertipExtractedIdentifierSet ,
+        uco-observable:ObservableObject ,
+        cac-core:Artifact ;
+    rdfs:label "Synthetic extracted identifier set (SYN-2025-0001)"@en ;
+    uco-core:description "Abstract package of identifiers OCR/parsed from synthetic CyberTip SYN-2025-0001: one screen name, one phone, one documentation IP."@en ;
+    cacontology-us-ncmec:sourceCybertipReport ex:CybertipReport_SYN_2025_0001 ;
+    cacontology-us-ncmec:extractionConfidence "0.88"^^xsd:decimal ;
+    cacontology-us-ncmec:extractedIdentifiers ex:Account_Handle_demo_user_alpha ,
+        ex:Phone_555_0100 ,
+        ex:IP_192_0_2_44 ;
+    cacontology-us-ncmec:hasExtractedScreenName ex:Account_Handle_demo_user_alpha ;
+    cacontology-us-ncmec:hasExtractedPhoneNumber ex:Phone_555_0100 ;
+    cacontology-us-ncmec:hasExtractedIPAddress ex:IP_192_0_2_44 ;
+    cacontology-us-ncmec:supportsJurisdictionRoutingAssessment ex:RoutingAssessment_SYN_2025_0001 .
+
+# -----------------------------------------------------------------------------
+# Jurisdiction routing assessment (soft-aligned with #41 jurisdiction strings)
+# -----------------------------------------------------------------------------
+
+ex:Agency_Demo_State_ICAC a uco-identity:Organization ,
+        uco-observable:ObservableObject ,
+        cac-core:OrganizationLikeEntity ;
+    rdfs:label "Demo State ICAC Task Force (synthetic receiving agency)"@en ;
+    uco-core:name "Demo State ICAC Task Force"@en ;
+    uco-core:description "Fully synthetic organization node representing a receiving ICAC task force for routing demonstration. Not a real agency."@en .
+
+ex:Investigation_SYN_ICAC_2025_EX_0042 a cacontology:CACInvestigation ;
+    rdfs:label "Synthetic investigation SYN-ICAC-2025-EX-0042"@en ;
+    uco-core:description "Abstract CAC investigation opened after synthetic CyberTip routing. Case number string soft-aligns with Issue #41 caseNumber pattern."@en .
+
+ex:RoutingAssessment_SYN_2025_0001 a cacontology-us-ncmec:CybertipJurisdictionRoutingAssessment ,
+        cac-core:AssessmentResult ;
+    rdfs:label "Synthetic CyberTip jurisdiction routing assessment (Demo State)"@en ;
+    uco-core:description "Abstract triage assessment: hybrid enrichment of extracted IP geolocation and phone NPA signals recommends Demo State ICAC for follow-up. Schema demonstration only."@en ;
+    cacontology-us-ncmec:sourceCybertipReport ex:CybertipReport_SYN_2025_0001 ;
+    cacontology-us-ncmec:usesExtractedIdentifierSet ex:IdentifierSet_SYN_2025_0001 ;
+    cacontology-us-ncmec:routingJurisdiction "Demo State (synthetic ICAC region)" ;
+    cacontology-us-ncmec:recommendedJurisdiction "Demo State (synthetic ICAC region)" ;
+    cacontology-us-ncmec:routingAssessmentMethod "hybrid_enrichment" ;
+    cacontology-us-ncmec:routingConfidence "0.82"^^xsd:decimal ;
+    cacontology-us-ncmec:routesToAgency ex:Agency_Demo_State_ICAC ;
+    cacontology-us-ncmec:relatedCaseNumber "SYN-ICAC-2025-EX-0042" ;
+    cacontology-us-ncmec:relatedInvestigation ex:Investigation_SYN_ICAC_2025_EX_0042 ;
+    cac-core:hasConfidence "0.82"^^xsd:decimal ;
+    cac-core:issuedAtTime "2025-09-10T16:05:00Z"^^xsd:dateTimeStamp ;
+    cac-core:assesses ex:CybertipReport_SYN_2025_0001 .
