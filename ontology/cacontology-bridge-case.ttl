@@ -3,6 +3,9 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
+@prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cac-bridge-case: <https://cacontology.projectvic.org/bridge/case#> .
 
 # =============================================================================
@@ -16,9 +19,10 @@
     owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2026-03-16"^^xsd:date ;
-    dcterms:modified "2026-03-16"^^xsd:date ;
+    dcterms:modified "2026-07-18"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/core/3.0.0> ,
-                <https://ontology.caseontology.org/case/investigation/> .
+                <https://ontology.caseontology.org/case/investigation/> ,
+                <https://ontology.unifiedcyberontology.org/uco/role/> .
 
 # =============================================================================
 # CASE ALIGNMENT NOTES
@@ -34,6 +38,19 @@ cac-bridge-case:CACInvestigationAlignment a owl:Axiom ;
     rdfs:label "CACInvestigation CASE Alignment"@en ;
     rdfs:comment "Documents the alignment between cacontology:CACInvestigation and case-investigation:Investigation. CACInvestigation retains its existing rdfs:subClassOf case-investigation:Investigation in the reference layer."@en ;
     cac-bridge-case:disposition "retainInReferenceLayer" .
+
+# =============================================================================
+# SUBJECT ALIGNMENT (Issue #41)
+# Prefer case-investigation:Subject for new graphs. cacontology:Subject is a
+# continuity alias (owl:equivalentClass) for published CAC graphs that already
+# used the CAC local name.
+# =============================================================================
+
+cacontology:Subject rdf:type owl:Class ;
+    owl:equivalentClass case-investigation:Subject ;
+    rdfs:subClassOf uco-role:Role ;
+    rdfs:label "Subject"@en ;
+    rdfs:comment "Role of a person whose conduct is within the scope of a CAC investigation. Equivalent to case-investigation:Subject (https://ontology.caseontology.org/case/investigation/Subject); provided for continuity with existing CAC graphs. New graphs SHOULD type subjects as case-investigation:Subject directly."@en .
 
 # =============================================================================
 # BRIDGE DISPOSITION ANNOTATION PROPERTY

@@ -5,7 +5,22 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
 
+### Added - Core case-identification properties (Issue #41)
+
+Declare foundational case-identification terms already used in example graphs and core shapes but previously undeclared. Prefer UCO/CASE inheritance over independent minting.
+
+#### `ontology/cacontology-core.ttl`
+
+- `cacontology:caseNumber` — datatype property; `rdfs:subPropertyOf uco-core:externalIdentifier`
+- `cacontology:jurisdiction` — core-level datatype property (module-local jurisdiction variants to be consolidated as subproperties or deprecated in a follow-up)
+- `cacontology:located_at` — object property; range `uco-location:Location` (documents UCO `Located_At` Relationship alternative)
+- `cacontology:participatesInEvent` — object property; range `cacontology:ChildSexualAbuseEvent` (backs existing SPARQL constraints in `cacontology-core-shapes.ttl`)
+
+#### `ontology/cacontology-bridge-case.ttl`
+
+- `cacontology:Subject` — `owl:equivalentClass case-investigation:Subject` continuity alias; new graphs SHOULD use `case-investigation:Subject` directly
 
 ## v3.0.0 - 16 March 2026
 

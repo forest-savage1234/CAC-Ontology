@@ -3,11 +3,13 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 @prefix uco-channel: <https://ontology.unifiedcyberontology.org/uco/channel/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
@@ -22,7 +24,7 @@
     owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-03-20"^^xsd:date ;
-    dcterms:modified "2026-03-16"^^xsd:date ;
+    dcterms:modified "2026-07-18"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.caseontology.org/case/> ,
                 <https://cacontology.projectvic.org/hotlines/3.0.0> ,
@@ -368,6 +370,34 @@ cacontology:phaseProgress rdf:type owl:DatatypeProperty ;
     rdfs:comment "Progress percentage within current investigation phase (0.0-1.0)."@en ;
     rdfs:domain cac-core:Phase ;
     rdfs:range xsd:decimal .
+
+# =============================================================================
+# CASE IDENTIFICATION PROPERTIES (Issue #41)
+# Core-level declarations for terms already used in examples and shapes but
+# previously undeclared. Prefer UCO/CASE inheritance over independent minting.
+# =============================================================================
+
+cacontology:caseNumber rdf:type owl:DatatypeProperty ;
+    rdfs:subPropertyOf uco-core:externalIdentifier ;
+    rdfs:label "case number"@en ;
+    rdfs:comment "The docket or case number assigned to an investigation or prosecution by an external case-management authority, e.g. a federal ECF docket number such as '3:20-cr-00029-SLG-MMS' (see PACER, https://pacer.uscourts.gov/). Subproperty of uco-core:externalIdentifier: the identifier is defined external to the UCO context by the issuing court or agency."@en ;
+    rdfs:domain cacontology:CACInvestigation ;
+    rdfs:range xsd:string .
+
+cacontology:jurisdiction rdf:type owl:DatatypeProperty ;
+    rdfs:label "jurisdiction"@en ;
+    rdfs:comment "The legal jurisdiction responsible for an investigation, prosecution, or legal outcome, e.g. 'District of Alaska'. For US federal courts see 28 U.S.C. ch. 5 (https://www.law.cornell.edu/uscode/text/28/part-I/chapter-5). Declared once at core level so graphs can use a single queryable property. Follow-up consolidation: module-local jurisdiction-related properties (e.g. in multi-jurisdiction, legal-outcomes, victim-impact, taskforce, international, and related modules) SHOULD be related via rdfs:subPropertyOf cacontology:jurisdiction or explicitly deprecated once migration is complete; this declaration does not rename those variants."@en ;
+    rdfs:range xsd:string .
+
+cacontology:located_at rdf:type owl:ObjectProperty ;
+    rdfs:label "located at"@en ;
+    rdfs:comment "Links an investigation, organization, or legal proceeding to the uco-location:Location where it is situated or seated (e.g. the district court location). For evidence observables prefer the UCO idiom: a uco-core:Relationship with kindOfRelationship 'Located_At'."@en ;
+    rdfs:range uco-location:Location .
+
+cacontology:participatesInEvent rdf:type owl:ObjectProperty ;
+    rdfs:label "participates in event"@en ;
+    rdfs:comment "Links a person or role to a cacontology:ChildSexualAbuseEvent (or subclass) in which they participate. Declared to back the existing SPARQL constraints in cacontology-core-shapes.ttl that already traverse this property."@en ;
+    rdfs:range cacontology:ChildSexualAbuseEvent .
 
 # =============================================================================
 # CONSPIRACY AND COORDINATED CRIMINAL ENTERPRISE CLASSES (Brooklyn Case Enhancement)
