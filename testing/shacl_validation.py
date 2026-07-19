@@ -184,6 +184,10 @@ domain_validations = [
     ('examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl', 'ontology/cacontology-legal-outcomes-shapes.ttl'),
     ('examples_knowledge_graphs/k2p-soe-information-example.ttl', 'ontology/cacontology-sadistic-online-exploitation-shapes.ttl'),
     ('examples_knowledge_graphs/k2p-soe-information-example.ttl', 'ontology/cacontology-sextortion-shapes.ttl'),
+    # Issue #38 — ConditioningPhase dual-typing + conditioningMode enum
+    ('examples_knowledge_graphs/synthetic-conditioning-phase-example.ttl', 'ontology/cacontology-core-spine-shapes.ttl'),
+    ('examples_knowledge_graphs/synthetic-conditioning-phase-example.ttl', 'ontology/cacontology-grooming-shapes.ttl'),
+    ('examples_knowledge_graphs/synthetic-conditioning-phase-example.ttl', 'ontology/cacontology-sextortion-shapes.ttl'),
 ]
 
 domain_passed = 0

@@ -142,6 +142,28 @@ cac-core-shapes:PhaseShape a sh:NodeShape ;
         sh:name "end time"@en ;
         sh:description "Optional temporal end point for the phase."@en     ] .
 
+# Issue #38 — dual-typing: ConditioningPhase instances must also declare cac-core:Phase
+cac-core-shapes:ConditioningPhaseShape a sh:NodeShape ;
+    sh:targetClass cac-core:ConditioningPhase ;
+    rdfs:label "Conditioning Phase Shape"@en ;
+    rdfs:comment "Spine shape for offense-trajectory conditioning phase instances. Enforces dual-typing with cac-core:Phase (explicit rdf:type; no OWL reasoning required) and optional controlled conditioningMode enum."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue cac-core:Phase ;
+        sh:minCount 1 ;
+        sh:message "ConditioningPhase instances must always be dual-typed with cac-core:Phase."@en     ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Conditioning phase must have a human-readable label."@en     ] ;
+    sh:property [
+        sh:path cac-core:conditioningMode ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "trust_rapport" "deception" "isolation" "normalization" "desensitization" "compliance_shaping" "dependency_creation" "fear_priming" "platform_confidence" ) ;
+        sh:message "conditioningMode must be from the allowed offense-trajectory mechanism list."@en     ] .
+
 # =============================================================================
 # ASSESSMENT RESULT SHAPE
 # =============================================================================

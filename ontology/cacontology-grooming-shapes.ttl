@@ -32,8 +32,11 @@ cacontology-grooming:GroomingEventTypeValidationShape rdf:type sh:NodeShape ;
     sh:message "Every grooming EventType must be declared as rdf:type gufo:EventType"@en .
 
 # Phases validation for grooming stages
+# Issue #38: retargeted from cac-core:Phase to GroomingPhase only to avoid
+# cross-module false positives when dual-typed ConditioningPhase nodes appear
+# in multi-module graphs (spine ConditioningPhase is not always a GroomingPhase).
 cacontology-grooming:GroomingPhaseValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass cac-core:Phase ;
+    sh:targetClass cacontology-grooming:GroomingPhase ;
     sh:not [
         sh:property [
             sh:path rdfs:subClassOf ;
@@ -167,6 +170,52 @@ cacontology-grooming:GroomingBehaviorShape rdf:type sh:NodeShape ;
         sh:maxCount 1 ;
         sh:message "Grooming behavior may have an end time."@en
     ] .
+
+# Issue #38 — dual-typing + conditioningMode enum for grooming ConditioningPhase
+cacontology-grooming:ConditioningPhaseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:ConditioningPhase ;
+    rdfs:label "Grooming Conditioning Phase Shape"@en ;
+    rdfs:comment "Validation shape for grooming offense-trajectory conditioning phase instances. Enforces dual-typing with cac-core:Phase and optional controlled conditioningMode."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue cac-core:Phase ;
+        sh:minCount 1 ;
+        sh:message "ConditioningPhase instances must always be dual-typed with cac-core:Phase."@en     ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Conditioning phase must have a human-readable label."@en     ] ;
+    sh:property [
+        sh:path cac-core:conditioningMode ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "trust_rapport" "deception" "isolation" "normalization" "desensitization" "compliance_shaping" "dependency_creation" "fear_priming" "platform_confidence" ) ;
+        sh:message "conditioningMode must be from the allowed offense-trajectory mechanism list."@en     ] ;
+    sh:property [
+        sh:path cacontology-grooming:hasGroomingPhaseBeginPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Conditioning phase may have begin timestamp."@en     ] ;
+    sh:property [
+        sh:path cacontology-grooming:hasGroomingPhaseEndPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Conditioning phase may have end timestamp."@en     ] .
+
+# Issue #38 — deprecation-friendly dual-typing for legacy TrustBuildingPhase instances
+# (old + new): when a graph still uses the deprecated class, require explicit cac-core:Phase
+# dual-type so spine Phase shapes and analytics remain applicable without OWL reasoning.
+cacontology-grooming:TrustBuildingPhaseDualTypeShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:TrustBuildingPhase ;
+    rdfs:label "Trust Building Phase Dual-Typing Shape"@en ;
+    rdfs:comment "Deprecation-friendly dual-typing for legacy TrustBuildingPhase instances. Prefer ConditioningPhase + conditioningMode trust_rapport for new graphs."@en ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue cac-core:Phase ;
+        sh:minCount 1 ;
+        sh:message "Deprecated TrustBuildingPhase instances should be dual-typed with cac-core:Phase; migrate to ConditioningPhase + conditioningMode trust_rapport."@en     ] .
 
 cacontology-grooming:TrustBuildingShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-grooming:TrustBuilding ;

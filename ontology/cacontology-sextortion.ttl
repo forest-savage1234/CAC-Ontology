@@ -8,6 +8,7 @@
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-sextortion: <https://cacontology.projectvic.org/sextortion#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 # Ontology Declaration
 <https://cacontology.projectvic.org/sextortion/3.0.0> rdf:type owl:Ontology ;
@@ -69,13 +70,17 @@ cacontology-sextortion:SextortionProgression rdf:type owl:Class ;
 
 cacontology-sextortion:InitialDeceptionPhase rdf:type owl:Class ;
     rdfs:label "Initial Deception Phase"@en ;
-    rdfs:comment "First phase involving age deception and false identity establishment."@en ;
-    rdfs:subClassOf cac-core:Phase .
+    rdfs:comment "First phase involving age deception and false identity establishment at initial contact."@en ;
+    rdfs:subClassOf cac-core:Phase ;
+    skos:scopeNote "Captures identity fabrication at first contact. Distinct from cac-core:ConditioningPhase with conditioningMode \"deception\", which models sustained deception after contact is established (Issue #38)."@en .
 
 cacontology-sextortion:TrustBuildingPhase rdf:type owl:Class ;
     rdfs:label "Trust Building Phase"@en ;
-    rdfs:comment "Phase focused on building trust and rapport with victim."@en ;
-    rdfs:subClassOf cac-core:Phase .
+    rdfs:comment "DEPRECATED. Prefer cac-core:ConditioningPhase dual-typed with cac-core:Phase and cac-core:conditioningMode \"trust_rapport\". Former phase focused on building trust and rapport; retained for backward compatibility with existing graphs."@en ;
+    rdfs:subClassOf cac-core:ConditioningPhase ;
+    owl:deprecated true ;
+    rdfs:seeAlso cac-core:ConditioningPhase ;
+    skos:editorialNote "Deprecated offense-trajectory phase label (Issue #38). Migration: type as cac-core:ConditioningPhase and cac-core:Phase with cac-core:conditioningMode trust_rapport (or a domain specialization when available)."@en .
 
 cacontology-sextortion:SexualSolicitationPhase rdf:type owl:Class ;
     rdfs:label "Sexual Solicitation Phase"@en ;

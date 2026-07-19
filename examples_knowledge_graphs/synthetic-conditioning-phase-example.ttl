@@ -1,0 +1,88 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
+@prefix cacontology-sextortion: <https://cacontology.projectvic.org/sextortion#> .
+@prefix ex: <https://cacontology.projectvic.org/examples/synthetic-conditioning-phase#> .
+
+# =============================================================================
+# SYNTHETIC CONDITIONING PHASE EXEMPLAR (Issue #38)
+#
+# Fully synthetic abstract pattern for acceptance testing. Zero real case
+# material. Demonstrates:
+#   - cac-core:ConditioningPhase (spine macro-phase)
+#   - cacontology-grooming:ConditioningPhase dual-typed with cac-core:Phase
+#   - cac-core:conditioningMode controlled enum values
+#   - Migration path from deprecated TrustBuildingPhase (trust_rapport)
+#   - Non-rapport modes (normalization, isolation) the old phase label
+#     could not express queryably
+#   - Optional IsolationPhase refinement under the macro node
+#   - Sextortion-context spine ConditioningPhase usage
+#
+# Does NOT require cac-core:precedes or other #33 state-machine extensions;
+# phase ordering here is documentary (rdfs:comment) only.
+# Pattern only — no real victims, dockets, or platform handles.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Trajectory A (grooming): contact → conditioning (normalization) → exploitation
+# -----------------------------------------------------------------------------
+
+ex:Phase_InitialContact_A a cacontology-grooming:InitialContactPhase , cac-core:Phase ;
+    rdfs:label "Synthetic initial contact (Trajectory A)" ;
+    uco-core:description "Abstract first-contact phase on a fictional messaging surface. Fully synthetic." .
+
+ex:Phase_Conditioning_Normalization_A a cacontology-grooming:ConditioningPhase , cac-core:Phase ,
+        cac-core:ConditioningPhase ;
+    rdfs:label "Synthetic conditioning phase — normalization mode (Trajectory A)" ;
+    uco-core:description "Abstract preparatory phase: gradual normalization of sexualized topics before any primary exploitation act. Demonstrates dual-typing (grooming ConditioningPhase + cac-core:Phase + spine ConditioningPhase) and conditioningMode. Schema demonstration only." ;
+    cac-core:conditioningMode "normalization" ;
+    cacontology-grooming:hasGroomingPhaseBeginPoint "2025-03-01T12:00:00Z"^^xsd:dateTimeStamp ;
+    cacontology-grooming:hasGroomingPhaseEndPoint "2025-03-14T18:00:00Z"^^xsd:dateTimeStamp .
+
+ex:Phase_Isolation_Refinement_A a cacontology-grooming:IsolationPhase , cac-core:Phase ;
+    rdfs:label "Synthetic isolation refinement under conditioning (Trajectory A)" ;
+    uco-core:description "Optional sequential refinement node when isolation is documented distinctly. Macro conditioningMode remains on the ConditioningPhase node, not here." .
+
+ex:Phase_Exploitation_A a cacontology-grooming:ExploitationPhase , cac-core:Phase ;
+    rdfs:label "Synthetic exploitation phase (Trajectory A)" ;
+    uco-core:description "Abstract primary exploitation phase following conditioning. Fully synthetic; no real content." .
+
+# -----------------------------------------------------------------------------
+# Trajectory B (grooming migration): former TrustBuilding → trust_rapport mode
+# -----------------------------------------------------------------------------
+
+ex:Phase_Conditioning_TrustRapport_B a cacontology-grooming:ConditioningPhase , cac-core:Phase ,
+        cac-core:ConditioningPhase ;
+    rdfs:label "Synthetic conditioning phase — trust_rapport mode (migration path)" ;
+    uco-core:description "Canonical replacement for deprecated TrustBuildingPhase graphs: ConditioningPhase + conditioningMode trust_rapport. Fully synthetic." ;
+    cac-core:conditioningMode "trust_rapport" .
+
+# -----------------------------------------------------------------------------
+# Trajectory C (sextortion spine): ConditioningPhase with deception mode
+# Distinct from InitialDeceptionPhase (first-contact identity fabrication).
+# -----------------------------------------------------------------------------
+
+ex:Phase_InitialDeception_C a cacontology-sextortion:InitialDeceptionPhase , cac-core:Phase ;
+    rdfs:label "Synthetic initial deception at contact (Trajectory C)" ;
+    uco-core:description "Abstract first-contact identity fabrication. Distinct from sustained conditioningMode deception." .
+
+ex:Phase_Conditioning_Deception_C a cac-core:ConditioningPhase , cac-core:Phase ;
+    rdfs:label "Synthetic conditioning phase — deception mode (Trajectory C / sextortion)" ;
+    uco-core:description "Sustained post-contact deception shaping compliance readiness, encoded as spine ConditioningPhase + conditioningMode deception. Dual-typed with cac-core:Phase. Fully synthetic." ;
+    cac-core:conditioningMode "deception" .
+
+ex:Phase_Extortion_C a cacontology-sextortion:ExtortionPhase , cac-core:Phase ;
+    rdfs:label "Synthetic extortion phase (Trajectory C)" ;
+    uco-core:description "Abstract extortion phase after conditioning. Fully synthetic; no threats or real persons." .
+
+# -----------------------------------------------------------------------------
+# Legacy dual-type illustration (deprecated class still dual-typed with Phase)
+# Prefer Trajectory B for new graphs.
+# -----------------------------------------------------------------------------
+
+ex:Phase_Legacy_TrustBuilding_DualTyped a cacontology-grooming:TrustBuildingPhase , cac-core:Phase ;
+    rdfs:label "Legacy TrustBuildingPhase dual-typed with Phase (deprecated path)" ;
+    uco-core:description "Shows deprecation-friendly dual-typing for graphs not yet migrated. Prefer ConditioningPhase + trust_rapport." .

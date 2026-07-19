@@ -5,7 +5,52 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
 
+### Added - ConditioningPhase spine macro-phase (Issue #38)
+
+Spine-level preparatory macro-phase that replaces the limited `TrustBuildingPhase` assumption across grooming and sextortion. Captures mechanism diversity (rapport, deception, isolation, normalization, desensitization, compliance shaping, dependency creation, fear priming, platform confidence) as a queryable `conditioningMode` enum.
+
+#### Placement decision
+
+- Terms live in **`cacontology-core-spine`** (`cac-core:ConditioningPhase`, `cac-core:conditioningMode`) so all offense modules share one preparatory macro-phase. Grooming adds `cacontology-grooming:ConditioningPhase` as the canonical dual-typed instance type (`GroomingPhase` + spine `ConditioningPhase`). Sextortion re-parents deprecated `TrustBuildingPhase` under spine `ConditioningPhase` without minting a second domain specialization in this PR.
+
+#### Enum values (`cac-core:conditioningMode`)
+
+Controlled `xsd:string` values enforced by SHACL `sh:in`:
+
+`trust_rapport` | `deception` | `isolation` | `normalization` | `desensitization` | `compliance_shaping` | `dependency_creation` | `fear_priming` | `platform_confidence`
+
+Optional (`minCount 0`) for non-trajectory graphs; preferred for cross-case state-machine analytics. `trust_rapport` is the migration target for former TrustBuildingPhase graphs. Trauma-informed comments: offender mechanism only, never victim blame.
+
+#### Deprecation strategy
+
+- `cacontology-grooming:TrustBuildingPhase` and `cacontology-sextortion:TrustBuildingPhase`: `owl:deprecated true`, `rdfs:subClassOf` the appropriate `ConditioningPhase`, migration notes in `rdfs:comment` + `skos:editorialNote`. Classes retained so existing graphs remain valid.
+- Grooming `IsolationPhase` / `SexualizationPhase` re-parented under `ConditioningPhase` as optional refinement nodes (not macro substitutes).
+- `ConditioningBehavior` parent added for TrustBuilding / Isolation / Normalization behavior classes.
+
+#### SHACL dual-typing approach
+
+- Instances of `ConditioningPhase` (spine and grooming) **must** also declare `rdf:type cac-core:Phase` (`sh:hasValue` on `rdf:type`) so validation works without OWL reasoning.
+- Deprecation-friendly **Warning** shapes on legacy `TrustBuildingPhase` (grooming + sextortion) encourage dual-typing with `cac-core:Phase`.
+- `GroomingPhaseValidationShape` retargeted from `cac-core:Phase` → `cacontology-grooming:GroomingPhase` to avoid cross-module false positives on dual-typed conditioning nodes.
+
+#### Dependency note (#33)
+
+- Does **not** introduce or require `cac-core:precedes` from open PR #33 (state-machine extensions). Synthetic exemplar documents ordering in prose only. Phase-transition graphs can adopt `precedes` when #33 merges.
+
+#### Files
+
+- `ontology/cacontology-core-spine.ttl` — `ConditioningPhase`, `conditioningMode`
+- `ontology/cacontology-core-spine-shapes.ttl` — `ConditioningPhaseShape` (dual-type + enum)
+- `ontology/cacontology-grooming.ttl` — `ConditioningPhase`, `ConditioningBehavior`, deprecations, re-parents
+- `ontology/cacontology-grooming-shapes.ttl` — dual-typing shapes; GroomingPhaseValidation retarget
+- `ontology/cacontology-sextortion.ttl` — deprecate/re-parent `TrustBuildingPhase`; `InitialDeceptionPhase` scope note
+- `ontology/cacontology-sextortion-shapes.ttl` — dual-typing shapes
+- `examples_knowledge_graphs/synthetic-conditioning-phase-example.ttl` — synthetic acceptance exemplar
+- `testing/shacl_validation.py` — Stage 4 entries for the exemplar vs spine/grooming/sextortion shapes
+
+Closes #38.
 
 ## v3.0.0 - 16 March 2026
 

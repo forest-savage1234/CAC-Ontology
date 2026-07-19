@@ -168,6 +168,24 @@ cac-core:Phase a owl:Class ;
     rdfs:subClassOf cac-core:Entity , gufo:Phase ;
     skos:scopeNote "Use when: the concept is a lifecycle stage such as grooming phase, escalation phase, active investigation phase, or recovery phase. Do not use when: the concept is an investigation — phases participate in investigations but are not investigations themselves."@en .
 
+# ConditioningPhase (Issue #38) — cross-offense preparatory macro-phase.
+# Trauma-informed framing: models offender-directed preparatory mechanisms,
+# never victim culpability. Distinct from athletic physical-conditioning coercion.
+cac-core:ConditioningPhase a owl:Class ;
+    rdfs:label "Conditioning Phase"@en ;
+    rdfs:comment "Temporal phase in which an offender shapes victim readiness, situational constraints, or compliance preparatory to the primary exploitation act — through rapport, deception, isolation, normalization, desensitization, dependency, or compliance training. Trauma-informed: this term describes offender conduct and situational shaping, not any characteristic or responsibility of the victim."@en ;
+    rdfs:subClassOf cac-core:Phase ;
+    skos:scopeNote "Offense-trajectory macro-phase between initial contact and exploitation (contact → conditioning → exploitation → maintenance). Author instances as a domain ConditioningPhase (e.g. cacontology-grooming:ConditioningPhase) and cac-core:Phase (dual-typed). Set cac-core:conditioningMode on the macro node. Distinct from cacontology-athletic physical-conditioning coercion concepts."@en ;
+    rdfs:seeAlso <https://github.com/Project-VIC-International/CAC-Ontology/issues/38> .
+
+cac-core:conditioningMode a owl:DatatypeProperty ;
+    rdfs:label "conditioning mode"@en ;
+    rdfs:comment "Dominant offender mechanism through which preparatory conditioning is accomplished in a documented offense phase instance. Controlled values (xsd:string): trust_rapport | deception | isolation | normalization | desensitization | compliance_shaping | dependency_creation | fear_priming | platform_confidence. In grooming/sextortion contexts, trust_rapport is the migration target for former TrustBuildingPhase graphs; other values capture non-rapport preparatory mechanisms that the old phase label could not express. Trauma-informed: records offender mechanism, never victim blame."@en ;
+    rdfs:domain cac-core:ConditioningPhase ;
+    rdfs:range xsd:string ;
+    skos:scopeNote "platform_confidence is offender- and platform-directed (confidence in platform affordances/detection), not victim-directed rapport. conditioningMode is optional (minCount 0) for non-state-machine graphs; preferred when encoding comparable cross-case trajectories."@en ;
+    rdfs:seeAlso <https://github.com/Project-VIC-International/CAC-Ontology/issues/38> .
+
 # =============================================================================
 # CORE OBJECT PROPERTIES
 # =============================================================================

@@ -5,6 +5,7 @@
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix cacontology-sextortion: <https://cacontology.projectvic.org/sextortion#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
@@ -19,6 +20,44 @@
     owl:imports <https://cacontology.projectvic.org/sextortion/3.0.0> ,
                 <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/> .
+
+# =============================================================================
+# CONDITIONING / PROGRESSION PHASE SHAPES (Issue #38)
+# =============================================================================
+
+# Spine ConditioningPhase dual-typing when used in sextortion graphs
+cacontology-sextortion:ConditioningPhaseShape rdf:type sh:NodeShape ;
+    sh:targetClass cac-core:ConditioningPhase ;
+    rdfs:label "Sextortion Conditioning Phase Shape"@en ;
+    rdfs:comment "Dual-typing and conditioningMode validation for spine ConditioningPhase instances in sextortion graphs (Issue #38)."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue cac-core:Phase ;
+        sh:minCount 1 ;
+        sh:message "ConditioningPhase instances must always be dual-typed with cac-core:Phase."@en     ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Conditioning phase must have a human-readable label."@en     ] ;
+    sh:property [
+        sh:path cac-core:conditioningMode ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "trust_rapport" "deception" "isolation" "normalization" "desensitization" "compliance_shaping" "dependency_creation" "fear_priming" "platform_confidence" ) ;
+        sh:message "conditioningMode must be from the allowed offense-trajectory mechanism list."@en     ] .
+
+# Deprecation-friendly dual-typing for legacy TrustBuildingPhase (old + new path)
+cacontology-sextortion:TrustBuildingPhaseDualTypeShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:TrustBuildingPhase ;
+    rdfs:label "Sextortion Trust Building Phase Dual-Typing Shape"@en ;
+    rdfs:comment "Deprecation-friendly dual-typing for legacy TrustBuildingPhase. Prefer cac-core:ConditioningPhase + conditioningMode trust_rapport for new graphs."@en ;
+    sh:severity sh:Warning ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue cac-core:Phase ;
+        sh:minCount 1 ;
+        sh:message "Deprecated TrustBuildingPhase instances should be dual-typed with cac-core:Phase; migrate to ConditioningPhase + conditioningMode trust_rapport."@en     ] .
 
 # =============================================================================
 # SEXTORTION INCIDENT SHAPES

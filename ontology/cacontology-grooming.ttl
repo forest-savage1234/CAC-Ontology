@@ -12,6 +12,7 @@
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
@@ -42,20 +43,26 @@ cacontology-grooming:GroomingBehavior rdf:type owl:Class ;
     rdfs:comment "Predatory behavior designed to prepare a child for abuse by building trust, isolating them, and normalizing inappropriate contact."@en ;
     rdfs:subClassOf cac-core:ExploitationEvent .
 
+# ConditioningBehavior (Issue #38) — behavior-axis parent for preparatory conduct
+cacontology-grooming:ConditioningBehavior rdf:type owl:Class ;
+    rdfs:label "Conditioning Behavior"@en ;
+    rdfs:comment "Offender behavior that shapes victim readiness, compliance, dependency, or situational constraints preparatory to direct exploitation. Trauma-informed: describes offender conduct, not victim characteristics."@en ;
+    rdfs:subClassOf cacontology-grooming:GroomingBehavior .
+
 cacontology-grooming:TrustBuildingBehavior rdf:type owl:Class ;
     rdfs:label "Trust Building Behavior"@en ;
     rdfs:comment "Early grooming stage focused on establishing emotional connection with the child victim."@en ;
-    rdfs:subClassOf cacontology-grooming:GroomingBehavior .
+    rdfs:subClassOf cacontology-grooming:ConditioningBehavior .
 
 cacontology-grooming:IsolationBehavior rdf:type owl:Class ;
     rdfs:label "Isolation Behavior"@en ;
     rdfs:comment "Attempts to separate child from parents, friends, or other support systems."@en ;
-    rdfs:subClassOf cacontology-grooming:GroomingBehavior .
+    rdfs:subClassOf cacontology-grooming:ConditioningBehavior .
 
 cacontology-grooming:NormalizationBehavior rdf:type owl:Class ;
     rdfs:label "Normalization Behavior"@en ;
     rdfs:comment "Gradual introduction of sexual topics to normalize inappropriate behavior."@en ;
-    rdfs:subClassOf cacontology-grooming:GroomingBehavior .
+    rdfs:subClassOf cacontology-grooming:ConditioningBehavior .
 
 cacontology-grooming:Enticement rdf:type owl:Class ;
     rdfs:label "Enticement"@en ;
@@ -86,20 +93,34 @@ cacontology-grooming:InitialContactPhase rdf:type owl:Class ;
     rdfs:comment "First phase of grooming involving initial contact and relationship establishment."@en ;
     rdfs:subClassOf cacontology-grooming:GroomingPhase .
 
+# Issue #38 — grooming specialization of spine ConditioningPhase (canonical state-machine type)
+cacontology-grooming:ConditioningPhase rdf:type owl:Class ;
+    rdfs:label "Conditioning Phase"@en ;
+    rdfs:comment "Grooming-process phase in which the offender conditions the victim or situation for exploitation — including rapport, isolation, normalization, and compliance shaping prior to the primary exploitation act. Trauma-informed: offender-directed preparatory phase, not victim culpability."@en ;
+    rdfs:subClassOf cacontology-grooming:GroomingPhase ,
+                    cac-core:ConditioningPhase ;
+    skos:scopeNote "Canonical instance type for macro-level ConditioningPhase nodes in offense-trajectory graphs. Always dual-type cac-core:Phase on every instance. Set cac-core:conditioningMode on this macro node only — not on IsolationPhase or SexualizationPhase refinement nodes."@en ;
+    rdfs:seeAlso <https://github.com/Project-VIC-International/CAC-Ontology/issues/38> .
+
 cacontology-grooming:TrustBuildingPhase rdf:type owl:Class ;
     rdfs:label "Trust Building Phase"@en ;
-    rdfs:comment "Phase focused on building emotional connection and trust with victim."@en ;
-    rdfs:subClassOf cacontology-grooming:GroomingPhase .
+    rdfs:comment "DEPRECATED. Prefer cacontology-grooming:ConditioningPhase dual-typed with cac-core:Phase and cac-core:conditioningMode \"trust_rapport\". Former phase focused on building emotional connection and trust; retained for backward compatibility with existing graphs."@en ;
+    rdfs:subClassOf cacontology-grooming:ConditioningPhase ;
+    owl:deprecated true ;
+    rdfs:seeAlso cacontology-grooming:ConditioningPhase ;
+    skos:editorialNote "Deprecated offense-trajectory phase label (Issue #38). Migration: type as cacontology-grooming:ConditioningPhase and cac-core:Phase with cac-core:conditioningMode trust_rapport."@en .
 
 cacontology-grooming:IsolationPhase rdf:type owl:Class ;
     rdfs:label "Isolation Phase"@en ;
-    rdfs:comment "Phase aimed at separating victim from support systems and creating dependency."@en ;
-    rdfs:subClassOf cacontology-grooming:GroomingPhase .
+    rdfs:comment "Optional sequential refinement under ConditioningPhase for cases that document separation from support systems and dependency creation as a distinct sub-stage. Not a substitute for the macro ConditioningPhase node."@en ;
+    rdfs:subClassOf cacontology-grooming:ConditioningPhase ;
+    skos:scopeNote "Use as an optional refinement node when isolation is documented distinctly; set conditioningMode on the macro ConditioningPhase, not here."@en .
 
 cacontology-grooming:SexualizationPhase rdf:type owl:Class ;
     rdfs:label "Sexualization Phase"@en ;
-    rdfs:comment "Phase involving introduction of sexual content and normalization of inappropriate behavior."@en ;
-    rdfs:subClassOf cacontology-grooming:GroomingPhase .
+    rdfs:comment "Optional sequential refinement under ConditioningPhase for cases that document introduction of sexual content and normalization as a distinct sub-stage. Not a substitute for the macro ConditioningPhase node."@en ;
+    rdfs:subClassOf cacontology-grooming:ConditioningPhase ;
+    skos:scopeNote "Use as an optional refinement node when sexualization is documented distinctly; set conditioningMode on the macro ConditioningPhase, not here."@en .
 
 cacontology-grooming:ExploitationPhase rdf:type owl:Class ;
     rdfs:label "Exploitation Phase"@en ;
