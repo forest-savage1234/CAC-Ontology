@@ -1,0 +1,84 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix ex: <https://cacontology.projectvic.org/examples/synthetic-criminal-complaint-types#> .
+
+# =============================================================================
+# SYNTHETIC CRIMINAL COMPLAINT TYPES EXEMPLAR (Issue #34)
+#
+# Fully synthetic abstract pattern for acceptance testing. Zero real case
+# material. Demonstrates:
+#   - ChargingInstrument abstract parent
+#   - CriminalComplaint vs MagistrateComplaint specialization
+#   - filedDate, swornBy, incorporatesStatementOfFacts
+#   - supersedes / supersededBy chain between instruments
+# Pattern only — public Fed. R. Crim. P. structure; no real dockets or names.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Persons (synthetic identities only)
+# -----------------------------------------------------------------------------
+
+ex:Complainant_Jordan_Lee a uco-identity:Person ;
+    rdfs:label "Jordan Lee (synthetic complainant)"@en ;
+    uco-core:name "Jordan Lee"@en ;
+    uco-core:description "Fully synthetic person node representing a law-enforcement complainant who swears a criminal complaint. Not a real individual."@en .
+
+ex:Complainant_Sam_Patel a uco-identity:Person ;
+    rdfs:label "Sam Patel (synthetic complainant)"@en ;
+    uco-core:name "Sam Patel"@en ;
+    uco-core:description "Fully synthetic person node for an amended/superseding complaint affiant. Not a real individual."@en .
+
+# -----------------------------------------------------------------------------
+# Statement of facts (abstract ObservableObject artifact — non-graphic)
+# -----------------------------------------------------------------------------
+
+ex:StatementOfFacts_Initial a uco-observable:ObservableObject , cac-core:Artifact ;
+    rdfs:label "Synthetic statement of essential facts (initial)"@en ;
+    uco-core:description "Abstract factual summary node for schema demonstration only. No offense narrative content."@en .
+
+ex:StatementOfFacts_Amended a uco-observable:ObservableObject , cac-core:Artifact ;
+    rdfs:label "Synthetic statement of essential facts (amended)"@en ;
+    uco-core:description "Abstract amended factual summary node for superseding-instrument demonstration."@en .
+
+# -----------------------------------------------------------------------------
+# Initial MagistrateComplaint (specialization of CriminalComplaint)
+# -----------------------------------------------------------------------------
+
+ex:MagistrateComplaint_Initial a cacontology-legal-outcomes:MagistrateComplaint ;
+    rdfs:label "Synthetic magistrate complaint (initial)"@en ;
+    uco-core:description "Abstract Fed. R. Crim. P. 3–4 style complaint sworn before a magistrate judge. Demonstrates MagistrateComplaint specialization."@en ;
+    cacontology-legal-outcomes:filedDate "2025-03-10T09:15:00Z"^^xsd:dateTime ;
+    cacontology-legal-outcomes:swornBy ex:Complainant_Jordan_Lee ;
+    cacontology-legal-outcomes:incorporatesStatementOfFacts ex:StatementOfFacts_Initial ;
+    cacontology-legal-outcomes:supersededBy ex:CriminalComplaint_Amended .
+
+# -----------------------------------------------------------------------------
+# Superseding CriminalComplaint (general class, not magistrate-typed)
+# Demonstrates CriminalComplaint vs MagistrateComplaint distinction and
+# supersedes / supersededBy chain.
+# -----------------------------------------------------------------------------
+
+ex:CriminalComplaint_Amended a cacontology-legal-outcomes:CriminalComplaint ;
+    rdfs:label "Synthetic criminal complaint (amended / superseding)"@en ;
+    uco-core:description "Abstract amended criminal complaint that supersedes the initial magistrate complaint. Typed as CriminalComplaint (not MagistrateComplaint) to show optional specialization."@en ;
+    cacontology-legal-outcomes:filedDate "2025-03-18T14:00:00Z"^^xsd:dateTime ;
+    cacontology-legal-outcomes:swornBy ex:Complainant_Sam_Patel ;
+    cacontology-legal-outcomes:incorporatesStatementOfFacts ex:StatementOfFacts_Amended ;
+    cacontology-legal-outcomes:supersedes ex:MagistrateComplaint_Initial .
+
+# -----------------------------------------------------------------------------
+# Abstract ChargingInstrument instance (parent class only)
+# Optional demonstration that the abstract parent may be used when instrument
+# type is not yet known.
+# -----------------------------------------------------------------------------
+
+ex:ChargingInstrument_Placeholder a cacontology-legal-outcomes:ChargingInstrument ;
+    rdfs:label "Synthetic charging instrument (type pending)"@en ;
+    uco-core:description "Abstract parent-class instance for graphs that know a charging document exists but have not yet classified it as complaint vs indictment."@en ;
+    cacontology-legal-outcomes:filedDate "2025-04-01T11:30:00Z"^^xsd:dateTime .

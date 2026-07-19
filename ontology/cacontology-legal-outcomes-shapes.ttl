@@ -3,6 +3,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
 @prefix cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -15,7 +16,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/legal-outcomes/shapes/3.0.0> ;
     owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-02-16"^^xsd:date ;
+    dcterms:modified "2026-07-19"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/legal-outcomes/3.0.0> ,
                 <https://cacontology.projectvic.org/sex-offender-registry/3.0.0> ,
                 <http://purl.org/nemo/gufo#> ,
@@ -391,6 +392,98 @@ cacontology-legal-outcomes:ProfessionalLicenseSurrenderConditionShape rdf:type s
         sh:class uco-identity:Person ;
         sh:minCount 1 ;
         sh:message "License surrender condition must specify the person it applies to via conditionAppliesToPerson."@en
+    ] .
+
+# =============================================================================
+# CHARGING INSTRUMENT SHAPES (Issue #34)
+# =============================================================================
+
+cacontology-legal-outcomes:ChargingInstrumentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:ChargingInstrument ;
+    rdfs:label "Charging Instrument Shape"@en ;
+    rdfs:comment "Validation shape for abstract charging instruments (complaints, and future indictment/information subclasses). Keeps constraints mild so existing graphs are not broken; new synthetic exemplars exercise the optional properties."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Charging instrument must have an rdfs:label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:filedDate ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "filedDate, when provided, must be a single xsd:dateTime value."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:incorporatesStatementOfFacts ;
+        sh:class uco-observable:ObservableObject ;
+        sh:minCount 0 ;
+        sh:message "incorporatesStatementOfFacts must point to an ObservableObject (e.g., a document or artifact node)."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:supersedes ;
+        sh:class cacontology-legal-outcomes:ChargingInstrument ;
+        sh:minCount 0 ;
+        sh:message "supersedes must point to another ChargingInstrument."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:supersededBy ;
+        sh:class cacontology-legal-outcomes:ChargingInstrument ;
+        sh:minCount 0 ;
+        sh:message "supersededBy must point to another ChargingInstrument."@en
+    ] .
+
+cacontology-legal-outcomes:ChargingInstrumentSupersedesBusinessRule rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:ChargingInstrument ;
+    rdfs:label "Charging Instrument Supersedes Business Rule"@en ;
+    rdfs:comment "Business rule: a charging instrument MUST NOT supersede itself."@en ;
+    sh:sparql [
+        sh:message "A charging instrument cannot supersede itself."@en ;
+        sh:select """
+            SELECT $this
+            WHERE {
+                $this <https://cacontology.projectvic.org/legal-outcomes#supersedes> $this .
+            }
+        """
+    ] .
+
+cacontology-legal-outcomes:CriminalComplaintShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:CriminalComplaint ;
+    rdfs:label "Criminal Complaint Shape"@en ;
+    rdfs:comment "Validation shape for criminal complaints under Fed. R. Crim. P. 3 (includes MagistrateComplaint via subclass)."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Criminal complaint must have an rdfs:label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:swornBy ;
+        sh:class uco-identity:Person ;
+        sh:minCount 0 ;
+        sh:message "swornBy, when provided, must point to a uco-identity:Person."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:filedDate ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "filedDate, when provided, must be a single xsd:dateTime value."@en
+    ] .
+
+cacontology-legal-outcomes:MagistrateComplaintShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:MagistrateComplaint ;
+    rdfs:label "Magistrate Complaint Shape"@en ;
+    rdfs:comment "Validation shape for magistrate-sworn criminal complaints (optional specialization of CriminalComplaint)."@en ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Magistrate complaint must have an rdfs:label."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:swornBy ;
+        sh:class uco-identity:Person ;
+        sh:minCount 0 ;
+        sh:message "swornBy, when provided, must point to a uco-identity:Person."@en
     ] .
 
 # =============================================================================

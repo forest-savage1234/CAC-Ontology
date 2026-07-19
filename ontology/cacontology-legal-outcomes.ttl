@@ -19,7 +19,7 @@
     owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-02-16"^^xsd:date ;
+    dcterms:modified "2026-07-19"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/> ,
@@ -319,6 +319,38 @@ cacontology-legal-outcomes:SexualExploitationOfMinorCharge rdf:type owl:Class ;
     rdfs:seeAlso <https://law.georgia.gov/press-releases/2026-02-14/carr-hart-county-man-convicted-trafficking-teen-targeting-victim-snapchat> .
 
 # =============================================================================
+# CHARGING INSTRUMENTS (gUFO Object) — Issue #34
+# Distinguish magistrate/criminal complaints from indictments and other
+# grand-jury instruments. Placement: legal-outcomes (alongside CriminalCharge
+# and LegalProceeding), not bridge/core.
+# Shape: ChargingInstrumentShape / CriminalComplaintShape /
+#        MagistrateComplaintShape in cacontology-legal-outcomes-shapes.ttl
+# =============================================================================
+
+cacontology-legal-outcomes:ChargingInstrument rdf:type owl:Class ;
+    rdfs:label "Charging Instrument"@en ;
+    rdfs:comment "Abstract legal document that formally charges a person with one or more criminal offenses (e.g., a criminal complaint, information, or indictment). Distinct from CriminalCharge, which models an individual count or offense allegation contained in such an instrument. Sibling subclasses may model indictments and other grand-jury instruments in a follow-up; this class is the common parent for charging-document modeling in CAC legal graphs. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Artifact ;
+    dcterms:source "Fed. R. Crim. P. 3, 7."@en ;
+    rdfs:seeAlso <https://www.law.cornell.edu/rules/frcrmp/rule_3> ,
+                 <https://www.law.cornell.edu/rules/frcrmp/rule_7> .
+
+cacontology-legal-outcomes:CriminalComplaint rdf:type owl:Class ;
+    rdfs:label "Criminal Complaint"@en ;
+    rdfs:comment "A written statement of the essential facts constituting the offense charged, made under oath before a magistrate judge or other authorized officer. Distinct from an indictment returned by a grand jury (Fed. R. Crim. P. 7). Modeled as gUFO Object."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:ChargingInstrument ;
+    dcterms:source "Fed. R. Crim. P. 3."@en ;
+    rdfs:seeAlso <https://www.law.cornell.edu/rules/frcrmp/rule_3> .
+
+cacontology-legal-outcomes:MagistrateComplaint rdf:type owl:Class ;
+    rdfs:label "Magistrate Complaint"@en ;
+    rdfs:comment "Optional specialization of CriminalComplaint for a complaint sworn before a United States magistrate judge (or equivalent magistrate) under Fed. R. Crim. P. 3–4. Use when the modeling need requires distinguishing magistrate-sworn complaints from other criminal complaints; otherwise CriminalComplaint alone is sufficient. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf cacontology-legal-outcomes:CriminalComplaint ;
+    dcterms:source "Fed. R. Crim. P. 3, 4."@en ;
+    rdfs:seeAlso <https://www.law.cornell.edu/rules/frcrmp/rule_3> ,
+                 <https://www.law.cornell.edu/rules/frcrmp/rule_4> .
+
+# =============================================================================
 # PLEA / SENTENCING CONDITIONS (gUFO Object)
 # =============================================================================
 
@@ -529,6 +561,52 @@ cacontology-legal-outcomes:hasCharge rdf:type owl:ObjectProperty ;
     rdfs:comment "Links legal proceeding to criminal charges involved."@en ;
     rdfs:domain cacontology-legal-outcomes:LegalProceeding ;
     rdfs:range cacontology-legal-outcomes:CriminalCharge .
+
+# -----------------------------------------------------------------------------
+# Charging instrument properties (Issue #34)
+# -----------------------------------------------------------------------------
+
+cacontology-legal-outcomes:filedDate rdf:type owl:DatatypeProperty ;
+    rdfs:label "filed date"@en ;
+    rdfs:comment "Date and time when the charging instrument was filed with the court (or equivalent filing authority). Use xsd:dateTime for interoperability with docket timestamps."@en ;
+    rdfs:domain cacontology-legal-outcomes:ChargingInstrument ;
+    rdfs:range xsd:dateTime ;
+    dcterms:source "Fed. R. Crim. P. 3, 7; federal and state criminal docket filing practice."@en ;
+    rdfs:seeAlso <https://www.law.cornell.edu/rules/frcrmp/rule_3> .
+
+cacontology-legal-outcomes:swornBy rdf:type owl:ObjectProperty ;
+    rdfs:label "sworn by"@en ;
+    rdfs:comment "Links a CriminalComplaint to the person who made the complaint under oath (typically a law-enforcement officer or other complainant). Domain is CriminalComplaint (and subclasses such as MagistrateComplaint); range is a Person. See Fed. R. Crim. P. 3."@en ;
+    rdfs:domain cacontology-legal-outcomes:CriminalComplaint ;
+    rdfs:range uco-identity:Person ;
+    dcterms:source "Fed. R. Crim. P. 3."@en ;
+    rdfs:seeAlso <https://www.law.cornell.edu/rules/frcrmp/rule_3> .
+
+cacontology-legal-outcomes:incorporatesStatementOfFacts rdf:type owl:ObjectProperty ;
+    rdfs:label "incorporates statement of facts"@en ;
+    rdfs:comment "Links a charging instrument to a structured statement of essential facts supporting the charges (e.g., the factual narrative or affidavit content incorporated into a criminal complaint). Range is deliberately broad (ObservableObject) so graphs may attach UCO/CASE documents or other artifact nodes without requiring a new StatementOfFacts class in this PR."@en ;
+    rdfs:domain cacontology-legal-outcomes:ChargingInstrument ;
+    rdfs:range uco-observable:ObservableObject ;
+    dcterms:source "Fed. R. Crim. P. 3."@en ;
+    rdfs:seeAlso <https://www.law.cornell.edu/rules/frcrmp/rule_3> .
+
+cacontology-legal-outcomes:supersedes rdf:type owl:ObjectProperty ;
+    rdfs:label "supersedes"@en ;
+    rdfs:comment "Links a later charging instrument to an earlier charging instrument that it replaces or supersedes (e.g., a superseding indictment or an amended complaint that supersedes a prior complaint). Inverse of supersededBy."@en ;
+    rdfs:domain cacontology-legal-outcomes:ChargingInstrument ;
+    rdfs:range cacontology-legal-outcomes:ChargingInstrument ;
+    owl:inverseOf cacontology-legal-outcomes:supersededBy ;
+    dcterms:source "Fed. R. Crim. P. 7; federal practice regarding superseding indictments and amended complaints."@en ;
+    rdfs:seeAlso <https://www.law.cornell.edu/rules/frcrmp/rule_7> .
+
+cacontology-legal-outcomes:supersededBy rdf:type owl:ObjectProperty ;
+    rdfs:label "superseded by"@en ;
+    rdfs:comment "Links an earlier charging instrument to the later charging instrument that replaces or supersedes it. Inverse of supersedes."@en ;
+    rdfs:domain cacontology-legal-outcomes:ChargingInstrument ;
+    rdfs:range cacontology-legal-outcomes:ChargingInstrument ;
+    owl:inverseOf cacontology-legal-outcomes:supersedes ;
+    dcterms:source "Fed. R. Crim. P. 7; federal practice regarding superseding indictments and amended complaints."@en ;
+    rdfs:seeAlso <https://www.law.cornell.edu/rules/frcrmp/rule_7> .
 
 cacontology-legal-outcomes:resultsSentence rdf:type owl:ObjectProperty ;
     rdfs:label "results sentence"@en ;

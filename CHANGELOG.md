@@ -5,7 +5,38 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
 
+### Added - Criminal complaint / charging instrument types (Issue #34)
+
+Distinguish magistrate complaints from indictments and other grand-jury instruments by introducing a ChargingInstrument hierarchy in legal-outcomes. Closes the gap for accurate modeling of charging documents in CAC legal graphs.
+
+#### `ontology/cacontology-legal-outcomes.ttl`
+
+- `cacontology-legal-outcomes:ChargingInstrument` — abstract `owl:Class` (`uco-observable:ObservableObject` + `cac-core:Artifact`); parent for charging documents (Fed. R. Crim. P. 3, 7)
+- `cacontology-legal-outcomes:CriminalComplaint` — subClassOf `ChargingInstrument` (Fed. R. Crim. P. 3)
+- `cacontology-legal-outcomes:MagistrateComplaint` — **optional** subClassOf `CriminalComplaint` for magistrate-sworn complaints (Fed. R. Crim. P. 3–4); not required when `CriminalComplaint` alone is sufficient
+- `filedDate` — datatype property (`xsd:dateTime`; domain `ChargingInstrument`)
+- `swornBy` — object property (domain `CriminalComplaint`; range `uco-identity:Person`)
+- `incorporatesStatementOfFacts` — object property (domain `ChargingInstrument`; range `uco-observable:ObservableObject`)
+- `supersedes` / `supersededBy` — inverse object properties for instrument succession chains (domain/range `ChargingInstrument`)
+
+#### `ontology/cacontology-legal-outcomes-shapes.ttl`
+
+- `ChargingInstrumentShape`, `CriminalComplaintShape`, `MagistrateComplaintShape` — mild constraints (label; optional typed properties)
+- `ChargingInstrumentSupersedesBusinessRule` — SPARQL rule: an instrument must not supersede itself
+
+#### Placement decision
+
+- Terms live in **legal-outcomes** (alongside `CriminalCharge` / `LegalProceeding`), not bridge or core. No new UCO/CASE `equivalentClass` aliases in this PR.
+
+#### Examples
+
+- Added: `examples_knowledge_graphs/synthetic-criminal-complaint-types-example.ttl` — fully synthetic acceptance exemplar for complaint vs magistrate-complaint distinction and properties
+
+#### Minimal example impact
+
+- No rewrites of existing example graphs. New shapes target only the new classes.
 
 ## v3.0.0 - 16 March 2026
 
