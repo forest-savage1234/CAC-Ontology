@@ -1,6 +1,6 @@
 # CAC Ontology
 
-CAC Ontology is an **experimental** family of RDF/OWL vocabularies for representing crimes-against-children investigations, reporting, legal process, offender behavior, victim services, and digital-forensics activity. Project VIC International stewards the project under the Apache License 2.0.
+The CAC Ontology is a family of RDF/OWL vocabularies for representing crimes-against-children investigations, reporting, legal process, offender behavior, victim services, and digital-forensics activity. Project VIC International stewards the project under the Apache License 2.0.
 
 The current project release is **CAC v3.1.0**. The semantic spine was introduced in **v3.0.0** and remains the stable CAC-facing hierarchy in v3.1.0. CASE and UCO imports are pinned to **1.5.0**.
 
