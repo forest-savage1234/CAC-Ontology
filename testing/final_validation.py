@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 """
-Comprehensive end-to-end validation for CAC Ontology v3.0.0.
+Comprehensive end-to-end validation for CAC Ontology v3.1.0.
 Validates: Turtle syntax, SHACL shapes syntax, version consistency,
 stale references, ICAC naming compliance, cross-references, imports,
 prefix consistency, and SPARQL query files.
 """
 
-import glob, os, re, sys
+import glob, json, os, re, sys
 
 os.chdir(os.path.join(os.path.dirname(__file__), '..'))
 
 try:
     import rdflib
+    from rdflib.plugins.sparql.processor import prepareQuery
 except ImportError:
     print("ERROR: rdflib not installed. Run: pip install rdflib")
     sys.exit(1)
@@ -23,10 +24,13 @@ results = {
     'stale_count': 0, 'icac_count': 0,
     'examples_ok': 0, 'examples_fail': 0,
     'root_ok': 0, 'root_fail': 0,
+    'analytics_ok': 0, 'analytics_fail': 0,
+    'json_ok': 0, 'json_fail': 0,
+    'sparql_ok': 0, 'sparql_fail': 0,
 }
 
 print("=" * 70)
-print("  CAC Ontology v3.0.0 — Comprehensive Validation")
+print("  CAC Ontology v3.1.0 — Comprehensive Validation")
 print("=" * 70)
 
 # ============================================================
@@ -44,9 +48,6 @@ for f in sorted(glob.glob(os.path.join('ontology', '*.ttl'))):
         results['turtle_fail'] += 1
         turtle_errors.append((os.path.basename(f), str(e).split('\n')[0][:80]))
 
-known_parse_exceptions = {
-    'utah-dominic-christensen-Autopsy-report.ttl',
-}
 for f in sorted(glob.glob(os.path.join('examples_knowledge_graphs', '*.ttl'))):
     bn = os.path.basename(f)
     try:
@@ -54,11 +55,17 @@ for f in sorted(glob.glob(os.path.join('examples_knowledge_graphs', '*.ttl'))):
         g.parse(f, format='turtle')
         results['examples_ok'] += 1
     except Exception as e:
-        if bn in known_parse_exceptions:
-            results['examples_ok'] += 1
-        else:
-            results['examples_fail'] += 1
-            turtle_errors.append((bn, str(e).split('\n')[0][:80]))
+        results['examples_fail'] += 1
+        turtle_errors.append((bn, str(e).split('\n')[0][:80]))
+
+for f in sorted(glob.glob(os.path.join('analytics_demonstration', '**', '*.ttl'), recursive=True)):
+    try:
+        g = rdflib.Graph()
+        g.parse(f, format='turtle')
+        results['analytics_ok'] += 1
+    except Exception as e:
+        results['analytics_fail'] += 1
+        turtle_errors.append((os.path.relpath(f), str(e).split('\n')[0][:80]))
 
 for f in sorted(glob.glob('*.ttl')):
     bn = os.path.basename(f)
@@ -70,12 +77,33 @@ for f in sorted(glob.glob('*.ttl')):
         results['root_fail'] += 1
         turtle_errors.append((bn, str(e).split('\n')[0][:80]))
 
+json_errors = []
+for pattern in [
+    os.path.join('contexts', '**', '*.jsonld'),
+    os.path.join('examples_knowledge_graphs', '**', '*.jsonld'),
+]:
+    for f in sorted(glob.glob(pattern, recursive=True)):
+        try:
+            with open(f, 'r', encoding='utf-8') as fh:
+                json.load(fh)
+            results['json_ok'] += 1
+        except Exception as e:
+            results['json_fail'] += 1
+            json_errors.append((os.path.relpath(f), str(e).split('\n')[0][:80]))
+
 if turtle_errors:
     for name, err in turtle_errors:
         print(f"  FAIL: {name}: {err}")
 else:
     root_msg = f", {results['root_ok']} root" if results['root_ok'] else ""
-    print(f"  ALL OK: {results['turtle_ok']} ontology + {results['examples_ok']} example{root_msg} files parsed")
+    analytics_msg = f", {results['analytics_ok']} analytics" if results['analytics_ok'] else ""
+    print(f"  ALL OK: {results['turtle_ok']} ontology + {results['examples_ok']} example{analytics_msg}{root_msg} files parsed")
+
+if json_errors:
+    for name, err in json_errors:
+        print(f"  FAIL JSON: {name}: {err}")
+else:
+    print(f"  ALL OK: {results['json_ok']} JSON-LD files parsed as JSON")
 
 # ============================================================
 # Stage 2: Verify SHACL shapes have no stale gufo: issues
@@ -113,7 +141,7 @@ for f in sorted(glob.glob(os.path.join('ontology', '*.ttl'))):
     bn = os.path.basename(f)
     
     if 'owl:Ontology' in content:
-        if 'owl:versionInfo "3.0.0"' not in content:
+        if 'owl:versionInfo "3.1.0"' not in content:
             version_issues.append(bn)
             results['version_fail'] += 1
         else:
@@ -123,7 +151,7 @@ if version_issues:
     for v in version_issues:
         print(f"  MISSING: {v}")
 else:
-    print(f"  ALL OK: {results['version_ok']} modules have owl:versionInfo 3.0.0")
+    print(f"  ALL OK: {results['version_ok']} modules have owl:versionInfo 3.1.0")
 
 # ============================================================
 # Stage 4: Stale references
@@ -258,6 +286,34 @@ for f in sorted(glob.glob(os.path.join('example_SPARQL_queries', '*.rq'))):
         if sparql_stale_prefix_re.search(line):
             sparql_issues.append(f'{bn}:{line_num}: Stale cacontology-gufo: prefix')
 
+    # Query collection files contain multiple top-level operations, commonly
+    # separated by a line containing only a semicolon. Parse each operation
+    # independently while reusing the file-level PREFIX/BASE prologue.
+    prologue = '\n'.join(
+        re.findall(r'^\s*(?:PREFIX|BASE)\s+[^\n]+', content, re.MULTILINE)
+    ) + '\n'
+    query_starts = [
+        match.start()
+        for match in re.finditer(
+            r'^(?:SELECT|ASK|CONSTRUCT|DESCRIBE)\b',
+            content,
+            re.MULTILINE | re.IGNORECASE,
+        )
+    ]
+    if not query_starts:
+        sparql_issues.append(f'{bn}: No top-level SPARQL query found')
+        results['sparql_fail'] += 1
+    for query_index, start in enumerate(query_starts, 1):
+        end = query_starts[query_index] if query_index < len(query_starts) else len(content)
+        query = content[start:end]
+        query = re.sub(r'^\s*;\s*$', '', query, flags=re.MULTILINE)
+        try:
+            prepareQuery(prologue + query)
+            results['sparql_ok'] += 1
+        except Exception as exc:
+            sparql_issues.append(f'{bn}: query {query_index}: {exc}')
+            results['sparql_fail'] += 1
+
 if sparql_issues:
     for s in sparql_issues:
         print(f"  ISSUE: {s}")
@@ -269,7 +325,6 @@ else:
 # ============================================================
 print("\n[Stage 9] Checking owl:imports IRI consistency...")
 imports_issues = []
-imports_re = re.compile(r'owl:imports\s+<([^>]+)>')
 
 known_external_prefixes = [
     'https://ontology.unifiedcyberontology.org/',
@@ -279,18 +334,22 @@ known_external_prefixes = [
 
 for f in sorted(glob.glob(os.path.join('ontology', '*.ttl'))):
     bn = os.path.basename(f)
-    with open(f, 'r', encoding='utf-8') as fh:
-        content = fh.read()
-    for m in imports_re.finditer(content):
-        iri = m.group(1)
+    import_graph = rdflib.Graph()
+    import_graph.parse(f, format='turtle')
+    for import_iri in import_graph.objects(None, rdflib.OWL.imports):
+        iri = str(import_iri)
         is_external = any(iri.startswith(p) for p in known_external_prefixes)
         if is_external:
             if iri.startswith('https://ontology.unifiedcyberontology.org/') or \
                iri.startswith('https://ontology.caseontology.org/'):
-                if not iri.endswith('/'):
-                    imports_issues.append(f'{bn}: UCO/CASE import missing trailing slash: {iri}')
+                # CASE/UCO imports are pinned to versioned IRIs (e.g., .../uco/core/1.5.0)
+                if not iri.endswith('/1.5.0'):
+                    imports_issues.append(f'{bn}: UCO/CASE import not pinned to 1.5.0: {iri}')
+            elif iri.startswith('http://purl.org/nemo/gufo'):
+                if iri != 'http://purl.org/nemo/gufo#/1.0.0':
+                    imports_issues.append(f'{bn}: gUFO import not pinned to 1.0.0: {iri}')
         elif iri.startswith('https://cacontology.projectvic.org/'):
-            if iri == 'https://cacontology.projectvic.org/gufo/3.0.0':
+            if iri == 'https://cacontology.projectvic.org/gufo/3.1.0':
                 imports_issues.append(f'{bn}: Import references non-existent gufo module: {iri}')
 
 if imports_issues:
@@ -329,6 +388,40 @@ else:
     print("  ALL OK: No stale cross-references to renamed classes")
 
 # ============================================================
+# Stage 11: v3.1.0 artifact migration checks
+# ============================================================
+print("\n[Stage 11] Checking v3.1.0 artifact migration...")
+artifact_issues = []
+artifact_roots = [
+    'analytics_demonstration',
+    'contexts',
+    'example_SPARQL_queries',
+    'examples_knowledge_graphs',
+]
+artifact_patterns = [
+    (re.compile(r'\buco-observable:HashFacet\b'), 'Use ContentDataFacet + uco-observable:hash + uco-types:Hash'),
+    (re.compile(r'\binvestigation:provenanceRecordAction\b'), 'Use declared CASE/UCO provenance properties'),
+    (re.compile(r'https://cacontology\.projectvic\.org/[^#>\s]+/\d+\.\d+\.\d+#'), 'Use an unversioned CAC term namespace'),
+]
+for root in artifact_roots:
+    for f in sorted(glob.glob(os.path.join(root, '**', '*'), recursive=True)):
+        if not os.path.isfile(f) or os.path.splitext(f)[1].lower() not in {
+            '.ttl', '.rq', '.jsonld', '.md', '.yaml', '.yml', '.py'
+        }:
+            continue
+        with open(f, 'r', encoding='utf-8') as fh:
+            for line_num, line in enumerate(fh, 1):
+                for pattern, message in artifact_patterns:
+                    if pattern.search(line):
+                        artifact_issues.append(f'{os.path.relpath(f)}:{line_num}: {message}')
+
+if artifact_issues:
+    for issue in artifact_issues:
+        print(f"  ISSUE: {issue}")
+else:
+    print("  ALL OK: v3.1.0 artifact migrations are complete")
+
+# ============================================================
 # SUMMARY
 # ============================================================
 print("\n" + "=" * 70)
@@ -336,16 +429,20 @@ print("  VALIDATION SUMMARY")
 print("=" * 70)
 
 total_issues = (
-    results['turtle_fail'] + results['examples_fail'] + results['root_fail'] +
+    results['turtle_fail'] + results['examples_fail'] + results['analytics_fail'] +
+    results['root_fail'] + results['json_fail'] +
     len(gufo_issues) + results['version_fail'] +
     results['stale_count'] + results['icac_count'] +
     len(domain_gufo_issues) + len(cgufo_issues) +
-    len(sparql_issues) + len(imports_issues) + len(xref_issues)
+    len(sparql_issues) + len(imports_issues) + len(xref_issues) +
+    len(artifact_issues)
 )
 
 root_msg = f" + {results['root_ok']} root" if results['root_ok'] else ""
 print(f"  Turtle parsing:    {results['turtle_ok']}/{results['turtle_ok']+results['turtle_fail']} ontology OK")
 print(f"  Example KGs:       {results['examples_ok']}/{results['examples_ok']+results['examples_fail']} OK")
+print(f"  Analytics TTL:     {results['analytics_ok']}/{results['analytics_ok']+results['analytics_fail']} OK")
+print(f"  JSON-LD syntax:    {results['json_ok']}/{results['json_ok']+results['json_fail']} OK")
 if results['root_ok'] or results['root_fail']:
     print(f"  Root TTL files:    {results['root_ok']}/{results['root_ok']+results['root_fail']} OK")
 print(f"  Shapes gufo check: {'PASS' if not gufo_issues else f'{len(gufo_issues)} issues'}")
@@ -354,9 +451,14 @@ print(f"  Stale references:  {results['stale_count']} found")
 print(f"  ICAC naming:       {results['icac_count']} issues")
 print(f"  Domain gufo:       {'PASS' if not domain_gufo_issues else f'{len(domain_gufo_issues)} issues'}")
 print(f"  cacontology-gufo:  {'PASS' if not cgufo_issues else f'{len(cgufo_issues)} stale uses'}")
-print(f"  SPARQL queries:    {'PASS' if not sparql_issues else f'{len(sparql_issues)} issues'}")
+print(
+    f"  SPARQL queries:    {results['sparql_ok']} blocks OK"
+    if not sparql_issues
+    else f"  SPARQL queries:    {len(sparql_issues)} issues"
+)
 print(f"  Import IRIs:       {'PASS' if not imports_issues else f'{len(imports_issues)} issues'}")
 print(f"  Cross-references:  {'PASS' if not xref_issues else f'{len(xref_issues)} issues'}")
+print(f"  v3.1 artifacts:    {'PASS' if not artifact_issues else f'{len(artifact_issues)} issues'}")
 print()
 
 if total_issues == 0:

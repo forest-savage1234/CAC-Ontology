@@ -36,7 +36,7 @@ WHERE {
     OPTIONAL {
         ?report cacontology-hotlines:status cacontology-hotlines:status-closed ;
                 cacontology-hotlines:closedAt ?closedTime .
-        BIND(DAYS(?closedTime - ?createdTime) AS ?processingTime) # Simpler duration for days
+        BIND((?closedTime - ?createdTime) AS ?processingTime)
     }
     
     OPTIONAL {
@@ -63,4 +63,4 @@ WHERE {
 }
 GROUP BY ?organization ?yearMonth
 ORDER BY ?organization DESC(?yearMonth)
-LIMIT ?limit 
+LIMIT 100

@@ -19,7 +19,7 @@
 # =============================================================================
 # CASE EXAMPLE: United States v. McCormack (9th Cir. 2017) — appellate concepts
 # Source: https://www.courtlistener.com/opinion/8700418/united-states-v-mccormack/
-# Target: CAC Ontology v3.0.0 (sentencing module appellate terms)
+# Target: CAC Ontology v3.1.0 (sentencing module appellate terms)
 # =============================================================================
 
 # =============================================================================
@@ -28,7 +28,7 @@
 
 ex:source_document a uco-observable:ObservableObject ;
   rdfs:label "CourtListener opinion: United States v. McCormack (9th Cir. 2017-07-03)"@en ;
-  uco-core:description "CourtListener opinion and PDF excerpt used to derive this example graph."@en ;
+  uco-core:description "CourtListener opinion and PDF excerpt used to derive this example graph." ;
   uco-core:hasFacet ex:source_url_facet ;
   uco-core:hasFacet ex:source_file_facet ;
   uco-core:hasFacet ex:source_hash_facet ;
@@ -43,7 +43,7 @@ ex:source_pdf_url_facet a uco-observable:URLFacet ;
 ex:source_file_facet a uco-observable:FileFacet ;
   uco-observable:filePath "analytics_demonstration/collected_sources/us-v-mccormack-ninth-circuit-2017/source.txt"@en .
 
-ex:source_hash_facet a uco-observable:HashFacet ;
+ex:source_hash_facet a uco-observable:ContentDataFacet ;
   uco-observable:hash ex:source_hash .
 
 ex:source_hash a uco-types:Hash ;
@@ -52,14 +52,14 @@ ex:source_hash a uco-types:Hash ;
 
 ex:normalized_excerpt a uco-observable:ObservableObject ;
   rdfs:label "Normalized excerpt (CourtListener opinion)"@en ;
-  uco-core:description "Normalized excerpt used as evidence pointers for modeling decisions."@en ;
+  uco-core:description "Normalized excerpt used as evidence pointers for modeling decisions." ;
   uco-core:hasFacet ex:normalized_file_facet ;
   uco-core:hasFacet ex:normalized_hash_facet .
 
 ex:normalized_file_facet a uco-observable:FileFacet ;
   uco-observable:filePath "analytics_demonstration/collected_sources/us-v-mccormack-ninth-circuit-2017/normalized.txt"@en .
 
-ex:normalized_hash_facet a uco-observable:HashFacet ;
+ex:normalized_hash_facet a uco-observable:ContentDataFacet ;
   uco-observable:hash ex:normalized_hash .
 
 ex:normalized_hash a uco-types:Hash ;
@@ -72,7 +72,7 @@ ex:normalized_hash a uco-types:Hash ;
 
 ex:defendant a uco-identity:Person ;
   rdfs:label "Shawn McCormack"@en ;
-  uco-core:description "Defendant/appellant described in the CourtListener opinion excerpt."@en .
+  uco-core:description "Defendant/appellant described in the CourtListener opinion excerpt." .
 
 ex:child_victim_1 a uco-identity:Person ;
   rdfs:label "Child victim 1 (anonymized)"@en .
@@ -92,19 +92,19 @@ ex:bakersfield_ca a uco-location:Location ;
 
 ex:hotel_location a uco-location:Location ;
   rdfs:label "Hotel (California; unspecified)"@en ;
-  uco-core:description "Hotel referenced in the opinion where photographic/video evidence of sexual abuse was discovered."@en .
+  uco-core:description "Hotel referenced in the opinion where photographic/video evidence of sexual abuse was discovered." .
 
 ex:photos_and_videos a uco-observable:ObservableObject ;
   rdfs:label "Photographic and video evidence (sexual abuse)"@en ;
-  uco-core:description "Represents photographic/video evidence referenced in the opinion; actual media omitted."@en .
+  uco-core:description "Represents photographic/video evidence referenced in the opinion; actual media omitted." .
 
 ex:email_and_chat_logs a uco-observable:ObservableObject ;
   rdfs:label "Email and chat logs (written exchanges)"@en ;
-  uco-core:description "Represents written exchanges referenced in the opinion; full content omitted."@en .
+  uco-core:description "Represents written exchanges referenced in the opinion; full content omitted." .
 
 ex:telephone_use a uco-observable:ObservableObject ;
   rdfs:label "Telephone use (instrumentality of interstate commerce)"@en ;
-  uco-core:description "Represents telephone use referenced as an instrumentality of interstate commerce in the kidnapping analysis."@en .
+  uco-core:description "Represents telephone use referenced as an instrumentality of interstate commerce in the kidnapping analysis." .
 
 # =============================================================================
 # CHARGES + SENTENCE (minimal charge instances; focus is appellate modeling)
@@ -118,7 +118,7 @@ ex:charge_1201 a cacontology-legal-outcomes:FederalCharge ;
 
 ex:life_sentence a cacontology-legal-outcomes:LifeImprisonmentSentence ;
   rdfs:label "Life imprisonment sentence (as challenged on appeal)"@en ;
-  uco-core:description "Life imprisonment sentence referenced in the opinion; linked here to the conviction context as an example."@en ;
+  uco-core:description "Life imprisonment sentence referenced in the opinion; linked here to the conviction context as an example." ;
   cacontology-legal-outcomes:appliesTo ex:charge_2251 .
 
 # =============================================================================
@@ -127,7 +127,7 @@ ex:life_sentence a cacontology-legal-outcomes:LifeImprisonmentSentence ;
 
 ex:appeal a cacontology-legal-outcomes:AppealProcess ;
   rdfs:label "Appeal process (9th Cir.)"@en ;
-  uco-core:description "Appeal described in CourtListener opinion; issues include evidentiary admission, sufficiency, and sentencing reasonableness."@en ;
+  uco-core:description "Appeal described in CourtListener opinion; issues include evidentiary admission, sufficiency, and sentencing reasonableness." ;
   cacontology-legal-outcomes:hasCharge ex:charge_2251, ex:charge_1201 ;
   cacontology-legal-outcomes:resultsSentence ex:life_sentence ;
   cacontology-legal-outcomes:raisesIssue ex:issue_evidence_admission, ex:issue_sufficiency, ex:issue_sentencing_reasonableness .
@@ -162,20 +162,20 @@ ex:rule_414 a cacontology-legal-outcomes:EvidenceRule ;
 
 ex:issue_evidence_admission a cacontology-legal-outcomes:EvidentiaryRuling ;
   rdfs:label "Issue: Admission of photos/videos and written exchanges"@en ;
-  uco-core:description "Challenges admission of photos/videos and email/chat logs; opinion discusses probative value vs prejudice and exceptions."@en ;
+  uco-core:description "Challenges admission of photos/videos and email/chat logs; opinion discusses probative value vs prejudice and exceptions." ;
   cacontology-legal-outcomes:issueDisposition ex:disp_affirmed ;
   cacontology-legal-outcomes:appliesStandardOfReview ex:sor_abuse_of_discretion ;
   cacontology-legal-outcomes:citesEvidenceRule ex:rule_403, ex:rule_404b, ex:rule_414 .
 
 ex:issue_sufficiency a cacontology-legal-outcomes:SufficiencyOfEvidenceIssue ;
   rdfs:label "Issue: Sufficiency of evidence (kidnapping + sexual exploitation counts)"@en ;
-  uco-core:description "Challenges sufficiency of evidence as to one kidnapping count and one sexual exploitation count; opinion references interstate-commerce elements."@en ;
+  uco-core:description "Challenges sufficiency of evidence as to one kidnapping count and one sexual exploitation count; opinion references interstate-commerce elements." ;
   cacontology-legal-outcomes:issueDisposition ex:disp_affirmed ;
   cacontology-legal-outcomes:appliesStandardOfReview ex:sor_substantial_evidence .
 
 ex:issue_sentencing_reasonableness a cacontology-legal-outcomes:SentencingReasonablenessIssue ;
   rdfs:label "Issue: Life sentence harsher than necessary (18 U.S.C. § 3553(a))"@en ;
-  uco-core:description "Challenges whether life imprisonment is harsher than necessary; opinion indicates district court analyzed circumstances and applied sentencing factors."@en ;
+  uco-core:description "Challenges whether life imprisonment is harsher than necessary; opinion indicates district court analyzed circumstances and applied sentencing factors." ;
   cacontology-legal-outcomes:issueDisposition ex:disp_affirmed ;
   cacontology-legal-outcomes:appliesStandardOfReview ex:sor_reasonableness .
 

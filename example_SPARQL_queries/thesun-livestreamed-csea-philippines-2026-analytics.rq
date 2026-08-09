@@ -34,8 +34,8 @@ SELECT ?doc ?label ?url WHERE {
 #################################################################
 SELECT ?doc ?hashValue WHERE {
   ?doc a uco-observable:ObservableObject ;
-       uco-core:hasFacet ?hashFacet .
-  ?hashFacet a uco-observable:HashFacet ;
+       uco-core:hasFacet ?contentFacet .
+  ?contentFacet a uco-observable:ContentDataFacet ;
             uco-observable:hash ?hashNode .
   ?hashNode a uco-types:Hash ;
            uco-types:hashValue ?hashValue .

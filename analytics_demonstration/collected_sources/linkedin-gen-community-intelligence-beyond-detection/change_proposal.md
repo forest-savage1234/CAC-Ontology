@@ -1,4 +1,4 @@
-## CAC Ontology Change Proposal: “Community & Intelligence Beyond Detection” (GEN) — target release v2.6.0
+## CAC Ontology Change Proposal: “Community & Intelligence Beyond Detection” (GEN) — target release v3.1.0
 
 - **Source document**: LinkedIn article “Community & Intelligence Beyond Detection” (Global Emancipation Network)
 - **Source URL**: `https://www.linkedin.com/pulse/community-intelligence-beyond-detection-global-emancipation-network-xvemc/`
@@ -35,7 +35,7 @@ This document follows Phase 0–2 requirements in `agent.md` (scope gate + reuse
 - `ontology/cacontology-platforms.ttl` (+ `ontology/cacontology-platforms-shapes.ttl`)
 - `ontology/cacontology-legal-harmonization.ttl` (+ `ontology/cacontology-legal-harmonization-shapes.ttl`)
 - **New module (recommended)**: `ontology/cacontology-analyst-wellbeing.ttl` (+ `ontology/cacontology-analyst-wellbeing-shapes.ttl`)
-- `CHANGELOG.md` (add `v2.6.0` section; see “Versioning plan” below)
+- `CHANGELOG.md` (add `v3.1.0` section; see “Versioning plan” below)
 
 #### Reuse-first / search-first summary (required)
 
@@ -95,7 +95,7 @@ Repo-local searches indicate **gaps (not found as modeled terms)** for:
 
 ---
 
-## Phase 2: Implementation plan (schema-driven; proposal only) — target release v2.6.0
+## Phase 2: Implementation plan (schema-driven; proposal only) — target release v3.1.0
 
 ### 2.1 New / updated terms (fully-qualified)
 
@@ -187,7 +187,7 @@ Repo-local searches indicate **gaps (not found as modeled terms)** for:
 - `cacontology-legal:SESTA_FOSTA_2018` a `cacontology-legal:Statute`
 - `cacontology-legal:DEFIANCE_Act` a `cacontology-legal:LegislativeInstrument`
 
-> Note: keep these individuals optional for v2.6.0 if you prefer schema-only releases; the core gap is the *pattern* (safe harbor + compliance intelligence + knowing paradox), not the population of specific laws.
+> Note: keep these individuals optional for v3.1.0 if you prefer schema-only releases; the core gap is the *pattern* (safe harbor + compliance intelligence + knowing paradox), not the population of specific laws.
 
 #### New module (recommended): `ontology/cacontology-analyst-wellbeing.ttl`
 
@@ -282,11 +282,11 @@ Planned queries:
 - “List statutes with safe harbors supported by compliance intelligence frameworks”
 - “Find review actions that used exposure mitigation measures”
 
-### 2.5 Versioning plan for v2.6.0
+### 2.5 Versioning plan for v3.1.0
 
-- Update **all** ontology and shape files version references **2.5.0 → 2.6.0** (consistent with prior release practice in `CHANGELOG.md`).
+- Update **all** ontology and shape files version references **prior release references → 3.1.0** (consistent with prior release practice in `CHANGELOG.md`).
 - Add a `CHANGELOG.md` entry:
-  - `## v2.6.0 - 11 February 2026`
+  - `## v3.1.0 - 9 August 2026`
   - Summarize: nudification modeling, risk stratification outputs, compliance intelligence + safe harbors + knowing paradox, moderation queue/backlog metrics, analyst wellbeing.
 
 ---
@@ -338,7 +338,7 @@ Citation for all new terms (uniform):
 - `ontology/cacontology-analyst-wellbeing-shapes.ttl` (**new**)
   - Validate controlled vocabularies for mitigation types and severity.
 - `CHANGELOG.md`
-  - Add `v2.6.0` entry summarizing this release (and update version references across files).
+  - Add `v3.1.0` entry summarizing this release (and update version references across files).
 
 ---
 
@@ -357,7 +357,7 @@ Citation for all new terms (uniform):
 
 ## Governance gate queue (REVIEW REQUIRED)
 
-- **New terms pending approval** (schema additions for v2.6.0):
+- **New terms pending approval** (schema additions for v3.1.0):
   - `cacontology-ai:Nudification`
   - `cacontology-ai:NudificationTool`
   - `cacontology-ai:NudifiedCSAM`

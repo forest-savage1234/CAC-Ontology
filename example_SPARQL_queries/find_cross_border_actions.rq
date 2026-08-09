@@ -49,4 +49,4 @@ WHERE {
 }
 GROUP BY ?sourceCountry ?targetCountry
 ORDER BY DESC(?caseCount)
-LIMIT ?limit 
+LIMIT 100

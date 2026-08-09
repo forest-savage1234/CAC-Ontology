@@ -36,7 +36,7 @@ WHERE {
         GROUP BY ?report
     }
     
-    ?report cacontology-hotlines:triggersAction{1,6} ?forwardAction . # Path length limit
+    ?report cacontology-hotlines:triggersAction+ ?forwardAction .
     ?forwardAction a cacontology-hotlines:ForwardToLEAction ;
                   cacontology-hotlines:startTime ?forwardTime ;
                   cacontology-hotlines:forwardsTo ?forwardOrg .
@@ -45,7 +45,7 @@ WHERE {
                   cacontology:hasReport ?report ; # Changed from cacontology-hotlines:hasReport
                   cacontology:status ?investigationStatus ; # Changed from cacontology-hotlines:status
                   cacontology:conductedBy ?investigationOrg ; # Changed from cacontology-hotlines:conductedBy
-                  cacontology:hasAction{1,6} ?rescueAction . # Path length limit
+                  cacontology:hasAction+ ?rescueAction .
     
     ?rescueAction a cacontology:VictimRescueAction ; # Changed from cacontology-hotlines:VictimRescueAction
                   cacontology:startTime ?rescueStartTime ; # Changed from cacontology-hotlines:startTime
@@ -56,10 +56,10 @@ WHERE {
     ?victim cacontology:age ?victimAge ; # Changed from cacontology-hotlines:age
             cacontology:gender ?victimGender . # Changed from cacontology-hotlines:gender
     
-    BIND(DAYS(?forwardTime - ?reportTime) AS ?daysToForward)
-    BIND(DAYS(?rescueStartTime - ?reportTime) AS ?daysToRescue)
+    BIND((?forwardTime - ?reportTime) AS ?daysToForward)
+    BIND((?rescueStartTime - ?reportTime) AS ?daysToRescue)
     
-    FILTER(?rescueAction cacontology:outcome cacontology:outcome-success) # Changed from cacontology-hotlines:outcome-success
+    ?rescueAction cacontology:outcome cacontology:outcome-success .
     FILTER(?reportTime >= ?from && ?reportTime <= ?to)
 
     # Security filter
@@ -70,4 +70,4 @@ WHERE {
     }
 }
 ORDER BY DESC(?reportTime)
-LIMIT ?limit 
+LIMIT 100

@@ -8,24 +8,27 @@
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
+@prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/platforms/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/platforms> rdf:type owl:Ontology ;
     rdfs:label "CAC Technology Platforms & Service Providers Ontology"@en ;
     rdfs:comment "An ontology for representing technology platforms, digital services, and Electronic Service Provider (ESP) capabilities in the context of child protection with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities, extending UCO and CASE. This ontology covers social media platforms, messaging services, content hosting, and service provider policies and capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/platforms/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/platforms/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-02-16"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.unifiedcyberontology.org/uco/observable/> ,
-                <https://ontology.unifiedcyberontology.org/uco/identity/> ,
-                <https://ontology.unifiedcyberontology.org/uco/action/> ,
-                <https://cacontology.projectvic.org/3.0.0> ,
-                <http://purl.org/nemo/gufo#> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
+                <https://cacontology.projectvic.org/3.1.0> ,
+                <https://cacontology.projectvic.org/core/3.1.0> ,
+                <https://cacontology.projectvic.org/grooming/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> .
 
 # =============================================================================
 # PLATFORM SERVICE CLASSES (extending UCO Observable with gUFO Object)
@@ -939,4 +942,125 @@ cacontology-platforms:providesOpenChatAccess rdf:type owl:ObjectProperty ;
     rdfs:label "provides open chat access"@en ;
     rdfs:comment "Links contact opportunity to open chat room access."@en ;
     rdfs:domain cacontology-platforms:AnonymousContactOpportunity ;
-    rdfs:range cacontology-platforms:OpenChatRooms . 
+    rdfs:range cacontology-platforms:OpenChatRooms .
+
+# =============================================================================
+# PLATFORM AFFORDANCES (capability taxonomy for transition-level misuse)
+# =============================================================================
+
+cacontology-platforms:PlatformAffordance rdf:type owl:Class ;
+    rdfs:label "Platform Affordance"@en ;
+    rdfs:comment "A platform capability that offenders may misuse to advance an offense trajectory (anonymity, ephemerality, unmonitored communication, etc.)."@en ;
+    rdfs:subClassOf uco-core:UcoObject, cac-core:DigitalSystemEntity .
+
+cacontology-platforms:Anonymity rdf:type owl:Class ;
+    rdfs:label "Anonymity Affordance"@en ;
+    rdfs:comment "Platform affordance enabling pseudonymous or minimally verified contact."@en ;
+    rdfs:subClassOf cacontology-platforms:PlatformAffordance .
+
+cacontology-platforms:Ephemerality rdf:type owl:Class ;
+    rdfs:label "Ephemerality Affordance"@en ;
+    rdfs:comment "Platform affordance where messages or media auto-delete, reducing forensic retention on the platform."@en ;
+    rdfs:subClassOf cacontology-platforms:PlatformAffordance .
+
+cacontology-platforms:UnmonitoredCommunication rdf:type owl:Class ;
+    rdfs:label "Unmonitored Communication Affordance"@en ;
+    rdfs:comment "Platform affordance for private channels with limited proactive moderation or parental visibility."@en ;
+    rdfs:subClassOf cacontology-platforms:PlatformAffordance .
+
+cacontology-platforms:ContactDiscovery rdf:type owl:Class ;
+    rdfs:label "Contact Discovery Affordance"@en ;
+    rdfs:comment "Platform affordance for finding or matching with new contacts (search, suggestions, random matching)."@en ;
+    rdfs:subClassOf cacontology-platforms:PlatformAffordance .
+
+cacontology-platforms:DistributionInfrastructure rdf:type owl:Class ;
+    rdfs:label "Distribution Infrastructure Affordance"@en ;
+    rdfs:comment "Platform affordance for sharing or broadcasting content to audiences beyond direct dyadic chat."@en ;
+    rdfs:subClassOf cacontology-platforms:PlatformAffordance .
+
+cacontology-platforms:GenerativeSynthesis rdf:type owl:Class ;
+    rdfs:label "Generative Synthesis Affordance"@en ;
+    rdfs:comment "Platform affordance for AI-generated or synthetic media creation and manipulation."@en ;
+    rdfs:subClassOf cacontology-platforms:PlatformAffordance .
+
+cacontology-platforms:Coordination rdf:type owl:Class ;
+    rdfs:label "Coordination Affordance"@en ;
+    rdfs:comment "Platform affordance for group coordination, encrypted channels, or multi-party planning."@en ;
+    rdfs:subClassOf cacontology-platforms:PlatformAffordance .
+
+cacontology-platforms:CoercionLeverage rdf:type owl:Class ;
+    rdfs:label "Coercion Leverage Affordance"@en ;
+    rdfs:comment "Platform affordance that amplifies coercive leverage (screenshots, forwarding, contact export, payment rails)."@en ;
+    rdfs:subClassOf cacontology-platforms:PlatformAffordance .
+
+# =============================================================================
+# CHANNEL MIGRATION EVENT (cross-platform offense trajectory transition)
+# =============================================================================
+
+cacontology-platforms:ChannelMigrationEvent rdf:type owl:Class ;
+    rdfs:label "Channel Migration Event"@en ;
+    rdfs:comment "Documented offense pattern where contact is initiated on one platform and deliberately moved to a second platform before escalation, to access more capable channels and/or sever the evidence trail on the originating platform."@en ;
+    rdfs:subClassOf cac-core:ExploitationEvent .
+
+cacontology-platforms:fromPlatform rdf:type owl:ObjectProperty ;
+    rdfs:label "from platform"@en ;
+    rdfs:comment "Originating platform from which the offender migrated contact."@en ;
+    rdfs:domain cacontology-platforms:ChannelMigrationEvent ;
+    rdfs:range uco-observable:DigitalService .
+
+cacontology-platforms:toPlatform rdf:type owl:ObjectProperty ;
+    rdfs:label "to platform"@en ;
+    rdfs:comment "Destination platform to which contact was migrated."@en ;
+    rdfs:domain cacontology-platforms:ChannelMigrationEvent ;
+    rdfs:range uco-observable:DigitalService .
+
+cacontology-platforms:migrationRationale rdf:type owl:DatatypeProperty ;
+    rdfs:label "migration rationale"@en ;
+    rdfs:comment "Why the offender migrated channels (capability_upgrade, evidence_evasion, both)."@en ;
+    rdfs:domain cacontology-platforms:ChannelMigrationEvent ;
+    rdfs:range xsd:string .
+
+cacontology-platforms:occursBetween rdf:type owl:ObjectProperty ;
+    rdfs:label "occurs between"@en ;
+    rdfs:comment "Offense phase instances separated by this channel migration event (earlier phase, later phase)."@en ;
+    rdfs:domain cacontology-platforms:ChannelMigrationEvent ;
+    rdfs:range cac-core:Phase .
+
+# =============================================================================
+# AFFORDANCE MISUSE (transition-level affordance annotation)
+# =============================================================================
+
+cacontology-platforms:AffordanceMisuse rdf:type owl:Class ;
+    rdfs:label "Affordance Misuse"@en ;
+    rdfs:comment "Annotation linking a platform affordance to the phase transition it enabled — affordances on offense trajectory edges rather than platform nodes alone."@en ;
+    rdfs:subClassOf uco-core:Relationship .
+
+cacontology-platforms:affordanceClass rdf:type owl:ObjectProperty ;
+    rdfs:label "affordance class"@en ;
+    rdfs:comment "The platform affordance category misused to enable the transition."@en ;
+    rdfs:domain cacontology-platforms:AffordanceMisuse ;
+    rdfs:range cacontology-platforms:PlatformAffordance .
+
+cacontology-platforms:enablesTransitionFrom rdf:type owl:ObjectProperty ;
+    rdfs:label "enables transition from"@en ;
+    rdfs:comment "Phase instance from which the affordance-enabled transition originates."@en ;
+    rdfs:domain cacontology-platforms:AffordanceMisuse ;
+    rdfs:range cac-core:Phase .
+
+cacontology-platforms:enablesTransitionTo rdf:type owl:ObjectProperty ;
+    rdfs:label "enables transition to"@en ;
+    rdfs:comment "Phase instance to which the affordance-enabled transition leads."@en ;
+    rdfs:domain cacontology-platforms:AffordanceMisuse ;
+    rdfs:range cac-core:Phase .
+
+cacontology-platforms:platform rdf:type owl:ObjectProperty ;
+    rdfs:label "platform"@en ;
+    rdfs:comment "Optional platform instance that carried the misused affordance."@en ;
+    rdfs:domain cacontology-platforms:AffordanceMisuse ;
+    rdfs:range uco-observable:DigitalService .
+
+cacontology-platforms:misuseDescription rdf:type owl:DatatypeProperty ;
+    rdfs:label "misuse description"@en ;
+    rdfs:comment "Narrative description of how the affordance was misused to enable the phase transition."@en ;
+    rdfs:domain cacontology-platforms:AffordanceMisuse ;
+    rdfs:range xsd:string . 

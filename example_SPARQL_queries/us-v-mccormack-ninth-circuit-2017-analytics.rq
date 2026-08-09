@@ -28,7 +28,7 @@ WHERE {
     uco-core:hasFacet ?opinionUrlFacet ;
     uco-core:hasFacet ?pdfUrlFacet ;
     uco-core:hasFacet ?fileFacet ;
-    uco-core:hasFacet ?hashFacet .
+    uco-core:hasFacet ?contentFacet .
 
   ?opinionUrlFacet a uco-observable:URLFacet ;
     uco-observable:url ?opinionUrl .
@@ -39,19 +39,19 @@ WHERE {
   ?fileFacet a uco-observable:FileFacet ;
     uco-observable:filePath ?sourcePath .
 
-  ?hashFacet a uco-observable:HashFacet ;
+  ?contentFacet a uco-observable:ContentDataFacet ;
     uco-observable:hash ?hashNode .
 
   ?hashNode a uco-types:Hash ;
     uco-types:hashValue ?sourceHash .
 
   ex:normalized_excerpt uco-core:hasFacet ?normFileFacet ;
-    uco-core:hasFacet ?normHashFacet .
+    uco-core:hasFacet ?normContentFacet .
 
   ?normFileFacet a uco-observable:FileFacet ;
     uco-observable:filePath ?normPath .
 
-  ?normHashFacet a uco-observable:HashFacet ;
+  ?normContentFacet a uco-observable:ContentDataFacet ;
     uco-observable:hash ?normHashNode .
 
   ?normHashNode a uco-types:Hash ;

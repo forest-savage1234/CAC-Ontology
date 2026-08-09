@@ -59,4 +59,4 @@ WHERE {
     }
 }
 ORDER BY DESC(?age) # Show oldest open reports first
-LIMIT ?limit 
+LIMIT 100

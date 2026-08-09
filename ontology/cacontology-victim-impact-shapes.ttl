@@ -9,16 +9,16 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/victim-impact/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/victim-impact/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Victim Impact SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the CAC Victim Impact Assessment Ontology, providing validation for victim impact assessments, psychological harm, trauma indicators, and recovery processes."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/victim-impact/shapes/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/victim-impact/shapes/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-03-13"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/victim-impact/3.0.0> ,
-                <http://purl.org/nemo/gufo#> ,
-                <https://ontology.unifiedcyberontology.org/uco/core/> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/victim-impact/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
 
 # =============================================================================
 # VICTIM IMPACT ASSESSMENT SHAPES
@@ -658,4 +658,35 @@ cacontology-impact:DataQualityShape rdf:type sh:NodeShape ;
         sh:minLength 10 ;
         sh:maxLength 1000 ;
         sh:message "Comment should be between 10 and 1000 characters when provided."@en
-    ] . 
+    ] .
+
+# =============================================================================
+# VULNERABILITY CONTEXT SHAPES — Issue #32
+# =============================================================================
+
+cacontology-impact:VulnerabilityContextShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:VulnerabilityContext ;
+    rdfs:label "Vulnerability Context Shape"@en ;
+    rdfs:comment "Validates vulnerability contexts as observed circumstances, not identity labels."@en ;
+    sh:property [
+        sh:path cacontology-impact:associatedWithFamilyRejection ;
+        sh:datatype xsd:boolean ;
+        sh:maxCount 1 ;
+        sh:message "associatedWithFamilyRejection must be boolean when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:associatedWithHousingInstability ;
+        sh:datatype xsd:boolean ;
+        sh:maxCount 1 ;
+        sh:message "associatedWithHousingInstability must be boolean when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:mitigatedByProtectiveSupport ;
+        sh:nodeKind sh:IRI ;
+        sh:message "mitigatedByProtectiveSupport must reference protective support nodes."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:informsPreventionIntervention ;
+        sh:nodeKind sh:IRI ;
+        sh:message "informsPreventionIntervention must reference prevention/outreach action nodes."@en
+    ] .

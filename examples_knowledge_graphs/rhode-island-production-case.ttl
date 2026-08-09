@@ -12,7 +12,7 @@
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 
 @prefix cacontology: <https://cacontology.projectvic.org#> .
-@prefix icacus: <https://cacontology.projectvic.org/us/ncmec/3.0.0#> .
+@prefix icacus: <https://cacontology.projectvic.org/us/ncmec#> .
 @prefix cacontology-production: <https://cacontology.projectvic.org/production#> .
 @prefix cacontology-custodial: <https://cacontology.projectvic.org/custodial#> .
 @prefix cacontology-victim-impact: <https://cacontology.projectvic.org/victim-impact#> .
@@ -338,14 +338,14 @@ ex:FederalCharge001 rdf:type cacontology-legal-outcomes:CSAM_Production ;
     cacontology-legal-outcomes:chargeLevel "federal_felony" ;
     cacontology-legal-outcomes:maximumPenalty 30 ;
     cacontology-legal-outcomes:minimumPenalty 15 ;
-    cacontology-legal-outcomes:chargeCount 2 .
+    cacontology-legal-outcomes:countNumber 2 .
 
 ex:FederalCharge002 rdf:type cacontology-legal-outcomes:CSAM_Possession ;
     cacontology-legal-outcomes:chargeStatute "18 U.S.C. § 2252A(a)(5)(B)" ;
     cacontology-legal-outcomes:chargeLevel "federal_felony" ;
     cacontology-legal-outcomes:maximumPenalty 20 ;
     cacontology-legal-outcomes:minimumPenalty 0 ;
-    cacontology-legal-outcomes:chargeCount 1 .
+    cacontology-legal-outcomes:countNumber 1 .
 
 ex:PleaAgreement001 rdf:type cacontology-legal-outcomes:PleaAgreement ;
     cacontology-legal-outcomes:pleaBargainOffered true ;

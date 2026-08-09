@@ -1,9 +1,11 @@
 # CAC Ontology Family - Design Document
 
+> **Current baseline:** CAC Ontology **v3.1.0**. The semantic spine was introduced in **v3.0.0**, and CASE/UCO imports are pinned to **1.5.0**. This document separates shipped design from historical rationale and future targets.
+
 ## Architecture Overview
 
 ### 1. Core Components
-The CAC ontology family consists of 30+ interconnected modules organized into six domain areas, now enhanced with comprehensive gUFO (Unified Foundational Ontology) integration for improved semantic precision, temporal modeling, and validation capabilities.This family of ontologies extends the Unified Cyber Ontology and the CASE Ontology to make it possible to completely model Crimes Against Children investigations, operations, legal process, reporting, offender tradecraft, and the digital and multimedia forensics activities and findings that are often critical for investigators and prosecutors.
+CAC v3.1.0 ships 50 ontology, spine, bridge, and integration Turtle modules plus 47 SHACL shape files. The family extends UCO and CASE and aligns to gUFO through the semantic spine and bridge architecture.
 
 This family of ontologies seeks to implement semantically clear information models that reflect the information, information relationships, workflows, and events that a Crimes Against Children Investigator uses or may use in the future. Each ontology represents a unique application domain within investigators'and prosecutors' discourse. This family of ontologies seeks to be universal and it is heavily informed by public documentation in the form of press releses from law enforcement agencies and prosecutor's offices. Finally, this family of ontologies seeks to use modern language as much as possible to reflect the unifying efforts of the CAC community, but there may be language in these ontologies that are more reflective of a certain country when that language is still professionally used.
 
@@ -18,7 +20,7 @@ This family of ontologies seeks to implement semantically clear information mode
 - `cacontology-bridge-case.ttl`: Bridge module aligning CAC classes to CASE Ontology
 - `cacontology-bridge-uco.ttl`: Bridge module aligning CAC classes to UCO
 - `cacontology-temporal.ttl`: Temporal framework for investigation lifecycle
-- `cacontology-integration-patterns.ttl`: Integration strategy across 40+ modules
+- `cacontology-integration-patterns.ttl`: Shipped integration-pattern module
 
 #### 1.2 International Coordination & Global Frameworks (4 modules)
 - `cacontology-international.ttl`: Global coordination & cross-border operations
@@ -53,16 +55,16 @@ This family of ontologies seeks to implement semantically clear information mode
 - `cacontology-specialized-units.ttl`: Specialized units & advanced capabilities
 - `cacontology-sex-offender-registry.ttl`: Sex offender registry management
 
-#### 1.7 Validation Components (30 modules)
+#### 1.7 Validation Components
 - `cacontology-core-shapes.ttl`: SHACL shapes for core validation
 - `cacontology-hotlines-shapes.ttl`: SHACL shapes for hotline validation
 - `cacontology-forensics-shapes.ttl`: SHACL shapes for forensic validation
-- Plus 17+ additional SHACL validation modules
+- 47 SHACL shape files are shipped in `ontology/`; one-to-one coverage is not implied
 
 #### 1.8 Supporting Components
-- JSON-LD contexts for developer integration
-- 56 example knowledge graphs demonstrating real-world usage
-- 28 SPARQL query files for operational intelligence
+- Five shipped JSON-LD contexts with limited domain coverage
+- 61 Turtle example knowledge graphs
+- 32 SPARQL query files
 - Testing framework and CI/CD pipeline
 - Complete documentation suite
 
@@ -76,7 +78,7 @@ graph TD
         CASE_ONT[CASE]
     end
 
-    subgraph Spine["Semantic Spine (v3.0.0)"]
+    subgraph Spine["Semantic Spine (introduced v3.0.0)"]
         SPINE[Core Spine]
         SPINE_SHAPES[Spine Shapes]
         BRIDGE_GUFO[Bridge: gUFO]
@@ -193,7 +195,7 @@ graph TD
 - Clear error messages for validation failures
 - Support for custom validation rules
 - Automated testing in CI/CD pipeline
-- ✅ **COMPLETED**: 71.88% coverage achieved (23 of 32 modules) - All critical modules now have comprehensive SHACL validation (20+ SHACL shapes modules)
+- 47 SHACL shape files are shipped; validate coverage per module and use case rather than relying on an obsolete percentage
 
 ### 4. Extensibility
 - Support for regional variations (Arkansas, Illinois, Idaho operations)
@@ -207,15 +209,15 @@ graph TD
 - Supports documented operational metrics and outcomes
 - Aligned with current investigation best practices
 
-### 6. gUFO Foundational Ontology Integration (**NEW**)
-- **Phase 1 (COMPLETE)**: Core investigation modeling with anti-rigid phases and roles
-- **Phase 2 (COMPLETE)**: Temporal framework for investigation lifecycle management
-- **Phase 3 (COMPLETE)**: Integration strategy across all 26 modules
+### 6. gUFO Foundational Ontology Integration
+- **Shipped:** semantic spine and gUFO bridge
+- **Shipped:** temporal framework module
+- **Shipped:** integration-pattern module
 - **Enhanced Semantics**: Clear distinction between Events (actions) and Situations (states)
 - **Anti-Rigid Modeling**: Proper modeling of phases and roles as non-essential properties
 - **Temporal Constraints**: Built-in temporal validation and lifecycle management
 - **Role Conflict Prevention**: Automated detection of incompatible role assignments
-- **Backward Compatibility**: Full equivalence mappings maintain existing functionality
+- **Backward compatibility goal:** mappings and deprecations should minimize avoidable breakage
 
 #### 6.1 gUFO Integration Benefits
 
@@ -227,29 +229,29 @@ graph TD
 | Role Conflicts | Manual detection | Automated prevention | +100% |
 | Phase Validation | None | Automated | +∞ |
 
-#### 6.2 Three-Phase Implementation Strategy
+#### 6.2 Historical three-phase implementation strategy
 
-**Phase 1: Core Investigation Modeling (✅ COMPLETE)**
+**Phase 1: Core Investigation Modeling (historical plan; resulting modules shipped)**
 - Investigation phases as `gufo:Phase` with temporal constraints
 - Enhanced role semantics using `gufo:Role` anti-rigidity
 - Clear action vs lifecycle distinction (`gufo:Event` vs `gufo:Situation`)
 - Criminal event hierarchy using `gufo:Kind` and `gufo:SubKind`
 
-**Phase 2: Temporal Framework (✅ COMPLETE)**
+**Phase 2: Temporal Framework (historical plan; module shipped)**
 - Investigation lifecycle as structured process
 - Phase transition events with dependency management
 - Suspension/resumption patterns for complex cases
 - Multi-jurisdiction coordination with timing synchronization
 
-**Phase 3: Full Integration Strategy (✅ COMPLETE)**
+**Phase 3: Integration Strategy (historical plan; module shipped)**
 - 16 specialized integration patterns for different CAC domains
 - 4 validation strategies (Ontological, Temporal, Role, Phase)
-- Wave-based deployment across 30+ modules (345-day timeline)
+- The former 345-day deployment timeline is historical and is not a current roadmap
 - AI-enhanced analytics and pattern recognition capabilities
 
-### 7. Semantic Spine Architecture (v3.0.0)
+### 7. Semantic Spine Architecture
 
-CAC Ontology v3.0.0 introduces the **semantic spine** — a thin, stable abstraction layer in the `cac-core:` namespace that mediates all alignment with foundational and external ontologies (gUFO, UCO, CASE). Rather than having each domain module subclass gUFO or UCO types directly, modules anchor to well-defined spine branches whose upstream alignments are maintained in dedicated bridge files.
+CAC Ontology v3.1.0 retains the **semantic spine** introduced in v3.0.0 — a thin, stable abstraction layer in the `cac-core:` namespace that mediates alignment with gUFO, UCO, and CASE. Domain modules anchor to spine branches whose upstream alignments are maintained in dedicated bridge files.
 
 #### 7.1 Purpose
 - Provides a single, versionable layer of indirection between domain modules and foundational ontologies.
@@ -260,7 +262,8 @@ CAC Ontology v3.0.0 introduces the **semantic spine** — a thin, stable abstrac
 
 | Spine Class | Upstream Alignment | Domain Usage |
 |-------------|-------------------|--------------|
-| `cac-core:Phase` | `gufo:Phase` | Investigation phases, lifecycle stages |
+| `cac-core:Phase` | `gufo:Phase` | Investigation phases, lifecycle stages, offense-trajectory state-machine states |
+| `cac-core:ConditioningPhase` | `gufo:Phase` (via `cac-core:Phase`) | Macro preparatory phase in offense trajectories; optional `conditioningMode` |
 | `cac-core:Role` | `gufo:Role` | Investigator, victim, offender, and organizational roles |
 | `cac-core:Event` | `gufo:Event` | Actions, incidents, operational events |
 | `cac-core:LegalEvent` | `gufo:Event` | Court hearings, filings, legal proceedings |
@@ -287,7 +290,21 @@ cacontology-grooming:OnlineGroomingSituation
     rdfs:subClassOf cac-core:Situation .
 ```
 
-This pattern ensures that when gUFO or UCO releases a breaking change, only the bridge files require updating — all 30+ domain modules remain untouched.
+This pattern limits the surface affected by external changes, though a breaking upstream release can still require module, shape, example, or query updates.
+
+#### 7.5 Offense-trajectory ConditioningPhase
+
+`cac-core:ConditioningPhase` is the spine-level macro preparatory phase between initial contact and exploitation in ICAC offense-trajectory state-machine graphs. It is distinct from variant refinement sub-stages (`SexualizationPhase`, `IsolationPhase`) that may appear as separate sequential nodes when a case documents a distinct stage after macro-conditioning.
+
+| Concept | IRI | Notes |
+|---------|-----|-------|
+| ConditioningPhase (spine) | `cac-core:ConditioningPhase` | Macro preparatory phase class |
+| ConditioningPhase (grooming instances) | `cacontology-grooming:ConditioningPhase` | Canonical instance type; requires `cac-core:Phase` on every instance (SHACL) |
+| conditioningMode | `cac-core:conditioningMode` | Dominant mechanism on macro ConditioningPhase instances |
+| Phase ordering | `cac-core:precedes` | Links consecutive phase instances in a trajectory |
+| Deprecated label | `TrustBuildingPhase` | Subclass of `ConditioningPhase`; `conditioningMode: trust_rapport` for new graphs |
+
+Example trajectory pattern: `InitialContactPhase` → `ConditioningPhase` → `ExploitationPhase` → `MaintenancePhase`. See `examples_knowledge_graphs/conditioning-phase-offense-trajectory-example.ttl` and `docs/glossary.md` (Offense-trajectory state machine) for authoring guidance.
 
 ## Technical Design
 
@@ -370,11 +387,11 @@ This pattern ensures that when gUFO or UCO releases a breaking change, only the 
 - Standardized error handling and responses
 - Rate limiting and authentication support
 
-### 4. Case-Driven Extensions (Utah Christensen Press Release) and CAC Ontology v3.0.0
+### 4. Historical case-driven extensions
 
-The November 2025 Utah ICAC / Garfield County press release about Dominic Lynn Christensen surfaced several recurring investigative and legal concepts that were only partially represented in the ontology family. This section documents both the **extensions implemented in CAC Ontology v2.2.0** (and carried forward into v3.0.0) and additional proposals for future versions.
+The November 2025 Utah ICAC / Garfield County press release surfaced recurring investigative and legal concepts. This historical section records work implemented in v2.2.0 and retained in v3.1.0, plus proposals that remain explicitly unshipped unless represented in current ontology files.
 
-In **v2.2.0** (now part of v3.0.0), the following design work from this section has been realized:
+In **v2.2.0** (retained in v3.1.0), the following design work was realized:
 
 - A comprehensive Utah recidivism and registry-focused example graph in `examples_knowledge_graphs/utah-dominic-christensen-example.ttl`.
 - Supporting analytics in `example_SPARQL_queries/utah-dominic-christensen-analytics.rq`.
@@ -459,23 +476,23 @@ The remaining bullets in this section are intentionally kept at the narrative / 
         - `ruleStructureDescription` (short textual description of the “game” rules).
     - Ensure it can be applied in both purely physical-space contexts and in hybrid online/offline scenarios (e.g., games proposed online and executed offline).
 
-These proposals are intentionally kept at the narrative/design level so they can be reviewed against additional cases before being formalized into TTL modules and SHACL shapes in a future release beyond v3.0.0.
+These proposals are historical narrative/design items, not a current roadmap or claim of shipped v3.1.0 behavior.
 
 ## Implementation Details
 
 ### 1. Current File Organization
 
-The block below reflected an earlier ICAC-era layout. The **current CAC Ontology v3.0.0 repository layout** at the top level is:
+The **current CAC Ontology v3.1.0 repository layout** at the top level is:
 
 ```
 .
-├── ontology/                     # All ontology modules (30+ files)
+├── ontology/                     # 50 ontology/alignment files + 47 SHACL shape files
 ├── examples_knowledge_graphs/    # Real-world example graphs (including Utah recidivism & registry examples)
 ├── example_SPARQL_queries/       # Analytics and query examples (including Utah recidivism & NCMEC analytics)
 ├── docs/                         # Architecture, design, user docs, PRD, glossary
 ├── testing/                      # Docker-based validation and development environment
 ├── contexts/                     # JSON-LD context files
-├── CHANGELOG.md                  # Version history (v3.0.0 and earlier)
+├── CHANGELOG.md                  # Version history
 └── README.md                     # Top-level project overview
 ```
 
@@ -485,7 +502,7 @@ Within `ontology/`, the CAC Ontology family retains the module structure describ
 - Semantic versioning (MAJOR.MINOR.PATCH)
 - Backward compatibility for minor releases
 - Clear deprecation policy with migration guides
-- Coordinated releases across all 30+ modules
+- Global project releases with module-specific version IRIs where appropriate
 - Version alignment with UCO/CASE releases
 
 ### 3. Testing Strategy
@@ -503,6 +520,8 @@ Within `ontology/`, the CAC Ontology family retains the module structure describ
 - Apache Jena Fuseki for triple store operations
 
 ## Security Design
+
+This section records application-level design requirements. The ontology repository does not itself ship access control, audit logging, data-retention enforcement, or export-blocking middleware.
 
 ### 1. Data Protection
 - Anonymous reporting capabilities
@@ -526,6 +545,8 @@ Within `ontology/`, the CAC Ontology family retains the module structure describ
 - Automatic classification based on content
 
 ## Performance Design
+
+This section records targets for consuming systems. It is not a benchmark report for CAC v3.1.0.
 
 ### 1. Query Optimization
 - Indexed properties for key relationships
@@ -571,14 +592,14 @@ Within `ontology/`, the CAC Ontology family retains the module structure describ
 - User acceptance testing
 - Cross-platform compatibility validation
 
-## Future Roadmap
+## Possible future directions
 
-### 1. Planned Enhancements
-- Additional regional extensions (Canada, EU, Asia-Pacific)
-- Enhanced AI/ML integration for pattern detection
-- Blockchain integration for evidence integrity
-- Mobile application support
-- Real-time analytics dashboard
+The items below are research ideas, not committed roadmap items or shipped v3.1.0 capabilities.
+
+### 1. Candidate enhancements
+- Additional regional extensions
+- Better machine-readable documentation and context coverage
+- Expanded validation and migration guidance
 
 ### 2. Research Areas
 - Predictive analytics for investigation outcomes
@@ -587,11 +608,7 @@ Within `ontology/`, the CAC Ontology family retains the module structure describ
 - International cooperation optimization
 - Prevention effectiveness measurement
 
-### 3. Technology Evolution
-- Emerging ontology standards integration
-- Next-generation graph databases
-- Cloud-native deployment patterns
-- Edge computing for distributed operations
-- Quantum-resistant cryptography preparation
+### 3. Technology evaluation
+- Evaluate emerging ontology standards and storage technologies against demonstrated adopter needs
 
 See [Architecture](architecture.md) for detailed system diagrams and [Glossary](glossary.md) for acronyms and key terms.

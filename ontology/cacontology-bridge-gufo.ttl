@@ -12,19 +12,19 @@
 # Ontology Declaration
 # =============================================================================
 
-<https://cacontology.projectvic.org/bridge/gufo/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/bridge/gufo> rdf:type owl:Ontology ;
     rdfs:label "CAC Ontology gUFO Bridge Module"@en ;
     rdfs:comment "Bridge module capturing alignment axioms between CAC Ontology classes and gUFO foundational ontology concepts. This module holds stronger or legacy alignment statements that were previously expressed as owl:equivalentClass axioms in domain modules. Importing this module enables advanced gUFO-based reasoning but is not required for basic CAC interoperability."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/bridge/gufo/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/bridge/gufo/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2026-03-16"^^xsd:date ;
-    dcterms:modified "2026-03-16"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/core/3.0.0> ,
-                <http://purl.org/nemo/gufo#> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/core/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> .
 
 # =============================================================================
-# LEGACY EQUIVALENCE ALIGNMENTS (moved from domain modules in v3.0.0)
+# LEGACY EQUIVALENCE ALIGNMENTS (moved from domain modules in v3.1.0)
 #
 # These were previously owl:equivalentClass axioms scattered across domain
 # modules. They are preserved here for reasoning continuity but are no longer
@@ -34,7 +34,7 @@
 
 # --- CriminalEvent alignment ---
 # The legacy cacontology-gufo:CriminalEvent class was used as an equivalence
-# target for many event classes. In v3.0.0, those classes should instead
+# target for many event classes. In v3.1.0, those classes should instead
 # subclass cac-core:Event or its sub-branches. The equivalence is preserved
 # here for backward-compatible reasoning.
 

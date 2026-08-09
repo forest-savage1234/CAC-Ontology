@@ -30,12 +30,12 @@ WHERE {
 
   ?doc rdfs:label ?docLabel ;
        uco-core:hasFacet ?urlFacet ;
-       uco-core:hasFacet ?hashFacet .
+       uco-core:hasFacet ?contentFacet .
 
   ?urlFacet a uco-observable:URLFacet ;
            uco-observable:url ?url .
 
-  ?hashFacet a uco-observable:HashFacet ;
+  ?contentFacet a uco-observable:ContentDataFacet ;
             uco-observable:hash ?hashNode .
 
   ?hashNode a uco-types:Hash ;
@@ -64,12 +64,12 @@ WHERE {
 
   ?norm rdfs:label ?normLabel ;
         uco-core:hasFacet ?fileFacet ;
-        uco-core:hasFacet ?hashFacet .
+        uco-core:hasFacet ?contentFacet .
 
   ?fileFacet a uco-observable:FileFacet ;
             uco-observable:filePath ?path .
 
-  ?hashFacet a uco-observable:HashFacet ;
+  ?contentFacet a uco-observable:ContentDataFacet ;
             uco-observable:hash ?hashNode .
 
   ?hashNode a uco-types:Hash ;
@@ -158,7 +158,7 @@ WHERE {
             rdfs:label ?affiliateLabel .
 
   # exclude the source doc itself if present in uco-action:object
-  FILTER(!STRENDS(STR(?affiliate), \"82588a71-7176-4cd0-aaee-56cffc467f86\"))
+  FILTER(!STRENDS(STR(?affiliate), "82588a71-7176-4cd0-aaee-56cffc467f86"))
 }
 ORDER BY ?affiliateLabel
 ;
@@ -211,7 +211,8 @@ SELECT DISTINCT ?prov ?provLabel ?action ?actionLabel ?provDesc
 WHERE {
   ?prov a investigation:ProvenanceRecord ;
         rdfs:label ?provLabel ;
-        investigation:provenanceRecordAction ?action .
+        uco-core:object ?source .
+  ?action uco-action:object ?source .
   OPTIONAL { ?action rdfs:label ?actionLabel }
   OPTIONAL { ?prov uco-core:description ?provDesc }
 }

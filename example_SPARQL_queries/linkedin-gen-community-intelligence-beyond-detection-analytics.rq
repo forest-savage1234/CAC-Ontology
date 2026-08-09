@@ -35,7 +35,7 @@ WHERE {
   ?doc rdfs:label ?docLabel ;
        uco-core:hasFacet ?urlFacet ;
        uco-core:hasFacet ?fileFacet ;
-       uco-core:hasFacet ?hashFacet .
+       uco-core:hasFacet ?contentFacet .
 
   ?urlFacet a uco-observable:URLFacet ;
            uco-observable:url ?url .
@@ -43,7 +43,7 @@ WHERE {
   ?fileFacet a uco-observable:FileFacet ;
             uco-observable:filePath ?path .
 
-  ?hashFacet a uco-observable:HashFacet ;
+  ?contentFacet a uco-observable:ContentDataFacet ;
             uco-observable:hash ?hashNode .
 
   ?hashNode a uco-types:Hash ;

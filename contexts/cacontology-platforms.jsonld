@@ -1,0 +1,88 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://cacontology.projectvic.org/platforms#",
+    "cacontology": "https://cacontology.projectvic.org#",
+    "cacontology-platforms": "https://cacontology.projectvic.org/platforms#",
+    "cac-core": "https://cacontology.projectvic.org/core#",
+    "uco": "https://ontology.unifiedcyberontology.org/uco/core/",
+    "ChannelMigrationEvent": {
+      "@id": "cacontology-platforms:ChannelMigrationEvent",
+      "@type": "@id"
+    },
+    "AffordanceMisuse": {
+      "@id": "cacontology-platforms:AffordanceMisuse",
+      "@type": "@id"
+    },
+    "PlatformAffordance": {
+      "@id": "cacontology-platforms:PlatformAffordance",
+      "@type": "@id"
+    },
+    "Anonymity": {
+      "@id": "cacontology-platforms:Anonymity",
+      "@type": "@id"
+    },
+    "Ephemerality": {
+      "@id": "cacontology-platforms:Ephemerality",
+      "@type": "@id"
+    },
+    "UnmonitoredCommunication": {
+      "@id": "cacontology-platforms:UnmonitoredCommunication",
+      "@type": "@id"
+    },
+    "ContactDiscovery": {
+      "@id": "cacontology-platforms:ContactDiscovery",
+      "@type": "@id"
+    },
+    "DistributionInfrastructure": {
+      "@id": "cacontology-platforms:DistributionInfrastructure",
+      "@type": "@id"
+    },
+    "GenerativeSynthesis": {
+      "@id": "cacontology-platforms:GenerativeSynthesis",
+      "@type": "@id"
+    },
+    "Coordination": {
+      "@id": "cacontology-platforms:Coordination",
+      "@type": "@id"
+    },
+    "CoercionLeverage": {
+      "@id": "cacontology-platforms:CoercionLeverage",
+      "@type": "@id"
+    },
+    "fromPlatform": {
+      "@id": "cacontology-platforms:fromPlatform",
+      "@type": "@id"
+    },
+    "toPlatform": {
+      "@id": "cacontology-platforms:toPlatform",
+      "@type": "@id"
+    },
+    "migrationRationale": "cacontology-platforms:migrationRationale",
+    "occursBetween": {
+      "@id": "cacontology-platforms:occursBetween",
+      "@type": "@id"
+    },
+    "affordanceClass": {
+      "@id": "cacontology-platforms:affordanceClass",
+      "@type": "@id"
+    },
+    "enablesTransitionFrom": {
+      "@id": "cacontology-platforms:enablesTransitionFrom",
+      "@type": "@id"
+    },
+    "enablesTransitionTo": {
+      "@id": "cacontology-platforms:enablesTransitionTo",
+      "@type": "@id"
+    },
+    "platform": {
+      "@id": "cacontology-platforms:platform",
+      "@type": "@id"
+    },
+    "misuseDescription": "cacontology-platforms:misuseDescription",
+    "precedes": {
+      "@id": "cac-core:precedes",
+      "@type": "@id"
+    }
+  }
+}

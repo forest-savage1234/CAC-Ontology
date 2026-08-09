@@ -12,16 +12,16 @@
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/forensics/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/forensics/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Forensics SHACL Shapes with gUFO Validation"@en ;
     rdfs:comment "SHACL validation shapes for gUFO-enhanced CAC forensics ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/forensics/shapes/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/forensics/shapes/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/forensics/3.0.0> ,
-                <http://purl.org/nemo/gufo#> ,
-                <https://ontology.unifiedcyberontology.org/uco/core/> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/forensics/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
 
 # =============================================================================
 # gUFO TYPE CONSISTENCY VALIDATION
@@ -683,4 +683,52 @@ cacontology-forensics:TemporalConsistencyBusinessRule rdf:type sh:NodeShape ;
                 $this cacontology-forensics:temporalAccuracy ?accuracy .
                 FILTER (?accuracy < 0.9)
             }
-        """     ] . 
+        """     ] .
+
+# =============================================================================
+# ATTRIBUTION AND CORRELATION EVIDENCE SHAPES — Issue #35
+# =============================================================================
+
+cacontology-forensics:AttributionAssessmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:AttributionAssessment ;
+    rdfs:label "Attribution Assessment Shape"@en ;
+    rdfs:comment "Validates attribution assessments linking observables to a controlling subject."@en ;
+    sh:property [
+        sh:path cacontology-forensics:attributionConfidence ;
+        sh:datatype xsd:string ;
+        sh:in ("high" "medium" "low") ;
+        sh:maxCount 1 ;
+        sh:message "Attribution confidence must be one of: high, medium, low."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:supportedByCorrelation ;
+        sh:nodeKind sh:IRI ;
+        sh:message "supportedByCorrelation must reference correlation evidence nodes."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:supportsAttributionOf ;
+        sh:nodeKind sh:IRI ;
+        sh:message "supportsAttributionOf must reference person nodes."@en
+    ] .
+
+cacontology-forensics:CorrelationEvidenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:CorrelationEvidence ;
+    rdfs:label "Correlation Evidence Shape"@en ;
+    rdfs:comment "Validates correlation evidence temporal scope and method."@en ;
+    sh:property [
+        sh:path cacontology-forensics:correlationTimeWindowStart ;
+        sh:datatype xsd:dateTime ;
+        sh:maxCount 1 ;
+        sh:message "Correlation time window start must be xsd:dateTime when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:correlationTimeWindowEnd ;
+        sh:datatype xsd:dateTime ;
+        sh:maxCount 1 ;
+        sh:message "Correlation time window end must be xsd:dateTime when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:correlationMethod ;
+        sh:datatype xsd:string ;
+        sh:message "Correlation method must be a string when specified."@en
+    ] .

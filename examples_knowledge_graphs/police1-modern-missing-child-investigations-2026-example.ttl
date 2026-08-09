@@ -35,7 +35,7 @@
     uco-observable:mimeType "text/plain"@en ;
     uco-observable:sizeInBytes 7659 .
 
-<urn:uuid:761369ba-097d-5c87-abbf-7cf17baeee9d> a uco-observable:HashFacet ;
+<urn:uuid:761369ba-097d-5c87-abbf-7cf17baeee9d> a uco-observable:ContentDataFacet ;
     uco-observable:hash <urn:uuid:3baa825e-5661-5536-9f9b-657f6dad6ff9> .
 
 <urn:uuid:3baa825e-5661-5536-9f9b-657f6dad6ff9> a uco-types:Hash ;
@@ -65,7 +65,7 @@
     uco-action:object <urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e> ,
                       <urn:uuid:41880913-ac3f-5477-a280-bf421cd11d4c> ,
                       <urn:uuid:1f727d1b-56ba-58d7-a953-7d076d787bda> ;
-    uco-core:description "Grounded in normalized.txt lines 13-18. Quote: \"Two key legal tools... Emergency Disclosure Requests (EDRs) and search warrants.\" Confidence: high."@en .
+    uco-core:description "Grounded in normalized.txt lines 13-18. Quote: \"Two key legal tools... Emergency Disclosure Requests (EDRs) and search warrants.\" Confidence: high." .
 
 <urn:uuid:41880913-ac3f-5477-a280-bf421cd11d4c> a cacontology-platforms:EmergencyDisclosureRequest ;
     rdfs:label "Emergency Disclosure Request (EDR) used in time-sensitive missing-child investigations"@en ;
@@ -82,17 +82,17 @@
     uco-action:performer <urn:uuid:c0f5bd43-a614-55d0-9fdf-86c0d8e5b426> ;
     uco-action:object <urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e> ,
                       <urn:uuid:1f727d1b-56ba-58d7-a953-7d076d787bda> ;
-    uco-core:description "Grounded in normalized.txt lines 17-18. Quote: \"being missing is not, in itself, a crime\" and investigators rely on related offenses \"such as child endangerment\". Confidence: high."@en .
+    uco-core:description "Grounded in normalized.txt lines 17-18. Quote: \"being missing is not, in itself, a crime\" and investigators rely on related offenses \"such as child endangerment\". Confidence: high." .
 
 <urn:uuid:62c2e1bd-8f18-509f-bee1-cbc41823ab4a> a uco-action:Action ;
     rdfs:label "Article warns 'runaway' labeling can reduce urgency"@en ;
     uco-action:performer <urn:uuid:c0f5bd43-a614-55d0-9fdf-86c0d8e5b426> ;
     uco-action:object <urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e> ;
-    uco-core:description "Grounded in normalized.txt lines 8-9. Quote: \"'Runaway' labeling can reduce urgency\" and may be a symptom of abuse/neglect/coercion/online grooming. Confidence: high."@en .
+    uco-core:description "Grounded in normalized.txt lines 8-9. Quote: \"'Runaway' labeling can reduce urgency\" and may be a symptom of abuse/neglect/coercion/online grooming. Confidence: high." .
 
 <urn:uuid:fd75aa48-5698-5551-9ef0-a7eac1e30c7f> a uco-action:Action ;
     rdfs:label "Article describes offender countermeasures to avoid tracking"@en ;
     uco-action:performer <urn:uuid:c0f5bd43-a614-55d0-9fdf-86c0d8e5b426> ;
     uco-action:object <urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e> ;
-    uco-core:description "Grounded in normalized.txt line 12. Quote: offenders \"coach kids to shut down accounts, abandon devices and avoid being tracked.\" Confidence: high."@en .
+    uco-core:description "Grounded in normalized.txt line 12. Quote: offenders \"coach kids to shut down accounts, abandon devices and avoid being tracked.\" Confidence: high." .
 

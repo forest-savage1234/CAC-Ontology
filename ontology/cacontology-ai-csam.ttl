@@ -14,22 +14,22 @@
 @prefix cacontology-gufo: <https://cacontology.projectvic.org/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/ai-csam/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/ai-csam> rdf:type owl:Ontology ;
     rdfs:label "CAC AI-Generated Content Ontology with gUFO Integration"@en ;
     rdfs:comment "An ontology for representing artificial intelligence-generated child sexual abuse material and related detection, investigation, and prosecution challenges. Enhanced with gUFO foundational ontology for improved semantic precision, anti-rigidity modeling, and temporal constraint validation. Based on analysis of Operation Cumberland 2025 and emerging AI-CSAM threats identified by Europol and international law enforcement."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/ai-csam/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/ai-csam/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
-    dcterms:modified "2026-03-16"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.unifiedcyberontology.org/uco/identity/> ,
-                <https://ontology.unifiedcyberontology.org/uco/observable/> ,
-                <https://ontology.unifiedcyberontology.org/uco/action/> ,
-                <https://ontology.unifiedcyberontology.org/uco/tool/> ,
-                <https://cacontology.projectvic.org/core/3.0.0> ,
-                <https://cacontology.projectvic.org/3.0.0> ,
-                <http://purl.org/nemo/gufo#> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/tool/1.5.0> ,
+                <https://cacontology.projectvic.org/core/3.1.0> ,
+                <https://cacontology.projectvic.org/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> .
 
 # =============================================================================
 # AI-GENERATED CONTENT CLASSES (extending UCO Observable and gUFO Objects)

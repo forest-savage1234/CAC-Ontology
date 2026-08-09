@@ -14,9 +14,8 @@ PREFIX gufo: <http://purl.org/nemo/gufo#>
 PREFIX cacontology: <https://cacontology.projectvic.org#>
 PREFIX cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#>
 PREFIX cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#>
-PREFIX cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec/2.1.0#>
+PREFIX cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec#>
 PREFIX cacontology-grooming: <https://cacontology.projectvic.org/grooming#>
-PREFIX ex: <https://example.org/kb/utah-dominic-christensen/>
 
 ################################################################################
 ## 1) Christensen Case Timeline: Incidents, Charges, and Proceedings by Year ##
@@ -37,7 +36,10 @@ SELECT DISTINCT
     ?proceeding
     ?proceedingLabel
 WHERE {
-    BIND (ex:DominicChristensen AS ?subject)
+    ?subject a cacontology-registry:RegisteredSexOffender ;
+             rdfs:label ?subjectLabel .
+    FILTER(CONTAINS(LCASE(STR(?subjectLabel)), "dominic") &&
+           CONTAINS(LCASE(STR(?subjectLabel)), "christensen"))
 
     # Core child sexual abuse and CSAM events
     {
@@ -71,11 +73,11 @@ WHERE {
                            cacontology-legal-outcomes:ArraignmentProceeding))
     }
 
-    # Derive calendar year from event or fallback to 2025 if missing time
+    # Derive calendar year from event time or the dated event label.
     BIND (
         IF(BOUND(?eventTime),
            STR(YEAR(?eventTime)),
-           IF(?event = ex:CSAMIncident_2025, "2025", "2021")
+           IF(CONTAINS(STR(?eventLabel), "2025"), "2025", "2021")
         ) AS ?year
     )
 }
@@ -106,11 +108,12 @@ SELECT DISTINCT
     ?postRegEventLabel
     ?postRegEventType
 WHERE {
-    BIND (ex:DominicChristensen AS ?offender)
-
-    ?offender rdfs:label ?offenderLabel ;
+    ?offender a cacontology-registry:RegisteredSexOffender ;
+              rdfs:label ?offenderLabel ;
               cacontology-registry:hasRegistrationRecord ?registrationRecord ;
               cacontology-registry:hasCompliance ?complianceHistory .
+    FILTER(CONTAINS(LCASE(STR(?offenderLabel)), "dominic") &&
+           CONTAINS(LCASE(STR(?offenderLabel)), "christensen"))
 
     ?registrationRecord cacontology-registry:registrationDate ?registrationDate .
 
@@ -167,28 +170,31 @@ SELECT DISTINCT
     ?investigation
     ?investigationLabel
 WHERE {
-    BIND (ex:NCMECReport_2025_08_21 AS ?cyberTip)
-    BIND (ex:DominicChristensen AS ?offender)
-
-    ?cyberTip rdfs:label ?cyberTipLabel .
+    ?cyberTip a cacontology-us-ncmec:NCMECCybertipReport ;
+              rdfs:label ?cyberTipLabel ;
+              cacontology-us-ncmec:hasNCMECIncidentType ?ncmecIncident .
 
     # Account and IP captured in the tip
-    BIND (ex:ChristensenEmailAccount AS ?account)
-    BIND (ex:ChristensenIPAddress AS ?ip)
-
-    ?account rdfs:label ?accountLabel .
-    ?ip rdfs:label ?ipLabel .
+    ?account a uco-observable:DigitalAccount ;
+             rdfs:label ?accountLabel .
+    FILTER(CONTAINS(LCASE(STR(?accountLabel)), "christensen"))
+    ?ip a uco-observable:ObservableObject ;
+        rdfs:label ?ipLabel .
+    FILTER(CONTAINS(LCASE(STR(?ipLabel)), "ip address"))
 
     # Registry link for the offender
-    ?offender rdfs:label ?offenderLabel ;
+    ?offender a cacontology-registry:RegisteredSexOffender ;
+              rdfs:label ?offenderLabel ;
               cacontology-registry:hasRegistrationRecord ?registrationRecord .
+    FILTER(CONTAINS(LCASE(STR(?offenderLabel)), "christensen"))
 
     # Investigation and CSAM incident connected to this cybertip
-    BIND (ex:ChristensenInvestigation_2025 AS ?investigation)
-    BIND (ex:CSAMIncident_2025 AS ?csamIncident)
-
-    ?investigation rdfs:label ?investigationLabel .
-    ?csamIncident rdfs:label ?csamLabel ;
+    ?investigation a cacontology:CACInvestigation ;
+                   rdfs:label ?investigationLabel ;
+                   cacontology:hasStep ?receiveAction .
+    ?receiveAction a cacontology:ReceiveCybertipAction .
+    ?csamIncident a cacontology:CSAMIncident ;
+                  rdfs:label ?csamLabel ;
                   cacontology:involvesOffender ?offender .
 }
 ORDER BY ?cyberTipLabel ?offenderLabel
@@ -214,15 +220,12 @@ SELECT DISTINCT
     ?year
     ?countyLabel
 WHERE {
-    BIND (ex:DominicChristensen AS ?offender)
+    ?offender a cacontology-registry:RegisteredSexOffender ;
+              rdfs:label ?offenderLabel .
+    FILTER(CONTAINS(LCASE(STR(?offenderLabel)), "christensen"))
 
-    VALUES ?victim {
-        ex:Victim_15yo_2021
-        ex:Victim_11yo_2021
-        ex:OnlineVictim_2025
-    }
-
-    ?victim rdfs:label ?victimLabel .
+    ?victim a cacontology-grooming:ChildVictim ;
+            rdfs:label ?victimLabel .
 
     # Events involving offender and victim
     ?event rdf:type ?etype ;
@@ -239,19 +242,11 @@ WHERE {
 
     BIND (
         IF(BOUND(?t), STR(YEAR(?t)),
-           IF(?event = ex:CSAMIncident_2025, "2025", "2021")
+           IF(CONTAINS(STR(?eventLabel), "2025"), "2025", "2021")
         ) AS ?year
     )
 
-    # Human-readable context derived from which victim is bound
-    BIND (
-        IF(?victim = ex:Victim_15yo_2021,
-           "15-year-old victim in 2021 relationship and abuse",
-           IF(?victim = ex:Victim_11yo_2021,
-              "11-year-old victim depicted in 2021 photos while asleep",
-              "Online juvenile victim in 2025 email/CSAM case")
-        ) AS ?context
-    )
+    BIND(STR(?victimLabel) AS ?context)
 }
 ORDER BY ?victimLabel ?year ?eventLabel
 
@@ -272,7 +267,9 @@ SELECT DISTINCT
     ?begin
     ?end
 WHERE {
-    BIND (ex:DominicChristensen AS ?offender)
+    ?offender a cacontology-registry:RegisteredSexOffender ;
+              rdfs:label ?offenderLabel .
+    FILTER(CONTAINS(LCASE(STR(?offenderLabel)), "christensen"))
 
     ?event rdf:type gufo:Event ;
            rdfs:label ?eventLabel .

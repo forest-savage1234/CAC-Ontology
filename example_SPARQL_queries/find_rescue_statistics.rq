@@ -1,4 +1,4 @@
-# Query: Q8 find_rescue_statistics - Enhanced for CAC Ontology v3.0.0
+# Query: Q8 find_rescue_statistics - Enhanced for CAC Ontology v3.1.0
 # Purpose: Management dashboard - victim rescue metrics and trends with specialized units support
 # Parameters: ?from (dateTime), ?to (dateTime), ?limit (integer), ?organizationURI (optional)
 # Security: TLP-RED content excluded by default
@@ -90,7 +90,7 @@ WHERE {
 }
 GROUP BY ?organization ?yearMonth
 ORDER BY ?organization DESC(?yearMonth)
-LIMIT ?limit
+LIMIT 100
 
 # Additional query for rescue operation effectiveness by specialized units
 ;

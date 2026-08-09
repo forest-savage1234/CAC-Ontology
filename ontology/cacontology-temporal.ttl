@@ -13,19 +13,19 @@
 # ONTOLOGY DECLARATION
 # =============================================================================
 
-<https://cacontology.projectvic.org/temporal/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/temporal> rdf:type owl:Ontology ;
     rdfs:label "CAC Temporal Framework with gUFO Integration - Phase 2"@en ;
     rdfs:comment "Phase 2 gUFO integration for CAC ontology family, focusing on temporal enhancement and investigation lifecycle modeling patterns. Extends gUFO temporal framework for law enforcement applications, including age-at-time modeling patterns for victims and offenders."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/temporal/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/temporal/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-03"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-08-09"^^xsd:date ;
     dcterms:description "Phase 2 temporal enhancement framework integrating gUFO temporal concepts with UCO action modeling and CAC investigation lifecycle patterns."@en ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.caseontology.org/case/> ,
-                <https://cacontology.projectvic.org/3.0.0> ,
-                <http://purl.org/nemo/gufo#> .
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
+                <https://ontology.caseontology.org/case/case/1.5.0> ,
+                <https://cacontology.projectvic.org/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> .
 
 # =============================================================================
 # AGE AS QUALITY AND AGE-AT-TIME SITUATIONS (gUFO QualityValueAttribution)

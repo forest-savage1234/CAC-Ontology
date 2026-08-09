@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Comprehensive SHACL validation for CAC Ontology v3.0.0.
+Comprehensive SHACL validation for CAC Ontology v3.1.0.
 Validates every ontology module against its corresponding shapes file,
 and validates example knowledge graphs against relevant shapes.
 """
@@ -17,7 +17,7 @@ except ImportError:
     sys.exit(1)
 
 print("=" * 70)
-print("  CAC Ontology v3.0.0 — Comprehensive SHACL Validation")
+print("  CAC Ontology v3.1.0 — Comprehensive SHACL Validation")
 print("=" * 70)
 
 start_time = time.time()
@@ -35,7 +35,7 @@ shapes_files = {os.path.basename(f) for f in ontology_files if '-shapes' in f}
 
 for f in ontology_files:
     bn = os.path.basename(f)
-    if '-shapes' in bn or 'bridge' in bn or 'spine' in bn or 'integration' in bn:
+    if '-shapes' in bn or 'bridge' in bn or 'integration' in bn:
         continue
     
     shapes_name = bn.replace('.ttl', '-shapes.ttl')
@@ -184,6 +184,14 @@ domain_validations = [
     ('examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl', 'ontology/cacontology-legal-outcomes-shapes.ttl'),
     ('examples_knowledge_graphs/k2p-soe-information-example.ttl', 'ontology/cacontology-sadistic-online-exploitation-shapes.ttl'),
     ('examples_knowledge_graphs/k2p-soe-information-example.ttl', 'ontology/cacontology-sextortion-shapes.ttl'),
+    ('examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl', 'ontology/cacontology-sextortion-shapes.ttl'),
+    ('examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl', 'ontology/cacontology-platforms-shapes.ttl'),
+    ('examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl', 'ontology/cacontology-grooming-shapes.ttl'),
+    ('examples_knowledge_graphs/conditioning-phase-offense-trajectory-example.ttl', 'ontology/cacontology-grooming-shapes.ttl'),
+    ('examples_knowledge_graphs/caselinker-account-replacement-example.ttl', 'ontology/cacontology-grooming-shapes.ttl'),
+    ('examples_knowledge_graphs/synthetic-legal-outcomes-core-example.ttl', 'ontology/cacontology-legal-outcomes-shapes.ttl'),
+    ('examples_knowledge_graphs/ncmec-cybertipline-data-example.ttl', 'ontology/cacontology-us-ncmec-shapes.ttl'),
+    ('examples_knowledge_graphs/ncmec-cybertipline-data-example.ttl', 'ontology/cacontology-hotlines-shapes.ttl'),
 ]
 
 domain_passed = 0

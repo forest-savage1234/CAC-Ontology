@@ -41,4 +41,4 @@ WHERE {
 GROUP BY ?hash ?hashMethod ?sampleArtifact ?firstSeen
 HAVING (COUNT(DISTINCT ?report) > 1)
 ORDER BY DESC(?firstSeen)
-LIMIT ?limit 
+LIMIT 100

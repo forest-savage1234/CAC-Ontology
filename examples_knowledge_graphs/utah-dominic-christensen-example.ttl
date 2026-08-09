@@ -10,7 +10,7 @@
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-registry: <https://cacontology.projectvic.org/sex-offender-registry#> .
 @prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
-@prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec/3.0.0#> .
+@prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec#> .
 @prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
 @prefix cacontology-case: <https://cacontology.projectvic.org/case-management#> .
 @prefix ex: <urn:uuid:> .
@@ -336,7 +336,7 @@ ex:a8fb0031-7ccf-5982-8078-060e6441ca72 cacontology:hasStep ex:6f843cf9-9760-505
 ex:76114a89-5c20-54a9-8c95-0de251f6882b rdf:type cacontology-legal-outcomes:StateCharge ;
     rdfs:label "2025 Sexual Exploitation of a Minor Charges (Garfield County)"@en ;
     cacontology-legal-outcomes:chargeLevel "state_felony" ;
-    cacontology-legal-outcomes:chargeCount 7 ;
+    cacontology-legal-outcomes:countNumber 7 ;
     rdfs:comment "Seven counts of sexual exploitation of a minor filed in Garfield County based on the 2025 CSAM incident."@en ;
     cacontology-legal-outcomes:appliesTo ex:7d5275ac-a296-5542-b2c2-80f76c3fab7d .
 

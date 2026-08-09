@@ -30,7 +30,7 @@ ex:ab6bd6f6-aed2-4471-bee6-0c58cbaaa1ce a uco-observable:ContentDataFacet ;
 ex:696200db-f29d-4b5e-9f66-ed2563784d21 a uco-observable:URLFacet ;
     uco-observable:url <https://attorneygeneral.utah.gov/icac/> .
 
-ex:9287668e-b466-4391-8df5-e1371fd29801 a uco-observable:HashFacet ;
+ex:9287668e-b466-4391-8df5-e1371fd29801 a uco-observable:ContentDataFacet ;
     uco-observable:hash ex:1b6b2411-4313-4092-9633-73bf5bd8636e .
 
 ex:1b6b2411-4313-4092-9633-73bf5bd8636e a uco-types:Hash ;
@@ -39,14 +39,14 @@ ex:1b6b2411-4313-4092-9633-73bf5bd8636e a uco-types:Hash ;
 
 ex:eabf2658-dd9e-4306-95f2-6d8ddb1c1ebf a uco-core:UcoObject ;
     rdfs:label "CAC Ontology Collection Agent (Cursor)"@en ;
-    uco-core:description "Automated assistant performing web collection and preprocessing for CAC Ontology ingestion."@en .
+    uco-core:description "Automated assistant performing web collection and preprocessing for CAC Ontology ingestion." .
 
 ex:fbe66378-8cae-40ed-a28e-a416b3307b18 a investigation:InvestigativeAction ;
     rdfs:label "Collection action: Utah AG ICAC Task Force webpage"@en ;
     uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
     uco-action:performer ex:eabf2658-dd9e-4306-95f2-6d8ddb1c1ebf ;
     uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
-    uco-core:description "Collected via curl (WSL) from a public webpage."@en .
+    uco-core:description "Collected via curl (WSL) from a public webpage." .
 
 ex:afb067e4-9f45-40c4-9c7a-c79d08e67b9d a uco-action:Action ;
     rdfs:label "Normalization action: HTML to text (Utah ICAC webpage)"@en ;
@@ -54,7 +54,7 @@ ex:afb067e4-9f45-40c4-9c7a-c79d08e67b9d a uco-action:Action ;
     uco-action:performer ex:eabf2658-dd9e-4306-95f2-6d8ddb1c1ebf ;
     uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
     uco-action:result ex:475e52e8-e517-4370-bfb2-93f3e771ef26 ;
-    uco-core:description "html_clean (strip tags) + whitespace normalization + de-dup consecutive text nodes."@en .
+    uco-core:description "html_clean (strip tags) + whitespace normalization + de-dup consecutive text nodes." .
 
 ex:475e52e8-e517-4370-bfb2-93f3e771ef26 a uco-observable:ObservableObject ;
     rdfs:label "Utah AG ICAC Task Force webpage (normalized text)"@en ;
@@ -69,7 +69,7 @@ ex:522f2167-266e-4f7a-9346-20b7b5b2ffff a uco-observable:ContentDataFacet ;
 ex:7770a786-cd2f-4b3f-814b-e1ea25aeee18 a uco-observable:FileFacet ;
     uco-observable:filePath "analytics_demonstration/collected_sources/utah-icac-task-force/normalized.txt" .
 
-ex:2d6c0309-825b-4821-9777-6142962c2c12 a uco-observable:HashFacet ;
+ex:2d6c0309-825b-4821-9777-6142962c2c12 a uco-observable:ContentDataFacet ;
     uco-observable:hash ex:335de222-9523-4d38-9e44-54617cfaf839 .
 
 ex:335de222-9523-4d38-9e44-54617cfaf839 a uco-types:Hash ;
@@ -80,7 +80,7 @@ ex:d68c3881-f049-4c89-a6da-f0ecedc0d156 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance record: collection of Utah ICAC Task Force webpage"@en ;
     investigation:exhibitNumber "DOC-UT-ICAC-WEB-0001" ;
     uco-core:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
-    investigation:provenanceRecordAction ex:fbe66378-8cae-40ed-a28e-a416b3307b18 .
+    uco-core:object ex:fbe66378-8cae-40ed-a28e-a416b3307b18 .
 
 # =============================================================================
 # Minimal in-scope assertions grounded in the collected webpage (connected nodes)
@@ -88,22 +88,22 @@ ex:d68c3881-f049-4c89-a6da-f0ecedc0d156 a investigation:ProvenanceRecord ;
 
 ex:af3aaac8-c561-4223-bcb3-0787f90c14b9 a uco-identity:Organization ;
     rdfs:label "Utah Attorney General ICAC Task Force"@en ;
-    uco-core:description "Internet Crimes Against Children (ICAC) Task Force administered through the Utah Attorney General’s Office; described on the collected webpage."@en .
+    uco-core:description "Internet Crimes Against Children (ICAC) Task Force administered through the Utah Attorney General’s Office; described on the collected webpage." .
 
 ex:74b27cff-2270-4685-a579-b06b20e0bbd4 a uco-action:Action ;
     rdfs:label "Webpage describes the Utah Attorney General ICAC Task Force"@en ;
     uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
     uco-action:performer ex:af3aaac8-c561-4223-bcb3-0787f90c14b9 ;
     uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
-    uco-core:description "Grounded in the collected webpage section titled 'ICAC Task Force'."@en .
+    uco-core:description "Grounded in the collected webpage section titled 'ICAC Task Force'." .
 
 ex:37634478-f5d4-46e5-8702-5360ecb6f3ec a uco-observable:ObservableObject ;
     rdfs:label "Utah ICAC Tip Line"@en ;
-    uco-core:description "801.281.1211"@en .
+    uco-core:description "801.281.1211" .
 
 ex:61dd2432-e06d-408e-bb0c-73439fd152b3 a uco-observable:ObservableObject ;
     rdfs:label "Utah ICAC Email"@en ;
-    uco-core:description "utahicac@agutah.gov"@en .
+    uco-core:description "utahicac@agutah.gov" .
 
 ex:107c5358-ad85-417f-a60f-86d7410b52ef a uco-action:Action ;
     rdfs:label "Webpage publishes ICAC reporting contacts"@en ;
@@ -112,7 +112,7 @@ ex:107c5358-ad85-417f-a60f-86d7410b52ef a uco-action:Action ;
     uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ,
                     ex:37634478-f5d4-46e5-8702-5360ecb6f3ec ,
                     ex:61dd2432-e06d-408e-bb0c-73439fd152b3 ;
-    uco-core:description "Grounded in the collected webpage lines: 'ICAC Tip Line: 801.281.1211' and 'ICAC Email: utahicac@agutah.gov'."@en .
+    uco-core:description "Grounded in the collected webpage lines: 'ICAC Tip Line: 801.281.1211' and 'ICAC Email: utahicac@agutah.gov'." .
 
 
 # =============================================================================
@@ -131,55 +131,55 @@ ex:d1a06078-9912-5458-baf8-b1f0f03fbe87 a uco-action:Action ;
     uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
     uco-action:performer ex:af3aaac8-c561-4223-bcb3-0787f90c14b9 ;
     uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86, ex:e8df2b9e-7693-5344-a885-e764e47ab169, ex:dde81571-0b03-59ca-a542-19e4b370d5b1 ;
-    uco-core:description "Grounded in normalized.txt lines 37-40: funded by a grant from OJJDP and administered through the Utah Attorney General's Office."@en .
+    uco-core:description "Grounded in normalized.txt lines 37-40: funded by a grant from OJJDP and administered through the Utah Attorney General's Office." .
 
 ex:2a9b5a73-8495-5607-a09f-8a4a198b691f a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: funding/admin statements"@en ;
     uco-core:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
-    investigation:provenanceRecordAction ex:d1a06078-9912-5458-baf8-b1f0f03fbe87 ;
-    uco-core:description "Evidence pointer: normalized.txt lines 37-40."@en .
+    uco-core:object ex:d1a06078-9912-5458-baf8-b1f0f03fbe87 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 37-40." .
 
 ex:ac3fdc87-634a-5a19-b6ab-bf5a22f3ba32 a uco-core:UcoObject ;
     rdfs:label "Sexual Exploitation of a Minor"@en ;
-    uco-core:description "(possessing, distributing and manufacturing child pornography)"@en .
+    uco-core:description "(possessing, distributing and manufacturing child pornography)" .
 
 ex:2b66a85d-fb4a-5e7e-984a-bd542f7517a1 a uco-core:UcoObject ;
     rdfs:label "Enticing a Minor over the Internet"@en ;
-    uco-core:description "(with the intent of committing sexual acts to the child)"@en .
+    uco-core:description "(with the intent of committing sexual acts to the child)" .
 
 ex:ae35e4a2-7479-5a0a-b2b5-c23e3c5d2036 a uco-core:UcoObject ;
     rdfs:label "Dealing in Material Harmful to a Minor"@en ;
-    uco-core:description "(sending pornography to a minor and/or sexting)"@en .
+    uco-core:description "(sending pornography to a minor and/or sexting)" .
 
 ex:58b513d2-af3c-57a2-9f5c-d71c5741b5e3 a uco-action:Action ;
     rdfs:label "Webpage lists crimes investigated by the task force"@en ;
     uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
     uco-action:performer ex:af3aaac8-c561-4223-bcb3-0787f90c14b9 ;
     uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86, ex:ac3fdc87-634a-5a19-b6ab-bf5a22f3ba32, ex:2b66a85d-fb4a-5e7e-984a-bd542f7517a1, ex:ae35e4a2-7479-5a0a-b2b5-c23e3c5d2036 ;
-    uco-core:description "Grounded in normalized.txt lines 49-52 (Crimes We Investigate)."@en .
+    uco-core:description "Grounded in normalized.txt lines 49-52 (Crimes We Investigate)." .
 
 ex:a2050ea8-d2bd-5043-b16f-5b1e467057e9 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: crimes investigated list"@en ;
     uco-core:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
-    investigation:provenanceRecordAction ex:58b513d2-af3c-57a2-9f5c-d71c5741b5e3 ;
-    uco-core:description "Evidence pointer: normalized.txt lines 49-52."@en .
+    uco-core:object ex:58b513d2-af3c-57a2-9f5c-d71c5741b5e3 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 49-52." .
 
 ex:049833bc-11b3-5155-b3e0-81e61692f6ed a uco-core:UcoObject ;
     rdfs:label "Digital Respons-Ability program"@en ;
-    uco-core:description "Program described on the webpage; sponsored to educate children, parents, and the community on Internet safety presentations."@en .
+    uco-core:description "Program described on the webpage; sponsored to educate children, parents, and the community on Internet safety presentations." .
 
 ex:bebd7ccc-8983-54a6-977e-e4c15f966ef5 a uco-action:Action ;
     rdfs:label "Webpage states sponsorship of Digital Respons-Ability program"@en ;
     uco-action:startTime "2026-01-07T02:59:19Z"^^xsd:dateTime ;
     uco-action:performer ex:dde81571-0b03-59ca-a542-19e4b370d5b1 ;
     uco-action:object ex:82588a71-7176-4cd0-aaee-56cffc467f86, ex:049833bc-11b3-5155-b3e0-81e61692f6ed ;
-    uco-core:description "Grounded in normalized.txt lines 46-48."@en .
+    uco-core:description "Grounded in normalized.txt lines 46-48." .
 
 ex:091fa84e-9c57-5a39-9be7-8fa622ca552e a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: Digital Respons-Ability program statement"@en ;
     uco-core:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
-    investigation:provenanceRecordAction ex:bebd7ccc-8983-54a6-977e-e4c15f966ef5 ;
-    uco-core:description "Evidence pointer: normalized.txt lines 46-48."@en .
+    uco-core:object ex:bebd7ccc-8983-54a6-977e-e4c15f966ef5 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 46-48." .
 
 # -- Affiliates listed on webpage (each connected via one listing action)
 
@@ -444,11 +444,11 @@ ex:955200b5-668a-5bfa-bbc5-2fa5f62acd16 a uco-action:Action ;
                     ex:e9d57a11-a24c-53c7-a2fa-f4c7c0e191d9,
                     ex:0d62f398-4fbb-512c-bace-08a3571bef6d,
                     ex:5edcb17f-8339-51ec-b8ec-ffa8e57a69bf ;
-    uco-core:description "Grounded in normalized.txt lines 64-128 (affiliate agency list)."@en .
+    uco-core:description "Grounded in normalized.txt lines 64-128 (affiliate agency list)." .
 
 ex:65e3cdc5-06d7-5e9f-b137-154b839349f1 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: affiliates list"@en ;
     uco-core:object ex:82588a71-7176-4cd0-aaee-56cffc467f86 ;
-    investigation:provenanceRecordAction ex:955200b5-668a-5bfa-bbc5-2fa5f62acd16 ;
-    uco-core:description "Evidence pointer: normalized.txt lines 64-128."@en .
+    uco-core:object ex:955200b5-668a-5bfa-bbc5-2fa5f62acd16 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 64-128." .
 

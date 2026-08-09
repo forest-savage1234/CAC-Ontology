@@ -12,23 +12,23 @@
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/extremist-enterprises/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/extremist-enterprises> rdf:type owl:Ontology ;
     rdfs:label "CAC Extremist Child Exploitation Enterprise Ontology"@en ;
     rdfs:comment "An ontology for representing extremist criminal enterprises engaged in child exploitation, including nihilistic violent extremism (NVE) networks, content compilation systems, and enterprise structures based on analysis of the 764 network case. This ontology is grounded in the Unified Foundational Ontology (UFO) through gUFO."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/extremist-enterprises/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/extremist-enterprises/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-04-15"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.unifiedcyberontology.org/uco/observable/> ,
-                <https://ontology.unifiedcyberontology.org/uco/action/> ,
-                <https://ontology.unifiedcyberontology.org/uco/role/> ,
-                <https://ontology.caseontology.org/case/> ,
-                <https://cacontology.projectvic.org/3.0.0> ,
-                <https://cacontology.projectvic.org/international/3.0.0> ,
-                <http://purl.org/nemo/gufo#> ,
-                <https://cacontology.projectvic.org/core/3.0.0> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/role/1.5.0> ,
+                <https://ontology.caseontology.org/case/case/1.5.0> ,
+                <https://cacontology.projectvic.org/3.1.0> ,
+                <https://cacontology.projectvic.org/international/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> ,
+                <https://cacontology.projectvic.org/core/3.1.0> .
 
 # =============================================================================
 # GUFO TYPE DECLARATIONS FOR CAC ENTERPRISE CLASSES

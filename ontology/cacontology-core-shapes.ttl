@@ -16,16 +16,16 @@
 # ONTOLOGY DECLARATION
 # =============================================================================
 
-<https://cacontology.projectvic.org/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Core SHACL Shapes with gUFO Validation"@en ;
     rdfs:comment "Comprehensive SHACL validation shapes for gUFO-enhanced CAC core ontology, including anti-rigidity constraints, temporal validation, phase transitions, and foundational type compliance."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/shapes/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/shapes/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-03-16"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/core/3.0.0> ,
-                <http://purl.org/nemo/gufo#> ,
-                <https://ontology.unifiedcyberontology.org/uco/core/> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/core/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
 
 # =============================================================================
 # gUFO INVESTIGATION VALIDATION
@@ -509,3 +509,25 @@ cacontology:AgeAtTimeSituationShape rdf:type sh:NodeShape ;
             }
         """
     ] .
+
+# =============================================================================
+# PHASE SEQUENCING (cac-core:precedes)
+# =============================================================================
+
+cacontology:PhasePrecedesShape rdf:type sh:NodeShape ;
+    rdfs:label "Phase Precedes Shape"@en ;
+    rdfs:comment "Validates cac-core:precedes links between phase instances in offense trajectory graphs."@en ;
+    sh:targetClass cac-core:Phase ;
+    sh:property [
+        sh:path cac-core:precedes ;
+        sh:class cac-core:Phase ;
+        sh:minCount 0 ;
+        sh:message "Each cac-core:precedes object must be typed as a Phase instance (or subclass)."@en
+    ] .
+
+cacontology:PrecedesSubjectShape rdf:type sh:NodeShape ;
+    rdfs:label "Precedes Subject Shape"@en ;
+    rdfs:comment "Validates that the subject of cac-core:precedes is a Phase instance."@en ;
+    sh:targetSubjectsOf cac-core:precedes ;
+    sh:class cac-core:Phase ;
+    sh:message "The subject of cac-core:precedes must be typed as a Phase instance (or subclass)."@en .

@@ -2,7 +2,9 @@
 
 ## Status
 
-This is a revised proposal that incorporates follow-on review feedback, including explicit treatment of:
+> **Historical document.** This proposal informed the semantic spine introduced in CAC v3.0.0. It is retained as design history, not as the current implementation plan, backlog, namespace reference, or user guidance. The current release is **v3.1.0**; consult [`../architecture.md`](../architecture.md), [`../interoperability.md`](../interoperability.md), and the shipped ontology files for current behavior. Imperative and future-tense statements below describe the proposal as it existed before implementation.
+
+This was a revised proposal that incorporated follow-on review feedback, including explicit treatment of:
 
 * `uco-core:UcoObject`
 * `gufo:Object`

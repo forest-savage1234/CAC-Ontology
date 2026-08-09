@@ -14,22 +14,22 @@
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/forensics/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/forensics> rdf:type owl:Ontology ;
     rdfs:label "CAC Digital Forensics Ontology"@en ;
     rdfs:comment "An ontology for representing digital forensics concepts specific to Internet Crimes Against Children investigations, extending UCO and CASE with gUFO foundational ontology enhancements. This ontology provides forensic acquisition, chain of custody, evidence handling, and tool provenance capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/forensics/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/forensics/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.unifiedcyberontology.org/uco/observable/> ,
-                <https://ontology.unifiedcyberontology.org/uco/action/> ,
-                <https://ontology.unifiedcyberontology.org/uco/tool/> ,
-                <https://ontology.caseontology.org/case/> ,
-                <https://cacontology.projectvic.org/3.0.0> ,
-                <https://cacontology.projectvic.org/core/3.0.0> ,
-                <http://purl.org/nemo/gufo#> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/tool/1.5.0> ,
+                <https://ontology.caseontology.org/case/case/1.5.0> ,
+                <https://cacontology.projectvic.org/3.1.0> ,
+                <https://cacontology.projectvic.org/core/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> .
 
 # =============================================================================
 # FORENSIC TOOL CLASSES (extending UCO Tool with gUFO Object)
@@ -999,3 +999,78 @@ cacontology-forensics:identifiesNetworkAnomalies rdf:type owl:ObjectProperty ;
     rdfs:comment "Links network analysis to anomalies identified."@en ;
     rdfs:domain cacontology-forensics:NetworkTrafficAnalysis ;
     rdfs:range uco-observable:ObservableObject . 
+
+# =============================================================================
+# ATTRIBUTION AND ACCOUNT-IP CORRELATION EVIDENCE — Issue #35
+# First-class semantics for attribution evidence linking platform accounts,
+# IP addresses, subscriber records, and seized devices — common probable-cause
+# patterns in online CSEA cases — instead of generic uco-core:Relationship
+# edges with ad hoc kindOfRelationship strings.
+# =============================================================================
+
+cacontology-forensics:AttributionAssessment rdf:type owl:Class ;
+    rdfs:label "Attribution Assessment"@en ;
+    rdfs:comment "Analytic conclusion that two or more observables (accounts, IP addresses, devices) are controlled by the same subject, with stated confidence and method. The assessment is an interpretation layered over the correlation evidence supporting it."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject .
+
+cacontology-forensics:CorrelationEvidence rdf:type owl:Class ;
+    rdfs:label "Correlation Evidence"@en ;
+    rdfs:comment "Structured evidence that observables are linked by overlapping usage, records, or artifacts. Superclass for typed correlation evidence supporting attribution assessments."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject .
+
+cacontology-forensics:IPCorrelationEvidence rdf:type owl:Class ;
+    rdfs:label "IP Correlation Evidence"@en ;
+    rdfs:comment "Structured evidence of overlapping IP usage across accounts, sessions, or platforms within a date-time scope (e.g., 13 of 20 platform session IPs matching another platform's access logs for the same subscriber)."@en ;
+    rdfs:subClassOf cacontology-forensics:CorrelationEvidence .
+
+cacontology-forensics:SubscriberRecordCorrelation rdf:type owl:Class ;
+    rdfs:label "Subscriber Record Correlation"@en ;
+    rdfs:comment "Evidence linking a platform account to carrier or ISP subscriber records (e.g., produced under legal process)."@en ;
+    rdfs:subClassOf cacontology-forensics:CorrelationEvidence .
+
+# Attribution and correlation properties (Issue #35)
+cacontology-forensics:correlatesObservable rdf:type owl:ObjectProperty ;
+    rdfs:label "correlates observable"@en ;
+    rdfs:comment "Links an attribution assessment or correlation evidence to the IP address, account, or device observables it correlates."@en ;
+    rdfs:range uco-observable:ObservableObject .
+
+cacontology-forensics:overlappingIPAddress rdf:type owl:ObjectProperty ;
+    rdfs:label "overlapping IP address"@en ;
+    rdfs:comment "An IP address observable used by multiple accounts or sessions within the correlation scope."@en ;
+    rdfs:domain cacontology-forensics:IPCorrelationEvidence ;
+    rdfs:range uco-observable:ObservableObject .
+
+cacontology-forensics:correlationTimeWindowStart rdf:type owl:DatatypeProperty ;
+    rdfs:label "correlation time window start"@en ;
+    rdfs:comment "Start of the temporal bounds of the overlap analysis."@en ;
+    rdfs:domain cacontology-forensics:CorrelationEvidence ;
+    rdfs:range xsd:dateTime .
+
+cacontology-forensics:correlationTimeWindowEnd rdf:type owl:DatatypeProperty ;
+    rdfs:label "correlation time window end"@en ;
+    rdfs:comment "End of the temporal bounds of the overlap analysis."@en ;
+    rdfs:domain cacontology-forensics:CorrelationEvidence ;
+    rdfs:range xsd:dateTime .
+
+cacontology-forensics:correlationMethod rdf:type owl:DatatypeProperty ;
+    rdfs:label "correlation method"@en ;
+    rdfs:comment "Method used to establish the correlation (e.g., 'comparative log review', 'carrier subscriber production', 'court-ordered platform IP logs')."@en ;
+    rdfs:domain cacontology-forensics:CorrelationEvidence ;
+    rdfs:range xsd:string .
+
+cacontology-forensics:attributionConfidence rdf:type owl:DatatypeProperty ;
+    rdfs:label "attribution confidence"@en ;
+    rdfs:comment "Confidence level of the attribution assessment (high, medium, low)."@en ;
+    rdfs:domain cacontology-forensics:AttributionAssessment ;
+    rdfs:range xsd:string .
+
+cacontology-forensics:supportedByCorrelation rdf:type owl:ObjectProperty ;
+    rdfs:label "supported by correlation"@en ;
+    rdfs:comment "Links an attribution assessment to the correlation evidence supporting it."@en ;
+    rdfs:domain cacontology-forensics:AttributionAssessment ;
+    rdfs:range cacontology-forensics:CorrelationEvidence .
+
+cacontology-forensics:supportsAttributionOf rdf:type owl:ObjectProperty ;
+    rdfs:label "supports attribution of"@en ;
+    rdfs:comment "Links an attribution assessment or correlation evidence to the person whose control of the observables it supports."@en ;
+    rdfs:range uco-identity:Person .

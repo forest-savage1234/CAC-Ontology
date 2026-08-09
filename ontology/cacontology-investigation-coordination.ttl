@@ -12,18 +12,18 @@
 @prefix cacontology-coord: <https://cacontology.projectvic.org/investigation-coordination#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/investigation-coordination/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/investigation-coordination> rdf:type owl:Ontology ;
     rdfs:label "CAC Investigation Coordination Ontology"@en ;
     rdfs:comment "Comprehensive ontology for modeling investigation coordination processes, information sharing, resource sharing, communication protocols, and inter-agency collaboration within CAC investigations. Enhanced with gUFO (gentle Unified Foundational Ontology) integration for improved semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/investigation-coordination/3.0.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/investigation-coordination/3.1.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-27"^^xsd:date ;
-    dcterms:modified "2026-02-16"^^xsd:date ;
-    owl:versionInfo "3.0.0" ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.caseontology.org/case/> ,
-                <https://cacontology.projectvic.org/core/3.0.0> ,
-                <http://purl.org/nemo/gufo#> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:versionInfo "3.1.0" ;
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
+                <https://ontology.caseontology.org/case/case/1.5.0> ,
+                <https://cacontology.projectvic.org/core/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> .
 
 # =============================================================================
 # CORE INVESTIGATION COORDINATION CLASSES (gUFO: EventType)

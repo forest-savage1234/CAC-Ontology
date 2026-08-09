@@ -14,21 +14,21 @@
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/detection/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/detection> rdf:type owl:Ontology ;
     rdfs:label "CAC CSAM Detection & Classification Ontology"@en ;
     rdfs:comment "An ontology for representing Child Sexual Abuse Material detection and classification systems with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities, extending UCO and CASE. This ontology covers automated detection tools, hash matching, machine learning models, and classification scales used in CSAM identification."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/detection/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/detection/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-02-11"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.unifiedcyberontology.org/uco/observable/> ,
-                <https://ontology.unifiedcyberontology.org/uco/action/> ,
-                <https://ontology.unifiedcyberontology.org/uco/tool/> ,
-                <https://cacontology.projectvic.org/3.0.0> ,
-                <https://cacontology.projectvic.org/core/3.0.0> ,
-                <http://purl.org/nemo/gufo#> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/tool/1.5.0> ,
+                <https://cacontology.projectvic.org/3.1.0> ,
+                <https://cacontology.projectvic.org/core/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> .
 
 # =============================================================================
 # CLASSIFICATION CONCEPT SCHEMES (gUFO Object modeling)

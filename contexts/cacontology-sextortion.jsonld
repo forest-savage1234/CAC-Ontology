@@ -1,0 +1,96 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://cacontology.projectvic.org/sextortion#",
+    "cacontology": "https://cacontology.projectvic.org#",
+    "cacontology-sextortion": "https://cacontology.projectvic.org/sextortion#",
+    "cac-core": "https://cacontology.projectvic.org/core#",
+    "uco": "https://ontology.unifiedcyberontology.org/uco/core/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "SadisticSextortion": "cacontology-sextortion:SadisticSextortion",
+    "DoxxingThreat": "cacontology-sextortion:DoxxingThreat",
+    "SwattingThreat": "cacontology-sextortion:SwattingThreat",
+    "ViolenceThreat": "cacontology-sextortion:ViolenceThreat",
+    "SelfHarmThreat": "cacontology-sextortion:SelfHarmThreat",
+    "ImageLeakThreat": "cacontology-sextortion:ImageLeakThreat",
+    "PropertyDestructionThreat": "cacontology-sextortion:PropertyDestructionThreat",
+    "InitialDeceptionPhase": "cacontology-sextortion:InitialDeceptionPhase",
+    "SexualSolicitationPhase": "cacontology-sextortion:SexualSolicitationPhase",
+    "ImageAcquisitionPhase": "cacontology-sextortion:ImageAcquisitionPhase",
+    "ExtortionPhase": "cacontology-sextortion:ExtortionPhase",
+    "CoercionCycle": {
+      "@id": "cacontology-sextortion:CoercionCycle",
+      "@type": "@id"
+    },
+    "sustainedBy": {
+      "@id": "cacontology-sextortion:sustainedBy",
+      "@type": "@id"
+    },
+    "cyclesBetween": {
+      "@id": "cacontology-sextortion:cyclesBetween",
+      "@type": "@id"
+    },
+    "coercionCycleDemandType": "cacontology-sextortion:coercionCycleDemandType",
+    "terminationCondition": "cacontology-sextortion:terminationCondition",
+    "victimCount": {
+      "@id": "cacontology-sextortion:victimCount",
+      "@type": "xsd:nonNegativeInteger"
+    },
+    "incidentDuration": {
+      "@id": "cacontology-sextortion:incidentDuration",
+      "@type": "xsd:duration"
+    },
+    "claimedAge": {
+      "@id": "cacontology-sextortion:claimedAge",
+      "@type": "xsd:nonNegativeInteger"
+    },
+    "actualAge": {
+      "@id": "cacontology-sextortion:actualAge",
+      "@type": "xsd:nonNegativeInteger"
+    },
+    "progressionStage": {
+      "@id": "cacontology-sextortion:progressionStage",
+      "@type": "xsd:nonNegativeInteger"
+    },
+    "threatFollowThrough": {
+      "@id": "cacontology-sextortion:threatFollowThrough",
+      "@type": "xsd:boolean"
+    },
+    "monetaryAmount": {
+      "@id": "cacontology-sextortion:monetaryAmount",
+      "@type": "xsd:decimal"
+    },
+    "conversationLength": {
+      "@id": "cacontology-sextortion:conversationLength",
+      "@type": "xsd:nonNegativeInteger"
+    },
+    "deviceCount": {
+      "@id": "cacontology-sextortion:deviceCount",
+      "@type": "xsd:nonNegativeInteger"
+    },
+    "evidenceRecovered": {
+      "@id": "cacontology-sextortion:evidenceRecovered",
+      "@type": "xsd:boolean"
+    },
+    "conversationCount": {
+      "@id": "cacontology-sextortion:conversationCount",
+      "@type": "xsd:nonNegativeInteger"
+    },
+    "employsThreat": {
+      "@id": "cacontology-sextortion:employsThreat",
+      "@type": "@id"
+    },
+    "makesDemand": {
+      "@id": "cacontology-sextortion:makesDemand",
+      "@type": "@id"
+    },
+    "containsCommunication": {
+      "@id": "cacontology-sextortion:containsCommunication",
+      "@type": "@id"
+    },
+    "precedes": {
+      "@id": "cac-core:precedes",
+      "@type": "@id"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+Source URL: https://www.missingkids.org/cybertiplinedata
+Publisher: National Center for Missing & Exploited Children (NCMEC)
+Title: 2025 CyberTipline Report (public aggregate statistics page)
+Captured (UTC): 2026-07-19T05:03:58Z
+Normalization: manual_substantive_extract + whitespace_normalize + strip_nav_chrome + strip_script_noise + strip_donation_chrome + omit_archive_pdf_link_lists
+
+1) CyberTipline was created in 1998 to receive reports of suspected child sexual exploitation from the public and electronic service providers (ESPs).
+2) CyberTipline is supported by DOJ Office of Juvenile Justice and Delinquency Prevention (OJJDP) and other partners; it assists law enforcement and helps stop harmful circulation of CSAM.
+3) This page reports data from CyberTipline reports made in 2025.
+4) In 2025, the CyberTipline received 21.3 million reports.
+5) In 2025, NCMEC identified and escalated for law enforcement more than 53,000 reports that were urgent or involved a child in imminent danger (via ESP notifications, internal alerts, and manual review of chats/files/other information).
+6) Online enticement reports increased 158% from 2024; child sex trafficking reports increased 323% from 2024.
+7) These category growth trends were impacted by the 2024 REPORT Act, which requires ESPs to report online enticement and child sex trafficking in the same way they report CSAM.
+8) Emerging 2025 trends also include generative AI (GAI) in child sexual exploitation, financial sextortion, and exploitation driven by violent online groups.
+9) CSAM is the largest CyberTipline reporting category; online enticement and child sex trafficking were among the fastest growing categories in 2025.
+10) In 2025, ESP reports contained 61.8 million images, videos, and other files related to the reported child sexual exploitation incident (majority related to suspected CSAM).
+11) File breakdown (2025): 26.3M videos; 29.4M images; 6.1M other files.
+12) Online enticement: individual communicates with someone believed to be a child via the internet with intent to commit a sexual offense or abduction; includes sextortion and grooming pathways across gaming, social media, and messaging apps.
+13) In 2025: 1.4 million online enticement reports, including more than 800 travel-to-meet reports and more than 80,000 sextortion reports.
+14) Financial sextortion is reported under online enticement; 2025 average 137 financial sextortion reports per day (37% increase vs prior year).
+15) NCMEC is aware of at least three dozen teenage boys in the U.S. who died by suicide after financial sextortion victimization (aggregate awareness statement; no individual identifiers on page).
+16) Sadistic online exploitation: more than 3,000 reports in 2025 (>125% increase YoY), largely driven by enhanced industry reporting.
+17) Child sex trafficking CyberTipline reports rose 323% vs 2024; REPORT Act mandated reporting is exposing volume across online platforms.
+18) Observed trafficking patterns: (a) buyers directly targeting children online offering payment for sex acts; (b) increasing overlap between trafficking and CSAM (CSAM as "preview" then in-person exploitation); (c) coordination among multiple offenders online.
+19) 2025 GAI nexus reports: 1.5 million; more than 1.1 million from Amazon AI Services related to potential CSAM in AI training datasets (those submissions lacked actionable offender/victim information).
+20) Excluding Amazon AI training-dataset submissions: more than 182,000 reports involved offenders possessing, generating, or attempting to generate GAI CSAM.
+21) Since 2023 GAI tracking: more than 275 GAI CSAM victims identified; more than 158,000 images/videos categorized as GAI CSAM; "nudify" app peer cases also tracked.
+22) More than 2,000 ESPs registered to report; 23% are non-U.S.-based voluntary reporters.
+23) In 2025: just over 300 companies submitted reports; five ESPs accounted for more than 75% of reports.
+24) 2025 report source split: 170,193 public; 21,181,300 ESP (total 21.3 million).
+25) Public reports: more than 170,000 from members of the public; more than 5,700 reports directly from the victim (>100% increase from 2024).
+26) Take It Down: free hash-based removal-assistance service for explicit imagery of persons under 18; 2025: more than 130,000 submissions covering more than 273,000 images/videos.
+27) As of 2025-12-31, Take It Down available in 36 languages; 2025 site: more than 1.6M visitors and more than 4.2M page views (majority U.S., then India, Brazil, Turkey, Mexico).
+28) Report response: NCMEC makes reports and analysis available to law enforcement for prioritization and notifies companies to locate/remove content.
+29) Referral definition: tech company provides sufficient information for law enforcement (usually user details, imagery, possible location of child or offender).
+30) Informational definition: insufficient information or viral imagery reported many times.
+31) In 2025: more than 18.8 million reports referred to law enforcement; more than 4.5 million designated informational when made available to law enforcement.
+32) More than 10% of tech-industry CyberTipline reports in 2025 lacked adequate information to determine where the offense occurred (blocks jurisdiction-specific referral though all reports available to U.S. federal LE).
+33) Named ESPs (among companies with ≥100 reports) where more than half of reports lacked adequate jurisdictional information: Amazon AI Services; Box, Inc./Box.com; Character Technologies, Inc.; Grindr; Invoke AI, Inc.; Lightspeed Systems; Padlet/Wallwisher, Inc./cloudfront; Redgifs.com; Streamable, Inc.; Wizz App; X.AI LLC; Zoom Video Communications, Inc.
+34) Early 2026: NCMEC observed reporting improvements from Amazon AI Services, Grindr, and X.AI LLC enabling more actionable referrals/notifications.
+35) Unique content (2025): of 29.4M images, 13.9M unique (48%); of 26.3M videos, 7.3M unique (28%).
+36) Example recirculation statement: one child's abusive imagery circulated 20 years and appeared more than 1.4 million times in NCMEC submissions (illustrative aggregate; no personal identifiers).
+37) NCMEC analysts label suspected CSAM for content type, estimated age range, and prioritization cues (e.g., violence, infants/toddlers).
+38) Files labeled: more than 14.6 million in 2025; more than 77.1 million cumulative as of 2025-12-31.
+39) Hash matching automates recognition of previously labeled files to reduce duplicative analyst review and prioritize newer/urgent imagery.
+40) Hash sharing: analysts review image/video at least three times before adding hash to list shared with companies; as of 2025-12-31, more than 12.1 million hashes shared with 78 voluntary ESPs.
+41) Removal notice categories: CSAM; Exploitative (identified victims, may not meet legal CSAM threshold); Predatory Text (predatory comments or personal information about identified victim/survivor).
+42) In 2025: more than 172,000 notices issued; average take-down time 2.6 days.
+43) 18 U.S.C. § 2258A requires U.S. companies to report suspected CSAM, online enticement, or child sex trafficking on their platforms/servers to the CyberTipline.
+44) CyberTipline functions as a global clearinghouse; reports referred to LE throughout the U.S. and around the world.
+45) 2025 geographic origin (upload): 77% outside U.S.; 9% U.S.-based; 14% unknown origin.
+46) Domestic: more than 2 million reports resolved to the U.S. (all 50 states, D.C., Puerto Rico, other territories); 1.9M to a specific state; 153,000 state unknown.
+47) CyberTipline reports made available to ICAC Task Forces and other local/state/federal agencies; state-unknown reports available to federal LE.
+48) Global: partnerships with LE in 170 countries/territories including Interpol and Europol; Interpol assists dissemination where NCMEC lacks direct LE connection.
+49) NGO collaborations named: WeProtect, ECPAT, International Justice Mission (IJM), Internet Watch Foundation, Canadian Centre for Child Protection, UNICEF; NCMEC founding member of INHOPE (50 member hotlines, six continents).
+50) Case Management Tool (CMT): developed with support from OJJDP and Meta; enables secure/quick report sharing with domestic and international LE for triage/prioritization/management.
+51) CMT UI available in eight languages: English, Spanish, French, German, Portuguese, Arabic, Hindi, Thai.
+52) Domestic CMT access includes all ICAC Task Forces, FBI, and Homeland Security Investigations (HSI).
+53) Complementary OJJDP transparency report on 2025 CyberTipline activity prepared in consultation with OJJDP.
+54) Site funding acknowledgment: funded in part through OJJDP / Office of Justice Programs / U.S. Department of Justice grant; DOJ does not operate/control/endorse the website.

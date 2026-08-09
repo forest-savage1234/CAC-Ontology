@@ -1,10 +1,12 @@
 # CAC Ontology Family Architecture
 
-## Semantic Spine Architecture (v3.0.0)
+> **Current baseline:** CAC Ontology **v3.1.0**. The semantic spine was introduced in **v3.0.0**. CASE/UCO imports are pinned to **1.5.0**.
 
-The CAC Ontology v3.0.0 introduces a **semantic spine** — a stable, top-level class hierarchy rooted at `cac-core:Entity` and organized by ontological kind. The spine lives in `cacontology-core-spine.ttl` (with SHACL shapes in `cacontology-core-spine-shapes.ttl`) and serves three purposes:
+## Semantic Spine Architecture
 
-1. **Anchoring domain modules** — every domain class in every CAC module subclasses exactly one spine branch, giving the whole family a single, coherent taxonomy.
+CAC Ontology v3.1.0 uses the **semantic spine** introduced in v3.0.0 — a stable, top-level class hierarchy rooted at `cac-core:Entity` and organized by ontological kind. The spine lives in `ontology/cacontology-core-spine.ttl` (with SHACL shapes in `ontology/cacontology-core-spine-shapes.ttl`) and serves three purposes:
+
+1. **Anchoring domain modules** — domain classes are designed to subclass an appropriate spine branch, giving the family a coherent top-level taxonomy.
 2. **Mediating external alignment** — bridge files map spine branches to gUFO, UCO, and CASE so that downstream consumers get foundational-ontology semantics without domain modules importing those external vocabularies directly.
 3. **Providing a stable extension point** — new modules only need to pick the right spine branch; the bridges propagate alignment automatically.
 
@@ -52,10 +54,10 @@ These mappings are maintained in three dedicated bridge files: `cacontology-brid
 
 ## gUFO Foundational Ontology Integration
 
-The CAC ontology family now includes comprehensive integration with gUFO (Unified Foundational Ontology), providing enhanced semantic precision, temporal modeling, and validation capabilities. This integration consists of three completed phases:
+CAC v3.1.0 ships a semantic spine, gUFO bridge, temporal module, and integration-pattern module. The “phase” labels below are retained only to explain the historical implementation sequence:
 
-### Phase 1: Core Investigation Modeling (✅ COMPLETE)
-**Files**: `cacontology-bridge-gufo.ttl`, `cacontology-core-spine.ttl`
+### Core investigation modeling
+**Shipped files**: `ontology/cacontology-bridge-gufo.ttl`, `ontology/cacontology-core-spine.ttl`
 
 ```mermaid
 graph TD
@@ -100,8 +102,8 @@ graph TD
     CAC_SITUATION --> LIFECYCLE_SIT
 ```
 
-### Phase 2: Temporal Framework (✅ COMPLETE)  
-**Files**: `cacontology-temporal.ttl`
+### Temporal framework
+**Shipped file**: `ontology/cacontology-temporal.ttl`
 
 ```mermaid
 graph TD
@@ -128,10 +130,10 @@ graph TD
     EFFICIENCY --> COMPLETION
 ```
 
-### Phase 3: Full Integration Strategy (✅ COMPLETE)
-**Files**: `cacontology-integration-patterns.ttl`
+### Integration patterns
+**Shipped file**: `ontology/cacontology-integration-patterns.ttl`
 
-16 specialized integration patterns across all 30+ CAC ontology modules with 345-day deployment timeline.
+The former phased rollout and 345-day timeline are historical planning context, not a current roadmap.
 
 ## Complete Import Chain
 
@@ -261,21 +263,6 @@ graph TD
     CAC -.-> CAC_SHAPES
     FORENSICS -.-> FORENSICS_SHAPES
     
-    BRIDGE_GUFO --> GUFO_EX1
-    TEMPORAL_GUFO --> GUFO_EX2
-    HOTLINES --> HOTLINE_EX
-    CAC --> INVEST_EX
-    FORENSICS --> ENHANCED_EX
-    PRODUCTION --> RHODE_ISLAND_EX
-    CUSTODIAL --> DOUGLAS_EX
-    SPECIALIZED_UNITS --> IDAHO_EX
-    MULTI_JURISDICTION --> ARKANSAS_EX
-    SEX_OFFENDER --> REGISTRY_EX
-    SENTENCING --> ILLINOIS_EX
-    INTERNATIONAL --> INTERNATIONAL_EX
-    ATHLETIC --> MORTON_EX
-    SEXTORTION --> SEXTORTION_EX
-
     style GUFO fill:#e1f5fe
     style BRIDGE_GUFO fill:#e1f5fe
     style BRIDGE_UCO fill:#e1f5fe
@@ -284,15 +271,13 @@ graph TD
     style STRATEGY_GUFO fill:#e1f5fe
     style SPINE fill:#c8e6c9
     style SPINE_SHAPES fill:#c8e6c9
-    style GUFO_EX1 fill:#f3e5f5
-    style GUFO_EX2 fill:#f3e5f5
 ```
 
 > **Note**: The semantic spine (green) provides the stable class hierarchy that all domain modules extend. Bridge files (blue) map spine branches to gUFO, UCO, and CASE. Shapes files (dotted lines) are used for validation but not imported by production graphs.
 
 ### Release Versioning Policy
 
-- The CAC Ontology family uses a **global release version** recorded in `CHANGELOG.md` (for example, `v3.0.0`) to describe the state of the full ontology suite.
+- The CAC Ontology family uses a **global release version** recorded in `CHANGELOG.md` (currently `v3.1.0`) to describe the state of the full suite.
 - Individual ontology modules (and their SHACL shapes) retain **module-specific `owl:versionIRI` values**, which are only incremented when that particular module’s semantics change.
 - This approach avoids churn in ontology IRIs while still providing a clear project-wide release history for implementers and downstream tools.
 
@@ -308,7 +293,7 @@ graph LR
         ATHLETIC_REPORT[Athletic Coaching Reports]
     end
 
-    subgraph "gUFO Enhanced Processing (**NEW**)"
+    subgraph "gUFO-aligned processing"
         PHASE_MODEL[Phase Modeling]
         ROLE_VALID[Role Validation]
         TEMPORAL_CONST[Temporal Constraints]
@@ -344,7 +329,7 @@ graph LR
     end
 
     subgraph Output
-        CASE[CASE Export]
+        CASE_EXPORT[CASE Export]
         SPARQL[Enhanced Analytics]
         REPORTS[Forensic Reports]
         VIZ[Visualization]
@@ -383,7 +368,7 @@ graph LR
     CLASS --> VALID
     VALID --> STORE
     
-    STORE --> CASE
+    STORE --> CASE_EXPORT
     STORE --> SPARQL
     STORE --> REPORTS
     STORE --> VIZ
@@ -398,7 +383,11 @@ graph LR
     style AI_INSIGHTS fill:#e1f5fe
 ```
 
-> **Note**: Blue components represent new gUFO-enhanced processing stages that provide semantic validation, temporal modeling, and enhanced analytics capabilities.
+> **Note**: This data-flow diagram is architectural guidance. It does not claim that CAC Ontology itself ships the depicted applications, APIs, store, or AI pipeline.
+
+### Offense-trajectory phase modeling
+
+ICAC state-machine graphs represent offense progression as `cac-core:Phase` instances linked by `cac-core:precedes`. The macro preparatory step between initial contact and exploitation is `cac-core:ConditioningPhase`, with grooming-module instances carrying both `cacontology-grooming:ConditioningPhase` and `cac-core:Phase` (spine and grooming SHACL shapes require both types). The dominant preparatory mechanism is recorded on the macro node via `cac-core:conditioningMode` (for example `deception`, `trust_rapport`, or `normalization`). Deprecated `TrustBuildingPhase` labels map to `ConditioningPhase` with an appropriate `conditioningMode`. Variant sub-stages (`SexualizationPhase`, `IsolationPhase`) model optional refinement nodes rather than substitutes for the macro ConditioningPhase instance. See `docs/glossary.md` (Offense-trajectory state machine) for authoring guidance.
 
 ## Class Hierarchy (Spine-Organized)
 
@@ -501,6 +490,17 @@ classDiagram
     Phase <|-- AnalysisPhase
     Phase <|-- LegalProcessPhase
 
+    class ConditioningPhase {
+        <<Phase>>
+        +conditioningMode
+    }
+    Phase <|-- ConditioningPhase
+
+    class GroomingConditioningPhase {
+        <<ConditioningPhase>>
+    }
+    ConditioningPhase <|-- GroomingConditioningPhase
+
     class HotlineReport {
         <<Artifact>>
         +ReporterRole reportedBy
@@ -585,11 +585,11 @@ graph TD
 
 ## Complete Ontology Module Reference
 
-The CAC Ontology Family consists of 30+ modules organized by domain:
+CAC v3.1.0 ships 50 ontology, spine, bridge, and integration Turtle modules plus 47 SHACL shape files. The selected module reference below is organized by domain; the complete inventory is in [CAC-Ontology-List](CAC-Ontology-List).
 
 ### Semantic Spine & Bridges (5 modules)
-- **`cacontology-core-spine.ttl`:** Stable top-level class hierarchy (Entity → EnduringEntity, Occurrent, Role, Phase, Situation)
-- **`cacontology-core-spine-shapes.ttl`:** SHACL validation for spine classes
+- **`cacontology-core-spine.ttl`:** Stable top-level class hierarchy (Entity → EnduringEntity, Occurrent, Role, Phase, Situation); includes `cac-core:ConditioningPhase`, `cac-core:conditioningMode`, and `cac-core:precedes` for offense-trajectory state machines
+- **`cacontology-core-spine-shapes.ttl`:** SHACL validation for spine classes (including required `cac-core:Phase` dual typing on `ConditioningPhase` instances; validation fails when the spine phase type is absent)
 - **`cacontology-bridge-gufo.ttl`:** Spine-to-gUFO alignment (EnduringEntity → gufo:Object, Event → gufo:Event, etc.)
 - **`cacontology-bridge-uco.ttl`:** Spine-to-UCO alignment (EnduringEntity → uco-core:UcoObject, etc.)
 - **`cacontology-bridge-case.ttl`:** Spine-to-CASE alignment
@@ -608,7 +608,7 @@ The CAC Ontology Family consists of 30+ modules organized by domain:
 ### High-Priority Criminal Activities (5+ modules)
 - **`cacontology-production.ttl`:** Child sexual abuse material production
 - **`cacontology-custodial.ttl`:** Custodial relationships & positions of trust
-- **`cacontology-grooming.ttl`:** Online grooming & enticement
+- **`cacontology-grooming.ttl`:** Online grooming & enticement; `ConditioningPhase` grooming specialization; deprecated `TrustBuildingPhase`
 - **`cacontology-sextortion.ttl`:** Sexual extortion incidents
 - **`cacontology-athletic-exploitation.ttl`:** Athletic coaching exploitation
 
@@ -632,15 +632,15 @@ The CAC Ontology Family consists of 30+ modules organized by domain:
 - **`cacontology-specialized-units.ttl`:** Specialized units & advanced capabilities
 - **`cacontology-sex-offender-registry.ttl`:** Sex offender registry management
 
-### Validation Components (20+ modules)
+### Validation components
 - **`cacontology-core-shapes.ttl`:** Core validation shapes
 - **`cacontology-hotlines-shapes.ttl`:** Hotline validation shapes
 - **`cacontology-forensics-shapes.ttl`:** Forensic validation shapes
-- Plus 17+ additional SHACL validation modules
+- 47 SHACL shape files are shipped; coverage and constraint depth vary by module
 
 ## UCO/CASE Integration
 
-The enhanced ontology family maximally reuses UCO and CASE concepts:
+CAC reuses UCO and CASE concepts where their semantics fit:
 
 **UCO Reuse:**
 - `uco-observable:File`, `uco-observable:Image` for evidence artifacts
@@ -651,13 +651,13 @@ The enhanced ontology family maximally reuses UCO and CASE concepts:
 
 **CASE Integration:**
 - `case-investigation:Investigation` as base for `CACInvestigation`
-- Full compatibility with CASE investigation workflows
-- Seamless export to CASE format for tool interoperability
+- Alignment with CASE investigation concepts through the CASE bridge
+- A basis for CASE-oriented export; consuming tools may still require mapping or configuration
 
 ## Context Files and API Integration
 
-### JSON-LD Contexts (Planned)
-JSON-LD context files for developer integration are planned for a future release.
+### JSON-LD contexts
+Five contexts currently ship under `contexts/`, covering grooming, sextortion, platforms, legal outcomes, and state-machine extensions. Broader context coverage is a future requirement, not a shipped v3.1.0 capability.
 
 ### Example Data Sets (selected files)
 - **`hotline-lifecycle.ttl`:** Basic hotline workflow
@@ -694,6 +694,7 @@ The project includes a complete Docker Compose environment with:
 - Automated CI/CD validation pipeline
 
 ### Quality Assurance
+The following are project requirements or targets, not v3.1.0 completion or benchmark claims:
 - ≥ 95% SHACL coverage requirement for object & datatype properties
 - Automated validation in CI/CD pipeline
 - Performance benchmarks (Q1 query ≤ 500ms on 5M triples)

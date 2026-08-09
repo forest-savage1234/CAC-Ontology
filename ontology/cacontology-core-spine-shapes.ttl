@@ -12,15 +12,15 @@
 # Ontology Declaration
 # =============================================================================
 
-<https://cacontology.projectvic.org/core/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/core/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Ontology Semantic Spine SHACL Shapes"@en ;
     rdfs:comment "Starter SHACL shapes for the CAC semantic spine. These shapes define minimal interoperability constraints for each spine branch. Extended profile shapes for advanced applications should be defined in separate profile modules."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/core/shapes/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
-    owl:imports <https://cacontology.projectvic.org/core/3.0.0> ;
+    owl:versionIRI <https://cacontology.projectvic.org/core/shapes/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
+    owl:imports <https://cacontology.projectvic.org/core/3.1.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2026-03-16"^^xsd:date ;
-    dcterms:modified "2026-03-16"^^xsd:date .
+    dcterms:modified "2026-08-09"^^xsd:date .
 
 # =============================================================================
 # ARTIFACT SHAPE
@@ -141,6 +141,27 @@ cac-core-shapes:PhaseShape a sh:NodeShape ;
         sh:datatype xsd:dateTimeStamp ;
         sh:name "end time"@en ;
         sh:description "Optional temporal end point for the phase."@en     ] .
+
+cac-core-shapes:ConditioningPhaseShape a sh:NodeShape ;
+    sh:targetClass cac-core:ConditioningPhase ;
+    rdfs:label "Conditioning Phase Shape"@en ;
+    rdfs:comment "Validation shape for offense-trajectory conditioning phase instances."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue cac-core:Phase ;
+        sh:minCount 1 ;
+        sh:message "ConditioningPhase instances must always be dual-typed with cac-core:Phase."@en     ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Conditioning phase must have a human-readable label."@en     ] ;
+    sh:property [
+        sh:path cac-core:conditioningMode ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "trust_rapport" "deception" "isolation" "normalization" "desensitization" "compliance_shaping" "dependency_creation" "fear_priming" "platform_confidence" ) ;
+        sh:message "conditioningMode must be from the allowed offense-trajectory mechanism list."@en     ] .
 
 # =============================================================================
 # ASSESSMENT RESULT SHAPE

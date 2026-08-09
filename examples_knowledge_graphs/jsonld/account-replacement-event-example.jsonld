@@ -1,0 +1,10 @@
+{
+  "@context": "../../contexts/cacontology-grooming.jsonld",
+  "@id": "urn:uuid:78901234-f012-3456-789a-bcdef0123456",
+  "@type": "AccountReplacementEvent",
+  "uco:description": "Offender created new account after platform ban and resumed grooming at initial contact.",
+  "triggeredBy": "platform_ban",
+  "resumesAt": "urn:uuid:67890123-ef01-2345-6789-abcdef012345",
+  "originalAccountId": "urn:uuid:45678901-cdef-0123-4567-89abcdef0123",
+  "replacementAccountId": "urn:uuid:56789012-def0-1234-5678-9abcdef01234"
+}

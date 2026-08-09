@@ -24,18 +24,15 @@ PREFIX ex: <urn:uuid:>
 SELECT ?doc ?url ?mime ?size ?hashValue WHERE {
   ?doc a uco-observable:ObservableObject ;
        uco-core:hasFacet ?urlFacet ;
-       uco-core:hasFacet ?contentFacet ;
-       uco-core:hasFacet ?hashFacet .
+       uco-core:hasFacet ?contentFacet .
 
   ?urlFacet a uco-observable:URLFacet ;
            uco-observable:url ?url .
 
   ?contentFacet a uco-observable:ContentDataFacet ;
                uco-observable:mimeType ?mime ;
-               uco-observable:sizeInBytes ?size .
-
-  ?hashFacet a uco-observable:HashFacet ;
-            uco-observable:hash ?hash .
+               uco-observable:sizeInBytes ?size ;
+               uco-observable:hash ?hash .
   ?hash a uco-types:Hash ;
         uco-types:hashValue ?hashValue .
 }
@@ -85,7 +82,10 @@ ORDER BY ?time ?action
 SELECT ?prov ?label ?action ?desc WHERE {
   ?prov a investigation:ProvenanceRecord ;
         rdfs:label ?label .
-  OPTIONAL { ?prov investigation:provenanceRecordAction ?action }
+  OPTIONAL {
+    ?prov uco-core:object ?source .
+    ?action uco-action:object ?source .
+  }
   OPTIONAL { ?prov uco-core:description ?desc }
 }
 ORDER BY ?prov

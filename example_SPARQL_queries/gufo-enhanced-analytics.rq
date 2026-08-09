@@ -323,19 +323,19 @@ ORDER BY DESC(?event_chain_length)
 
 SELECT ?validation_type ?entity_count ?compliance_rate WHERE {
   {
-    SELECT "Phase Modeling" as ?validation_type (COUNT(?phase) as ?entity_count) (1.0 as ?compliance_rate) WHERE {
+    SELECT ("Phase Modeling" AS ?validation_type) (COUNT(?phase) AS ?entity_count) (1.0 AS ?compliance_rate) WHERE {
       ?phase rdf:type/rdfs:subClassOf* cac-core:Phase .
     }
   } UNION {
-    SELECT "Role Modeling" as ?validation_type (COUNT(?role) as ?entity_count) (1.0 as ?compliance_rate) WHERE {
+    SELECT ("Role Modeling" AS ?validation_type) (COUNT(?role) AS ?entity_count) (1.0 AS ?compliance_rate) WHERE {
       ?role rdf:type/rdfs:subClassOf* cac-core:Role .
     }
   } UNION {
-    SELECT "Event Modeling" as ?validation_type (COUNT(?event) as ?entity_count) (1.0 as ?compliance_rate) WHERE {
+    SELECT ("Event Modeling" AS ?validation_type) (COUNT(?event) AS ?entity_count) (1.0 AS ?compliance_rate) WHERE {
       ?event rdf:type/rdfs:subClassOf* cac-core:Event .
     }
   } UNION {
-    SELECT "Situation Modeling" as ?validation_type (COUNT(?situation) as ?entity_count) (1.0 as ?compliance_rate) WHERE {
+    SELECT ("Situation Modeling" AS ?validation_type) (COUNT(?situation) AS ?entity_count) (1.0 AS ?compliance_rate) WHERE {
       ?situation rdf:type/rdfs:subClassOf* cac-core:Situation .
     }
   }

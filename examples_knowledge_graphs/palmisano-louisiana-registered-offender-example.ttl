@@ -27,7 +27,10 @@
 <> rdf:type owl:Ontology ;
     rdfs:label "Nicolas James Palmisano Case Example"@en ;
     rdfs:comment "Comprehensive example modeling the Nicolas James Palmisano case demonstrating registered sex offender recidivism, cross-state digital exploitation, and compliance-based arrest coordination."@en ;
-    owl:imports <https://cacontology.projectvic.org/sex-offender-registry> .
+    owl:imports <https://cacontology.projectvic.org/sex-offender-registry/3.1.0> ,
+                <https://cacontology.projectvic.org/3.1.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
+                <https://ontology.caseontology.org/case/investigation/1.5.0> .
 
 # =============================================================================
 # PERPETRATOR - REGISTERED SEX OFFENDER

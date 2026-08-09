@@ -11,17 +11,17 @@
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/usa-federal-law/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/usa-federal-law> rdf:type owl:Ontology ;
     dcterms:title "CAC USA Federal Child Exploitation and Obscenity Law Ontology"@en ;
     dcterms:description "Comprehensive semantic framework for U.S. federal child exploitation and obscenity laws with gUFO foundational ontology grounding for enhanced semantic precision, temporal modeling, and validation capabilities. Based on DOJ CEOS guidelines and models federal statutes, prosecution mechanisms, extraterritorial crimes, child support enforcement intersection, and obscenity law frameworks."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/usa-federal-law/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/usa-federal-law/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:created "2025-01-03"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-08-09"^^xsd:date ;
     rdfs:comment "Based on US DOJ Child Exploitation and Obscenity Section (CEOS) Citizens Guide to U.S. Federal Child Exploitation and Obscenity Laws. Grounded in gUFO foundational ontology."@en ;
-    owl:imports <http://purl.org/nemo/gufo#> ,
-                <https://cacontology.projectvic.org/core/3.0.0> .
+    owl:imports <http://purl.org/nemo/gufo#/1.0.0> ,
+                <https://cacontology.projectvic.org/core/3.1.0> .
 
 # =============================================================================
 # GUFO TYPE DECLARATIONS FOR USA FEDERAL LAW CLASSES

@@ -8,7 +8,7 @@ concepts:
       - "uco-observable:ContentDataFacet"
       - "uco-observable:URLFacet"
       - "uco-observable:FileFacet"
-      - "uco-observable:HashFacet"
+      - "uco-observable:ContentDataFacet"
     relationships:
       - predicate: "uco-core:hasFacet"
         targetUUID: "urn:uuid:6f9fa9fd-7171-5c45-bd82-9d7943377b53"
@@ -30,7 +30,7 @@ concepts:
     facets:
       - "uco-observable:ContentDataFacet"
       - "uco-observable:FileFacet"
-      - "uco-observable:HashFacet"
+      - "uco-observable:ContentDataFacet"
     relationships:
       - predicate: "uco-core:hasFacet"
         targetUUID: "urn:uuid:3831623d-f213-546f-ab0d-b46502021891"

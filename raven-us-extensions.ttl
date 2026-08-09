@@ -12,14 +12,14 @@
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Raven U.S. Legislative Extensions to CAC Ontology
-# Version: 3.0.0
+# Version: 3.1.0
 # Includes ICAC legal harmonization extensions with jurisdiction annotations
 
 :RavenUSExtensions a owl:Ontology ;
     rdfs:label "Raven U.S. Legislative Extensions" ;
     rdfs:comment "Extensions to the CAC legal-harmonization ontology for U.S. legislative tracking and ICAC legal harmonization" ;
-    owl:imports <https://cacontology.projectvic.org/3.0.0> ,
-               <https://cacontology.projectvic.org/core/3.0.0> .
+    owl:imports <https://cacontology.projectvic.org/3.1.0> ,
+               <https://cacontology.projectvic.org/core/3.1.0> .
 
 #################################################################
 # Jurisdiction Scope Annotations

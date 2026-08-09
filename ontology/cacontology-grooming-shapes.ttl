@@ -5,22 +5,23 @@
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/grooming/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/grooming/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Grooming SHACL Shapes with gUFO Validation"@en ;
     rdfs:comment "SHACL validation shapes for gUFO-enhanced CAC grooming ontology, including anti-rigidity constraints, temporal validation, phase transitions, and foundational type compliance."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/grooming/shapes/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/grooming/shapes/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/grooming/3.0.0> ,
-                <http://purl.org/nemo/gufo#> ,
-                <https://ontology.unifiedcyberontology.org/uco/core/> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/grooming/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
 
 # =============================================================================
 # gUFO TYPE CONSISTENCY VALIDATION
@@ -33,7 +34,7 @@ cacontology-grooming:GroomingEventTypeValidationShape rdf:type sh:NodeShape ;
 
 # Phases validation for grooming stages
 cacontology-grooming:GroomingPhaseValidationShape rdf:type sh:NodeShape ;
-    sh:targetClass cac-core:Phase ;
+    sh:targetClass cacontology-grooming:GroomingPhase ;
     sh:not [
         sh:property [
             sh:path rdfs:subClassOf ;
@@ -113,8 +114,8 @@ cacontology-grooming:GroomingBehaviorShape rdf:type sh:NodeShape ;
         sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:in ( "initial_contact" "trust_building" "isolation" "dependency_creation" "sexual_introduction" "maintenance" "control" ) ;
-        sh:message "Grooming behavior must specify grooming stage from the allowed list."@en
+        sh:in ( "initial_contact" "conditioning" "trust_building" "isolation" "dependency_creation" "sexualization" "sexual_introduction" "maintenance" "control" ) ;
+        sh:message "Grooming behavior must specify grooming stage from the allowed list (trust_building and sexual_introduction are legacy behavior-axis values)."@en
     ] ;
     sh:property [
         sh:path cacontology-grooming:behaviorType ;
@@ -167,6 +168,37 @@ cacontology-grooming:GroomingBehaviorShape rdf:type sh:NodeShape ;
         sh:maxCount 1 ;
         sh:message "Grooming behavior may have an end time."@en
     ] .
+
+cacontology-grooming:ConditioningPhaseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:ConditioningPhase ;
+    rdfs:label "Conditioning Phase Shape"@en ;
+    rdfs:comment "Validation shape for grooming offense-trajectory conditioning phase instances."@en ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue cac-core:Phase ;
+        sh:minCount 1 ;
+        sh:message "ConditioningPhase instances must always be dual-typed with cac-core:Phase."@en     ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Conditioning phase must have a human-readable label."@en     ] ;
+    sh:property [
+        sh:path cac-core:conditioningMode ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "trust_rapport" "deception" "isolation" "normalization" "desensitization" "compliance_shaping" "dependency_creation" "fear_priming" "platform_confidence" ) ;
+        sh:message "conditioningMode must be from the allowed offense-trajectory mechanism list."@en     ] ;
+    sh:property [
+        sh:path cacontology-grooming:hasGroomingPhaseBeginPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Conditioning phase may have begin timestamp."@en     ] ;
+    sh:property [
+        sh:path cacontology-grooming:hasGroomingPhaseEndPoint ;
+        sh:datatype xsd:dateTimeStamp ;
+        sh:maxCount 1 ;
+        sh:message "Conditioning phase may have end timestamp."@en     ] .
 
 cacontology-grooming:TrustBuildingShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-grooming:TrustBuilding ;
@@ -828,4 +860,80 @@ cacontology-grooming:GroomingDataQualityShape rdf:type sh:NodeShape ;
         sh:minInclusive 0.0 ;
         sh:maxInclusive 1.0 ;
         sh:maxCount 1 ;
-        sh:message "Analysis completeness must be between 0.0 and 1.0 (gUFO quality aspect)"@en     ] . 
+        sh:message "Analysis completeness must be between 0.0 and 1.0 (gUFO quality aspect)"@en     ] .
+
+# =============================================================================
+# ACCOUNT REPLACEMENT EVENT SHAPES (CaseLinker state machine)
+# =============================================================================
+
+cacontology-grooming:AccountReplacementEventShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:AccountReplacementEvent ;
+    rdfs:label "Account Replacement Event Shape"@en ;
+    rdfs:comment "Validation shape for account replacement after ban or block."@en ;
+    sh:property [
+        sh:path cacontology-grooming:triggeredBy ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "victim_block" "platform_ban" "detection_risk" "voluntary" ) ;
+        sh:message "Account replacement trigger must be victim_block, platform_ban, detection_risk, or voluntary."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-grooming:resumesAt ;
+        sh:class cac-core:Phase ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Account replacement must specify the phase resumed via resumesAt."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-grooming:originalAccountId ;
+        sh:class uco-observable:Account ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Original account may be specified at most once."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-grooming:replacementAccountId ;
+        sh:class uco-observable:Account ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Replacement account may be specified at most once."@en
+    ] .
+
+# =============================================================================
+# FABRICATED PERSONA SHAPE — Issue #36
+# =============================================================================
+
+cacontology-grooming:FabricatedPersonaShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:FabricatedPersona ;
+    rdfs:label "Fabricated Persona Shape"@en ;
+    rdfs:comment "Validates fabricated persona instances used in grooming/coercion modeling."@en ;
+    sh:property [
+        sh:path cacontology-grooming:claimedDisplayName ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:message "Claimed display name must be a string when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-grooming:claimedAge ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:message "Claimed age must be a string (age or age range) when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-grooming:claimedGender ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:message "Claimed gender must be a string when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-grooming:controlledBy ;
+        sh:nodeKind sh:IRI ;
+        sh:maxCount 1 ;
+        sh:message "A fabricated persona is controlled by at most one offender person node."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-grooming:personaPlatformAccount ;
+        sh:nodeKind sh:IRI ;
+        sh:message "Persona platform accounts must be IRI references to account observables."@en
+    ] .

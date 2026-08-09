@@ -1,0 +1,107 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://cacontology.projectvic.org/grooming#",
+    "cacontology": "https://cacontology.projectvic.org#",
+    "cacontology-grooming": "https://cacontology.projectvic.org/grooming#",
+    "cac-core": "https://cacontology.projectvic.org/core#",
+    "uco": "https://ontology.unifiedcyberontology.org/uco/core/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ConditioningBehavior": "cacontology-grooming:ConditioningBehavior",
+    "InitialContactPhase": "cacontology-grooming:InitialContactPhase",
+    "IsolationPhase": "cacontology-grooming:IsolationPhase",
+    "SexualizationPhase": "cacontology-grooming:SexualizationPhase",
+    "ExploitationPhase": "cacontology-grooming:ExploitationPhase",
+    "MaintenancePhase": "cacontology-grooming:MaintenancePhase",
+    "TrustBuilding": "cacontology-grooming:TrustBuilding",
+    "FabricatedPersona": "cacontology-grooming:FabricatedPersona",
+    "SexualConsequenceGameGrooming": "cacontology-grooming:SexualConsequenceGameGrooming",
+    "AccountReplacementEvent": {
+      "@id": "cacontology-grooming:AccountReplacementEvent",
+      "@type": "@id"
+    },
+    "triggeredBy": "cacontology-grooming:triggeredBy",
+    "resumesAt": {
+      "@id": "cacontology-grooming:resumesAt",
+      "@type": "@id"
+    },
+    "originalAccountId": {
+      "@id": "cacontology-grooming:originalAccountId",
+      "@type": "@id"
+    },
+    "replacementAccountId": {
+      "@id": "cacontology-grooming:replacementAccountId",
+      "@type": "@id"
+    },
+    "claimedDisplayName": "cacontology-grooming:claimedDisplayName",
+    "claimedAge": "cacontology-grooming:claimedAge",
+    "claimedGender": "cacontology-grooming:claimedGender",
+    "personaPlatformAccount": {
+      "@id": "cacontology-grooming:personaPlatformAccount",
+      "@type": "@id"
+    },
+    "controlledBy": {
+      "@id": "cacontology-grooming:controlledBy",
+      "@type": "@id"
+    },
+    "personaUsedIn": {
+      "@id": "cacontology-grooming:personaUsedIn",
+      "@type": "@id"
+    },
+    "participantCount": {
+      "@id": "cacontology-grooming:participantCount",
+      "@type": "xsd:nonNegativeInteger"
+    },
+    "gameContext": "cacontology-grooming:gameContext",
+    "ruleStructureDescription": "cacontology-grooming:ruleStructureDescription",
+    "trustDevelopmentRate": {
+      "@id": "cacontology-grooming:trustDevelopmentRate",
+      "@type": "xsd:double"
+    },
+    "behaviorDuration": {
+      "@id": "cacontology-grooming:behaviorDuration",
+      "@type": "xsd:integer"
+    },
+    "usesGifts": {
+      "@id": "cacontology-grooming:usesGifts",
+      "@type": "xsd:boolean"
+    },
+    "requestsSecrecy": {
+      "@id": "cacontology-grooming:requestsSecrecy",
+      "@type": "xsd:boolean"
+    },
+    "usesThreats": {
+      "@id": "cacontology-grooming:usesThreats",
+      "@type": "xsd:boolean"
+    },
+    "seekingHelp": {
+      "@id": "cacontology-grooming:seekingHelp",
+      "@type": "xsd:boolean"
+    },
+    "hasGroomingPhaseBeginPoint": {
+      "@id": "cacontology-grooming:hasGroomingPhaseBeginPoint",
+      "@type": "xsd:dateTimeStamp"
+    },
+    "hasGroomingPhaseEndPoint": {
+      "@id": "cacontology-grooming:hasGroomingPhaseEndPoint",
+      "@type": "xsd:dateTimeStamp"
+    },
+    "groomingPhaseDuration": {
+      "@id": "cacontology-grooming:groomingPhaseDuration",
+      "@type": "xsd:duration"
+    },
+    "precedes": {
+      "@id": "cac-core:precedes",
+      "@type": "@id"
+    },
+    "ConditioningPhase": {
+      "@id": "cacontology-grooming:ConditioningPhase",
+      "@type": "@id"
+    },
+    "Phase": {
+      "@id": "cac-core:Phase",
+      "@type": "@id"
+    },
+    "conditioningMode": "cacontology-grooming:conditioningMode"
+  }
+}

@@ -3,7 +3,9 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
+@prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
@@ -15,19 +17,19 @@
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org> rdf:type owl:Ontology ;
     rdfs:label "CAC Ontology Core"@en ;
-    rdfs:comment "A core ontology for representing concepts and relationships specific to Crimes Against Children investigations, extending UCO and CASE with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities. v3.0.0 introduces the semantic spine for disciplined ontological categorization."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    rdfs:comment "A core ontology for representing concepts and relationships specific to Crimes Against Children investigations, extending UCO and CASE with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities. v3.1.0 introduces the semantic spine for disciplined ontological categorization."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-03-20"^^xsd:date ;
-    dcterms:modified "2026-03-16"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.caseontology.org/case/> ,
-                <https://cacontology.projectvic.org/hotlines/3.0.0> ,
-                <http://purl.org/nemo/gufo#> ,
-                <https://cacontology.projectvic.org/core/3.0.0> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
+                <https://ontology.caseontology.org/case/case/1.5.0> ,
+                <https://cacontology.projectvic.org/hotlines/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> ,
+                <https://cacontology.projectvic.org/core/3.1.0> .
 
 # =============================================================================
 # INVESTIGATION CLASSES (extending UCO with gUFO Object and Situation)
@@ -40,7 +42,7 @@ cacontology:CACInvestigation rdf:type owl:Class ;
     rdfs:subClassOf cac-core:EnduringEntity , case-investigation:Investigation .
 
 # Investigation Phases (gUFO Phase anti-rigid modeling)
-# v3.0.0 BREAKING CHANGE: Phase classes no longer subclass CACInvestigation.
+# v3.1.0 BREAKING CHANGE: Phase classes no longer subclass CACInvestigation.
 # Phases are temporal stages OF an investigation, not investigations themselves.
 # Use cacontology:hasPhase to link an investigation to its phases.
 cacontology:InitialPhase rdf:type owl:Class, gufo:Phase ;
@@ -451,4 +453,42 @@ cacontology:resultsInIndictment rdf:type owl:ObjectProperty ;
     rdfs:label "results in indictment"@en ;
     rdfs:comment "Links conspiracy to indictment resulting from investigation."@en ;
     rdfs:domain cacontology:ConspiracyToCommitCSA ;
-    rdfs:range cacontology:MultiDefendantIndictment . 
+    rdfs:range cacontology:MultiDefendantIndictment .
+
+# =============================================================================
+# CORE CASE-IDENTIFICATION PROPERTIES — Issue #41
+# Declares (or aligns with UCO/CASE) the core-level case-identification terms
+# that CAC graphs already use. Where UCO or CASE already provides the concept,
+# the CAC term inherits it (subproperty / equivalent class) rather than
+# minting an independent term.
+# =============================================================================
+
+cacontology:caseNumber rdf:type owl:DatatypeProperty ;
+    rdfs:label "case number"@en ;
+    rdfs:comment "Court or agency case identifier for an investigation or proceeding (e.g., PACER docket number '3:20-cr-00029-SLG-MMS'). Declared as a subproperty of uco-core:externalIdentifier so consumers inherit UCO identifier semantics; the richer canonical pattern uco-core:externalReference remains available for fully-qualified references."@en ;
+    rdfs:subPropertyOf uco-core:externalIdentifier ;
+    rdfs:range xsd:string .
+
+cacontology:jurisdiction rdf:type owl:DatatypeProperty ;
+    rdfs:label "jurisdiction"@en ;
+    rdfs:comment "Legal authority scope of an investigation, proceeding, agency, or action (e.g., 'federal', 'E.D. Wis.', 'Victoria, Australia'). Declared once at core level to consolidate the per-module string variants; for structured jurisdictional entities use cacontology-multi:Jurisdiction and its subclasses."@en ;
+    rdfs:range xsd:string .
+
+cacontology:located_at rdf:type owl:ObjectProperty ;
+    rdfs:label "located at"@en ;
+    rdfs:comment "Direct edge from an entity to a location. UCO idiom alternatives: uco-core:Relationship with kindOfRelationship 'Located_At', or uco-action:location for Actions; this property supports direct edges where a reified Relationship is unnecessary."@en ;
+    rdfs:range uco-location:Location .
+
+cacontology:participatesInEvent rdf:type owl:ObjectProperty ;
+    rdfs:label "participates in event"@en ;
+    rdfs:comment "Links a participant (person, role, or organization) to an event they take part in. Referenced by cacontology-core-shapes SPARQL constraints; declared here to close the declaration gap (Issue #41)."@en ;
+    rdfs:range cac-core:Event .
+
+# Subject alignment (Issue #41): CASE already defines the investigation-subject
+# role; CAC graphs should use case-investigation:Subject. The equivalence below
+# provides continuity for existing graphs that used cacontology:Subject.
+cacontology:Subject rdf:type owl:Class ;
+    rdfs:label "Subject"@en ;
+    rdfs:comment "Continuity alias for the investigation-subject role. Deprecated in favor of case-investigation:Subject (a uco-role:Role whose conduct is within the scope of an investigation); new graphs should use the CASE class directly."@en ;
+    owl:equivalentClass case-investigation:Subject ;
+    owl:deprecated "true"^^xsd:boolean .

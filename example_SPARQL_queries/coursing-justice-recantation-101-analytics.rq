@@ -29,14 +29,12 @@ WHERE {
   }
   ?source rdfs:label ?label ;
     uco-core:hasFacet ?fileFacet ;
-    uco-core:hasFacet ?contentFacet ;
-    uco-core:hasFacet ?hashFacet .
+    uco-core:hasFacet ?contentFacet .
   ?fileFacet a uco-observable:FileFacet ;
     uco-observable:filePath ?path .
   ?contentFacet a uco-observable:ContentDataFacet ;
     uco-observable:mimeType ?mime ;
-    uco-observable:sizeInBytes ?size .
-  ?hashFacet a uco-observable:HashFacet ;
+    uco-observable:sizeInBytes ?size ;
     uco-observable:hash ?hashNode .
   ?hashNode a uco-types:Hash ;
     uco-types:hashValue ?hash .

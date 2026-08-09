@@ -16,15 +16,15 @@
 # Enhanced with gUFO (gentle Unified Foundational Ontology) integration
 # =============================================================================
 
-<https://cacontology.projectvic.org/law-enforcement-corruption/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/law-enforcement-corruption> rdf:type owl:Ontology ;
     rdfs:label "CAC Law Enforcement Corruption Ontology"@en ;
     rdfs:comment "Ontology for modeling law enforcement corruption and insider threats in child exploitation cases, including uniform-based production and officer trafficking. Enhanced with gUFO (gentle Unified Foundational Ontology) integration for improved semantic precision and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <http://purl.org/nemo/gufo#> ,
-                <https://cacontology.projectvic.org/core/3.0.0> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <http://purl.org/nemo/gufo#/1.0.0> ,
+                <https://cacontology.projectvic.org/core/3.1.0> .
 
 # =============================================================================
 # LAW ENFORCEMENT CORRUPTION CLASSES (gUFO: EventType - criminal activities)

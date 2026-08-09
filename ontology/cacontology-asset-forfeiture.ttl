@@ -11,22 +11,22 @@
 @prefix cacontology-asset-forfeiture: <https://cacontology.projectvic.org/asset-forfeiture#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/asset-forfeiture/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/asset-forfeiture> rdf:type owl:Ontology ;
     rdfs:label "CAC Asset Forfeiture and Financial Recovery Ontology with gUFO Integration"@en ;
     rdfs:comment "An ontology for representing asset forfeiture, property restraints, and financial recovery actions in Internet Crimes Against Children investigations, enhanced with comprehensive gUFO foundational modeling. Based on Criminal Assets Confiscation Taskforce (CACT) operations and Commonwealth financial penalties, featuring gUFO Events, Organizations, Objects, Roles, Phases, and Situations for enhanced semantic precision and anti-rigidity enforcement."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/asset-forfeiture/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/asset-forfeiture/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.unifiedcyberontology.org/uco/identity/> ,
-                <https://ontology.unifiedcyberontology.org/uco/observable/> ,
-                <https://ontology.unifiedcyberontology.org/uco/action/> ,
-                <https://ontology.unifiedcyberontology.org/uco/role/> ,
-                <https://cacontology.projectvic.org/3.0.0> ,
-                <https://cacontology.projectvic.org/core/3.0.0> ,
-                <http://purl.org/nemo/gufo#> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/role/1.5.0> ,
+                <https://cacontology.projectvic.org/3.1.0> ,
+                <https://cacontology.projectvic.org/core/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> .
 
 # =============================================================================
 # ASSET FORFEITURE ACTIONS ENHANCED AS gUFO EVENTS
@@ -465,9 +465,12 @@ cacontology-asset-forfeiture:previousPhase rdf:type owl:ObjectProperty ;
 
 cacontology-asset-forfeiture:phaseStatus rdf:type owl:DatatypeProperty ;
     rdfs:label "phase status"@en ;
-    rdfs:comment "Status of an operational phase (e.g., 'active', 'completed', 'pending')."@en ;
+    rdfs:comment "DEPRECATED: use cacontology-legal-outcomes:phaseStatus (domain cac-core:Phase) as the canonical phase status property. This module-local copy is retained for backward compatibility with existing asset-forfeiture graphs and shapes and is owl:equivalentProperty to the legal-outcomes declaration."@en ;
+    owl:deprecated "true"^^xsd:boolean ;
+    owl:equivalentProperty <https://cacontology.projectvic.org/legal-outcomes#phaseStatus> ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:string ;
+    rdfs:seeAlso <https://cacontology.projectvic.org/legal-outcomes#phaseStatus> .
 
 cacontology-asset-forfeiture:involvesJurisdiction rdf:type owl:ObjectProperty ;
     rdfs:label "involves jurisdiction"@en ;

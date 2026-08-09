@@ -35,7 +35,7 @@
     uco-observable:mimeType "text/plain"@en ;
     uco-observable:sizeInBytes 2300 .
 
-<urn:uuid:0b1b4e02-ea6f-5454-8f3b-21e17cf5fccf> a uco-observable:HashFacet ;
+<urn:uuid:0b1b4e02-ea6f-5454-8f3b-21e17cf5fccf> a uco-observable:ContentDataFacet ;
     uco-observable:hash <urn:uuid:d3299873-67b5-5680-a62d-b6a8afd8dbe9> .
 
 <urn:uuid:d3299873-67b5-5680-a62d-b6a8afd8dbe9> a uco-types:Hash ;
@@ -55,7 +55,7 @@
     uco-observable:mimeType "text/plain"@en ;
     uco-observable:sizeInBytes 1724 .
 
-<urn:uuid:db1d30d1-4bb4-5d38-82c3-e060b5ae0c96> a uco-observable:HashFacet ;
+<urn:uuid:db1d30d1-4bb4-5d38-82c3-e060b5ae0c96> a uco-observable:ContentDataFacet ;
     uco-observable:hash <urn:uuid:a10469c7-0dc1-5a36-a7a7-d973a16902e4> .
 
 <urn:uuid:a10469c7-0dc1-5a36-a7a7-d973a16902e4> a uco-types:Hash ;

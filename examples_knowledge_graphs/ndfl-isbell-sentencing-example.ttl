@@ -39,7 +39,7 @@ ex:f1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c a uco-observable:ContentDataFacet ;
 ex:f2b3c4d5-e6f7-5a8b-9c0d-1e2f3a4b5c6d a uco-observable:URLFacet ;
     uco-observable:url <https://www.justice.gov/usao-ndfl/pr/tallahassee-man-sentenced-twenty-years-federal-prison-child-exploitation-crime> .
 
-ex:f3c4d5e6-f7a8-5b9c-0d1e-2f3a4b5c6d7e a uco-observable:HashFacet ;
+ex:f3c4d5e6-f7a8-5b9c-0d1e-2f3a4b5c6d7e a uco-observable:ContentDataFacet ;
     uco-observable:hash ex:h1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c .
 
 ex:h1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c a uco-types:Hash ;
@@ -49,7 +49,7 @@ ex:h1a2b3c4-d5e6-5f7a-8b9c-0d1e2f3a4b5c a uco-types:Hash ;
 # Collection Agent
 ex:a1b2c3d4-e5f6-5a7b-8c9d-0e1f2a3b4c5d a uco-core:UcoObject ;
     rdfs:label "CAC Ontology Collection Agent (Cursor)"@en ;
-    uco-core:description "Automated assistant performing web collection for CAC Ontology."@en .
+    uco-core:description "Automated assistant performing web collection for CAC Ontology." .
 
 # Collection Action
 ex:b8c9d0e1-f2a3-5b4c-5d6e-7f8a9b0c1d2e a investigation:InvestigativeAction ;
@@ -57,14 +57,14 @@ ex:b8c9d0e1-f2a3-5b4c-5d6e-7f8a9b0c1d2e a investigation:InvestigativeAction ;
     uco-action:startTime "2026-01-07T04:00:43Z"^^xsd:dateTime ;
     uco-action:performer ex:a1b2c3d4-e5f6-5a7b-8c9d-0e1f2a3b4c5d ;
     uco-action:object ex:e95cbf40-5762-5b4a-9b3a-f2d438d47aff ;
-    uco-core:description "Collected via browser automation from DOJ public webpage. Confidence: high."@en .
+    uco-core:description "Collected via browser automation from DOJ public webpage. Confidence: high." .
 
 # Provenance Record
 ex:d0e1f2a3-b4c5-5d6e-7f8a-9b0c1d2e3f4a a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: NDFL Isbell Sentencing press release collection"@en ;
     investigation:exhibitNumber "DOC-NDFL-ISBELL-2026-001" ;
     uco-core:object ex:e95cbf40-5762-5b4a-9b3a-f2d438d47aff ;
-    investigation:provenanceRecordAction ex:b8c9d0e1-f2a3-5b4c-5d6e-7f8a9b0c1d2e .
+    uco-core:object ex:b8c9d0e1-f2a3-5b4c-5d6e-7f8a9b0c1d2e .
 
 # -----------------------------------------------------------------------------
 # PERSONS
@@ -73,7 +73,7 @@ ex:d0e1f2a3-b4c5-5d6e-7f8a-9b0c1d2e3f4a a investigation:ProvenanceRecord ;
 # Defendant: Ryan Isbell
 ex:01def123-4567-5890-abcd-ef0123456789 a uco-identity:Person ;
     rdfs:label "Ryan Isbell"@en ;
-    uco-core:description "Defendant, age 36, of Tallahassee, Florida. Sentenced to 20 years federal prison for CSAM production."@en ;
+    uco-core:description "Defendant, age 36, of Tallahassee, Florida. Sentenced to 20 years federal prison for CSAM production." ;
     uco-core:hasFacet ex:01def123-facet-birth .
 
 ex:01def123-facet-birth a uco-identity:BirthInformationFacet ;
@@ -82,22 +82,22 @@ ex:01def123-facet-birth a uco-identity:BirthInformationFacet ;
 # U.S. Attorney Jason R. Heekin
 ex:02usa456-7890-5abc-def0-123456789abc a uco-identity:Person ;
     rdfs:label "Jason R. Heekin"@en ;
-    uco-core:description "U.S. Attorney for the Northern District of Florida who announced the sentence."@en .
+    uco-core:description "U.S. Attorney for the Northern District of Florida who announced the sentence." .
 
 # AUSA Stephen Kunz
 ex:03ausa78-9012-5def-0123-456789abcdef a uco-identity:Person ;
     rdfs:label "Stephen Kunz"@en ;
-    uco-core:description "Assistant United States Attorney who prosecuted the case."@en .
+    uco-core:description "Assistant United States Attorney who prosecuted the case." .
 
 # HSI ASAC David Pezzutti
 ex:04hsi901-2345-5678-9abc-def012345678 a uco-identity:Person ;
     rdfs:label "David Pezzutti"@en ;
-    uco-core:description "HSI Tallahassee Assistant Special Agent in Charge."@en .
+    uco-core:description "HSI Tallahassee Assistant Special Agent in Charge." .
 
 # Minor Victim (anonymized)
 ex:05vic234-5678-5901-2345-678901234567 a uco-identity:Person ;
     rdfs:label "Minor Victim (anonymized)"@en ;
-    uco-core:description "Minor victim depicted in CSAM produced by defendant. Identity protected."@en .
+    uco-core:description "Minor victim depicted in CSAM produced by defendant. Identity protected." .
 
 # -----------------------------------------------------------------------------
 # ORGANIZATIONS
@@ -106,22 +106,22 @@ ex:05vic234-5678-5901-2345-678901234567 a uco-identity:Person ;
 # USAO Northern District of Florida
 ex:10usao12-3456-5789-0abc-def012345678 a uco-identity:Organization ;
     rdfs:label "U.S. Attorney's Office, Northern District of Florida"@en ;
-    uco-core:description "Federal prosecutor's office that handled the Isbell case."@en .
+    uco-core:description "Federal prosecutor's office that handled the Isbell case." .
 
 # Tallahassee Police Department
 ex:11tpd345-6789-5012-3456-789012345678 a uco-identity:Organization, cacontology-multi:LocalAgency ;
     rdfs:label "Tallahassee Police Department"@en ;
-    uco-core:description "Local law enforcement agency that initiated the investigation."@en .
+    uco-core:description "Local law enforcement agency that initiated the investigation." .
 
 # Homeland Security Investigations
 ex:12hsi678-9012-5345-6789-012345678901 a uco-identity:Organization, cacontology-multi:FederalAgency ;
     rdfs:label "Homeland Security Investigations (HSI)"@en ;
-    uco-core:description "Federal law enforcement agency (ICE/HSI) that jointly investigated the case."@en .
+    uco-core:description "Federal law enforcement agency (ICE/HSI) that jointly investigated the case." .
 
 # Project Safe Childhood
 ex:13psc901-2345-5678-9012-345678901234 a uco-identity:Organization ;
     rdfs:label "Project Safe Childhood"@en ;
-    uco-core:description "DOJ nationwide initiative to combat child sexual exploitation. Launched May 2006."@en .
+    uco-core:description "DOJ nationwide initiative to combat child sexual exploitation. Launched May 2006." .
 
 # -----------------------------------------------------------------------------
 # CRIMINAL CHARGE
@@ -129,7 +129,7 @@ ex:13psc901-2345-5678-9012-345678901234 a uco-identity:Organization ;
 
 ex:20chg123-4567-5890-abcd-ef0123456789 a cacontology-legal-outcomes:FederalCharge ;
     rdfs:label "Production of Child Pornography (18 U.S.C. § 2251)"@en ;
-    uco-core:description "Federal charge for producing child sexual abuse material."@en .
+    uco-core:description "Federal charge for producing child sexual abuse material." .
 
 # -----------------------------------------------------------------------------
 # SENTENCES
@@ -138,24 +138,24 @@ ex:20chg123-4567-5890-abcd-ef0123456789 a cacontology-legal-outcomes:FederalChar
 # Prison Sentence: 20 years
 ex:30prs456-7890-5abc-def0-123456789abc a cacontology-legal-outcomes:PrisonSentence ;
     rdfs:label "20-Year Federal Prison Sentence"@en ;
-    uco-core:description "Twenty years imprisonment in federal prison."@en ;
+    uco-core:description "Twenty years imprisonment in federal prison." ;
     cacontology-legal-outcomes:sentenceDurationMonths 240 .
 
 # Supervised Release: 15 years
 ex:31sup789-0123-5def-0123-456789abcdef a cacontology-legal-outcomes:SupervisedRelease ;
     rdfs:label "15-Year Supervised Release"@en ;
-    uco-core:description "Fifteen-year term of supervised release following imprisonment."@en ;
+    uco-core:description "Fifteen-year term of supervised release following imprisonment." ;
     cacontology-legal-outcomes:sentenceDurationMonths 180 .
 
 # Restitution
 ex:32res012-3456-5789-0abc-def012345678 a cacontology-legal-outcomes:MonetaryPenalty ;
     rdfs:label "Restitution Order"@en ;
-    uco-core:description "Ordered to pay restitution to the victim."@en .
+    uco-core:description "Ordered to pay restitution to the victim." .
 
 # Sex Offender Registration
 ex:33sor345-6789-5012-3456-789012345678 a cacontology-registry:RegistrationRequirement ;
     rdfs:label "Sex Offender Registration Requirement"@en ;
-    uco-core:description "Required to register as a sex offender."@en .
+    uco-core:description "Required to register as a sex offender." .
 
 # -----------------------------------------------------------------------------
 # EVIDENCE
@@ -164,7 +164,7 @@ ex:33sor345-6789-5012-3456-789012345678 a cacontology-registry:RegistrationRequi
 # Electronic Devices (seized)
 ex:40dev678-9012-5345-6789-012345678901 a uco-observable:Device ;
     rdfs:label "Electronic Devices Seized from Isbell Residence"@en ;
-    uco-core:description "Multiple electronic devices seized during November 2020 arrest warrant execution."@en ;
+    uco-core:description "Multiple electronic devices seized during November 2020 arrest warrant execution." ;
     uco-core:hasFacet ex:40dev678-facet .
 
 ex:40dev678-facet a uco-observable:DeviceFacet ;
@@ -173,7 +173,7 @@ ex:40dev678-facet a uco-observable:DeviceFacet ;
 # Social Media Account
 ex:41sma901-2345-5678-9012-345678901234 a uco-observable:Account ;
     rdfs:label "Defendant's Social Media Account"@en ;
-    uco-core:description "Social media account reported to contain child pornography in 2020."@en .
+    uco-core:description "Social media account reported to contain child pornography in 2020." .
 
 # -----------------------------------------------------------------------------
 # INVESTIGATIVE ACTIONS
@@ -182,7 +182,7 @@ ex:41sma901-2345-5678-9012-345678901234 a uco-observable:Account ;
 # Arrest Warrant
 ex:50war234-5678-5901-2345-678901234567 a investigation:Authorization ;
     rdfs:label "November 2020 Arrest Warrant"@en ;
-    uco-core:description "Arrest warrant executed in November 2020 at Isbell's residence."@en .
+    uco-core:description "Arrest warrant executed in November 2020 at Isbell's residence." .
 
 # Device Seizure
 ex:51seiz56-7890-5123-4567-890123456789 a investigation:InvestigativeAction ;
@@ -191,14 +191,14 @@ ex:51seiz56-7890-5123-4567-890123456789 a investigation:InvestigativeAction ;
     uco-action:performer ex:11tpd345-6789-5012-3456-789012345678 ;
     uco-action:object ex:40dev678-9012-5345-6789-012345678901 ;
     uco-action:instrument ex:50war234-5678-5901-2345-678901234567 ;
-    uco-core:description "Law enforcement seized multiple electronic devices during warrant execution."@en .
+    uco-core:description "Law enforcement seized multiple electronic devices during warrant execution." .
 
 # Forensic Examination
 ex:52for890-1234-5567-8901-234567890123 a investigation:ForensicAction ;
     rdfs:label "Forensic Examination of Seized Devices"@en ;
     uco-action:object ex:40dev678-9012-5345-6789-012345678901 ;
     uco-action:performer ex:12hsi678-9012-5345-6789-012345678901 ;
-    uco-core:description "Forensic examination revealed defendant produced CSAM depicting minor victim."@en .
+    uco-core:description "Forensic examination revealed defendant produced CSAM depicting minor victim." .
 
 # Sentencing Hearing
 ex:53sen123-4567-5890-abcd-ef0123456789 a cacontology-legal-outcomes:SentencingHearing ;
@@ -209,7 +209,7 @@ ex:53sen123-4567-5890-abcd-ef0123456789 a cacontology-legal-outcomes:SentencingH
                       ex:31sup789-0123-5def-0123-456789abcdef ,
                       ex:32res012-3456-5789-0abc-def012345678 ,
                       ex:33sor345-6789-5012-3456-789012345678 ;
-    uco-core:description "Federal sentencing hearing where 20-year prison sentence was imposed."@en .
+    uco-core:description "Federal sentencing hearing where 20-year prison sentence was imposed." .
 
 # -----------------------------------------------------------------------------
 # STATEMENT ACTIONS (Provenance-Anchoring for Connectivity)
@@ -225,7 +225,7 @@ ex:60stmt12-3456-5789-0abc-def012345678 a uco-action:Action ;
                       ex:30prs456-7890-5abc-def0-123456789abc ,
                       ex:31sup789-0123-5def-0123-456789abcdef ,
                       ex:20chg123-4567-5890-abcd-ef0123456789 ;
-    uco-core:description "Grounded in normalized.txt line 7. Confidence: high."@en .
+    uco-core:description "Grounded in normalized.txt line 7. Confidence: high." .
 
 # Press release states investigation details
 ex:61stmt45-6789-5012-3456-789012345678 a uco-action:Action ;
@@ -238,7 +238,7 @@ ex:61stmt45-6789-5012-3456-789012345678 a uco-action:Action ;
                       ex:40dev678-9012-5345-6789-012345678901 ,
                       ex:41sma901-2345-5678-9012-345678901234 ,
                       ex:50war234-5678-5901-2345-678901234567 ;
-    uco-core:description "Grounded in normalized.txt lines 11, 17. Confidence: high."@en .
+    uco-core:description "Grounded in normalized.txt lines 11, 17. Confidence: high." .
 
 # Press release states prosecutor info
 ex:62stmt78-9012-5345-6789-012345678901 a uco-action:Action ;
@@ -249,7 +249,7 @@ ex:62stmt78-9012-5345-6789-012345678901 a uco-action:Action ;
                       ex:02usa456-7890-5abc-def0-123456789abc ,
                       ex:03ausa78-9012-5def-0123-456789abcdef ,
                       ex:04hsi901-2345-5678-9abc-def012345678 ;
-    uco-core:description "Grounded in normalized.txt lines 7, 13, 17. Confidence: high."@en .
+    uco-core:description "Grounded in normalized.txt lines 7, 13, 17. Confidence: high." .
 
 # Press release states victim and additional sentences
 ex:63stmt01-2345-5678-9012-345678901234 a uco-action:Action ;
@@ -260,7 +260,7 @@ ex:63stmt01-2345-5678-9012-345678901234 a uco-action:Action ;
                       ex:05vic234-5678-5901-2345-678901234567 ,
                       ex:32res012-3456-5789-0abc-def012345678 ,
                       ex:33sor345-6789-5012-3456-789012345678 ;
-    uco-core:description "Grounded in normalized.txt lines 11, 15. Confidence: high."@en .
+    uco-core:description "Grounded in normalized.txt lines 11, 15. Confidence: high." .
 
 # Press release mentions Project Safe Childhood
 ex:64stmt34-5678-5901-2345-678901234567 a uco-action:Action ;
@@ -269,7 +269,7 @@ ex:64stmt34-5678-5901-2345-678901234567 a uco-action:Action ;
     uco-action:performer ex:10usao12-3456-5789-0abc-def012345678 ;
     uco-action:object ex:e95cbf40-5762-5b4a-9b3a-f2d438d47aff ,
                       ex:13psc901-2345-5678-9012-345678901234 ;
-    uco-core:description "Grounded in normalized.txt line 19. Confidence: high."@en .
+    uco-core:description "Grounded in normalized.txt line 19. Confidence: high." .
 
 # -----------------------------------------------------------------------------
 # PROVENANCE RECORDS (for key assertions)
@@ -278,18 +278,18 @@ ex:64stmt34-5678-5901-2345-678901234567 a uco-action:Action ;
 ex:70prov12-3456-5789-0abc-def012345678 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: defendant and sentence"@en ;
     uco-core:object ex:e95cbf40-5762-5b4a-9b3a-f2d438d47aff ;
-    investigation:provenanceRecordAction ex:60stmt12-3456-5789-0abc-def012345678 ;
-    uco-core:description "Evidence pointer: normalized.txt line 7. Quote: 'Ryan Isbell, 36, of Tallahassee, Florida, was sentenced to 20 years in federal prison'."@en .
+    uco-core:object ex:60stmt12-3456-5789-0abc-def012345678 ;
+    uco-core:description "Evidence pointer: normalized.txt line 7. Quote: 'Ryan Isbell, 36, of Tallahassee, Florida, was sentenced to 20 years in federal prison'." .
 
 ex:71prov45-6789-5012-3456-789012345678 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: investigation and evidence"@en ;
     uco-core:object ex:e95cbf40-5762-5b4a-9b3a-f2d438d47aff ;
-    investigation:provenanceRecordAction ex:61stmt45-6789-5012-3456-789012345678 ;
-    uco-core:description "Evidence pointer: normalized.txt lines 11, 17. Quote: 'joint investigation by the Tallahassee Police Department and HSI'."@en .
+    uco-core:object ex:61stmt45-6789-5012-3456-789012345678 ;
+    uco-core:description "Evidence pointer: normalized.txt lines 11, 17. Quote: 'joint investigation by the Tallahassee Police Department and HSI'." .
 
 ex:72prov78-9012-5345-6789-012345678901 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: supervised release and registration"@en ;
     uco-core:object ex:e95cbf40-5762-5b4a-9b3a-f2d438d47aff ;
-    investigation:provenanceRecordAction ex:63stmt01-2345-5678-9012-345678901234 ;
-    uco-core:description "Evidence pointer: normalized.txt line 15. Quote: '15-year term of supervised release... required to register as a sex offender'."@en .
+    uco-core:object ex:63stmt01-2345-5678-9012-345678901234 ;
+    uco-core:description "Evidence pointer: normalized.txt line 15. Quote: '15-year term of supervised release... required to register as a sex offender'." .
 

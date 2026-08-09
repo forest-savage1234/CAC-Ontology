@@ -112,30 +112,30 @@ def main() -> int:
         f'    uco-action:startTime "{COLLECTED_AT}"^^xsd:dateTime ;\n'
         f"    uco-action:performer ex:{TASK_FORCE_ORG_ID} ;\n"
         f"    uco-action:object ex:{DOC_ID}, ex:{ids['ojjdp_org']}, ex:{ids['utag_org']} ;\n"
-        "    uco-core:description \"Grounded in normalized.txt lines 37-40: funded by a grant from OJJDP and administered through the Utah Attorney General's Office.\"@en .\n\n"
+        "    uco-core:description \"Grounded in normalized.txt lines 37-40: funded by a grant from OJJDP and administered through the Utah Attorney General's Office.\" .\n\n"
     )
     append.append(
         f"ex:{ids['funding_prov']} a investigation:ProvenanceRecord ;\n"
         '    rdfs:label "Provenance: funding/admin statements"@en ;\n'
         f"    uco-core:object ex:{DOC_ID} ;\n"
-        f"    investigation:provenanceRecordAction ex:{ids['funding_action']} ;\n"
-        '    uco-core:description "Evidence pointer: normalized.txt lines 37-40."@en .\n\n'
+        f"    uco-core:object ex:{ids['funding_action']} ;\n"
+        '    uco-core:description "Evidence pointer: normalized.txt lines 37-40." .\n\n'
     )
 
     append.append(
         f"ex:{ids['crime1']} a uco-core:UcoObject ;\n"
         '    rdfs:label "Sexual Exploitation of a Minor"@en ;\n'
-        '    uco-core:description "(possessing, distributing and manufacturing child pornography)"@en .\n\n'
+        '    uco-core:description "(possessing, distributing and manufacturing child pornography)" .\n\n'
     )
     append.append(
         f"ex:{ids['crime2']} a uco-core:UcoObject ;\n"
         '    rdfs:label "Enticing a Minor over the Internet"@en ;\n'
-        '    uco-core:description "(with the intent of committing sexual acts to the child)"@en .\n\n'
+        '    uco-core:description "(with the intent of committing sexual acts to the child)" .\n\n'
     )
     append.append(
         f"ex:{ids['crime3']} a uco-core:UcoObject ;\n"
         '    rdfs:label "Dealing in Material Harmful to a Minor"@en ;\n'
-        '    uco-core:description "(sending pornography to a minor and/or sexting)"@en .\n\n'
+        '    uco-core:description "(sending pornography to a minor and/or sexting)" .\n\n'
     )
     append.append(
         f"ex:{ids['crimes_action']} a uco-action:Action ;\n"
@@ -143,20 +143,20 @@ def main() -> int:
         f'    uco-action:startTime "{COLLECTED_AT}"^^xsd:dateTime ;\n'
         f"    uco-action:performer ex:{TASK_FORCE_ORG_ID} ;\n"
         f"    uco-action:object ex:{DOC_ID}, ex:{ids['crime1']}, ex:{ids['crime2']}, ex:{ids['crime3']} ;\n"
-        '    uco-core:description "Grounded in normalized.txt lines 49-52 (Crimes We Investigate)."@en .\n\n'
+        '    uco-core:description "Grounded in normalized.txt lines 49-52 (Crimes We Investigate)." .\n\n'
     )
     append.append(
         f"ex:{ids['crimes_prov']} a investigation:ProvenanceRecord ;\n"
         '    rdfs:label "Provenance: crimes investigated list"@en ;\n'
         f"    uco-core:object ex:{DOC_ID} ;\n"
-        f"    investigation:provenanceRecordAction ex:{ids['crimes_action']} ;\n"
-        '    uco-core:description "Evidence pointer: normalized.txt lines 49-52."@en .\n\n'
+        f"    uco-core:object ex:{ids['crimes_action']} ;\n"
+        '    uco-core:description "Evidence pointer: normalized.txt lines 49-52." .\n\n'
     )
 
     append.append(
         f"ex:{ids['digital_program']} a uco-core:UcoObject ;\n"
         '    rdfs:label "Digital Respons-Ability program"@en ;\n'
-        '    uco-core:description "Program described on the webpage; sponsored to educate children, parents, and the community on Internet safety presentations."@en .\n\n'
+        '    uco-core:description "Program described on the webpage; sponsored to educate children, parents, and the community on Internet safety presentations." .\n\n'
     )
     append.append(
         f"ex:{ids['digital_program_action']} a uco-action:Action ;\n"
@@ -164,14 +164,14 @@ def main() -> int:
         f'    uco-action:startTime "{COLLECTED_AT}"^^xsd:dateTime ;\n'
         f"    uco-action:performer ex:{ids['utag_org']} ;\n"
         f"    uco-action:object ex:{DOC_ID}, ex:{ids['digital_program']} ;\n"
-        '    uco-core:description "Grounded in normalized.txt lines 46-48."@en .\n\n'
+        '    uco-core:description "Grounded in normalized.txt lines 46-48." .\n\n'
     )
     append.append(
         f"ex:{ids['digital_program_prov']} a investigation:ProvenanceRecord ;\n"
         '    rdfs:label "Provenance: Digital Respons-Ability program statement"@en ;\n'
         f"    uco-core:object ex:{DOC_ID} ;\n"
-        f"    investigation:provenanceRecordAction ex:{ids['digital_program_action']} ;\n"
-        '    uco-core:description "Evidence pointer: normalized.txt lines 46-48."@en .\n\n'
+        f"    uco-core:object ex:{ids['digital_program_action']} ;\n"
+        '    uco-core:description "Evidence pointer: normalized.txt lines 46-48." .\n\n'
     )
 
     append.append("# -- Affiliates listed on webpage (each connected via one listing action)\n\n")
@@ -196,14 +196,14 @@ def main() -> int:
         sep = "," if i < len(affiliate_ids) - 1 else " ;"
         append.append(f"                    ex:{u}{sep}\n")
     append.append(
-        f'    uco-core:description "Grounded in normalized.txt lines {start_aff}-{end_aff - 1} (affiliate agency list)."@en .\n\n'
+        f'    uco-core:description "Grounded in normalized.txt lines {start_aff}-{end_aff - 1} (affiliate agency list)." .\n\n'
     )
     append.append(
         f"ex:{ids['affiliation_prov']} a investigation:ProvenanceRecord ;\n"
         '    rdfs:label "Provenance: affiliates list"@en ;\n'
         f"    uco-core:object ex:{DOC_ID} ;\n"
-        f"    investigation:provenanceRecordAction ex:{ids['affiliation_action']} ;\n"
-        f'    uco-core:description "Evidence pointer: normalized.txt lines {start_aff}-{end_aff - 1}."@en .\n\n'
+        f"    uco-core:object ex:{ids['affiliation_action']} ;\n"
+        f'    uco-core:description "Evidence pointer: normalized.txt lines {start_aff}-{end_aff - 1}." .\n\n'
     )
 
     base = SKELETON.read_text(encoding="utf-8", errors="ignore")

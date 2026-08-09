@@ -31,7 +31,7 @@ WHERE {
         GROUP BY ?report
     }
     
-    BIND(DAYS(NOW() - ?createdTime) AS ?daysSinceCreation) # Use DAYS for simpler age
+    BIND((NOW() - ?createdTime) AS ?daysSinceCreation)
     
     FILTER NOT EXISTS {
         ?report cacontology-hotlines:triggersAction ?action .
@@ -54,5 +54,5 @@ WHERE {
         ?report uco-confidentiality:TLP-RED ?whatever .
     }
 }
-ORDER BY ?daysSinceCreation DESC # Sort by oldest first
-LIMIT ?limit 
+ORDER BY DESC(?daysSinceCreation) # Sort by oldest first
+LIMIT 100

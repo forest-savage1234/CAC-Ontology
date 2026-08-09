@@ -32,7 +32,7 @@
     uco-observable:mimeType "text/plain"@en ;
     uco-observable:sizeInBytes 2300 .
 
-<urn:uuid:0b1b4e02-ea6f-5454-8f3b-21e17cf5fccf> a uco-observable:HashFacet ;
+<urn:uuid:0b1b4e02-ea6f-5454-8f3b-21e17cf5fccf> a uco-observable:ContentDataFacet ;
     uco-observable:hash <urn:uuid:d3299873-67b5-5680-a62d-b6a8afd8dbe9> .
 
 <urn:uuid:d3299873-67b5-5680-a62d-b6a8afd8dbe9> a uco-types:Hash ;
@@ -44,7 +44,7 @@
     uco-action:startTime "2026-02-17T14:12:12Z"^^xsd:dateTime ;
     uco-action:performer <urn:uuid:8924328b-4315-4510-8c86-b4a2969371be> ;
     uco-action:object <urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a> ;
-    uco-core:description "manual capture (blocked by device verification; harm-minimized excerpt stored)"@en .
+    uco-core:description "manual capture (blocked by device verification; harm-minimized excerpt stored)" .
 
 <urn:uuid:e40b2895-ae34-5137-91a9-fd4a68545ece> a uco-observable:ObservableObject ;
     rdfs:label "Normalized text artifact (keypoint statements; harm-minimized)"@en ;
@@ -59,7 +59,7 @@
     uco-observable:mimeType "text/plain"@en ;
     uco-observable:sizeInBytes 1724 .
 
-<urn:uuid:db1d30d1-4bb4-5d38-82c3-e060b5ae0c96> a uco-observable:HashFacet ;
+<urn:uuid:db1d30d1-4bb4-5d38-82c3-e060b5ae0c96> a uco-observable:ContentDataFacet ;
     uco-observable:hash <urn:uuid:a10469c7-0dc1-5a36-a7a7-d973a16902e4> .
 
 <urn:uuid:a10469c7-0dc1-5a36-a7a7-d973a16902e4> a uco-types:Hash ;
@@ -72,5 +72,5 @@
     uco-action:performer <urn:uuid:8924328b-4315-4510-8c86-b4a2969371be> ;
     uco-action:object <urn:uuid:0470e6ed-988a-4a59-9385-e5a6be42f69a> ;
     uco-action:result <urn:uuid:e40b2895-ae34-5137-91a9-fd4a68545ece> ;
-    uco-core:description "session_web_snapshot_extract + harm-minimized redaction + keypoint normalization (see normalized.txt)"@en .
+    uco-core:description "session_web_snapshot_extract + harm-minimized redaction + keypoint normalization (see normalized.txt)" .
 

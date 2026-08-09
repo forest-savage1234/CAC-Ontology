@@ -11,16 +11,16 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-<https://cacontology.projectvic.org/us/ncmec/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/us/ncmec/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC US NCMEC SHACL Shapes"@en ;
     rdfs:comment "SHACL shapes for validating CAC US NCMEC ontology instances, covering NCMEC CyberTip reports, incident types, analysis processes, and investigation triggers."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/us/ncmec/shapes/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/us/ncmec/shapes/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/us/ncmec/3.0.0> ,
-                <http://purl.org/nemo/gufo#> ,
-                <https://ontology.unifiedcyberontology.org/uco/core/> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/us/ncmec/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
 
 # =============================================================================
 # NCMEC CYBERTIP REPORT SHAPES
@@ -732,4 +732,81 @@ cacontology-us-ncmec:CooperationLevelValidationShape rdf:type sh:NodeShape ;
                     FILTER (?data1 != ?data2)
                 }
             }
-        """     ] . 
+        """     ] .
+
+# =============================================================================
+# AGGREGATE TRANSPARENCY STATISTIC SHAPES
+# =============================================================================
+
+cacontology-us-ncmec:AggregateReportStatisticShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:AggregateReportStatistic ;
+    rdfs:label "Aggregate Report Statistic Shape"@en ;
+    rdfs:comment "Validates published aggregate transparency statistics: each statistic must carry exactly one primary numeric value, a unit, and a reporting period."@en ;
+    sh:property [
+        sh:path cacontology-us-ncmec:statisticValue ;
+        sh:or ( [ sh:datatype xsd:decimal ] [ sh:datatype xsd:integer ] ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "An aggregate report statistic must have exactly one numeric statisticValue (xsd:decimal or xsd:integer); decompose compound published claims into one statistic per value."@en     ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:statisticUnit ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "An aggregate report statistic must state the unit of its value (e.g., 'reports', 'files', 'percent')."@en     ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:reportingPeriod ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "An aggregate report statistic must state the reporting period it covers (e.g., '2025', 'as of 2025-12-31')."@en     ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:statisticQualifier ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        rdfs:comment "Optional qualifier from the published source (e.g., 'more than')."@en     ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:percentChangeFromPriorPeriod ;
+        sh:or ( [ sh:datatype xsd:decimal ] [ sh:datatype xsd:integer ] ) ;
+        sh:maxCount 1 ;
+        rdfs:comment "Optional published change relative to the prior period."@en     ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:statisticTopic ;
+        sh:nodeKind sh:IRI ;
+        rdfs:comment "Optional links to the category, program, or concept nodes the statistic describes."@en     ] .
+
+# =============================================================================
+# CYBERTIP IDENTIFIER EXTRACTION AND ROUTING SHAPES — Issue #31
+# =============================================================================
+
+cacontology-us-ncmec:CybertipIdentifierExtractionActionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:CybertipIdentifierExtractionAction ;
+    rdfs:label "CyberTip Identifier Extraction Action Shape"@en ;
+    rdfs:comment "Validates identifier extraction actions over CyberTip reports."@en ;
+    sh:property [
+        sh:path cacontology-us-ncmec:extractsIdentifierFromCybertip ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:message "An extraction action must reference the CyberTip report it processes."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:producedIdentifierSet ;
+        sh:nodeKind sh:IRI ;
+        sh:maxCount 1 ;
+        sh:message "An extraction action produces at most one identifier set."@en
+    ] .
+
+cacontology-us-ncmec:CybertipJurisdictionRoutingAssessmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:CybertipJurisdictionRoutingAssessment ;
+    rdfs:label "CyberTip Jurisdiction Routing Assessment Shape"@en ;
+    rdfs:comment "Validates jurisdiction routing assessments derived from extracted identifiers."@en ;
+    sh:property [
+        sh:path cacontology-us-ncmec:usesExtractedIdentifierSet ;
+        sh:nodeKind sh:IRI ;
+        sh:message "A routing assessment should reference the identifier set(s) it relies on."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:recommendedJurisdiction ;
+        sh:nodeKind sh:IRI ;
+        sh:message "Recommended jurisdiction must reference a jurisdiction or agency node."@en
+    ] .

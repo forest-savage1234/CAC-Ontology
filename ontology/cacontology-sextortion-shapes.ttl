@@ -5,20 +5,21 @@
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix cacontology-sextortion: <https://cacontology.projectvic.org/sextortion#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/sextortion/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sextortion/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Sextortion SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the CAC Sextortion Ontology, providing validation for sextortion incidents, progression patterns, and investigation approaches."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/sextortion/shapes/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/sextortion/shapes/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-02-11"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/sextortion/3.0.0> ,
-                <http://purl.org/nemo/gufo#> ,
-                <https://ontology.unifiedcyberontology.org/uco/core/> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/sextortion/3.1.0> ,
+                <http://purl.org/nemo/gufo#/1.0.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
 
 # =============================================================================
 # SEXTORTION INCIDENT SHAPES
@@ -675,4 +676,41 @@ cacontology-sextortion:DataQualityShape rdf:type sh:NodeShape ;
         sh:minLength 10 ;
         sh:maxLength 1000 ;
         sh:message "Comment should be between 10 and 1000 characters when provided."@en
+    ] .
+
+# =============================================================================
+# COERCION CYCLE SHAPES (CaseLinker state machine)
+# =============================================================================
+
+cacontology-sextortion:CoercionCycleShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:CoercionCycle ;
+    rdfs:label "Coercion Cycle Shape"@en ;
+    rdfs:comment "Validation shape for sextortion coercion cycle instances."@en ;
+    sh:property [
+        sh:path cacontology-sextortion:sustainedBy ;
+        sh:class cac-core:Artifact ;
+        sh:minCount 1 ;
+        sh:message "Coercion cycle must reference retained leverage material via sustainedBy."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sextortion:cyclesBetween ;
+        sh:class cac-core:Phase ;
+        sh:minCount 2 ;
+        sh:message "Coercion cycle must link at least two phase instances via cyclesBetween."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sextortion:coercionCycleDemandType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "imagery_quota" "live_conduct" "financial" "victim_recruitment" ) ;
+        sh:message "Coercion cycle demand type must be imagery_quota, live_conduct, financial, or victim_recruitment."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sextortion:terminationCondition ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "apprehension" "material_removal" "victim_ceased_response" "unknown" ) ;
+        sh:message "Termination condition must be apprehension, material_removal, victim_ceased_response, or unknown."@en
     ] . 

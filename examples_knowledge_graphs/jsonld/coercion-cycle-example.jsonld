@@ -1,0 +1,13 @@
+{
+  "@context": "../../contexts/cacontology-sextortion.jsonld",
+  "@id": "urn:uuid:01234567-89ab-cdef-0123-456789abcdef",
+  "@type": "CoercionCycle",
+  "uco:description": "Self-sustaining loop: offender redeploys retained images to demand additional content.",
+  "sustainedBy": "urn:uuid:f6a7b8c9-d0e1-2345-f012-456789012345",
+  "cyclesBetween": [
+    "urn:uuid:d4e5f6a7-b8c9-0123-def0-234567890123",
+    "urn:uuid:c3d4e5f6-a7b8-9012-cdef-123456789012"
+  ],
+  "coercionCycleDemandType": "imagery_quota",
+  "terminationCondition": "apprehension"
+}

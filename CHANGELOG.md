@@ -5,7 +5,196 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2026-08-09
 
+### Added - Conditioning Phase (offense-trajectory macro phase)
+
+Introduces spine-level `cac-core:ConditioningPhase` for ICAC state-machine modeling: contact → conditioning → exploitation → maintenance.
+
+- `cac-core:ConditioningPhase` and `cac-core:conditioningMode` in `ontology/cacontology-core-spine.ttl`
+- `cacontology-grooming:ConditioningPhase` (grooming specialization); `TrustBuildingPhase`, `IsolationPhase`, `SexualizationPhase` re-parented as conditioning micro-phases
+- `cacontology-grooming:ConditioningBehavior`, `TrustBuilding`, `IsolationTactics` behavior classes; trust-building datatype properties declared in grooming module
+- `cacontology-sextortion:TrustBuildingPhase` deprecated; subclasses `cac-core:ConditioningPhase`
+- SHACL: `ConditioningPhaseShape` in `cacontology-core-spine-shapes.ttl` and `cacontology-grooming-shapes.ttl`
+- Example: `examples_knowledge_graphs/conditioning-phase-offense-trajectory-example.ttl`
+- JSON-LD contexts updated for `ConditioningPhase` and `conditioningMode`
+
+### Fixed - Conditioning phase authoring consistency
+
+- Canonical instance type: `cacontology-grooming:ConditioningPhase` dual-typed with `cac-core:Phase` per grooming SHACL shapes; aligned grooming/sextortion deprecation notes and JSON-LD contexts
+- Documented variant-phase rule: `SexualizationPhase` and `IsolationPhase` are optional refinement sub-stages, distinct from the macro ConditioningPhase node
+- `grooming:conditioningMode` domain extended to `ConditioningBehavior`; `groomingStage` SHACL adds `sexualization` and documents legacy `trust_building` / `sexual_introduction` behavior-axis values
+
+### Known gaps — addressed in follow-up PR
+
+- **Sextortion non-conditioning phase dual-typing:** `wa-sextortion-case-example.ttl` types `SexualSolicitationPhase`, `ImageAcquisitionPhase`, and `ExtortionPhase` instances without the `cac-core:Phase` dual type that CaseLinker offense-trajectory graphs require for conditioning nodes; aligning those sextortion progression phases is a separate sextortion-module authoring pass, not part of the ConditioningPhase spine addition.
+- **`conditioningMode` optional vs. required:** Spine and grooming SHACL shapes allow `conditioningMode` with `sh:minCount 0`, so macro ConditioningPhase instances validate without a mechanism tag; requiring a mode for all graphs would break non-PACER legacy data and behavior-only graphs that use `ConditioningBehavior` without a state-machine phase node — tightening that constraint belongs in a dedicated validation-profile PR.
+- **Duplicate `conditioningMode` property IRI:** `cac-core:conditioningMode` and `cacontology-grooming:conditioningMode` (subPropertyOf the spine property, union domain on phase and behavior) coexist by design for module-local authoring; collapsing to a single IRI or resolving JSON-LD compact-term ambiguity is an interoperability cleanup outside the offense-trajectory state-machine scope of this PR.
+
+### Added - CaseLinker State Machine Extensions
+
+Adds four offense-trajectory constructs for state-machine mapping (phases as states, transitions as typed events). Grounded in sextortion, production, and cross-platform offense patterns.
+
+#### Sextortion module (`cacontology-sextortion`)
+
+- `cacontology-sextortion:CoercionCycle` — self-sustaining leverage loop (subClassOf `cac-core:ExploitationEvent`; maintainer adjustment: `cac-core:Situation` supertype dropped because gUFO declares events and situations disjoint)
+- `cacontology-sextortion:sustainedBy` — retained leverage artifact powering the cycle
+- `cacontology-sextortion:cyclesBetween` — phase instances forming the loop
+- `cacontology-sextortion:coercionCycleDemandType` — cycle demand enum (`imagery_quota`, `live_conduct`, `financial`, `victim_recruitment`); separate from `ExtortionDemand.demandType` to preserve existing semantics
+- `cacontology-sextortion:terminationCondition` — cycle end condition enum
+- `cacontology-sextortion:CoercionCycleShape` in `cacontology-sextortion-shapes.ttl`
+
+#### Platforms module (`cacontology-platforms`)
+
+- `cacontology-platforms:PlatformAffordance` taxonomy: `Anonymity`, `Ephemerality`, `UnmonitoredCommunication`, `ContactDiscovery`, `DistributionInfrastructure`, `GenerativeSynthesis`, `Coordination`, `CoercionLeverage`
+- `cacontology-platforms:ChannelMigrationEvent` — cross-platform contact migration with `fromPlatform`, `toPlatform`, `migrationRationale`, `occursBetween`
+- `cacontology-platforms:AffordanceMisuse` — transition-level affordance annotation with `affordanceClass`, `enablesTransitionFrom`, `enablesTransitionTo`, `platform`, `misuseDescription`
+- `ChannelMigrationEventShape`, `AffordanceMisuseShape` in `cacontology-platforms-shapes.ttl`
+
+#### Grooming module (`cacontology-grooming`)
+
+- `cacontology-grooming:AccountReplacementEvent` — post-ban/block account reset with `triggeredBy`, `resumesAt`, `originalAccountId`, `replacementAccountId`
+- `AccountReplacementEventShape` in `cacontology-grooming-shapes.ttl`
+
+#### Examples, queries, and contexts
+
+- `examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl` — CoercionCycle, ChannelMigrationEvent, AffordanceMisuse
+- `examples_knowledge_graphs/caselinker-account-replacement-example.ttl` — AccountReplacementEvent (separate file for grooming SHACL cross-validation)
+- `examples_knowledge_graphs/jsonld/*-example.jsonld` — one JSON-LD document per new class
+- `contexts/cacontology-sextortion.jsonld`, `contexts/cacontology-platforms.jsonld`, `contexts/cacontology-grooming.jsonld` — per-module JSON-LD contexts
+- `contexts/cacontology-state-machine-extensions.jsonld` — combined JSON-LD context for all four classes
+- `example_SPARQL_queries/caselinker-state-machine-analytics.rq`
+- `testing/test_state_machine_extensions.py` — SHACL pass/fail unit tests (8 tests)
+- `testing/shacl_validation.py` — domain cross-checks for new example graphs
+
+#### Core / semantic spine (`cacontology-core-spine`, `cacontology-core-shapes`)
+
+- **New** `cac-core:precedes` — spine-level phase sequencing for offense-trajectory state machines (`rdfs:domain` / `rdfs:range` `cac-core:Phase`; defined in `ontology/cacontology-core-spine.ttl`). Not present on main before this branch. Distinct from pre-existing module-local ordering properties (`cacontology:transitionsTo`, `cacontology-temporal:temporallyPrecedes`, `cacontology-usa-federal:precedesPhase`). UCO and CASE imported ontologies do not define an equivalent property.
+- `PhasePrecedesShape` and `PrecedesSubjectShape` in `ontology/cacontology-core-shapes.ttl` (maintainer adjustment: subject-side check uses `sh:targetSubjectsOf` so it actually fires)
+
+### Added - Legal outcomes core charging/sentencing + ConvictionRecord (Issues #40, #36)
+
+Declare charging/sentencing terms and the ConvictionRecord class that PACER-style graphs and `ConvictionRecordShape` already target but that were previously undeclared in `cacontology-legal-outcomes.ttl`. Closes the largest silent-pass gap for strict CASE/UCO concept-coverage checks.
+
+#### `ontology/cacontology-legal-outcomes.ttl`
+
+- `cacontology-legal-outcomes:chargedWith` — object property; domain `uco-identity:Person`, range `CriminalCharge` (Fed. R. Crim. P. 7)
+- `cacontology-legal-outcomes:statuteCitation` — datatype property on `CriminalCharge` (Office of the Law Revision Counsel / US Code citation conventions)
+- `cacontology-legal-outcomes:chargeCount` — **total** number of charges on a `ConvictionRecord` or `LegalProceeding` (matches `ConvictionRecordShape` 1–100)
+- `cacontology-legal-outcomes:countNumber` — **ordinal** count number within a charging instrument (domain `CriminalCharge`; Fed. R. Crim. P. 7(c))
+- `cacontology-legal-outcomes:sentenceDurationMonths` — integer months companion to `sentenceDuration` (xsd:duration); AO 245B
+- `cacontology-legal-outcomes:ConvictionRecord` — owl:Class (`uco-observable:ObservableObject`, `cac-core:Artifact`)
+- `convictionDate`, `convictionType`, `priorConvictions` — properties referenced by existing `ConvictionRecordShape`
+- `cacontology-legal-outcomes:phaseStatus` — promoted canonical declaration (domain `cac-core:Phase`)
+
+#### `ontology/cacontology-asset-forfeiture.ttl`
+
+- `cacontology-asset-forfeiture:phaseStatus` marked `owl:deprecated` with `owl:equivalentProperty` to `cacontology-legal-outcomes:phaseStatus` (backward-compatible continuity)
+
+#### Namespace decision (FederalProsecution)
+
+- Canonical class remains `cacontology-usa-federal:FederalProsecution` (documented; no legal-outcomes `equivalentClass` alias)
+
+#### Examples
+
+- Added: `examples_knowledge_graphs/synthetic-legal-outcomes-core-example.ttl` — fully synthetic acceptance exemplar for the new terms
+
+#### Migration
+
+- Existing example graphs that used `chargeCount` as an ordinal on individual charges now use `countNumber`; aggregate `chargeCount` remains on proceedings and conviction records.
+- The synthetic legal-outcomes exemplar now covers a charging instrument, supervised-release condition, payment schedule, and special assessment.
+
+### Added - NCMEC CyberTipline aggregate statistics vocabulary + 2025 example KG (PR #42)
+
+Merges the contributed NCMEC CyberTipline 2025 aggregate statistics example knowledge graph (thanks @forest-savage1234) with a maintainer remodel that makes every published number directly queryable.
+
+#### `ontology/cacontology-us-ncmec.ttl`
+
+- `cacontology-us-ncmec:AggregateReportStatistic` — owl:Class (subClassOf `uco-core:Assertion`) for single published aggregate statistics from NCMEC public transparency data; one primary numeric value per instance, no individual tip minting
+- Datatype properties: `statisticValue` (xsd:decimal), `statisticUnit`, `statisticQualifier`, `reportingPeriod`, `percentChangeFromPriorPeriod`
+- Object property: `statisticTopic` — links a statistic to the reporting category, program, or concept it describes
+
+#### `ontology/cacontology-us-ncmec-shapes.ttl`
+
+- `AggregateReportStatisticShape` — requires exactly one numeric `statisticValue`, one `statisticUnit`, and one `reportingPeriod`; optional qualifier, prior-period change, and IRI topics
+
+#### `examples_knowledge_graphs/ncmec-cybertipline-data-example.ttl`
+
+- Contributed example (PR #42) preserved: collection/normalization provenance chain with SHA-256 hashes, organization nodes, reporting-category concept nodes, and statement/listing Actions grounded in normalized keypoints
+- Maintainer remodel: 24 bare `uco-core:UcoObject` "stat claim" nodes retyped as `AggregateReportStatistic` with structured value/unit/period properties; compound published claims decomposed into 19 additional single-value statistics (deterministic UUIDv5 identifiers in the document namespace); statistics linked to their category/program nodes via `statisticTopic`; provenance grouping Actions extended to cover the decomposed nodes
+- CASE/UCO conformance fixes to the contributed example: nonexistent `uco-observable:HashFacet` replaced with `uco-observable:hash` on `ContentDataFacet`; nonexistent `investigation:provenanceRecordAction` replaced with `uco-core:object`; language tags removed from `uco-core:description` literals (UCO requires `xsd:string`)
+
+### Changed - Release guidance and shipped artifacts
+
+- Unified `README.md` and `docs/` around the v3.1.0 release, the v3.0.0 semantic-spine history, CASE/UCO 1.5.0 interoperability, stable term namespaces, unversioned ontology document IRIs, and the current module inventory.
+- Replaced the repository agent guide with an MCP-first CASE-UCO-SDK workflow covering ontology discovery, investigation routing, recipes and examples, source mapping, document processing, graph validation, extension governance, upstream change proposals, version skew, and evidence-content trust boundaries.
+- Added JSON-LD contexts for legal outcomes and US-NCMEC, and expanded existing grooming, sextortion, platforms, and state-machine contexts for v3.1.0 terms.
+- Migrated example, JSON-LD, analytics-demonstration, manifest, and report artifacts away from stale CASE/UCO and versioned CAC term patterns.
+- Repaired 32 SPARQL query collections, added legal charging/sentencing and NCMEC aggregate-statistics analytics, and made the final validator parse every top-level SPARQL query block.
+
+### Changed - Pinned to CASE/UCO v1.5.0
+
+- All 178 `owl:imports` references to CASE and UCO ontologies now use versioned IRIs pinned to the v1.5.0 releases (e.g., `<https://ontology.unifiedcyberontology.org/uco/core/1.5.0>`, `<https://ontology.caseontology.org/case/investigation/1.5.0>`); bare `<https://ontology.caseontology.org/case/>` imports corrected to the CASE master ontology versionIRI `<https://ontology.caseontology.org/case/case/1.5.0>`
+- Namespace prefixes are unchanged (term IRIs are version-independent)
+
+### Changed - Pinned gUFO v1.0.0 without changing v3.1 semantics
+
+- Existing gUFO imports now use its 1.0.0 version IRI, `<http://purl.org/nemo/gufo#/1.0.0>`, for a reproducible import closure; gUFO term IRIs and all CAC alignment axioms are unchanged.
+- Documented that UCO itself does not import gUFO and that the separate UCO gUFO Profile is exploratory and opt-in.
+- Structural changes to Role/Phase alignment or to gUFO's placement in the CAC reference layer are deferred to a major-release proposal so existing v3 adopters retain their current entailments.
+- Final validation now inspects every `owl:imports` triple and enforces the CASE/UCO 1.5.0 and gUFO 1.0.0 pins.
+
+### Changed - Unversioned ontology IRIs (CDO upstream request)
+
+- All 97 module and shapes ontology declarations now use the **unversioned IRI** as the subject of `x rdf:type owl:Ontology` (e.g., `<https://cacontology.projectvic.org>`), with versioning carried by `owl:versionIRI` as before. Versioned subjects confused attempts to serve the CAC ontology as RDF (reported by the Cyber Domain Ontology project while resolving [cdo.github.io#55](https://github.com/Cyber-Domain-Ontology/cdo.github.io/issues/55))
+
+### Added - Core case-identification properties (Issue #41)
+
+- `cacontology:caseNumber` — `rdfs:subPropertyOf uco-core:externalIdentifier` (court/agency case identifier)
+- `cacontology:jurisdiction` — core-level datatype property consolidating nine per-module string variants
+- `cacontology:located_at` — direct-edge object property to `uco-location:Location` (UCO Relationship idiom documented as alternative)
+- `cacontology:participatesInEvent` — declared; closes the declaration gap for the property referenced by `cacontology-core-shapes.ttl` SPARQL constraints
+- `cacontology:Subject` — deprecated continuity alias with `owl:equivalentClass case-investigation:Subject`; new graphs should use the CASE class directly
+
+### Added - Charging instruments (Issue #34)
+
+- `cacontology-legal-outcomes:ChargingInstrument` abstract superclass; `CriminalComplaint`, `MagistrateComplaint`, `Indictment`, `SupersedingIndictment`, `CriminalInformation`
+- `cacontology:MultiDefendantIndictment` aligned as subclass of `Indictment`
+- Properties: `chargingInstrumentCounts`, `filedDate`, `swornBy`, `incorporatesStatementOfFacts`, `supersededBy`/`supersedes`
+- `ChargingInstrumentShape` in `cacontology-legal-outcomes-shapes.ttl`
+
+### Added - Attribution and account-IP correlation evidence (Issue #35)
+
+- `cacontology-forensics:AttributionAssessment`, `CorrelationEvidence`, `IPCorrelationEvidence`, `SubscriberRecordCorrelation`
+- Properties: `correlatesObservable`, `overlappingIPAddress`, `correlationTimeWindowStart`/`End`, `correlationMethod`, `attributionConfidence`, `supportedByCorrelation`, `supportsAttributionOf`
+- `AttributionAssessmentShape`, `CorrelationEvidenceShape` in `cacontology-forensics-shapes.ttl`
+
+### Added - Fabricated persona modeling (Issue #36, second half)
+
+- `cacontology-grooming:FabricatedPersona` (subclass of `uco-identity:Identity`) with `claimedDisplayName`, `claimedAge`, `claimedGender`, `personaPlatformAccount`, `controlledBy`, `personaUsedIn`
+- `cacontology-sextortion:ImageLeakThreat` — typed image-leak coercion beyond boolean `usesThreats` (doxing threats already covered by existing `DoxxingThreat`)
+- `FabricatedPersonaShape` in `cacontology-grooming-shapes.ttl`
+- (`ConvictionRecord` half of Issue #36 landed via PR #43)
+
+### Added - Supervised-release special conditions and payment schedules (Issue #37)
+
+- `cacontology-legal-outcomes:SupervisedReleaseCondition` with typed subclasses: `SORNAComplianceCondition`, `SexOffenderTreatmentCondition`, `MinorContactRestrictionCondition`, `ComputerInternetMonitoringCondition`, `ProbationSearchCondition`, `SubstanceAbuseTreatmentCondition`
+- `PaymentSchedule`, `LumpSumPaymentSchedule`, `InstallmentPaymentSchedule`; `SpecialAssessment` (subclass of `MonetaryPenalty`) with `AVAAAssessment` (18 U.S.C. § 2259A) and `JVTAAssessment` (18 U.S.C. § 3014)
+- Properties: `hasSpecialCondition`, `governingStatute`, `conditionText`, `defendantPaysCost`, `requiresProbationApproval`, `hasPaymentSchedule`, `includesPenalty`, `totalAmountUSD`, `dueTiming`, `publicLawCitation`
+- `SupervisedReleaseConditionShape`, `PaymentScheduleShape` in `cacontology-legal-outcomes-shapes.ttl`
+
+### Added - CyberTip identifier extraction and jurisdiction routing (Issue #31)
+
+- `cacontology-us-ncmec:CybertipIdentifierExtractionAction`, `CybertipExtractedIdentifierSet`, `CybertipJurisdictionRoutingAssessment` (subclass of existing `CyberTipAnalysis`)
+- Properties: `extractsIdentifierFromCybertip`, `producedIdentifierSet`, `hasExtractedScreenName`, `hasExtractedPhoneNumber`, `hasExtractedIPAddress`, `usesExtractedIdentifierSet`, `recommendedJurisdiction`
+- Extraction/routing shapes in `cacontology-us-ncmec-shapes.ttl`
+
+### Added - Victim vulnerability context and protective supports (Issue #32)
+
+- `cacontology-impact:VulnerabilityContext` superclass; `SOGIVulnerabilityContext`, `FamilyRejectionVulnerability`, `HousingInstabilityVulnerability`, `ProtectiveAffirmingSupport`
+- Properties: `hasVulnerabilityContext`, `associatedWithFamilyRejection`, `associatedWithHousingInstability`, `mitigatedByProtectiveSupport`, `informsPreventionIntervention`
+- Modeled explicitly as observed circumstances and service needs, not identity labels (trauma-informed, anti-stigmatizing per issue guidance)
+- `VulnerabilityContextShape` in `cacontology-victim-impact-shapes.ttl`
 
 ## v3.0.0 - 16 March 2026
 
