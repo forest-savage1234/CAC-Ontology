@@ -900,4 +900,82 @@ cacontology-legal-outcomes:ContributingToDelinquencyShape rdf:type sh:NodeShape 
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "May specify if contribution to child delinquency occurred."@en
-    ] . 
+    ] .
+
+# =============================================================================
+# CHARGING INSTRUMENT SHAPES — Issue #34
+# =============================================================================
+
+cacontology-legal-outcomes:ChargingInstrumentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:ChargingInstrument ;
+    rdfs:label "Charging Instrument Shape"@en ;
+    rdfs:comment "Validates charging instruments (complaints, indictments, informations)."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:chargingInstrumentCounts ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:maxCount 1 ;
+        sh:message "Charging instrument counts must be a positive integer when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:filedDate ;
+        sh:datatype xsd:date ;
+        sh:maxCount 1 ;
+        sh:message "Filed date must be an xsd:date when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:supersededBy ;
+        sh:nodeKind sh:IRI ;
+        sh:maxCount 1 ;
+        sh:message "A charging instrument may be superseded by at most one later instrument."@en
+    ] .
+
+# =============================================================================
+# SUPERVISED-RELEASE CONDITION AND PAYMENT SCHEDULE SHAPES — Issue #37
+# =============================================================================
+
+cacontology-legal-outcomes:SupervisedReleaseConditionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:SupervisedReleaseCondition ;
+    rdfs:label "Supervised Release Condition Shape"@en ;
+    rdfs:comment "Validates typed special conditions of supervised release."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:conditionText ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:message "Condition text must be a string when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:defendantPaysCost ;
+        sh:datatype xsd:boolean ;
+        sh:maxCount 1 ;
+        sh:message "defendantPaysCost must be boolean when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:requiresProbationApproval ;
+        sh:datatype xsd:boolean ;
+        sh:maxCount 1 ;
+        sh:message "requiresProbationApproval must be boolean when specified."@en
+    ] .
+
+cacontology-legal-outcomes:PaymentScheduleShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-legal-outcomes:PaymentSchedule ;
+    rdfs:label "Payment Schedule Shape"@en ;
+    rdfs:comment "Validates criminal monetary payment schedules (AO 245B Schedule of Payments)."@en ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:totalAmountUSD ;
+        sh:or ( [ sh:datatype xsd:decimal ] [ sh:datatype xsd:integer ] ) ;
+        sh:minInclusive 0 ;
+        sh:maxCount 1 ;
+        sh:message "Total amount must be a non-negative number when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:dueTiming ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:message "Due timing must be a string when specified (e.g., 'immediately', 'after_release')."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-legal-outcomes:includesPenalty ;
+        sh:nodeKind sh:IRI ;
+        sh:message "includesPenalty must reference monetary penalty nodes."@en
+    ] .

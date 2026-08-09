@@ -121,6 +121,59 @@ Merges the contributed NCMEC CyberTipline 2025 aggregate statistics example know
 
 - Contributed example (PR #42) preserved: collection/normalization provenance chain with SHA-256 hashes, organization nodes, reporting-category concept nodes, and statement/listing Actions grounded in normalized keypoints
 - Maintainer remodel: 24 bare `uco-core:UcoObject` "stat claim" nodes retyped as `AggregateReportStatistic` with structured value/unit/period properties; compound published claims decomposed into 19 additional single-value statistics (deterministic UUIDv5 identifiers in the document namespace); statistics linked to their category/program nodes via `statisticTopic`; provenance grouping Actions extended to cover the decomposed nodes
+- CASE/UCO conformance fixes to the contributed example: nonexistent `uco-observable:HashFacet` replaced with `uco-observable:hash` on `ContentDataFacet`; nonexistent `investigation:provenanceRecordAction` replaced with `uco-core:object`; language tags removed from `uco-core:description` literals (UCO requires `xsd:string`)
+
+### Changed - Unversioned ontology IRIs (CDO upstream request)
+
+- All 97 module and shapes ontology declarations now use the **unversioned IRI** as the subject of `x rdf:type owl:Ontology` (e.g., `<https://cacontology.projectvic.org>`), with versioning carried by `owl:versionIRI` as before. Versioned subjects confused attempts to serve the CAC ontology as RDF (reported by the Cyber Domain Ontology project while resolving [cdo.github.io#55](https://github.com/Cyber-Domain-Ontology/cdo.github.io/issues/55))
+
+### Added - Core case-identification properties (Issue #41)
+
+- `cacontology:caseNumber` — `rdfs:subPropertyOf uco-core:externalIdentifier` (court/agency case identifier)
+- `cacontology:jurisdiction` — core-level datatype property consolidating nine per-module string variants
+- `cacontology:located_at` — direct-edge object property to `uco-location:Location` (UCO Relationship idiom documented as alternative)
+- `cacontology:participatesInEvent` — declared; closes the declaration gap for the property referenced by `cacontology-core-shapes.ttl` SPARQL constraints
+- `cacontology:Subject` — deprecated continuity alias with `owl:equivalentClass case-investigation:Subject`; new graphs should use the CASE class directly
+
+### Added - Charging instruments (Issue #34)
+
+- `cacontology-legal-outcomes:ChargingInstrument` abstract superclass; `CriminalComplaint`, `MagistrateComplaint`, `Indictment`, `SupersedingIndictment`, `CriminalInformation`
+- `cacontology:MultiDefendantIndictment` aligned as subclass of `Indictment`
+- Properties: `chargingInstrumentCounts`, `filedDate`, `swornBy`, `incorporatesStatementOfFacts`, `supersededBy`/`supersedes`
+- `ChargingInstrumentShape` in `cacontology-legal-outcomes-shapes.ttl`
+
+### Added - Attribution and account-IP correlation evidence (Issue #35)
+
+- `cacontology-forensics:AttributionAssessment`, `CorrelationEvidence`, `IPCorrelationEvidence`, `SubscriberRecordCorrelation`
+- Properties: `correlatesObservable`, `overlappingIPAddress`, `correlationTimeWindowStart`/`End`, `correlationMethod`, `attributionConfidence`, `supportedByCorrelation`, `supportsAttributionOf`
+- `AttributionAssessmentShape`, `CorrelationEvidenceShape` in `cacontology-forensics-shapes.ttl`
+
+### Added - Fabricated persona modeling (Issue #36, second half)
+
+- `cacontology-grooming:FabricatedPersona` (subclass of `uco-identity:Identity`) with `claimedDisplayName`, `claimedAge`, `claimedGender`, `personaPlatformAccount`, `controlledBy`, `personaUsedIn`
+- `cacontology-sextortion:ImageLeakThreat` — typed image-leak coercion beyond boolean `usesThreats` (doxing threats already covered by existing `DoxxingThreat`)
+- `FabricatedPersonaShape` in `cacontology-grooming-shapes.ttl`
+- (`ConvictionRecord` half of Issue #36 landed via PR #43)
+
+### Added - Supervised-release special conditions and payment schedules (Issue #37)
+
+- `cacontology-legal-outcomes:SupervisedReleaseCondition` with typed subclasses: `SORNAComplianceCondition`, `SexOffenderTreatmentCondition`, `MinorContactRestrictionCondition`, `ComputerInternetMonitoringCondition`, `ProbationSearchCondition`, `SubstanceAbuseTreatmentCondition`
+- `PaymentSchedule`, `LumpSumPaymentSchedule`, `InstallmentPaymentSchedule`; `SpecialAssessment` (subclass of `MonetaryPenalty`) with `AVAAAssessment` (18 U.S.C. § 2259A) and `JVTAAssessment` (18 U.S.C. § 3014)
+- Properties: `hasSpecialCondition`, `governingStatute`, `conditionText`, `defendantPaysCost`, `requiresProbationApproval`, `hasPaymentSchedule`, `includesPenalty`, `totalAmountUSD`, `dueTiming`, `publicLawCitation`
+- `SupervisedReleaseConditionShape`, `PaymentScheduleShape` in `cacontology-legal-outcomes-shapes.ttl`
+
+### Added - CyberTip identifier extraction and jurisdiction routing (Issue #31)
+
+- `cacontology-us-ncmec:CybertipIdentifierExtractionAction`, `CybertipExtractedIdentifierSet`, `CybertipJurisdictionRoutingAssessment` (subclass of existing `CyberTipAnalysis`)
+- Properties: `extractsIdentifierFromCybertip`, `producedIdentifierSet`, `hasExtractedScreenName`, `hasExtractedPhoneNumber`, `hasExtractedIPAddress`, `usesExtractedIdentifierSet`, `recommendedJurisdiction`
+- Extraction/routing shapes in `cacontology-us-ncmec-shapes.ttl`
+
+### Added - Victim vulnerability context and protective supports (Issue #32)
+
+- `cacontology-impact:VulnerabilityContext` superclass; `SOGIVulnerabilityContext`, `FamilyRejectionVulnerability`, `HousingInstabilityVulnerability`, `ProtectiveAffirmingSupport`
+- Properties: `hasVulnerabilityContext`, `associatedWithFamilyRejection`, `associatedWithHousingInstability`, `mitigatedByProtectiveSupport`, `informsPreventionIntervention`
+- Modeled explicitly as observed circumstances and service needs, not identity labels (trauma-informed, anti-stigmatizing per issue guidance)
+- `VulnerabilityContextShape` in `cacontology-victim-impact-shapes.ttl`
 
 ## v3.0.0 - 16 March 2026
 

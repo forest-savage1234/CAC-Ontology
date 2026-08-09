@@ -962,4 +962,69 @@ cacontology-impact:reunitesWith rdf:type owl:ObjectProperty ;
     rdfs:label "reunites with"@en ;
     rdfs:comment "Links victim to family members they reunite with."@en ;
     rdfs:domain uco-identity:Person ;
-    rdfs:range uco-identity:Person . 
+    rdfs:range uco-identity:Person .
+
+# =============================================================================
+# VICTIM VULNERABILITY CONTEXT AND PROTECTIVE SUPPORTS — Issue #32
+# Contextual risk and protective factors relevant to exploitation and
+# trafficking vulnerability. MODELING CAUTION: these classes represent
+# observed circumstances and service needs, NOT inherent risk labels attached
+# to identity. Use trauma-informed, anti-stigmatizing representation; model
+# what was observed and what supports are needed, and avoid unsupported
+# inferences about a person.
+# =============================================================================
+
+cacontology-impact:VulnerabilityContext rdf:type owl:Class ;
+    rdfs:label "Vulnerability Context"@en ;
+    rdfs:comment "A contextual circumstance that may increase a minor's risk of exploitation or trafficking (e.g., family rejection, housing instability, coercive dependency, barriers to reporting). A context describes observed circumstances, never an inherent attribute of identity."@en ;
+    rdfs:subClassOf uco-core:UcoObject .
+
+cacontology-impact:SOGIVulnerabilityContext rdf:type owl:Class ;
+    rdfs:label "SOGI Vulnerability Context"@en ;
+    rdfs:comment "A vulnerability context related to sexual orientation, gender identity, or expression — typically arising from family rejection, housing instability, lack of trusted adults, coercive dependency, or barriers to reporting or accessing services. The elevated risk arises from marginalization circumstances, not from the minor's identity itself."@en ;
+    rdfs:subClassOf cacontology-impact:VulnerabilityContext .
+
+cacontology-impact:FamilyRejectionVulnerability rdf:type owl:Class ;
+    rdfs:label "Family Rejection Vulnerability"@en ;
+    rdfs:comment "A vulnerability factor where rejection by caregivers or family contributes to isolation, homelessness, dependency, or reduced reporting options."@en ;
+    rdfs:subClassOf cacontology-impact:VulnerabilityContext .
+
+cacontology-impact:HousingInstabilityVulnerability rdf:type owl:Class ;
+    rdfs:label "Housing Instability Vulnerability"@en ;
+    rdfs:comment "A vulnerability factor where unstable housing (homelessness, runaway status, couch-surfing) increases susceptibility to grooming, coercion, trafficking, or survival-based exploitation."@en ;
+    rdfs:subClassOf cacontology-impact:VulnerabilityContext .
+
+cacontology-impact:ProtectiveAffirmingSupport rdf:type owl:Class ;
+    rdfs:label "Protective Affirming Support"@en ;
+    rdfs:comment "A protective factor representing access to affirming adults, services, shelters, school personnel, advocates, or community resources that mitigate vulnerability."@en ;
+    rdfs:subClassOf uco-core:UcoObject .
+
+# Vulnerability context properties (Issue #32)
+cacontology-impact:hasVulnerabilityContext rdf:type owl:ObjectProperty ;
+    rdfs:label "has vulnerability context"@en ;
+    rdfs:comment "Links a victim context, prevention assessment, or trafficking-risk assessment to an observed vulnerability context."@en ;
+    rdfs:range cacontology-impact:VulnerabilityContext .
+
+cacontology-impact:associatedWithFamilyRejection rdf:type owl:DatatypeProperty ;
+    rdfs:label "associated with family rejection"@en ;
+    rdfs:comment "Whether the vulnerability context includes rejection by caregivers or family."@en ;
+    rdfs:domain cacontology-impact:VulnerabilityContext ;
+    rdfs:range xsd:boolean .
+
+cacontology-impact:associatedWithHousingInstability rdf:type owl:DatatypeProperty ;
+    rdfs:label "associated with housing instability"@en ;
+    rdfs:comment "Whether the vulnerability context includes homelessness, runaway status, couch-surfing, or unstable housing."@en ;
+    rdfs:domain cacontology-impact:VulnerabilityContext ;
+    rdfs:range xsd:boolean .
+
+cacontology-impact:mitigatedByProtectiveSupport rdf:type owl:ObjectProperty ;
+    rdfs:label "mitigated by protective support"@en ;
+    rdfs:comment "Links a vulnerability context to a protective or affirming support resource that mitigates it."@en ;
+    rdfs:domain cacontology-impact:VulnerabilityContext ;
+    rdfs:range cacontology-impact:ProtectiveAffirmingSupport .
+
+cacontology-impact:informsPreventionIntervention rdf:type owl:ObjectProperty ;
+    rdfs:label "informs prevention intervention"@en ;
+    rdfs:comment "Links a vulnerability context to prevention, outreach, safeguarding, or service-referral actions it informs."@en ;
+    rdfs:domain cacontology-impact:VulnerabilityContext ;
+    rdfs:range uco-core:UcoObject .

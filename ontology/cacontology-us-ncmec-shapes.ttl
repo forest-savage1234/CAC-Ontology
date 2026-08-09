@@ -774,3 +774,39 @@ cacontology-us-ncmec:AggregateReportStatisticShape rdf:type sh:NodeShape ;
         sh:path cacontology-us-ncmec:statisticTopic ;
         sh:nodeKind sh:IRI ;
         rdfs:comment "Optional links to the category, program, or concept nodes the statistic describes."@en     ] .
+
+# =============================================================================
+# CYBERTIP IDENTIFIER EXTRACTION AND ROUTING SHAPES — Issue #31
+# =============================================================================
+
+cacontology-us-ncmec:CybertipIdentifierExtractionActionShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:CybertipIdentifierExtractionAction ;
+    rdfs:label "CyberTip Identifier Extraction Action Shape"@en ;
+    rdfs:comment "Validates identifier extraction actions over CyberTip reports."@en ;
+    sh:property [
+        sh:path cacontology-us-ncmec:extractsIdentifierFromCybertip ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:message "An extraction action must reference the CyberTip report it processes."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:producedIdentifierSet ;
+        sh:nodeKind sh:IRI ;
+        sh:maxCount 1 ;
+        sh:message "An extraction action produces at most one identifier set."@en
+    ] .
+
+cacontology-us-ncmec:CybertipJurisdictionRoutingAssessmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:CybertipJurisdictionRoutingAssessment ;
+    rdfs:label "CyberTip Jurisdiction Routing Assessment Shape"@en ;
+    rdfs:comment "Validates jurisdiction routing assessments derived from extracted identifiers."@en ;
+    sh:property [
+        sh:path cacontology-us-ncmec:usesExtractedIdentifierSet ;
+        sh:nodeKind sh:IRI ;
+        sh:message "A routing assessment should reference the identifier set(s) it relies on."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:recommendedJurisdiction ;
+        sh:nodeKind sh:IRI ;
+        sh:message "Recommended jurisdiction must reference a jurisdiction or agency node."@en
+    ] .

@@ -898,4 +898,42 @@ cacontology-grooming:AccountReplacementEventShape rdf:type sh:NodeShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Replacement account may be specified at most once."@en
-    ] . 
+    ] .
+
+# =============================================================================
+# FABRICATED PERSONA SHAPE — Issue #36
+# =============================================================================
+
+cacontology-grooming:FabricatedPersonaShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-grooming:FabricatedPersona ;
+    rdfs:label "Fabricated Persona Shape"@en ;
+    rdfs:comment "Validates fabricated persona instances used in grooming/coercion modeling."@en ;
+    sh:property [
+        sh:path cacontology-grooming:claimedDisplayName ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:message "Claimed display name must be a string when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-grooming:claimedAge ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:message "Claimed age must be a string (age or age range) when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-grooming:claimedGender ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:message "Claimed gender must be a string when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-grooming:controlledBy ;
+        sh:nodeKind sh:IRI ;
+        sh:maxCount 1 ;
+        sh:message "A fabricated persona is controlled by at most one offender person node."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-grooming:personaPlatformAccount ;
+        sh:nodeKind sh:IRI ;
+        sh:message "Persona platform accounts must be IRI references to account observables."@en
+    ] .

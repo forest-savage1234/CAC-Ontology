@@ -4,6 +4,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
@@ -290,6 +291,71 @@ cacontology-us-ncmec:dataProvided rdf:type owl:DatatypeProperty ;
     rdfs:comment "Type of data provided by platform (account_info, user_data, content, metadata)."@en ;
     rdfs:domain cacontology-us-ncmec:PlatformCooperation ;
     rdfs:range xsd:string .
+
+# =============================================================================
+# CYBERTIP IDENTIFIER EXTRACTION AND JURISDICTION ROUTING — Issue #31
+# First-class workflow concepts for extracting actionable identifiers from
+# CyberTipline report documents (OCR/document parsing) and the downstream
+# jurisdiction/routing determination that follows from that extraction.
+# =============================================================================
+
+cacontology-us-ncmec:CybertipIdentifierExtractionAction rdf:type owl:Class ;
+    rdfs:label "CyberTip Identifier Extraction Action"@en ;
+    rdfs:comment "A CAC-domain action that extracts structured identifiers (screen names, phone numbers, IP addresses, email addresses) from a CyberTipline report document, including by OCR or document parsing."@en ;
+    rdfs:subClassOf uco-action:Action .
+
+cacontology-us-ncmec:CybertipExtractedIdentifierSet rdf:type owl:Class ;
+    rdfs:label "CyberTip Extracted Identifier Set"@en ;
+    rdfs:comment "An information artifact representing the set of identifiers extracted from a CyberTipline report, used to support triage, enrichment, and routing."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject .
+
+cacontology-us-ncmec:CybertipJurisdictionRoutingAssessment rdf:type owl:Class ;
+    rdfs:label "CyberTip Jurisdiction Routing Assessment"@en ;
+    rdfs:comment "A triage assessment that uses extracted identifiers and enrichment results to recommend or determine the responsible jurisdiction or agency for routing or investigation."@en ;
+    rdfs:subClassOf cacontology-us-ncmec:CyberTipAnalysis .
+
+# Extraction and routing properties (Issue #31)
+cacontology-us-ncmec:extractsIdentifierFromCybertip rdf:type owl:ObjectProperty ;
+    rdfs:label "extracts identifier from cybertip"@en ;
+    rdfs:comment "Links an extraction action to the CyberTip report or report document it processes."@en ;
+    rdfs:domain cacontology-us-ncmec:CybertipIdentifierExtractionAction ;
+    rdfs:range cacontology-us-ncmec:NCMECCybertipReport .
+
+cacontology-us-ncmec:producedIdentifierSet rdf:type owl:ObjectProperty ;
+    rdfs:label "produced identifier set"@en ;
+    rdfs:comment "Links an extraction action to the identifier set it produced."@en ;
+    rdfs:domain cacontology-us-ncmec:CybertipIdentifierExtractionAction ;
+    rdfs:range cacontology-us-ncmec:CybertipExtractedIdentifierSet .
+
+cacontology-us-ncmec:hasExtractedScreenName rdf:type owl:ObjectProperty ;
+    rdfs:label "has extracted screen name"@en ;
+    rdfs:comment "Links an extracted identifier set to a screen name / account handle observable (e.g., a DigitalAccount or ApplicationAccount)."@en ;
+    rdfs:domain cacontology-us-ncmec:CybertipExtractedIdentifierSet ;
+    rdfs:range uco-observable:ObservableObject .
+
+cacontology-us-ncmec:hasExtractedPhoneNumber rdf:type owl:ObjectProperty ;
+    rdfs:label "has extracted phone number"@en ;
+    rdfs:comment "Links an extracted identifier set to a phone number observable."@en ;
+    rdfs:domain cacontology-us-ncmec:CybertipExtractedIdentifierSet ;
+    rdfs:range uco-observable:ObservableObject .
+
+cacontology-us-ncmec:hasExtractedIPAddress rdf:type owl:ObjectProperty ;
+    rdfs:label "has extracted IP address"@en ;
+    rdfs:comment "Links an extracted identifier set to an IP address observable."@en ;
+    rdfs:domain cacontology-us-ncmec:CybertipExtractedIdentifierSet ;
+    rdfs:range uco-observable:ObservableObject .
+
+cacontology-us-ncmec:usesExtractedIdentifierSet rdf:type owl:ObjectProperty ;
+    rdfs:label "uses extracted identifier set"@en ;
+    rdfs:comment "Links a jurisdiction routing assessment to the extracted identifier set (and enrichment results) it relies on."@en ;
+    rdfs:domain cacontology-us-ncmec:CybertipJurisdictionRoutingAssessment ;
+    rdfs:range cacontology-us-ncmec:CybertipExtractedIdentifierSet .
+
+cacontology-us-ncmec:recommendedJurisdiction rdf:type owl:ObjectProperty ;
+    rdfs:label "recommended jurisdiction"@en ;
+    rdfs:comment "Links a routing assessment to the jurisdiction or agency recommended for follow-up (e.g., a cacontology-multi:Jurisdiction instance or an Organization)."@en ;
+    rdfs:domain cacontology-us-ncmec:CybertipJurisdictionRoutingAssessment ;
+    rdfs:range uco-core:UcoObject .
 
 # =============================================================================
 # AGGREGATE TRANSPARENCY STATISTICS

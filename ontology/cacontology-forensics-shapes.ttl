@@ -683,4 +683,52 @@ cacontology-forensics:TemporalConsistencyBusinessRule rdf:type sh:NodeShape ;
                 $this cacontology-forensics:temporalAccuracy ?accuracy .
                 FILTER (?accuracy < 0.9)
             }
-        """     ] . 
+        """     ] .
+
+# =============================================================================
+# ATTRIBUTION AND CORRELATION EVIDENCE SHAPES — Issue #35
+# =============================================================================
+
+cacontology-forensics:AttributionAssessmentShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:AttributionAssessment ;
+    rdfs:label "Attribution Assessment Shape"@en ;
+    rdfs:comment "Validates attribution assessments linking observables to a controlling subject."@en ;
+    sh:property [
+        sh:path cacontology-forensics:attributionConfidence ;
+        sh:datatype xsd:string ;
+        sh:in ("high" "medium" "low") ;
+        sh:maxCount 1 ;
+        sh:message "Attribution confidence must be one of: high, medium, low."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:supportedByCorrelation ;
+        sh:nodeKind sh:IRI ;
+        sh:message "supportedByCorrelation must reference correlation evidence nodes."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:supportsAttributionOf ;
+        sh:nodeKind sh:IRI ;
+        sh:message "supportsAttributionOf must reference person nodes."@en
+    ] .
+
+cacontology-forensics:CorrelationEvidenceShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-forensics:CorrelationEvidence ;
+    rdfs:label "Correlation Evidence Shape"@en ;
+    rdfs:comment "Validates correlation evidence temporal scope and method."@en ;
+    sh:property [
+        sh:path cacontology-forensics:correlationTimeWindowStart ;
+        sh:datatype xsd:dateTime ;
+        sh:maxCount 1 ;
+        sh:message "Correlation time window start must be xsd:dateTime when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:correlationTimeWindowEnd ;
+        sh:datatype xsd:dateTime ;
+        sh:maxCount 1 ;
+        sh:message "Correlation time window end must be xsd:dateTime when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-forensics:correlationMethod ;
+        sh:datatype xsd:string ;
+        sh:message "Correlation method must be a string when specified."@en
+    ] .

@@ -638,6 +638,56 @@ cacontology-grooming:CrossInstitutionalGrooming rdf:type owl:Class ;
     rdfs:subClassOf cacontology-grooming:EducatorGrooming .
 
 # =============================================================================
+# FABRICATED PERSONA / CATFISHING TRADECRAFT — Issue #36
+# First-class modeling of fabricated minor personas used in grooming and
+# coercion, so persona attributes (claimed name, age, gender), platform
+# accounts, and the controlling offender are queryable with grooming-native
+# properties instead of generic identity/role relationships.
+# =============================================================================
+
+cacontology-grooming:FabricatedPersona rdf:type owl:Class ;
+    rdfs:label "Fabricated Persona"@en ;
+    rdfs:comment "A fabricated identity (e.g., a fictitious minor peer) created and controlled by an offender to contact, groom, lure, or coerce victims. The same persona may be reused across victims and platforms. Complements PeerPersonaGrooming / TeenageImpersonationGrooming behavior classes: the behavior classes type the grooming activity, while FabricatedPersona types the persona artifact itself. See also impersonatesRole / impersonatedRole for role-level alignment."@en ;
+    rdfs:subClassOf uco-identity:Identity .
+
+# Fabricated persona properties (Issue #36)
+cacontology-grooming:claimedDisplayName rdf:type owl:DatatypeProperty ;
+    rdfs:label "claimed display name"@en ;
+    rdfs:comment "Display name the fabricated persona presents to victims (e.g., 'Amy Jennings')."@en ;
+    rdfs:domain cacontology-grooming:FabricatedPersona ;
+    rdfs:range xsd:string .
+
+cacontology-grooming:claimedAge rdf:type owl:DatatypeProperty ;
+    rdfs:label "claimed age"@en ;
+    rdfs:comment "Age or age range the fabricated persona claims (e.g., '15', '15-16')."@en ;
+    rdfs:domain cacontology-grooming:FabricatedPersona ;
+    rdfs:range xsd:string .
+
+cacontology-grooming:claimedGender rdf:type owl:DatatypeProperty ;
+    rdfs:label "claimed gender"@en ;
+    rdfs:comment "Gender the fabricated persona claims to victims."@en ;
+    rdfs:domain cacontology-grooming:FabricatedPersona ;
+    rdfs:range xsd:string .
+
+cacontology-grooming:personaPlatformAccount rdf:type owl:ObjectProperty ;
+    rdfs:label "persona platform account"@en ;
+    rdfs:comment "Links a fabricated persona to a platform account observable operated under that persona."@en ;
+    rdfs:domain cacontology-grooming:FabricatedPersona ;
+    rdfs:range uco-observable:ObservableObject .
+
+cacontology-grooming:controlledBy rdf:type owl:ObjectProperty ;
+    rdfs:label "controlled by"@en ;
+    rdfs:comment "Links a fabricated persona to the offender (person) who creates and controls it."@en ;
+    rdfs:domain cacontology-grooming:FabricatedPersona ;
+    rdfs:range uco-identity:Person .
+
+cacontology-grooming:personaUsedIn rdf:type owl:ObjectProperty ;
+    rdfs:label "persona used in"@en ;
+    rdfs:comment "Links a fabricated persona to the grooming or coercion activity in which it was used (reusable across multiple victims)."@en ;
+    rdfs:domain cacontology-grooming:FabricatedPersona ;
+    rdfs:range uco-core:UcoObject .
+
+# =============================================================================
 # SEXUAL CONTENT EXCHANGE GROOMING
 # =============================================================================
 

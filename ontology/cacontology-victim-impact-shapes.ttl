@@ -658,4 +658,35 @@ cacontology-impact:DataQualityShape rdf:type sh:NodeShape ;
         sh:minLength 10 ;
         sh:maxLength 1000 ;
         sh:message "Comment should be between 10 and 1000 characters when provided."@en
-    ] . 
+    ] .
+
+# =============================================================================
+# VULNERABILITY CONTEXT SHAPES — Issue #32
+# =============================================================================
+
+cacontology-impact:VulnerabilityContextShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-impact:VulnerabilityContext ;
+    rdfs:label "Vulnerability Context Shape"@en ;
+    rdfs:comment "Validates vulnerability contexts as observed circumstances, not identity labels."@en ;
+    sh:property [
+        sh:path cacontology-impact:associatedWithFamilyRejection ;
+        sh:datatype xsd:boolean ;
+        sh:maxCount 1 ;
+        sh:message "associatedWithFamilyRejection must be boolean when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:associatedWithHousingInstability ;
+        sh:datatype xsd:boolean ;
+        sh:maxCount 1 ;
+        sh:message "associatedWithHousingInstability must be boolean when specified."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:mitigatedByProtectiveSupport ;
+        sh:nodeKind sh:IRI ;
+        sh:message "mitigatedByProtectiveSupport must reference protective support nodes."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-impact:informsPreventionIntervention ;
+        sh:nodeKind sh:IRI ;
+        sh:message "informsPreventionIntervention must reference prevention/outreach action nodes."@en
+    ] .
