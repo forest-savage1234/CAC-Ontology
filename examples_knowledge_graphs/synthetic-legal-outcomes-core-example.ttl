@@ -12,10 +12,11 @@
 # SYNTHETIC LEGAL OUTCOMES CORE EXEMPLAR (Issues #40 + #36 ConvictionRecord)
 #
 # Fully synthetic abstract pattern for acceptance testing. Zero real case
-# material. Demonstrates: chargedWith, countNumber, statuteCitation,
+# material. Demonstrates: charging instruments, chargedWith, countNumber, statuteCitation,
 # sentenceDurationMonths, ConvictionRecord (+ convictionDate, convictionType,
-# chargeCount as TOTAL, priorConvictions), phaseStatus, and canonical
-# FederalProsecution (usa-federal namespace).
+# chargeCount as TOTAL, priorConvictions), supervised-release conditions,
+# payment schedules, phaseStatus, and canonical FederalProsecution
+# (usa-federal namespace).
 # =============================================================================
 
 # -----------------------------------------------------------------------------
@@ -25,7 +26,7 @@
 ex:Defendant_Alex_Rivera a uco-identity:Person ;
     rdfs:label "Alex Rivera (synthetic defendant)"@en ;
     uco-core:name "Alex Rivera"@en ;
-    uco-core:description "Fully synthetic person node for legal-outcomes core acceptance. Not a real individual."@en .
+    uco-core:description "Fully synthetic person node for legal-outcomes core acceptance. Not a real individual." .
 
 # -----------------------------------------------------------------------------
 # Criminal charges with statuteCitation + ordinal countNumber
@@ -34,20 +35,27 @@ ex:Defendant_Alex_Rivera a uco-identity:Person ;
 ex:Charge_Count1_Possession a cacontology-legal-outcomes:FederalCharge ,
         cacontology-legal-outcomes:CSAM_Possession ;
     rdfs:label "Count 1 — CSAM possession (synthetic)"@en ;
-    uco-core:description "Synthetic federal possession charge used only for schema demonstration."@en ;
+    uco-core:description "Synthetic federal possession charge used only for schema demonstration." ;
     cacontology-legal-outcomes:countNumber "1"^^xsd:nonNegativeInteger ;
     cacontology-legal-outcomes:statuteCitation "18 U.S.C. § 2252A(a)(5)(B)" .
 
 ex:Charge_Count2_Distribution a cacontology-legal-outcomes:FederalCharge ,
         cacontology-legal-outcomes:CSAM_Distribution ;
     rdfs:label "Count 2 — CSAM distribution (synthetic)"@en ;
-    uco-core:description "Synthetic federal distribution charge used only for schema demonstration."@en ;
+    uco-core:description "Synthetic federal distribution charge used only for schema demonstration." ;
     cacontology-legal-outcomes:countNumber "2"^^xsd:nonNegativeInteger ;
     cacontology-legal-outcomes:statuteCitation "18 U.S.C. § 2252A(a)(2)" .
 
 # Person → charges (chargedWith)
 ex:Defendant_Alex_Rivera cacontology-legal-outcomes:chargedWith ex:Charge_Count1_Possession ,
     ex:Charge_Count2_Distribution .
+
+# Charging instrument containing the two ordinal charge counts
+ex:Indictment_Synthetic a cacontology-legal-outcomes:ChargingInstrument ,
+        cacontology-legal-outcomes:Indictment ;
+    rdfs:label "Synthetic two-count indictment"@en ;
+    cacontology-legal-outcomes:chargingInstrumentCounts 2 ;
+    cacontology-legal-outcomes:filedDate "2025-01-15"^^xsd:date .
 
 # -----------------------------------------------------------------------------
 # Legal proceeding phases + phaseStatus (legal-outcomes canonical)
@@ -63,7 +71,7 @@ ex:SentencingPhase_Synthetic a cacontology-legal-outcomes:SentencingPhase ;
 
 ex:LegalProceeding_Synthetic a cacontology-legal-outcomes:LegalProceeding ;
     rdfs:label "Synthetic federal legal proceeding"@en ;
-    uco-core:description "Abstract proceeding demonstrating hasCharge and phaseStatus. Not a real docket."@en ;
+    uco-core:description "Abstract proceeding demonstrating hasCharge and phaseStatus. Not a real docket." ;
     cacontology-legal-outcomes:hasCharge ex:Charge_Count1_Possession ,
         ex:Charge_Count2_Distribution ;
     cacontology-legal-outcomes:hasLegalPhase ex:PreTrialPhase_Synthetic ,
@@ -78,7 +86,7 @@ ex:LegalProceeding_Synthetic a cacontology-legal-outcomes:LegalProceeding ;
 
 ex:ConvictionRecord_Synthetic a cacontology-legal-outcomes:ConvictionRecord ;
     rdfs:label "Synthetic conviction record"@en ;
-    uco-core:description "Abstract conviction disposition for schema acceptance. No real case facts."@en ;
+    uco-core:description "Abstract conviction disposition for schema acceptance. No real case facts." ;
     cacontology-legal-outcomes:convictionDate "2025-06-15T14:30:00Z"^^xsd:dateTime ;
     cacontology-legal-outcomes:convictionType "plea_agreement" ;
     cacontology-legal-outcomes:chargeCount "2"^^xsd:nonNegativeInteger ;
@@ -90,7 +98,7 @@ ex:ConvictionRecord_Synthetic a cacontology-legal-outcomes:ConvictionRecord ;
 
 ex:PrisonSentence_Synthetic a cacontology-legal-outcomes:PrisonSentence ;
     rdfs:label "Synthetic 120-month prison sentence"@en ;
-    uco-core:description "Abstract sentence term for numeric-duration property demonstration."@en ;
+    uco-core:description "Abstract sentence term for numeric-duration property demonstration." ;
     cacontology-legal-outcomes:sentenceDurationMonths 120 ;
     cacontology-legal-outcomes:sentenceDuration "P10Y"^^xsd:duration ;
     cacontology-legal-outcomes:appliesTo ex:Charge_Count1_Possession ,
@@ -99,7 +107,29 @@ ex:PrisonSentence_Synthetic a cacontology-legal-outcomes:PrisonSentence ;
 ex:SupervisedRelease_Synthetic a cacontology-legal-outcomes:SupervisedRelease ;
     rdfs:label "Synthetic 60-month supervised release"@en ;
     cacontology-legal-outcomes:sentenceDurationMonths 60 ;
-    cacontology-legal-outcomes:sentenceDuration "P5Y"^^xsd:duration .
+    cacontology-legal-outcomes:sentenceDuration "P5Y"^^xsd:duration ;
+    cacontology-legal-outcomes:hasSpecialCondition ex:InternetMonitoringCondition_Synthetic .
+
+ex:InternetMonitoringCondition_Synthetic
+    a cacontology-legal-outcomes:SupervisedReleaseCondition ,
+        cacontology-legal-outcomes:ComputerInternetMonitoringCondition ;
+    rdfs:label "Synthetic computer and internet monitoring condition"@en ;
+    cacontology-legal-outcomes:conditionText "Permit probation-approved monitoring of internet-capable devices." ;
+    cacontology-legal-outcomes:defendantPaysCost false ;
+    cacontology-legal-outcomes:requiresProbationApproval true .
+
+ex:SpecialAssessment_Synthetic a cacontology-legal-outcomes:SpecialAssessment ;
+    rdfs:label "Synthetic mandatory special assessment"@en .
+
+ex:PaymentSchedule_Synthetic a cacontology-legal-outcomes:PaymentSchedule ,
+        cacontology-legal-outcomes:LumpSumPaymentSchedule ;
+    rdfs:label "Synthetic lump-sum payment schedule"@en ;
+    cacontology-legal-outcomes:totalAmountUSD 200.00 ;
+    cacontology-legal-outcomes:dueTiming "immediately" ;
+    cacontology-legal-outcomes:includesPenalty ex:SpecialAssessment_Synthetic .
+
+ex:PrisonSentence_Synthetic
+    cacontology-legal-outcomes:hasPaymentSchedule ex:PaymentSchedule_Synthetic .
 
 ex:LegalProceeding_Synthetic cacontology-legal-outcomes:resultsSentence ex:PrisonSentence_Synthetic ,
     ex:SupervisedRelease_Synthetic .
@@ -111,4 +141,4 @@ ex:LegalProceeding_Synthetic cacontology-legal-outcomes:resultsSentence ex:Priso
 
 ex:FederalProsecution_Synthetic a cacontology-usa-federal:FederalProsecution ;
     rdfs:label "Synthetic federal prosecution process"@en ;
-    uco-core:description "Uses canonical cacontology-usa-federal:FederalProsecution IRI."@en .
+    uco-core:description "Uses canonical cacontology-usa-federal:FederalProsecution IRI." .

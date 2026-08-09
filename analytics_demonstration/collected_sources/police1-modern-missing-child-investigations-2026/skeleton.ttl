@@ -32,7 +32,7 @@
     uco-observable:mimeType "text/plain"@en ;
     uco-observable:sizeInBytes 7659 .
 
-<urn:uuid:761369ba-097d-5c87-abbf-7cf17baeee9d> a uco-observable:HashFacet ;
+<urn:uuid:761369ba-097d-5c87-abbf-7cf17baeee9d> a uco-observable:ContentDataFacet ;
     uco-observable:hash <urn:uuid:3baa825e-5661-5536-9f9b-657f6dad6ff9> .
 
 <urn:uuid:3baa825e-5661-5536-9f9b-657f6dad6ff9> a uco-types:Hash ;
@@ -44,7 +44,7 @@
     uco-action:startTime "2026-02-16T05:20:33Z"^^xsd:dateTime ;
     uco-action:performer <urn:uuid:2862c4f9-c2df-4fc2-b3fa-ae30abbb4d49> ;
     uco-action:object <urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e> ;
-    uco-core:description "manual (WebFetch) capture into source.txt"@en .
+    uco-core:description "manual (WebFetch) capture into source.txt" .
 
 <urn:uuid:71e01b3a-0e4e-53af-b0e4-f0d09bab1fd2> a uco-observable:ObservableObject ;
     rdfs:label "Normalized text artifact (keypoint statements)"@en ;
@@ -59,7 +59,7 @@
     uco-observable:mimeType "text/plain"@en ;
     uco-observable:sizeInBytes 2823 .
 
-<urn:uuid:e1607851-bc03-5f38-b5c9-7d6b6f0065f5> a uco-observable:HashFacet ;
+<urn:uuid:e1607851-bc03-5f38-b5c9-7d6b6f0065f5> a uco-observable:ContentDataFacet ;
     uco-observable:hash <urn:uuid:d83be74d-2797-5b61-979f-93259812ec14> .
 
 <urn:uuid:d83be74d-2797-5b61-979f-93259812ec14> a uco-types:Hash ;
@@ -72,5 +72,5 @@
     uco-action:performer <urn:uuid:2862c4f9-c2df-4fc2-b3fa-ae30abbb4d49> ;
     uco-action:object <urn:uuid:75ea4a92-b4e8-4f9c-90f3-5ef01a53b17e> ;
     uco-action:result <urn:uuid:71e01b3a-0e4e-53af-b0e4-f0d09bab1fd2> ;
-    uco-core:description "webfetch_text + whitespace normalization + keypoint normalization (see normalized.txt)"@en .
+    uco-core:description "webfetch_text + whitespace normalization + keypoint normalization (see normalized.txt)" .
 

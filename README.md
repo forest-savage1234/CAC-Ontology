@@ -1,83 +1,47 @@
 # CAC Ontology
 
-The CAC (Crimes Against Children) Ontology Family is an **EXPERIMENTAL** comprehensive semantic framework for modeling child exploitation investigations, operations, law enforcement organizations, legal processes, reporting, offender tradecraft, and digital forensics activities. This ontology family extends the Unified Cyber Ontology (UCO), the Cyber-investigation Analysis Standard Expression (CASE) Ontology, and the lightweight version of the Unified Foundational Ontology (gUFO). **v3.0.0** introduces the **Semantic Spine** (`cac-core:` namespace) — a stable, top-level class hierarchy that mediates all alignment to gUFO, UCO, and CASE, giving domain modules a single, predictable anchoring layer. We use artificial intelligence to review data sources, map concepts to CAC Ontology, identify gaps, model new classes/properties/relationships, write example SPARQL queries and update documentation. There is a human in the loop to review changes and make adjustments. The Crimes Against Children domain of discourse is immense, has great depth and complexity, and is oftentimes reflective of legal process/precident and jurisdiction.
+CAC Ontology is an **experimental** family of RDF/OWL vocabularies for representing crimes-against-children investigations, reporting, legal process, offender behavior, victim services, and digital-forensics activity. Project VIC International stewards the project under the Apache License 2.0.
 
-Project VIC International serves as the shephard of the CAC Ontology and we invite any other interested party to participate with us in developing it further. We released the CAC Ontology under an Apache 2 license making it open-source so that others can build upon it and adopt it freely. All we ask from adopters is to let us know that you are using it, and that if you are monetizing it, to consider providing financial support for the project.
+The current project release is **CAC v3.1.0**. The semantic spine was introduced in **v3.0.0** and remains the stable CAC-facing hierarchy in v3.1.0. CASE and UCO imports are pinned to **1.5.0**.
 
-## Overview
+## What ships in v3.1.0
 
-The CAC Ontology Family consists of **35+ specialized modules** organized into six domain areas plus a core semantic spine and bridge layer, enhanced with comprehensive gUFO (Unified Foundational Ontology) integration for improved semantic precision, temporal modeling, and validation capabilities. The ontology family is designed to support law enforcement agencies, hotline organizations and NGOs in general, digital forensics examiners and analysts, prosecutors, and researchers in modeling and analyzing crimes against children investigations. Each ontology has a corresponding SHACL shapes file that implements **some** business rules that validate the ontology. These shapes files are very useful to ensure that data is modeled correctly and that only conformant data is imported into the adopter's graph database.
+The repository currently contains:
 
-**Namespace**: `https://cacontology.projectvic.org`
+- 50 ontology, spine, bridge, and integration Turtle modules
+- 47 SHACL shape files
+- 61 Turtle example graphs
+- 32 SPARQL query files
+- six JSON-LD contexts (grooming, sextortion, platforms, legal outcomes, US-NCMEC, and state-machine extensions)
 
-**Documentation**: [cacontology.projectvic.org](https://cacontology.projectvic.org)
+Counts describe this repository checkout, not a promise that every ontology module has a one-to-one shapes or JSON-LD context file.
 
-## Key Features
+Key architectural files:
 
-- **35+ Specialized Modules**: Comprehensive coverage of child exploitation investigation domains
-- **Semantic Spine (v3.0.0)**: Stable `cac-core:` class hierarchy organizing all domain classes by ontological kind (Entity, Event, Situation, Role, Phase)
-- **Offense-trajectory phases (unreleased)**: `cac-core:ConditioningPhase` and `cac-core:conditioningMode` on the spine; grooming-module phase typing for ICAC state-machine graphs
-- **gUFO Integration**: Enhanced semantic precision with foundational ontology patterns, mediated through spine and bridge modules
-- **SHACL Validation**: 20+ validation modules with comprehensive business rules, including spine shapes
-- **UCO/CASE Compatibility**: Seamless integration with Unified Cyber Ontology and CASE frameworks via bridge modules
-- **Real-World Examples**: 30+ example files based on actual law enforcement cases
-- **International Support**: Global coordination frameworks for 120+ countries
-- **Namespace Standardization**: Consistent `cacontology` and `cac-core` prefix and namespace structure
+- `ontology/cacontology-core-spine.ttl` — stable top-level hierarchy
+- `ontology/cacontology-core-spine-shapes.ttl` — spine constraints
+- `ontology/cacontology-bridge-gufo.ttl` — gUFO alignment
+- `ontology/cacontology-bridge-case.ttl` — CASE alignment
+- `ontology/cacontology-bridge-uco.ttl` — UCO alignment
+- `ontology/cacontology-core.ttl` — core CAC investigation vocabulary
 
-## Ontology Modules
+The shipped domain modules cover hotline intake, grooming, sextortion, trafficking, production, digital forensics, platforms, legal outcomes, victim impact, task forces, international cooperation, and other specialized areas. See [the module catalog](docs/CAC-Ontology-List) for the file-by-file inventory.
 
-### Semantic Spine & Bridges (5 modules)
-- `cacontology-core-spine.ttl` - Top-level class hierarchy (`cac-core:Entity`, `EnduringEntity`, `Event`, `Situation`, `Role`, `Phase` and branches)
-- `cacontology-core-spine-shapes.ttl` - SHACL shapes validating spine class constraints
-- `cacontology-bridge-gufo.ttl` - Bridge to gUFO foundational ontology
-- `cacontology-bridge-case.ttl` - Bridge to CASE investigation ontology
-- `cacontology-bridge-uco.ttl` - Bridge to Unified Cyber Ontology
+## Semantic spine
 
-### Core Framework (3 modules)
-- `cacontology-core.ttl` - Base investigation framework and lifecycles
-- `cacontology-hotlines.ttl` - Hotline operations and report management
-- `cacontology-us-ncmec.ttl` - Enhanced NCMEC integration and tip analysis
+Domain classes anchor to the `cac-core:` hierarchy by ontological kind:
 
-### International Coordination & Global Frameworks (4 modules)
-- `cacontology-international.ttl` - Global coordination & cross-border operations
-- `cacontology-training.ttl` - Professional development & capacity building
-- `cacontology-prevention.ttl` - Prevention programs & education
-- `cacontology-legal-harmonization.ttl` - International legal framework
+- `cac-core:EnduringEntity`
+- `cac-core:Event`
+- `cac-core:Situation`
+- `cac-core:Role`
+- `cac-core:Phase`
+- `cac-core:Artifact`
+- `cac-core:AssessmentResult`
 
-### High-Priority Criminal Activities (5+ modules)
-- `cacontology-production.ttl` - CSAM production operations
-- `cacontology-custodial.ttl` - Custodial relationships & positions of trust
-- `cacontology-grooming.ttl` - Online grooming & enticement (`ConditioningPhase`, `conditioningMode`; deprecated `TrustBuildingPhase`)
-- `cacontology-sextortion.ttl` - Sexual extortion incidents
-- `cacontology-athletic-exploitation.ttl` - Athletic coaching exploitation
+Dedicated bridges align those branches to gUFO, CASE, and UCO. Applications should normally type data with the most specific CAC domain class; inherited spine and external semantics then follow from the ontology.
 
-### Specialized Investigation (5+ modules)
-- `cacontology-undercover.ttl` - Undercover operations
-- `cacontology-physical-evidence.ttl` - Physical evidence & procurement
-- `cacontology-tactical.ttl` - Tactical law enforcement operations
-- `cacontology-multi-jurisdiction.ttl` - Multi-jurisdictional operations
-- `cacontology-stranger-abduction.ttl` - Stranger abduction patterns
-
-### Technical Support (4+ modules)
-- `cacontology-forensics.ttl` - Digital forensics
-- `cacontology-detection.ttl` - Content detection & classification
-- `cacontology-platforms.ttl` - Technology platforms & service providers
-- `cacontology-street-recruitment.ttl` - Street-based recruitment patterns
-
-### Victim Services & Task Force Management (5+ modules)
-- `cacontology-victim-impact.ttl` - Victim impact assessment & recovery
-- `cacontology-taskforce.ttl` - CAC task force organization
-- `cacontology-legal-outcomes.ttl` - Legal outcomes & sentencing
-- `cacontology-specialized-units.ttl` - Specialized units & advanced capabilities
-- `cacontology-sex-offender-registry.ttl` - Sex offender registry management
-
-### Validation Components (30 modules)
-- Comprehensive SHACL validation shapes for all major modules
-- Cross-reference validation and business rule enforcement
-
-## Quick Start
-
-### Installation
+## Quick start
 
 ```bash
 git clone https://github.com/Project-VIC-International/CAC-Ontology.git
@@ -85,102 +49,71 @@ cd CAC-Ontology
 pip install rdflib pyshacl
 ```
 
-### Using the Ontology
+Use repository-relative paths when loading ontology files:
 
 ```turtle
-@prefix cacontology: <https://cacontology.projectvic.org#> .
-@prefix cacontology-core: <https://cacontology.projectvic.org/core#> .
+@prefix cac: <https://cacontology.projectvic.org#> .
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix ex: <https://example.org/> .
 
-# Example: Create a CAC investigation with spine-anchored classes
-:investigation-001 a cacontology:CACInvestigation ;
-    cacontology:hasReport :report-001 ;
-    cacontology:status "active" .
-
-# Phases, Roles, Events inherit spine types through the class hierarchy
-:phase-001 a cacontology:InitialPhase ;      # inherits cac-core:Phase
-    rdfs:label "Cybertip Triage" .
-
-:action-001 a cacontology:ReceiveCybertipAction ;  # inherits cac-core:InvestigativeAction
-    rdfs:label "Process incoming NCMEC CyberTip" .
+ex:investigation-001 a cac:CACInvestigation .
+ex:action-001 a cac:ReceiveCybertipAction .
 ```
 
-### Validation
+Validate instance data against the relevant shapes:
 
-The project includes comprehensive SHACL validation:
+```bash
+pyshacl -s ontology/cacontology-core-shapes.ttl -d your-data.ttl
+```
+
+The Docker-based development environment is under `testing/`:
 
 ```bash
 docker compose -f testing/docker-compose.yaml up -d
-# Validation runs automatically on all ontology files
 ```
 
 ## Documentation
 
-Comprehensive documentation is available:
+Start with the [documentation index](docs/README.md):
 
-- **Architecture**: `docs/architecture.md` - Complete system architecture and module relationships
-- **Design**: `docs/design.md` - Design principles and technical specifications
-- **User Guide**: `docs/user_doc.md` - User documentation and examples
-- **Product Requirements**: `docs/PRD.md` - Product requirements and specifications
-- **Glossary**: `docs/glossary.md` - Terminology and acronyms
+- [User guide](docs/user_doc.md)
+- [Architecture](docs/architecture.md)
+- [Design](docs/design.md)
+- [Interoperability](docs/interoperability.md)
+- [Namespaces and prefixes](docs/namespaces-and-prefixes.md)
+- [Product requirements](docs/PRD.md)
+- [Glossary](docs/glossary.md)
 
-## Examples
+For AI-assisted ontology work, read [agent.md](agent.md). It is the authoritative repository-specific agent workflow. Tool builders can also use the [CASE-UCO-SDK and its MCP server](https://github.com/vulnmaster/CASE-UCO-SDK); this README intentionally leaves detailed agent procedure to `agent.md`.
 
-The repository includes 30+ real-world example files based on actual law enforcement cases:
+## Repository layout
 
-- `examples_knowledge_graphs/brooklyn-morton-october-2024-example.ttl` - Athletic coaching exploitation
-- `examples_knowledge_graphs/arkansas-operation-cyber-highway-safety-check-example.ttl` - Large-scale operations
-- `examples_knowledge_graphs/operation-restore-justice-example.ttl` - Nationwide coordination
-- `examples_knowledge_graphs/utah-dominic-christensen-example.ttl` - Utah recidivism, registry compliance, and NCMEC-driven investigation
-- `examples_knowledge_graphs/conditioning-phase-offense-trajectory-example.ttl` - Macro offense-trajectory phases with `ConditioningPhase`, dual-typing, and `conditioningMode`
-- `examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl` - State-machine extensions (CoercionCycle, ChannelMigration, AffordanceMisuse, ConditioningPhase)
-- And many more...
-
-See the `examples_knowledge_graphs/` directory for complete list.
-
-## Repository Structure
-
-```
+```text
 .
-├── ontology/                     # All ontology modules (35+ files)
-│   ├── cacontology-core-spine.ttl       # Semantic spine (cac-core: classes)
-│   ├── cacontology-core-spine-shapes.ttl # SHACL shapes for spine
-│   ├── cacontology-bridge-gufo.ttl      # gUFO alignment bridge
-│   ├── cacontology-bridge-case.ttl      # CASE alignment bridge
-│   ├── cacontology-bridge-uco.ttl       # UCO alignment bridge
-│   ├── cacontology-core.ttl             # Base investigation framework
-│   ├── cacontology-*.ttl                # Specialized domain modules
-│   └── cacontology-*-shapes.ttl         # SHACL validation modules
-├── examples_knowledge_graphs/    # Real-world example files (30+ files)
-├── example_SPARQL_queries/       # Analytics and query examples
-├── docs/                         # Documentation files
-├── testing/                      # Testing and validation infrastructure
-├── contexts/                     # JSON-LD context files
-├── CHANGELOG.md                  # Version history
-└── README.md                     # This file
+├── ontology/                  # Ontologies, bridges, spine, and SHACL shapes
+├── contexts/                  # Shipped JSON-LD contexts (limited coverage)
+├── examples_knowledge_graphs/ # Example Turtle graphs
+├── example_SPARQL_queries/    # SPARQL query examples
+├── docs/                      # Project documentation
+├── testing/                   # Validation and test infrastructure
+├── agent.md                   # Detailed agent workflow
+└── README.md
 ```
 
-## Namespace and Prefixes
+## Namespace policy
 
-All ontology modules use the standardized namespace structure:
+- CAC base vocabulary: `https://cacontology.projectvic.org#`
+- Semantic spine: `https://cacontology.projectvic.org/core#`
+- Domain modules: generally `https://cacontology.projectvic.org/{module}#`
+- CASE/UCO imports: versioned **1.5.0** IRIs
+- gUFO imports: versioned **1.0.0** IRI
 
-- **Base Namespace**: `https://cacontology.projectvic.org`
-- **Spine Namespace**: `https://cacontology.projectvic.org/core#` (prefix `cac-core:`)
-- **Module Namespaces**: `https://cacontology.projectvic.org/{module-name}#`
-- **Prefix Pattern**: `cacontology-{module-name}:`
+Do not infer a namespace from a filename alone; consult the module’s prefix declarations or [namespace reference](docs/namespaces-and-prefixes.md).
 
-Example:
-```turtle
-@prefix cac-core: <https://cacontology.projectvic.org/core#> .
-@prefix cacontology: <https://cacontology.projectvic.org#> .
-@prefix cacontology-core: <https://cacontology.projectvic.org/core#> .
-@prefix cacontology-taskforce: <https://cacontology.projectvic.org/taskforce#> .
-```
+## Status and scope
 
-## Contributing
+Ontology and shapes files in `ontology/`, contexts in `contexts/`, examples, and queries are shipped artifacts. Statements in the PRD and design document marked “requirement,” “target,” or “planned” are not claims of completed implementation. Historical release proposals are retained for context and labeled accordingly.
 
-See `CONTRIBUTING.md` for contribution guidelines. The project follows semantic versioning and maintains comprehensive documentation.
+## Contributing and license
 
-## License
-
-This project is licensed under the Apache License 2.0. See `license.md` for details.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidance and [license.md](license.md) for the Apache License 2.0 text.

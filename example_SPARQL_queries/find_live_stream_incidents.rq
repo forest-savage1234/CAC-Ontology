@@ -57,4 +57,4 @@ WHERE {
     }
 }
 ORDER BY DESC(?startTime)
-LIMIT ?limit 
+LIMIT 100

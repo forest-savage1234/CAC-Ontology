@@ -1,4 +1,6 @@
 # CAC Ontology Family - User Documentation
+> **Current baseline:** CAC Ontology **v3.1.0**. The semantic spine was introduced in **v3.0.0**, and CASE/UCO imports are pinned to **1.5.0**. Examples are illustrative; verify classes and properties against the current Turtle modules and SHACL shapes.
+
 One or more of these ontologies can be used to develop unique software applications for users that are then foundationally interoperable with other applications built on this family of ontologies.
 
 This family of ontologies seeks to implement semantically clear information models that reflect the information, information relationships, workflows, and events that a Crimes Against Children Investigator uses or may use in the future. Each ontology represents a unique application domain within investigators'and prosecutors' discourse. This family of ontologies seeks to be universal and it is heavily informed by public documentation in the form of press releases from law enforcement agencies and prosecutor's offices, and high-quality publications from nonprofits that are active in safeguarding children. Finally, this family of ontologies seeks to use modern language as much as possible to reflect the unifying efforts of the CAC community, but there may be language in these ontologies that are more reflective of a certain country when that language is still professionally used.
@@ -19,16 +21,9 @@ git clone https://github.com/Project-VIC-International/CAC-Ontology.git
 cd CAC-Ontology
 ```
 
-2. Install dependencies:
+2. Install the validation tools used in the examples:
 ```bash
-pip install -r requirements.txt
-# requirements.txt contents:
-# rdflib>=6.3.2
-# pyshacl>=0.20.0
-# robotframework>=6.1.1
-# robotframework-rdflib>=0.1.0
-# scikit-learn>=1.3.0  # NEW: For AI integration
-# networkx>=3.0        # NEW: For network analysis
+pip install rdflib pyshacl
 ```
 
 3. Start the validation server:
@@ -36,27 +31,21 @@ pip install -r requirements.txt
 docker compose -f testing/docker-compose.yaml up -d
 ```
 
-4. Load gUFO-enhanced ontologies:
+4. Load the modules required by your application. For spine-based reasoning, load the spine, needed bridges, core, and selected domain modules:
 ```bash
-# Load core ontology with gUFO integration
+# Example Fuseki uploads
+curl -X POST http://localhost:3030/cac/data \
+  --data-binary @ontology/cacontology-core-spine.ttl \
+  --header "Content-Type: text/turtle"
+
 curl -X POST http://localhost:3030/cac/data \
   --data-binary @ontology/cacontology-core.ttl \
   --header "Content-Type: text/turtle"
-
-# Load temporal framework
-curl -X POST http://localhost:3030/cac/data \
-  --data-binary @ontology/cacontology-temporal.ttl \
-  --header "Content-Type: text/turtle"
-
-# Load integration patterns
-curl -X POST http://localhost:3030/cac/data \
-  --data-binary @ontology/cacontology-integration-patterns.ttl \
-  --header "Content-Type: text/turtle"
 ```
 
-## Semantic Spine (v3.0.0)
+## Semantic Spine
 
-Version 3.0.0 introduces the **semantic spine** (`cac-core:` namespace, `https://cacontology.projectvic.org/core#`), a stable top-level class hierarchy organized by ontological kind. The spine provides enduring anchor classes—`cac-core:Entity`, `cac-core:EnduringEntity`, `cac-core:Event`, `cac-core:Situation`, `cac-core:Role`, `cac-core:Phase`, `cac-core:Artifact`, and `cac-core:AssessmentResult`—that every CAC domain module inherits from.
+CAC v3.1.0 retains the **semantic spine** introduced in v3.0.0 (`cac-core:` namespace, `https://cacontology.projectvic.org/core#`). It provides stable anchor classes such as `cac-core:Entity`, `cac-core:EnduringEntity`, `cac-core:Event`, `cac-core:Situation`, `cac-core:Role`, `cac-core:Phase`, `cac-core:Artifact`, and `cac-core:AssessmentResult`.
 
 When creating new instances, use the CAC domain class (e.g., `cacontology:CACInvestigation`, `cacontology:InvestigatorRole`) rather than referencing gUFO types like `gufo:Event` or `gufo:Situation` directly. The domain classes already carry the correct spine (and foundational) superclass chain, so explicit `rdf:type gufo:Event` assertions are no longer needed.
 
@@ -250,71 +239,13 @@ The ontology includes comprehensive modeling of athletic coaching exploitation p
 ## API Reference
 
 ### 1. JSON-LD Context
-Context files live in `/contexts/`, versioned alongside ontology:
+Context files live in `contexts/`, versioned alongside the ontology. CAC v3.1.0 ships six contexts: grooming, sextortion, platforms, legal outcomes, US-NCMEC, and state-machine extensions. Core, hotline, spine, and athletic contexts are not shipped, so applications needing those terms must supply explicit mappings or use full IRIs.
 
+A shipped-context example:
 ```json
 {
-  "@context": "contexts/cacontology-hotlines.jsonld",
-  "@type": "HotlineReport",
-  "reportedBy": {
-    "@type": "ReporterRole",
-    "isAnonymous": true
-  }
-}
-```
-
-> **Legacy note:** Earlier versions used `https://ontology.unifiedcyberontology.org/hotlines/2025/core/contexts/hotlines-core.jsonld` as the context URL. That URL is retained for backward compatibility but new implementations should use the local context file above.
-
-#### 1.1 **NEW: gUFO-Enhanced JSON-LD Context**
-
-```json
-{
-  "@context": [
-    "contexts/cacontology-core.jsonld",
-    "contexts/cac-core-spine.jsonld"
-  ],
-  "@type": "Investigation",
-  "inPhase": {
-    "@type": "InitialPhase",
-    "hasPhaseBeginPoint": "2025-01-01T08:00:00Z",
-    "phaseDuration": "P2DT9H"
-  },
-  "hasRole": [{
-    "@type": "InvestigatorRole",
-    "hasRoleBeginPoint": "2025-01-01T08:00:00Z"
-  }]
-}
-```
-
-For athletic exploitation cases:
-```json
-{
-  "@context": [
-    "contexts/cacontology-core.jsonld",
-    "contexts/cacontology-athletic-exploitation.jsonld"
-  ],
-  "@type": "AthleticCoachingExploitation",
-  "sportType": "baseball",
-  "teamType": "travel",
-  "practiceFrequency": 3,
-  "teamSize": 7,
-  "usesPhysicalTraining": {
-    "@type": "ConditioningCoercion",
-    "conditioningType": "running_drills",
-    "exhaustionLevel": "severe"
-  }
-}
-```
-
-For local development:
-```json
-{
-  "@context": "contexts/cacontology-hotlines.jsonld",
-  "@type": "HotlineReport",
-  "reportedBy": {
-    "@type": "ReporterRole",
-    "isAnonymous": true
-  }
+  "@context": "contexts/cacontology-grooming.jsonld",
+  "@type": "ConditioningPhase"
 }
 ```
 
@@ -885,8 +816,8 @@ Unit tests: `python testing/test_state_machine_extensions.py`, `python testing/t
 
 ## Validation and Quality Assurance
 
-### 1. Using pySHACL ✅ **COMPREHENSIVE COVERAGE COMPLETED**
-**23 SHACL shapes files** provide comprehensive validation across all critical modules:
+### 1. Using pySHACL
+CAC v3.1.0 ships **47 SHACL shape files**. Constraint depth varies; select the shapes relevant to the loaded modules and application profile:
 
 ```bash
 # Core validation
@@ -913,7 +844,7 @@ pyshacl -s ontology/cacontology-sex-trafficking-shapes.ttl -d your-trafficking-d
 pyshacl -s ontology/cacontology-athletic-exploitation-shapes.ttl -d your-athletic-data.ttl
 ```
 
-**Coverage Statistics**: 71.88% (23 of 32 modules) - All critical modules covered with 10,000+ validation rules
+Do not infer validation completeness from file count alone. Test representative valid and invalid data for the profile your application enforces.
 
 ### 2. Common Validation Rules
 - Reports must have at least one evidence item
@@ -945,7 +876,7 @@ docker exec cac-pyshacl pyshacl -s *-shapes.ttl -d examples_knowledge_graphs/*.t
 ```
 
 ### 2. Contributing New Examples
-1. Create your example in `examples/` directory
+1. Create your example in `examples_knowledge_graphs/`
 2. Ensure it validates against relevant SHACL shapes
 3. Add corresponding SPARQL queries in `example_SPARQL_queries/` directory
 4. Update documentation with usage examples
@@ -976,8 +907,8 @@ docker exec cac-pyshacl pyshacl -s *-shapes.ttl -d examples_knowledge_graphs/*.t
 
 ### 3. Getting Help
 - Check existing GitHub issues
-- Review comprehensive examples in `examples/` directory
-- Consult SPARQL queries in `queries/` directory for usage patterns
+- Review examples in `examples_knowledge_graphs/`
+- Consult SPARQL queries in `example_SPARQL_queries/`
 - Join community discussions and working groups
 
 ## Integration Patterns
@@ -1009,7 +940,7 @@ example:investigation-001 cacontology:exportFormat "CASE-JSON", "UCO-Turtle", "S
 - Current Version: 3.1.0 (9 August 2026)
 - See CHANGELOG.md for complete version history
 - Follows semantic versioning (MAJOR.MINOR.PATCH)
-- Coordinated releases across all 30+ ontology modules
+- Global CAC releases with module-specific version IRIs where appropriate
 
 ### 2. Support Channels
 - GitHub issues for bug reports and feature requests

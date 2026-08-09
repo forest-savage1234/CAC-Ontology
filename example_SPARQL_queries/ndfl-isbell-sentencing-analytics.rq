@@ -29,14 +29,15 @@ WHERE {
   ?doc a uco-observable:ObservableObject ;
        rdfs:label ?label ;
        uco-core:hasFacet ?urlFacet ;
-       uco-core:hasFacet ?hashFacet .
+       uco-core:hasFacet ?contentFacet .
   
   ?urlFacet a uco-observable:URLFacet ;
             uco-observable:url ?url .
   
-  ?hashFacet a uco-observable:HashFacet ;
-             uco-observable:hash ?hashNode .
-  ?hashNode uco-types:hashValue ?hashValue .
+  ?contentFacet a uco-observable:ContentDataFacet ;
+                uco-observable:hash ?hashNode .
+  ?hashNode a uco-types:Hash ;
+            uco-types:hashValue ?hashValue .
   
   ?action a investigation:InvestigativeAction ;
           uco-action:object ?doc ;
@@ -160,8 +161,8 @@ WHERE {
   ?provRecord a investigation:ProvenanceRecord ;
               rdfs:label ?label ;
               uco-core:object ?sourceDoc ;
-              investigation:provenanceRecordAction ?action ;
               uco-core:description ?evidencePointer .
+  ?action uco-action:object ?sourceDoc .
 }
 ;
 

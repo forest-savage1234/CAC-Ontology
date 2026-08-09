@@ -1,0 +1,88 @@
+# CAC Ontology v3.1.0 — charging instruments and sentencing analytics
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#>
+
+# Q1: Charging instruments, filing metadata, and supersession chain.
+SELECT ?instrument ?instrumentType ?label ?filedDate ?countTotal ?supersedes ?supersededBy
+WHERE {
+  ?instrument a ?instrumentType ;
+              rdfs:label ?label .
+  VALUES ?instrumentType {
+    cacontology-legal-outcomes:ChargingInstrument
+    cacontology-legal-outcomes:CriminalComplaint
+    cacontology-legal-outcomes:MagistrateComplaint
+    cacontology-legal-outcomes:Indictment
+    cacontology-legal-outcomes:SupersedingIndictment
+    cacontology-legal-outcomes:CriminalInformation
+  }
+  OPTIONAL { ?instrument cacontology-legal-outcomes:filedDate ?filedDate }
+  OPTIONAL { ?instrument cacontology-legal-outcomes:chargingInstrumentCounts ?countTotal }
+  OPTIONAL { ?instrument cacontology-legal-outcomes:supersedes ?supersedes }
+  OPTIONAL { ?instrument cacontology-legal-outcomes:supersededBy ?supersededBy }
+}
+ORDER BY ?filedDate ?label
+;
+
+# Q2: Proceedings, charges, and imposed sentences.
+SELECT ?proceeding ?proceedingLabel ?charge ?chargeLabel ?sentence ?sentenceLabel
+       ?duration ?durationMonths
+WHERE {
+  ?proceeding cacontology-legal-outcomes:hasCharge ?charge ;
+              cacontology-legal-outcomes:resultsSentence ?sentence .
+  OPTIONAL { ?proceeding rdfs:label ?proceedingLabel }
+  OPTIONAL { ?charge rdfs:label ?chargeLabel }
+  OPTIONAL { ?sentence rdfs:label ?sentenceLabel }
+  OPTIONAL { ?sentence cacontology-legal-outcomes:sentenceDuration ?duration }
+  OPTIONAL { ?sentence cacontology-legal-outcomes:sentenceDurationMonths ?durationMonths }
+}
+ORDER BY ?proceedingLabel ?chargeLabel ?sentenceLabel
+;
+
+# Q3: Person-centric charge and sentence history without instance IRI assumptions.
+SELECT ?person ?personLabel ?charge ?chargeLabel ?sentence ?sentenceLabel
+WHERE {
+  ?person cacontology-legal-outcomes:chargedWith ?charge ;
+          rdfs:label ?personLabel .
+  OPTIONAL { ?charge rdfs:label ?chargeLabel }
+  OPTIONAL {
+    ?sentence cacontology-legal-outcomes:appliesTo ?charge .
+    OPTIONAL { ?sentence rdfs:label ?sentenceLabel }
+  }
+}
+ORDER BY ?personLabel ?chargeLabel ?sentenceLabel
+;
+
+# Q4: Sentences and the charges to which they apply.
+SELECT ?sentence ?sentenceType ?sentenceLabel ?charge ?chargeLabel
+WHERE {
+  ?sentence a ?sentenceType ;
+            cacontology-legal-outcomes:appliesTo ?charge .
+  FILTER(STRSTARTS(STR(?sentenceType), STR(cacontology-legal-outcomes:)))
+  OPTIONAL { ?sentence rdfs:label ?sentenceLabel }
+  OPTIONAL { ?charge rdfs:label ?chargeLabel }
+}
+ORDER BY ?sentenceLabel ?chargeLabel
+;
+
+# Q5: Supervised-release conditions and criminal payment schedules.
+SELECT ?sentence ?condition ?conditionType ?conditionText
+       ?paymentSchedule ?amountUSD ?dueTiming ?penalty
+WHERE {
+  {
+    ?sentence cacontology-legal-outcomes:hasSpecialCondition ?condition .
+    ?condition a ?conditionType .
+    FILTER(STRSTARTS(STR(?conditionType), STR(cacontology-legal-outcomes:)))
+    OPTIONAL { ?condition cacontology-legal-outcomes:conditionText ?conditionText }
+  }
+  UNION
+  {
+    ?sentence cacontology-legal-outcomes:hasPaymentSchedule ?paymentSchedule .
+    OPTIONAL { ?paymentSchedule cacontology-legal-outcomes:totalAmountUSD ?amountUSD }
+    OPTIONAL { ?paymentSchedule cacontology-legal-outcomes:dueTiming ?dueTiming }
+    OPTIONAL { ?paymentSchedule cacontology-legal-outcomes:includesPenalty ?penalty }
+  }
+}
+ORDER BY ?sentence ?conditionType ?paymentSchedule

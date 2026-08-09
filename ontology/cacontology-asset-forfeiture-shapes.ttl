@@ -24,7 +24,7 @@
     dcterms:modified "2026-08-09"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/asset-forfeiture/3.1.0>,
                 <https://cacontology.projectvic.org/core/3.1.0>,
-                <http://purl.org/nemo/gufo#> .
+                <http://purl.org/nemo/gufo#/1.0.0> .
 
 # =============================================================================
 # ENHANCED ASSET FORFEITURE ACTION SHAPES WITH gUFO EVENT VALIDATION

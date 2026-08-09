@@ -261,7 +261,7 @@ Add/extend queries:
 2. **Domain/range misuse**
    - Mitigation: place doxxing/swatting under `cacontology-sextortion:ThreatMechanism` (already a `uco-action:Action`) to avoid inventing ad-hoc relationships.
 3. **Connectivity risk (isolated nodes)**
-   - Mitigation: ensure each new instance is linked via at least one of: `uco-action:object`, `uco-core:hasFacet`, `investigation:provenanceRecordAction`.
+   - Mitigation: ensure each new instance is linked via at least one of: `uco-action:object`, `uco-core:hasFacet`, `uco-core:object`.
 4. **Scope drift**
    - Mitigation: keep SOE module focused on CSEA coercion networks; avoid modeling unrelated violent-content categories as domain nodes unless tied to CSEA exploitation/coercion.
 

@@ -1,7 +1,7 @@
 # SPARQL Query: Comprehensive CAC Case Analytics
 # This query demonstrates cross-ontology integration and analytics capabilities
 # across the CAC Ontology family for complex investigation analysis
-# Updated for CAC Ontology v3.0.0
+# Updated for CAC Ontology v3.1.0
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -121,6 +121,7 @@ WHERE {
     
     # Undercover Operations Analysis
     OPTIONAL {
+      {
         SELECT ?investigation 
                (COUNT(DISTINCT ?undercoverOp) AS ?undercoverOperations)
                (GROUP_CONCAT(DISTINCT ?undercoverOutcome; separator=", ") AS ?undercoverOutcome)
@@ -132,10 +133,12 @@ WHERE {
             OPTIONAL { ?undercoverOp cacontology-undercover:infiltrationDuration ?undercoverDur }
         }
         GROUP BY ?investigation
+      }
     }
     
     # Grooming Behavior Analysis
     OPTIONAL {
+      {
         SELECT ?investigation
                (COUNT(DISTINCT ?groomingBehavior) AS ?groomingBehaviors)
                (GROUP_CONCAT(DISTINCT ?groomingStage; separator=", ") AS ?groomingStage)
@@ -151,10 +154,12 @@ WHERE {
             }
         }
         GROUP BY ?investigation
+      }
     }
     
     # Physical Evidence Analysis
     OPTIONAL {
+      {
         SELECT ?investigation
                (COUNT(DISTINCT ?evidence) AS ?evidenceItems)
                (COUNT(DISTINCT ?criticalEv) AS ?criticalEvidence)
@@ -172,10 +177,12 @@ WHERE {
             }
         }
         GROUP BY ?investigation
+      }
     }
     
     # Tactical Operations Analysis
     OPTIONAL {
+      {
         SELECT ?investigation
                (COUNT(DISTINCT ?tacticalOp) AS ?tacticalOperations)
                (GROUP_CONCAT(DISTINCT ?tacticalOutcome; separator=", ") AS ?tacticalOutcome)
@@ -186,6 +193,7 @@ WHERE {
                 cacontology-tactical:riskLevel ?tacticalRiskLevel .
         }
         GROUP BY ?investigation
+      }
     }
     
     # Production Case Analysis
@@ -197,6 +205,7 @@ WHERE {
     
     # Social Media Evidence Analysis
     OPTIONAL {
+      {
         SELECT ?investigation
                (COUNT(DISTINCT ?socialMedia) AS ?socialMediaEvidence)
                (MAX(?platformCount) AS ?platformsInvestigated)
@@ -210,6 +219,7 @@ WHERE {
             }
         }
         GROUP BY ?investigation
+      }
     }
     
     # Task Force Analysis
@@ -239,6 +249,7 @@ WHERE {
     
     # Legal Outcomes Analysis
     OPTIONAL {
+      {
         SELECT ?investigation
                (COUNT(DISTINCT ?charge) AS ?chargeCount)
                (MAX(?sentenceLength) AS ?sentenceLength)
@@ -263,6 +274,7 @@ WHERE {
             }
         }
         GROUP BY ?investigation
+      }
     }
 }
 ORDER BY DESC(?investigationDurationDays) DESC(?sentenceLength)
@@ -276,14 +288,14 @@ ORDER BY DESC(?investigationDurationDays) DESC(?sentenceLength)
 
 SELECT 
     # Operational Success Rates
-    (AVG(CASE WHEN ?undercoverOutcome = "successful" THEN 1.0 ELSE 0.0 END) AS ?undercoverSuccessRate)
-    (AVG(CASE WHEN ?tacticalOutcome = "successful" THEN 1.0 ELSE 0.0 END) AS ?tacticalSuccessRate)
-    (AVG(CASE WHEN ?pleaBargainAccepted = true THEN 1.0 ELSE 0.0 END) AS ?pleaBargainRate)
+    (AVG(IF(?undercoverOutcome = "successful", 1.0, 0.0)) AS ?undercoverSuccessRate)
+    (AVG(IF(?tacticalOutcome = "successful", 1.0, 0.0)) AS ?tacticalSuccessRate)
+    (AVG(IF(?pleaBargainAccepted = true, 1.0, 0.0)) AS ?pleaBargainRate)
     
     # Evidence Quality Metrics
-    (AVG(CASE WHEN ?evidenceSignificance = "critical" THEN 1.0 ELSE 0.0 END) AS ?criticalEvidenceRate)
-    (AVG(CASE WHEN ?digitalContentFound = true THEN 1.0 ELSE 0.0 END) AS ?digitalEvidenceRate)
-    (AVG(CASE WHEN ?foundOnSocialMedia = true THEN 1.0 ELSE 0.0 END) AS ?socialMediaEvidenceRate)
+    (AVG(IF(?evidenceSignificance = "critical", 1.0, 0.0)) AS ?criticalEvidenceRate)
+    (AVG(IF(?digitalContentFound = true, 1.0, 0.0)) AS ?digitalEvidenceRate)
+    (AVG(IF(?foundOnSocialMedia = true, 1.0, 0.0)) AS ?socialMediaEvidenceRate)
     
     # Grooming Pattern Analysis
     (AVG(?patternConfidence) AS ?avgPatternConfidence)
@@ -299,13 +311,13 @@ SELECT
     (AVG(?partnerAgencyCount) AS ?avgPartnerAgencies)
     
     # Specialized Units Effectiveness
-    (AVG(CASE WHEN ?k9Assisted = true THEN 1.0 ELSE 0.0 END) AS ?k9AssistedRate)
+    (AVG(IF(?k9Assisted = true, 1.0, 0.0)) AS ?k9AssistedRate)
     (AVG(?communityEngagementEvents) AS ?avgCommunityEngagement)
     
     # Sentencing Outcomes
     (AVG(?sentenceLength) AS ?avgSentenceLength)
     (AVG(?restitutionAmount) AS ?avgRestitution)
-    (AVG(CASE WHEN ?projectSafeChildhood = true THEN 1.0 ELSE 0.0 END) AS ?projectSafeChildhoodRate)
+    (AVG(IF(?projectSafeChildhood = true, 1.0, 0.0)) AS ?projectSafeChildhoodRate)
     (AVG(?maximumSentenceYears) AS ?avgMaximumSentence)
 
 WHERE {

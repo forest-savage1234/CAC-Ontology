@@ -30,7 +30,7 @@
                 <https://ontology.unifiedcyberontology.org/uco/role/1.5.0> ,
                 <https://cacontology.projectvic.org/3.1.0> ,
                 <https://cacontology.projectvic.org/core/3.1.0> ,
-                <http://purl.org/nemo/gufo#> ;
+                <http://purl.org/nemo/gufo#/1.0.0> ;
     dcterms:description "Enhanced with gUFO foundational ontology for formal semantic modeling of custodial relationships, trust violations, authority positions, and temporal custody lifecycle management."@en ;
     owl:versionInfo "3.1.0" .
 

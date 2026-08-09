@@ -27,7 +27,7 @@
                 <https://cacontology.projectvic.org/detection/3.1.0> ,
                 <https://cacontology.projectvic.org/3.1.0> ,
                 <https://cacontology.projectvic.org/core/3.1.0> ,
-                <http://purl.org/nemo/gufo#> .
+                <http://purl.org/nemo/gufo#/1.0.0> .
 
 # =============================================================================
 # CLASSES

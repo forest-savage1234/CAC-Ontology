@@ -391,10 +391,10 @@ fiesco-case:endangering-welfare-child rdf:type cacontology:CriminalCharge ;
     cacontology:chargeSeverity "misdemeanor" .
 
 # Charge Relationships
-fiesco-case:christopher-fiesco cacontology:chargedWith fiesco-case:kidnapping-first-degree .
-fiesco-case:christopher-fiesco cacontology:chargedWith fiesco-case:criminal-sexual-act-first-degree .
-fiesco-case:christopher-fiesco cacontology:chargedWith fiesco-case:sexual-abuse-first-degree .
-fiesco-case:christopher-fiesco cacontology:chargedWith fiesco-case:endangering-welfare-child .
+fiesco-case:christopher-fiesco cacontology-legal-outcomes:chargedWith fiesco-case:kidnapping-first-degree .
+fiesco-case:christopher-fiesco cacontology-legal-outcomes:chargedWith fiesco-case:criminal-sexual-act-first-degree .
+fiesco-case:christopher-fiesco cacontology-legal-outcomes:chargedWith fiesco-case:sexual-abuse-first-degree .
+fiesco-case:christopher-fiesco cacontology-legal-outcomes:chargedWith fiesco-case:endangering-welfare-child .
 
 # Evidence Supporting Charges
 fiesco-case:abduction-scene-evidence cacontology-abduction:supportsCharge fiesco-case:kidnapping-first-degree .

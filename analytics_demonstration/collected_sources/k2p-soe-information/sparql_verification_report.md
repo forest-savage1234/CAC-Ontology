@@ -1,6 +1,6 @@
 ## SPARQL Verification Suite (subset)
 - **Dataset**: `examples_knowledge_graphs/k2p-soe-information-example.ttl`
-- **Triples**: 416
+- **Triples**: 425
 
 | Check | Result | Count | Notes |
 |---|---|---:|---|

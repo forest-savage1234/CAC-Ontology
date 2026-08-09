@@ -1,0 +1,46 @@
+# CAC Ontology v3.1.0 — NCMEC aggregate transparency statistics
+# Data: examples_knowledge_graphs/ncmec-cybertipline-data-example.ttl
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
+PREFIX cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec#>
+
+# Q1: Complete inventory of published aggregate statistics.
+SELECT ?statistic ?label ?value ?unit ?qualifier ?period ?percentChange ?topic ?description
+WHERE {
+  ?statistic a cacontology-us-ncmec:AggregateReportStatistic ;
+             rdfs:label ?label ;
+             cacontology-us-ncmec:statisticValue ?value ;
+             cacontology-us-ncmec:statisticUnit ?unit ;
+             cacontology-us-ncmec:reportingPeriod ?period .
+  OPTIONAL { ?statistic cacontology-us-ncmec:statisticQualifier ?qualifier }
+  OPTIONAL { ?statistic cacontology-us-ncmec:percentChangeFromPriorPeriod ?percentChange }
+  OPTIONAL { ?statistic cacontology-us-ncmec:statisticTopic ?topic }
+  OPTIONAL { ?statistic uco-core:description ?description }
+}
+ORDER BY ?period ?unit DESC(?value)
+;
+
+# Q2: Aggregate statistics grouped by period and unit.
+SELECT ?period ?unit (COUNT(?statistic) AS ?statisticCount) (SUM(?value) AS ?totalValue)
+WHERE {
+  ?statistic a cacontology-us-ncmec:AggregateReportStatistic ;
+             cacontology-us-ncmec:statisticValue ?value ;
+             cacontology-us-ncmec:statisticUnit ?unit ;
+             cacontology-us-ncmec:reportingPeriod ?period .
+}
+GROUP BY ?period ?unit
+ORDER BY ?period ?unit
+;
+
+# Q3: Statistics that publish a period-over-period change.
+SELECT ?statistic ?label ?period ?value ?unit ?percentChange
+WHERE {
+  ?statistic a cacontology-us-ncmec:AggregateReportStatistic ;
+             rdfs:label ?label ;
+             cacontology-us-ncmec:reportingPeriod ?period ;
+             cacontology-us-ncmec:statisticValue ?value ;
+             cacontology-us-ncmec:statisticUnit ?unit ;
+             cacontology-us-ncmec:percentChangeFromPriorPeriod ?percentChange .
+}
+ORDER BY DESC(ABS(?percentChange))

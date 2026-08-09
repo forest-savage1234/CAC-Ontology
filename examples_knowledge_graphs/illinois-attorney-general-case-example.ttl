@@ -24,7 +24,7 @@
 # Case Investigation
 :MacoupinCountyInvestigation rdf:type cacontology-core:CACInvestigation ;
     uco-core:name "Illinois AG v. Robert L. Jones - Macoupin County CSAM Case"@en ;
-    uco-core:description "Multi-agency investigation and prosecution of Macoupin County man for child pornography possession and dissemination, plus failure to register as sex offender."@en ;
+    uco-core:description "Multi-agency investigation and prosecution of Macoupin County man for child pornography possession and dissemination, plus failure to register as sex offender." ;
     uco-core:startTime "2023-10-01T00:00:00Z"^^xsd:dateTime ;
     case-investigation:investigationStatus "prosecution_phase" .
 
@@ -48,7 +48,7 @@
 # Class X Felony - Dissemination CSAM Under 13 (5 counts)
 :DisseminationCharges rdf:type cacontology-legal-outcomes:Illinois_DisseminationCSAM_Under13 ;
     uco-core:name "Dissemination of Child Pornography Under 13"@en ;
-    cacontology-legal-outcomes:chargeCount 5 ;
+    cacontology-legal-outcomes:countNumber 5 ;
     cacontology-legal-outcomes:maximumSentenceYears 30 ;
     cacontology-legal-outcomes:victimAgeAtOffense 12 ;  # Under 13
     cacontology-legal-outcomes:evidenceFoundOnDevice true ;
@@ -57,7 +57,7 @@
 # Class 1 Felony - Possession CSAM Under 13 (10 counts)
 :PossessionCharges rdf:type cacontology-legal-outcomes:Illinois_PossessionCSAM_Under13 ;
     uco-core:name "Possession of Child Pornography Under 13"@en ;
-    cacontology-legal-outcomes:chargeCount 10 ;
+    cacontology-legal-outcomes:countNumber 10 ;
     cacontology-legal-outcomes:maximumSentenceYears 15 ;
     cacontology-legal-outcomes:victimAgeAtOffense 12 ;  # Under 13
     cacontology-legal-outcomes:evidenceFoundOnDevice true ;
@@ -66,7 +66,7 @@
 # Class 3 Felony - Failure to Register (3 counts)
 :FailureToRegisterCharges rdf:type cacontology-legal-outcomes:Illinois_FailureToRegister ;
     uco-core:name "Failure to Register Under Sex Offender Act"@en ;
-    cacontology-legal-outcomes:chargeCount 3 ;
+    cacontology-legal-outcomes:countNumber 3 ;
     cacontology-legal-outcomes:maximumSentenceYears 7 .
 
 # Link defendant to charges
@@ -86,7 +86,7 @@
 # High Tech Crimes Bureau
 :HighTechCrimesBureau rdf:type cacontology-legal-outcomes:HighTechCrimesBureau ;
     uco-core:name "High Tech Crimes Bureau"@en ;
-    uco-core:description "Specialized prosecution unit for technology-related crimes within Illinois AG office."@en .
+    uco-core:description "Specialized prosecution unit for technology-related crimes within Illinois AG office." .
 
 # Macoupin County State's Attorney Office
 :MacoupinCountyStatesAttorneyOffice rdf:type cacontology-legal-outcomes:CountyStatesAttorneyOffice ;
@@ -119,7 +119,7 @@
 # Federal Law Enforcement Partners
 :FederalAgencies rdf:type cacontology-taskforce:FederalLawEnforcementPartner ;
     uco-core:name "Federal Law Enforcement Agencies"@en ;
-    uco-core:description "Federal agencies collaborating with Illinois AG investigation."@en .
+    uco-core:description "Federal agencies collaborating with Illinois AG investigation." .
 
 # Local Law Enforcement Partners
 :GillespiePolice rdf:type cacontology-taskforce:LocalLawEnforcementPartner ;
@@ -228,7 +228,7 @@
 # Home Search Operation
 :HomeSearchOperation rdf:type uco-action:Action ;
     uco-core:name "Jones Residence Search"@en ;
-    uco-core:description "Search of defendant's home on 700 block South Street, Gillespie"@en ;
+    uco-core:description "Search of defendant's home on 700 block South Street, Gillespie" ;
     uco-core:startTime "2023-10-03T06:00:00Z"^^xsd:dateTime ;
     uco-core:location :JonesResidence .
 

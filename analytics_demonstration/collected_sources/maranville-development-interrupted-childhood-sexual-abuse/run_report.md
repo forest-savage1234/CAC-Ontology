@@ -32,7 +32,7 @@
 
 #### Reuse-first summary (no new ontology terms added)
 
-- **UCO Observable facets**: `uco-observable:ContentDataFacet`, `uco-observable:URLFacet`, `uco-observable:FileFacet`, `uco-observable:HashFacet`
+- **UCO Observable facets**: `uco-observable:ContentDataFacet`, `uco-observable:URLFacet`, `uco-observable:FileFacet`, `uco-observable:ContentDataFacet`
 - **UCO Action**: `uco-action:Action` (statement actions); `investigation:InvestigativeAction` (collection action)
 - **CASE Investigation**: `investigation:ProvenanceRecord`
 - **UCO Identity**: `uco-identity:Person`, `uco-identity:Organization`

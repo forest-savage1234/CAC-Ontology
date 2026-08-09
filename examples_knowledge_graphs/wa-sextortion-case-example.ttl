@@ -80,17 +80,20 @@
     cac-core:conditioningMode "deception" ;
     cacontology-sextortion:progressionStage 2 .
 
-:Sexual_Solicitation rdf:type cacontology-sextortion:SexualSolicitationPhase ;
+:Sexual_Solicitation rdf:type cacontology-sextortion:SexualSolicitationPhase ,
+        cac-core:Phase ;
     rdfs:label "Sexual Solicitation Phase"@en ;
     uco-core:description "Engaging in sexually explicit conversations with three girls under 16" ;
     cacontology-sextortion:progressionStage 3 .
 
-:Image_Acquisition rdf:type cacontology-sextortion:ImageAcquisitionPhase ;
+:Image_Acquisition rdf:type cacontology-sextortion:ImageAcquisitionPhase ,
+        cac-core:Phase ;
     rdfs:label "Image Acquisition Phase"@en ;
     uco-core:description "Manipulating victims into sending intimate images" ;
     cacontology-sextortion:progressionStage 4 .
 
-:Extortion_Phase rdf:type cacontology-sextortion:ExtortionPhase ;
+:Extortion_Phase rdf:type cacontology-sextortion:ExtortionPhase ,
+        cac-core:Phase ;
     rdfs:label "Extortion Phase"@en ;
     uco-core:description "Threatening to screenshot images when victim refused demands" ;
     cacontology-sextortion:progressionStage 5 .
@@ -239,14 +242,14 @@
 :CSAM_Transmission_Charge rdf:type cacontology-legal-outcomes:CarriageServiceCSAMTransmission ;
     rdfs:label "CSAM Transmission Charge"@en ;
     uco-core:description "Use carriage service to cause child abuse material to be transmitted to himself, contrary to section 474.22(1)(a)(ii) Criminal Code (Cth)" ;
-    cacontology-legal-outcomes:chargeCount 1 ;
+    cacontology-legal-outcomes:countNumber 1 ;
     cacontology-legal-outcomes:maximumPenalty 15 ;
     cacontology-legal-outcomes:chargeStatute "474.22(1)(a)(ii) Criminal Code (Cth)" .
 
 :Indecent_Communication_Charge rdf:type cacontology-legal-outcomes:CarriageServiceIndecentCommunication ;
     rdfs:label "Indecent Communication Charges"@en ;
     uco-core:description "Use carriage service to transmit indecent communication to person under 16 years, contrary to section 474.27A Criminal Code (Cth)" ;
-    cacontology-legal-outcomes:chargeCount 2 ;
+    cacontology-legal-outcomes:countNumber 2 ;
     cacontology-legal-outcomes:maximumPenalty 10 ;
     cacontology-legal-outcomes:chargeStatute "474.27A Criminal Code (Cth)" .
 

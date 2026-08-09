@@ -1,7 +1,9 @@
 # CAC Ontology Family - Product Requirements Document
 
+> **Document role:** This PRD records requirements and targets for CAC Ontology. It is not an implementation-completeness or benchmark report. The current release is **v3.1.0**; the semantic spine was introduced in **v3.0.0**; CASE/UCO imports are pinned to **1.5.0**. For shipped artifact counts and user guidance, start at [the documentation index](README.md).
+
 ## Overview
-Current Crimes Against Children community language and data sets are siloed in organizations and law enforcement jurisdictions. This language is presented in many venues including courts of law, in the press, in non governmental organization reporting, and by survivors. We present a unified Crimes Against Children (CAC) family of ontologies that unifies the language used in the CAC community into a standardized, interoperable framework for representing and sharing data about child exploitation investigations and operations, and analysis. This document outlines the requirements for the 30+ module ontology family and its supporting technologies. This family of ontologies was assembled using various language models and human analysis of law enforcement and prosecutor's press releases that describe the results of investigations and legal process for crimes against children and trafficking. This family of ontologies extends the Unified Cyber Ontology (UCO), the Cyber-investigation Analysis Standard Expression (CASE) Ontology, and the Unified Foundational Ontology (gUFO) to ensure that key communities of interest can easily access the semantic modeling in the CAC Ontology. This make it possible to model all aspects of an child sexual abuse or child sex trafficking investigation, including the digital forensics examination, operations planning tradecraft, and legal process. This document presents the requirements for the CAC Ontology.
+Crimes Against Children community language and data sets are often siloed across organizations and jurisdictions. CAC Ontology provides a modular, interoperable framework for representing child-exploitation investigations, operations, and analysis. CAC v3.1.0 ships 50 ontology/alignment Turtle modules and 47 SHACL shape files. It extends UCO, CASE, and gUFO; its requirements cover investigation, digital-forensics, operational, and legal-process modeling.
 
 The ontology family now includes comprehensive gUFO (Unified Foundational Ontology) integration, providing enhanced semantic precision, temporal modeling, and validation capabilities for law enforcement investigations.
 
@@ -34,7 +36,7 @@ The goal is to support the full Crimes Against Children domain of discourse, inc
 - Must provide anti-rigid modeling for phases and roles
 - Must distinguish between Events (actions) and Situations (states)
 - Must support temporal constraints and validation
-- v3.0.0 introduces the semantic spine (`cac-core:` namespace) as the mediating layer; domain modules anchor to spine branches (`cac-core:Phase`, `cac-core:Role`, `cac-core:Event`, `cac-core:Artifact`, etc.) rather than directly to gUFO or UCO classes
+- The semantic spine introduced in v3.0.0 (`cac-core:` namespace) is the mediating layer; domain modules anchor to spine branches (`cac-core:Phase`, `cac-core:Role`, `cac-core:Event`, `cac-core:Artifact`, etc.)
 
 ### 2. Data Representation
 - Must support representation of:
@@ -63,7 +65,7 @@ The goal is to support the full Crimes Against Children domain of discourse, inc
 - Must include validation tools for data quality
 - Must integrate with educational and athletic institution systems
 - Must maintain backward compatibility with existing CAC ontologies to the extent possible after version 2.1.0
-- v3.0.0 is the current version, introducing the semantic spine architecture (`cac-core:` namespace) as the canonical mediating layer between domain modules and foundational ontologies (gUFO, UCO, CASE)
+- v3.1.0 is the current version; it retains the semantic spine architecture introduced in v3.0.0 and pins CASE/UCO imports to 1.5.0
 - Must provide equivalence mappings between original and gUFO-enhanced classes
 - Must support parallel operation of original and enhanced models
 

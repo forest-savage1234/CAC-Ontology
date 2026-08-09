@@ -28,8 +28,7 @@ SELECT ?doc ?filePath ?url ?mime ?size ?hashValue WHERE {
   ?doc a uco-observable:ObservableObject ;
        uco-core:hasFacet ?fileFacet ;
        uco-core:hasFacet ?urlFacet ;
-       uco-core:hasFacet ?contentFacet ;
-       uco-core:hasFacet ?hashFacet .
+       uco-core:hasFacet ?contentFacet .
 
   ?fileFacet a uco-observable:FileFacet ;
             uco-observable:filePath ?filePath .
@@ -39,10 +38,8 @@ SELECT ?doc ?filePath ?url ?mime ?size ?hashValue WHERE {
 
   ?contentFacet a uco-observable:ContentDataFacet ;
                uco-observable:mimeType ?mime ;
-               uco-observable:sizeInBytes ?size .
-
-  ?hashFacet a uco-observable:HashFacet ;
-            uco-observable:hash ?hash .
+               uco-observable:sizeInBytes ?size ;
+               uco-observable:hash ?hash .
   ?hash a uco-types:Hash ;
         uco-types:hashValue ?hashValue .
 
@@ -87,8 +84,9 @@ ORDER BY ?statement
 SELECT ?prov ?label ?action ?desc WHERE {
   ?prov a investigation:ProvenanceRecord ;
         rdfs:label ?label ;
-        investigation:provenanceRecordAction ?action ;
+        uco-core:object ?source ;
         uco-core:description ?desc .
+  ?action uco-action:object ?source .
 }
 ORDER BY ?prov
 ;
@@ -233,8 +231,10 @@ SELECT DISTINCT ?s WHERE {
 # Returns: action (expected: 0 results)
 # -----------------------------------------------------------------------------
 SELECT ?action WHERE {
-  ?action a investigation:InvestigativeAction .
-  FILTER NOT EXISTS { ?action uco-action:startTime ?t }
+  {
+    ?action a investigation:InvestigativeAction .
+    FILTER NOT EXISTS { ?action uco-action:startTime ?t }
+  }
   UNION
   {
     ?action a investigation:InvestigativeAction .

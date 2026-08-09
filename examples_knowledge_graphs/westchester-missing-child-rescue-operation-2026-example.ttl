@@ -32,7 +32,7 @@
 
 ex:source_document a uco-observable:ObservableObject ;
   rdfs:label "NCPTF: Westchester Missing Child Rescue Operation (press release, 2026-02-13)"@en ;
-  uco-core:description "NCPTF article describing a 3-day multi-party missing-child rescue operation in Westchester County, NY."@en ;
+  uco-core:description "NCPTF article describing a 3-day multi-party missing-child rescue operation in Westchester County, NY." ;
   uco-core:hasFacet ex:source_url_facet ;
   uco-core:hasFacet ex:source_file_facet ;
   uco-core:hasFacet ex:source_hash_facet .
@@ -43,7 +43,7 @@ ex:source_url_facet a uco-observable:URLFacet ;
 ex:source_file_facet a uco-observable:FileFacet ;
   uco-observable:filePath "analytics_demonstration/collected_sources/westchester-missing-child-rescue-operation-2026/source.txt"@en .
 
-ex:source_hash_facet a uco-observable:HashFacet ;
+ex:source_hash_facet a uco-observable:ContentDataFacet ;
   uco-observable:hash ex:source_hash .
 
 ex:source_hash a uco-types:Hash ;
@@ -52,14 +52,14 @@ ex:source_hash a uco-types:Hash ;
 
 ex:normalized_excerpt a uco-observable:ObservableObject ;
   rdfs:label "Normalized excerpt (NCPTF Westchester operation)"@en ;
-  uco-core:description "Normalized excerpt used as evidence pointers for modeling decisions."@en ;
+  uco-core:description "Normalized excerpt used as evidence pointers for modeling decisions." ;
   uco-core:hasFacet ex:normalized_file_facet ;
   uco-core:hasFacet ex:normalized_hash_facet .
 
 ex:normalized_file_facet a uco-observable:FileFacet ;
   uco-observable:filePath "analytics_demonstration/collected_sources/westchester-missing-child-rescue-operation-2026/normalized.txt"@en .
 
-ex:normalized_hash_facet a uco-observable:HashFacet ;
+ex:normalized_hash_facet a uco-observable:ContentDataFacet ;
   uco-observable:hash ex:normalized_hash .
 
 ex:normalized_hash a uco-types:Hash ;
@@ -86,11 +86,11 @@ ex:ncptf a uco-identity:Organization ;
 
 ex:verizon_frontline a uco-identity:Organization ;
   rdfs:label "Verizon Frontline"@en ;
-  uco-core:description "Private partner providing secure Wi-Fi for the operation command center per the article."@en .
+  uco-core:description "Private partner providing secure Wi-Fi for the operation command center per the article." .
 
 ex:cares_914 a uco-identity:Organization ;
   rdfs:label "914 Cares"@en ;
-  uco-core:description "Nonprofit partner embedded in the command center providing essential items for children located during the operation."@en .
+  uco-core:description "Nonprofit partner embedded in the command center providing essential items for children located during the operation." .
 
 # =============================================================================
 # OPERATION CONTEXT (focus: MissingChildRescueOperation + located-count semantics)
@@ -98,15 +98,15 @@ ex:cares_914 a uco-identity:Organization ;
 
 ex:command_center a uco-location:Location ;
   rdfs:label "Operation command center (Westchester County, NY)"@en ;
-  uco-core:description "Command center referenced in the article as a shared coordination facility."@en .
+  uco-core:description "Command center referenced in the article as a shared coordination facility." .
 
 ex:secure_wifi_network a uco-core:UcoObject ;
   rdfs:label "Secure Wi-Fi network (command center enablement)"@en ;
-  uco-core:description "Mission-critical secure Wi-Fi network enabling command center communications (article cites Verizon Frontline support)."@en .
+  uco-core:description "Mission-critical secure Wi-Fi network enabling command center communications (article cites Verizon Frontline support)." .
 
 ex:westchester_operation a cacontology-coord:MissingChildRescueOperation, case-investigation:InvestigativeAction ;
   rdfs:label "Westchester Missing Child Rescue Operation (3-day operation)"@en ;
-  uco-core:description "Three-day operation to explore new leads, review case notes, and leverage technology to locate missing children/teens at risk of endangerment, exploitation, or harm; article reports 43 located via the operation (and 46 located as of Feb 14, 2026 noon) with additional cases in progress."@en ;
+  uco-core:description "Three-day operation to explore new leads, review case notes, and leverage technology to locate missing children/teens at risk of endangerment, exploitation, or harm; article reports 43 located via the operation (and 46 located as of Feb 14, 2026 noon) with additional cases in progress." ;
   cacontology-coord:childrenLocatedCount "43"^^xsd:nonNegativeInteger ;
   uco-action:performer ex:dcjs, ex:ocfs, ex:ncptf, cacontology-usa-leg:FBI, cacontology-usa-leg:USMS, cacontology-usa-leg:NCMEC, ex:verizon_frontline, ex:cares_914 ;
   uco-action:object ex:command_center ;

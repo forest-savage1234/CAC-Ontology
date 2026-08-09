@@ -23,7 +23,7 @@
     owl:imports <https://cacontology.projectvic.org/bridge/gufo/3.1.0> ,
                 <https://cacontology.projectvic.org/temporal/3.1.0> ,
                 <https://cacontology.projectvic.org/core/3.1.0> ,
-                <http://purl.org/nemo/gufo#> .
+                <http://purl.org/nemo/gufo#/1.0.0> .
 
 # =============================================================================
 # PHASE 3: MODULE INTEGRATION STRATEGY

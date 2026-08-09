@@ -20,7 +20,7 @@
     dcterms:created "2025-01-03"^^xsd:date ;
     dcterms:modified "2026-08-09"^^xsd:date ;
     rdfs:comment "Based on US DOJ Child Exploitation and Obscenity Section (CEOS) Citizens Guide to U.S. Federal Child Exploitation and Obscenity Laws. Grounded in gUFO foundational ontology."@en ;
-    owl:imports <http://purl.org/nemo/gufo#> ,
+    owl:imports <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://cacontology.projectvic.org/core/3.1.0> .
 
 # =============================================================================

@@ -19,22 +19,7 @@
 ## Overall Status
 **ALL CRITICAL CHECKS PASS**
 
-## SHACL Validation
-
-| Shapes File | Conforms |
-|-------------|----------|
-| `cacontology-legal-outcomes-shapes.ttl` | **True** |
-
 ## Metrics Summary
 - UUID Coverage: 100% (all instance IRIs use urn:uuid:)
 - Graph Connectivity: 38/38 nodes connected (100%)
-- Provenance Completeness: 100%
-- Average Node Degree: 4.50 (well above minimum of 1)
-- Low-Degree Nodes: 0% (target: <10%)
-- SHACL Conformance: **True**
-
-## Files Generated
-- `examples_knowledge_graphs/ndfl-isbell-sentencing-example.ttl` (38 nodes, 171 edges)
-- `examples_knowledge_graphs/ndfl-isbell-sentencing-skeleton.ttl` (provenance skeleton)
-- `example_SPARQL_queries/ndfl-isbell-sentencing-analytics.rq` (15 queries)
-- `analytics_demonstration/collected_sources/ndfl-isbell-sentencing/` (collection artifacts)
+- Provenance Completeness: 38/38 (100%)

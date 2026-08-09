@@ -24,7 +24,7 @@
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.caseontology.org/case/case/1.5.0> ,
                 <https://cacontology.projectvic.org/core/3.1.0> ,
-                <http://purl.org/nemo/gufo#> .
+                <http://purl.org/nemo/gufo#/1.0.0> .
 
 # =============================================================================
 # TRAFFICKING ORGANIZATION STRUCTURE (gUFO Organization and Situation modeling)

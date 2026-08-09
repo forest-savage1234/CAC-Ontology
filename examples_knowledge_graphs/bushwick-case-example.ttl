@@ -13,10 +13,10 @@
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 @prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
-@prefix cacontology-core: <https://ontology.icac.org/icac/core/> .
-@prefix cacontology-sex-trafficking: <https://ontology.icac.org/icac/sex-trafficking/> .
-@prefix cacontology-undercover: <https://ontology.icac.org/icac/undercover/> .
-@prefix cacontology-recruitment: <https://ontology.icac.org/icac/recruitment-networks/> .
+@prefix cacontology-core: <https://cacontology.projectvic.org/core#> .
+@prefix cacontology-sex-trafficking: <https://cacontology.projectvic.org/trafficking#> .
+@prefix cacontology-undercover: <https://cacontology.projectvic.org/undercover#> .
+@prefix cacontology-recruitment: <https://cacontology.projectvic.org/recruitment-networks#> .
 @prefix ex: <https://example.org/bushwick-case/> .
 
 # =============================================================================

@@ -36,7 +36,7 @@ ex:1dbc4d3d-f3a6-55d4-bbaf-8bec355e78e2 a uco-observable:URLFacet ;
 ex:f83a1a2e-c807-5e87-ad67-051d35380214 a uco-observable:FileFacet ;
     uco-observable:filePath "analytics_demonstration/collected_sources/bbc-dark-web-agent-brick-clue-rescue-girl/source.txt" .
 
-ex:842d3d4f-2904-5b3b-85e0-70d59212850f a uco-observable:HashFacet ;
+ex:842d3d4f-2904-5b3b-85e0-70d59212850f a uco-observable:ContentDataFacet ;
     uco-observable:hash ex:8fef68d2-e82c-56d5-9cf8-dc0f7798e161 .
 
 ex:8fef68d2-e82c-56d5-9cf8-dc0f7798e161 a uco-types:Hash ;
@@ -45,14 +45,14 @@ ex:8fef68d2-e82c-56d5-9cf8-dc0f7798e161 a uco-types:Hash ;
 
 ex:f830548c-dc51-534c-9eee-64aceae0bb23 a uco-core:UcoObject ;
     rdfs:label "CAC Ontology Collection Agent (Cursor)"@en ;
-    uco-core:description "Automated assistant performing collection and preprocessing for CAC Ontology ingestion."@en .
+    uco-core:description "Automated assistant performing collection and preprocessing for CAC Ontology ingestion." .
 
 ex:bb067e04-9eb9-52ef-9cf6-bb76c0a9e444 a investigation:InvestigativeAction ;
     rdfs:label "Collection action: BBC News article (text capture)"@en ;
     uco-action:startTime "2026-02-11T00:00:00Z"^^xsd:dateTime ;
     uco-action:performer ex:f830548c-dc51-534c-9eee-64aceae0bb23 ;
     uco-action:object ex:c96f7e7d-8fbb-5c31-9734-8b1d0530a15f ;
-    uco-core:description "Collected via manual text capture to source.txt."@en .
+    uco-core:description "Collected via manual text capture to source.txt." .
 
 ex:ac195157-beaf-57ef-8976-fdaf2611df69 a uco-action:Action ;
     rdfs:label "Normalization action: source.txt to normalized.txt"@en ;
@@ -60,7 +60,7 @@ ex:ac195157-beaf-57ef-8976-fdaf2611df69 a uco-action:Action ;
     uco-action:performer ex:f830548c-dc51-534c-9eee-64aceae0bb23 ;
     uco-action:object ex:c96f7e7d-8fbb-5c31-9734-8b1d0530a15f ;
     uco-action:result ex:b440e30c-eb4d-58b7-8a59-239c81076148 ;
-    uco-core:description "Whitespace normalization + paragraph-per-line normalization for stable evidence pointers."@en .
+    uco-core:description "Whitespace normalization + paragraph-per-line normalization for stable evidence pointers." .
 
 ex:b440e30c-eb4d-58b7-8a59-239c81076148 a uco-observable:ObservableObject ;
     rdfs:label "Normalized text: BBC News article (normalized.txt)"@en ;
@@ -75,7 +75,7 @@ ex:f5125089-214e-51bd-a185-218b485dbecb a uco-observable:ContentDataFacet ;
 ex:514f5bba-c18f-5a51-9e38-764d5d8d553b a uco-observable:FileFacet ;
     uco-observable:filePath "analytics_demonstration/collected_sources/bbc-dark-web-agent-brick-clue-rescue-girl/normalized.txt" .
 
-ex:7d3c022f-b656-5127-9470-4a99071a9c0d a uco-observable:HashFacet ;
+ex:7d3c022f-b656-5127-9470-4a99071a9c0d a uco-observable:ContentDataFacet ;
     uco-observable:hash ex:715e88bb-e6e0-5836-910f-8131b3109903 .
 
 ex:715e88bb-e6e0-5836-910f-8131b3109903 a uco-types:Hash ;
@@ -86,7 +86,7 @@ ex:bec4afff-b676-5d15-a0d8-04f62a9dc1ba a investigation:ProvenanceRecord ;
     rdfs:label "Provenance record: collection of BBC News article (text capture)"@en ;
     investigation:exhibitNumber "DOC-BBC-CSEA-INV-0001" ;
     uco-core:object ex:c96f7e7d-8fbb-5c31-9734-8b1d0530a15f ;
-    investigation:provenanceRecordAction ex:bb067e04-9eb9-52ef-9cf6-bb76c0a9e444 .
+    uco-core:object ex:bb067e04-9eb9-52ef-9cf6-bb76c0a9e444 .
 
 # =============================================================================
 # Minimal in-scope nodes (connected; no victim PII)
@@ -103,5 +103,5 @@ ex:86623040-6c47-566c-ba1e-51a31c0ddf32 a cacontology-analyst:SecondaryTraumatic
         cacontology-analyst:OccupationalHarm ;
     rdfs:label "Secondary traumatic stress (reported occupational harm)"@en ;
     cacontology-analyst:harmSeverity "unknown" ;
-    uco-core:description "Occupational harm described in the reporting (alcohol use increase, suicidal thoughts, relationship impacts)."@en .
+    uco-core:description "Occupational harm described in the reporting (alcohol use increase, suicidal thoughts, relationship impacts)." .
 

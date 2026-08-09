@@ -23,8 +23,9 @@ SELECT ?doc ?label ?facetType ?facet WHERE {
 # Q2: Show SHA-256 hash values for collected artifacts
 SELECT ?doc ?hashValue WHERE {
   ?doc uco-core:hasFacet ?hf .
-  ?hf a uco-observable:HashFacet ; uco-observable:hash ?h .
-  ?h uco-types:hashValue ?hashValue .
+  ?hf a uco-observable:ContentDataFacet ; uco-observable:hash ?h .
+  ?h a uco-types:Hash ;
+     uco-types:hashValue ?hashValue .
 }
 
 # Q3: Collection actions and performers
@@ -127,13 +128,13 @@ SELECT ?claim ?claimLabel ?about ?aboutLabel WHERE {
   OPTIONAL { ?about rdfs:label ?aboutLabel }
 } ORDER BY ?claimLabel ?aboutLabel
 
-# Q23: evidence pointer -> SHA-256 hash value (UCO hash facet)
+# Q23: evidence pointer -> SHA-256 hash value (UCO content-data facet)
 SELECT ?ep ?lineStart ?lineEnd ?hashValue WHERE {
   ?ep a cacontology-synthesis:TextEvidencePointer ;
       cacontology-synthesis:lineStart ?lineStart ;
       cacontology-synthesis:lineEnd ?lineEnd ;
       uco-core:hasFacet ?facet .
-  ?facet a uco-observable:HashFacet ;
+  ?facet a uco-observable:ContentDataFacet ;
          uco-observable:hash ?h .
   ?h a uco-types:Hash ;
      uco-types:hashMethod "SHA-256" ;

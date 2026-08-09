@@ -1,4 +1,4 @@
-# Find Platform Cooperation Analytics - Enhanced for CAC Ontology v3.0.0
+# Find Platform Cooperation Analytics - Enhanced for CAC Ontology v3.1.0
 # 
 # This query demonstrates the integration of forensics, detection, platforms, and social media evidence ontologies
 # by finding investigations that involve specific platform cooperation patterns,
@@ -113,6 +113,7 @@ WHERE {
     
     # Enhanced Social Media Evidence Analysis
     OPTIONAL {
+      {
         SELECT ?investigation 
                (COUNT(DISTINCT ?socialMedia) AS ?socialMediaEvidence)
                (COUNT(DISTINCT ?crossPlatform) AS ?crossPlatformMatches)
@@ -137,6 +138,7 @@ WHERE {
             }
         }
         GROUP BY ?investigation
+      }
     }
     
     # Task Force Coordination
@@ -191,8 +193,8 @@ SELECT
     (AVG(?socialMediaEvidence) AS ?avgSocialMediaEvidence)
     (AVG(?crossPlatformMatches) AS ?avgCrossPlatformMatches)
     (AVG(?platformsInvestigated) AS ?avgPlatformsPerCase)
-    (AVG(CASE WHEN ?emergencyDisclosureCapable = true THEN 1.0 ELSE 0.0 END) AS ?emergencyCapabilityRate)
-    (AVG(CASE WHEN ?searchWarrantRequired = true THEN 1.0 ELSE 0.0 END) AS ?searchWarrantRequiredRate)
+    (AVG(IF(?emergencyDisclosureCapable = true, 1.0, 0.0)) AS ?emergencyCapabilityRate)
+    (AVG(IF(?searchWarrantRequired = true, 1.0, 0.0)) AS ?searchWarrantRequiredRate)
     (AVG(?dataRetentionPeriod) AS ?avgDataRetentionDays)
 
 WHERE {
@@ -219,6 +221,7 @@ WHERE {
     
     # Social Media Evidence Metrics
     OPTIONAL {
+      {
         SELECT ?investigation 
                (COUNT(DISTINCT ?socialMedia) AS ?socialMediaEvidence)
                (COUNT(DISTINCT ?crossPlatform) AS ?crossPlatformMatches)
@@ -238,6 +241,7 @@ WHERE {
             }
         }
         GROUP BY ?investigation
+      }
     }
 }
 GROUP BY ?platformType

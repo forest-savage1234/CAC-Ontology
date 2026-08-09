@@ -5,7 +5,7 @@
     "cacontology": "https://cacontology.projectvic.org#",
     "cacontology-platforms": "https://cacontology.projectvic.org/platforms#",
     "cac-core": "https://cacontology.projectvic.org/core#",
-    "uco": "https://ontology.unifiedcyberontology.org/uco/core#",
+    "uco": "https://ontology.unifiedcyberontology.org/uco/core/",
     "ChannelMigrationEvent": {
       "@id": "cacontology-platforms:ChannelMigrationEvent",
       "@type": "@id"

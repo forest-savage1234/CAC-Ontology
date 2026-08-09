@@ -99,9 +99,10 @@ Declare charging/sentencing terms and the ConvictionRecord class that PACER-styl
 
 - Added: `examples_knowledge_graphs/synthetic-legal-outcomes-core-example.ttl` — fully synthetic acceptance exemplar for the new terms
 
-#### Migration note
+#### Migration
 
-- Existing example graphs that used `chargeCount` as an ordinal on individual charges are **not** rewritten in this PR; migrate those triples to `countNumber` in a follow-up.
+- Existing example graphs that used `chargeCount` as an ordinal on individual charges now use `countNumber`; aggregate `chargeCount` remains on proceedings and conviction records.
+- The synthetic legal-outcomes exemplar now covers a charging instrument, supervised-release condition, payment schedule, and special assessment.
 
 ### Added - NCMEC CyberTipline aggregate statistics vocabulary + 2025 example KG (PR #42)
 
@@ -123,10 +124,25 @@ Merges the contributed NCMEC CyberTipline 2025 aggregate statistics example know
 - Maintainer remodel: 24 bare `uco-core:UcoObject` "stat claim" nodes retyped as `AggregateReportStatistic` with structured value/unit/period properties; compound published claims decomposed into 19 additional single-value statistics (deterministic UUIDv5 identifiers in the document namespace); statistics linked to their category/program nodes via `statisticTopic`; provenance grouping Actions extended to cover the decomposed nodes
 - CASE/UCO conformance fixes to the contributed example: nonexistent `uco-observable:HashFacet` replaced with `uco-observable:hash` on `ContentDataFacet`; nonexistent `investigation:provenanceRecordAction` replaced with `uco-core:object`; language tags removed from `uco-core:description` literals (UCO requires `xsd:string`)
 
+### Changed - Release guidance and shipped artifacts
+
+- Unified `README.md` and `docs/` around the v3.1.0 release, the v3.0.0 semantic-spine history, CASE/UCO 1.5.0 interoperability, stable term namespaces, unversioned ontology document IRIs, and the current module inventory.
+- Replaced the repository agent guide with an MCP-first CASE-UCO-SDK workflow covering ontology discovery, investigation routing, recipes and examples, source mapping, document processing, graph validation, extension governance, upstream change proposals, version skew, and evidence-content trust boundaries.
+- Added JSON-LD contexts for legal outcomes and US-NCMEC, and expanded existing grooming, sextortion, platforms, and state-machine contexts for v3.1.0 terms.
+- Migrated example, JSON-LD, analytics-demonstration, manifest, and report artifacts away from stale CASE/UCO and versioned CAC term patterns.
+- Repaired 32 SPARQL query collections, added legal charging/sentencing and NCMEC aggregate-statistics analytics, and made the final validator parse every top-level SPARQL query block.
+
 ### Changed - Pinned to CASE/UCO v1.5.0
 
 - All 178 `owl:imports` references to CASE and UCO ontologies now use versioned IRIs pinned to the v1.5.0 releases (e.g., `<https://ontology.unifiedcyberontology.org/uco/core/1.5.0>`, `<https://ontology.caseontology.org/case/investigation/1.5.0>`); bare `<https://ontology.caseontology.org/case/>` imports corrected to the CASE master ontology versionIRI `<https://ontology.caseontology.org/case/case/1.5.0>`
 - Namespace prefixes are unchanged (term IRIs are version-independent)
+
+### Changed - Pinned gUFO v1.0.0 without changing v3.1 semantics
+
+- Existing gUFO imports now use its 1.0.0 version IRI, `<http://purl.org/nemo/gufo#/1.0.0>`, for a reproducible import closure; gUFO term IRIs and all CAC alignment axioms are unchanged.
+- Documented that UCO itself does not import gUFO and that the separate UCO gUFO Profile is exploratory and opt-in.
+- Structural changes to Role/Phase alignment or to gUFO's placement in the CAC reference layer are deferred to a major-release proposal so existing v3 adopters retain their current entailments.
+- Final validation now inspects every `owl:imports` triple and enforces the CASE/UCO 1.5.0 and gUFO 1.0.0 pins.
 
 ### Changed - Unversioned ontology IRIs (CDO upstream request)
 

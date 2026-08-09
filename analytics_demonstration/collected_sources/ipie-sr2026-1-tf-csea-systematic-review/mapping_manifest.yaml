@@ -8,7 +8,7 @@ concepts:
     facets:
       - "uco-observable:ContentDataFacet"
       - "uco-observable:FileFacet"
-      - "uco-observable:HashFacet"
+      - "uco-observable:ContentDataFacet"
     relationships:
       -
         predicate: "uco-core:hasFacet"
@@ -31,7 +31,7 @@ concepts:
     facets:
       - "uco-observable:ContentDataFacet"
       - "uco-observable:FileFacet"
-      - "uco-observable:HashFacet"
+      - "uco-observable:ContentDataFacet"
     relationships:
       -
         predicate: "uco-core:hasFacet"
@@ -54,7 +54,7 @@ concepts:
     facets:
       - "uco-observable:ContentDataFacet"
       - "uco-observable:FileFacet"
-      - "uco-observable:HashFacet"
+      - "uco-observable:ContentDataFacet"
     relationships:
       -
         predicate: "uco-core:hasFacet"

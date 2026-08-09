@@ -34,7 +34,7 @@
 
 kb:185a1583-00e6-5187-a73e-3487f5bdf037 a uco-observable:ObservableObject ;
     rdfs:label "Winning Without Words: Prosecuting Cases with Recanting or Nonverbal Victims (PDF)"@en ;
-    uco-core:description "Coursing Justice slide deck used as the primary source for recantation and nonverbal-victim concepts."@en ;
+    uco-core:description "Coursing Justice slide deck used as the primary source for recantation and nonverbal-victim concepts." ;
     uco-core:hasFacet kb:5e3d9177-1dce-52fb-90a7-32622bfe87ec ;
     uco-core:hasFacet kb:5f95c8f5-61b9-5910-8b4d-afdf46f3bcdc ;
     uco-core:hasFacet kb:700730c7-1d23-5cc6-b752-4863a5dbd27a .
@@ -46,7 +46,7 @@ kb:5e3d9177-1dce-52fb-90a7-32622bfe87ec a uco-observable:ContentDataFacet ;
 kb:5f95c8f5-61b9-5910-8b4d-afdf46f3bcdc a uco-observable:FileFacet ;
     uco-observable:filePath "recantation_101/Winning Without Words Prosecuting Cases with Recanting or Nonverbal Victims.pdf"@en .
 
-kb:700730c7-1d23-5cc6-b752-4863a5dbd27a a uco-observable:HashFacet ;
+kb:700730c7-1d23-5cc6-b752-4863a5dbd27a a uco-observable:ContentDataFacet ;
     uco-observable:hash kb:cb24b387-c111-59b2-af3e-eb198d152991 .
 
 kb:cb24b387-c111-59b2-af3e-eb198d152991 a uco-types:Hash ;
@@ -55,7 +55,7 @@ kb:cb24b387-c111-59b2-af3e-eb198d152991 a uco-types:Hash ;
 
 kb:ed4f6738-dc3a-5a33-b78f-4260523c8be1 a uco-observable:ObservableObject ;
     rdfs:label "Recantation 101 transcript (Markdown)"@en ;
-    uco-core:description "Transcript of Robert Peters presenting the recantation webinar."@en ;
+    uco-core:description "Transcript of Robert Peters presenting the recantation webinar." ;
     uco-core:hasFacet kb:60c93345-be85-5830-93b2-02a172aa3d24 ;
     uco-core:hasFacet kb:c9659bb0-5640-5a4d-9c84-47530a2b6b1d ;
     uco-core:hasFacet kb:45065a61-a644-54e7-b28c-7b0c83aea732 .
@@ -67,7 +67,7 @@ kb:60c93345-be85-5830-93b2-02a172aa3d24 a uco-observable:ContentDataFacet ;
 kb:c9659bb0-5640-5a4d-9c84-47530a2b6b1d a uco-observable:FileFacet ;
     uco-observable:filePath "recantation_101/Recantation_101.md"@en .
 
-kb:45065a61-a644-54e7-b28c-7b0c83aea732 a uco-observable:HashFacet ;
+kb:45065a61-a644-54e7-b28c-7b0c83aea732 a uco-observable:ContentDataFacet ;
     uco-observable:hash kb:e7114f3a-7f70-5b86-a906-c2c027ea2284 .
 
 kb:e7114f3a-7f70-5b86-a906-c2c027ea2284 a uco-types:Hash ;
@@ -110,7 +110,7 @@ kb:offender-role-001 a cacontology:OffenderRole ;
 
 kb:ef61ee58-7f0d-5350-bcff-2dab0f3abff9 a cacontology:ChildSexualAbuseEvent, uco-action:Crime ;
     rdfs:label "Underlying abuse event"@en ;
-    uco-core:description "Representative child sexual abuse event referenced by the example disclosure, recantation, and reaffirmed disclosure."@en .
+    uco-core:description "Representative child sexual abuse event referenced by the example disclosure, recantation, and reaffirmed disclosure." .
 
 # =============================================================================
 # STATEMENT LIFECYCLE
@@ -120,7 +120,7 @@ kb:8843f2c2-366d-5232-8196-ee09fe08a296 a cacontology-recantation:VictimStatemen
         cacontology-recantation:DisclosureStatement,
         cacontology-recantation:TentativeDisclosureStatement ;
     rdfs:label "Initial tentative disclosure"@en ;
-    uco-core:description "The child initially gives a tentative but abuse-specific disclosure."@en ;
+    uco-core:description "The child initially gives a tentative but abuse-specific disclosure." ;
     cacontology-recantation:statementMadeBy kb:219a52a5-d2d6-5273-bd2d-33bb2fe7dd69 ;
     cacontology-recantation:statementReceivedBy kb:fd207c30-f0fb-564c-be40-f4140e29d327 ;
     cacontology-recantation:statementAboutEvent kb:ef61ee58-7f0d-5350-bcff-2dab0f3abff9 ;
@@ -132,7 +132,7 @@ kb:2a39f00b-cbe2-5512-8c55-7924ed99aeb2 a cacontology-recantation:VictimStatemen
         cacontology-recantation:RecantationStatement,
         cacontology-recantation:PartialRecantationStatement ;
     rdfs:label "Partial recantation statement"@en ;
-    uco-core:description "The child later minimizes and partially withdraws the prior disclosure after pressure and family instability."@en ;
+    uco-core:description "The child later minimizes and partially withdraws the prior disclosure after pressure and family instability." ;
     cacontology-recantation:statementMadeBy kb:219a52a5-d2d6-5273-bd2d-33bb2fe7dd69 ;
     cacontology-recantation:statementReceivedBy kb:43b90714-dda6-5e99-8317-cae731619243 ;
     cacontology-recantation:statementAboutEvent kb:ef61ee58-7f0d-5350-bcff-2dab0f3abff9 ;
@@ -144,7 +144,7 @@ kb:a3aee5ce-d8c5-5126-a53d-810b82af5ad9 a cacontology-recantation:VictimStatemen
         cacontology-recantation:DisclosureStatement,
         cacontology-recantation:ReaffirmedDisclosureStatement ;
     rdfs:label "Reaffirmed disclosure statement"@en ;
-    uco-core:description "After renewed support and follow-up interviewing, the child reaffirms the earlier disclosure."@en ;
+    uco-core:description "After renewed support and follow-up interviewing, the child reaffirms the earlier disclosure." ;
     cacontology-recantation:statementMadeBy kb:219a52a5-d2d6-5273-bd2d-33bb2fe7dd69 ;
     cacontology-recantation:statementReceivedBy kb:fd207c30-f0fb-564c-be40-f4140e29d327 ;
     cacontology-recantation:statementAboutEvent kb:ef61ee58-7f0d-5350-bcff-2dab0f3abff9 ;
@@ -158,7 +158,7 @@ kb:a3aee5ce-d8c5-5126-a53d-810b82af5ad9 a cacontology-recantation:VictimStatemen
 
 kb:adc2f23d-b392-551c-85ab-789d0c8bba61 a cacontology-recantation:StatementChangeContext ;
     rdfs:label "Statement change context for the example case"@en ;
-    uco-core:description "Composite context capturing the family's reaction, contact risks, fear of intervention, community pressure, and the investigative response to a partial recantation."@en ;
+    uco-core:description "Composite context capturing the family's reaction, contact risks, fear of intervention, community pressure, and the investigative response to a partial recantation." ;
     cacontology-recantation:hasRecantationRiskFactor kb:5fac43aa-b81e-512a-8ee5-f923ee81308a,
         kb:d1a7adb1-7946-5904-9c41-5f0df6f71c49,
         kb:25a3706c-bfe1-583d-bb55-0adc805cd631,
@@ -197,7 +197,7 @@ kb:0323be92-ae60-5d3e-97e2-dc2a21901297 a cacontology-recantation:RecantationRis
 kb:b80ee4df-ea5b-5465-8722-fde17fbf1247 a cacontology-recantation:RecantationPressure,
         uco-action:Action ;
     rdfs:label "Third-party pressure communication"@en ;
-    uco-core:description "A family-mediated pressure event encouraging the child to take back part of the disclosure."@en ;
+    uco-core:description "A family-mediated pressure event encouraging the child to take back part of the disclosure." ;
     uco-action:performer kb:43b90714-dda6-5e99-8317-cae731619243 ;
     uco-action:object kb:2a39f00b-cbe2-5512-8c55-7924ed99aeb2 ;
     cacontology-recantation:pressureMethod "third_party_communication" .

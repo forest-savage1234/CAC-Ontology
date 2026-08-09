@@ -23,7 +23,7 @@
     dcterms:issued "2025-11-18"^^xsd:date ;
     dcterms:modified "2026-08-09"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/trafficking/3.1.0> ,
-                <http://purl.org/nemo/gufo#> .
+                <http://purl.org/nemo/gufo#/1.0.0> .
 
 # =============================================================================
 # TRAFFICKING ENTERPRISE TEMPORAL AND ORGANIZATION SHAPES

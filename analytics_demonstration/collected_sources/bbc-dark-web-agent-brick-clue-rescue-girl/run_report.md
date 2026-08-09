@@ -30,7 +30,7 @@
 
 #### Reuse-first summary (no new ontology terms added)
 
-- **UCO Observable facets**: `uco-observable:ContentDataFacet`, `uco-observable:URLFacet`, `uco-observable:FileFacet`, `uco-observable:HashFacet`
+- **UCO Observable facets**: `uco-observable:ContentDataFacet`, `uco-observable:URLFacet`, `uco-observable:FileFacet`, `uco-observable:ContentDataFacet`
 - **UCO Action / CASE Investigation**: `uco-action:Action`, `investigation:InvestigativeAction`, `investigation:ProvenanceRecord`
 - **UCO Identity**: `uco-identity:Person`, `uco-identity:Organization`
 - **CAC analyst wellbeing module (reuse)**: `cacontology-analyst:SecondaryTraumaticStress`, `cacontology-analyst:VicariousTrauma`, `cacontology-analyst:experiencesOccupationalHarm`

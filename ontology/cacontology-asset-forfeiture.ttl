@@ -26,7 +26,7 @@
                 <https://ontology.unifiedcyberontology.org/uco/role/1.5.0> ,
                 <https://cacontology.projectvic.org/3.1.0> ,
                 <https://cacontology.projectvic.org/core/3.1.0> ,
-                <http://purl.org/nemo/gufo#> .
+                <http://purl.org/nemo/gufo#/1.0.0> .
 
 # =============================================================================
 # ASSET FORFEITURE ACTIONS ENHANCED AS gUFO EVENTS

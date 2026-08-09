@@ -5,11 +5,25 @@
     "cac-platforms": "https://cacontology.projectvic.org/platforms#",
     "cac-grooming": "https://cacontology.projectvic.org/grooming#",
     "cac-core": "https://cacontology.projectvic.org/core#",
-    "uco": "https://ontology.unifiedcyberontology.org/uco/core#",
+    "uco": "https://ontology.unifiedcyberontology.org/uco/core/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
     "CoercionCycle": "cac-sextortion:CoercionCycle",
+    "SadisticSextortion": "cac-sextortion:SadisticSextortion",
+    "DoxxingThreat": "cac-sextortion:DoxxingThreat",
+    "SwattingThreat": "cac-sextortion:SwattingThreat",
+    "ViolenceThreat": "cac-sextortion:ViolenceThreat",
+    "SelfHarmThreat": "cac-sextortion:SelfHarmThreat",
+    "ImageLeakThreat": "cac-sextortion:ImageLeakThreat",
+    "PropertyDestructionThreat": "cac-sextortion:PropertyDestructionThreat",
     "ChannelMigrationEvent": "cac-platforms:ChannelMigrationEvent",
     "AffordanceMisuse": "cac-platforms:AffordanceMisuse",
     "AccountReplacementEvent": "cac-grooming:AccountReplacementEvent",
+    "FabricatedPersona": "cac-grooming:FabricatedPersona",
+    "InitialContactPhase": "cac-grooming:InitialContactPhase",
+    "IsolationPhase": "cac-grooming:IsolationPhase",
+    "SexualizationPhase": "cac-grooming:SexualizationPhase",
+    "ExploitationPhase": "cac-grooming:ExploitationPhase",
+    "MaintenancePhase": "cac-grooming:MaintenancePhase",
     "sustainedBy": { "@id": "cac-sextortion:sustainedBy", "@type": "@id" },
     "cyclesBetween": { "@id": "cac-sextortion:cyclesBetween", "@type": "@id" },
     "coercionCycleDemandType": "cac-sextortion:coercionCycleDemandType",
@@ -27,6 +41,12 @@
     "resumesAt": { "@id": "cac-grooming:resumesAt", "@type": "@id" },
     "originalAccountId": { "@id": "cac-grooming:originalAccountId", "@type": "@id" },
     "replacementAccountId": { "@id": "cac-grooming:replacementAccountId", "@type": "@id" },
+    "personaPlatformAccount": { "@id": "cac-grooming:personaPlatformAccount", "@type": "@id" },
+    "controlledBy": { "@id": "cac-grooming:controlledBy", "@type": "@id" },
+    "personaUsedIn": { "@id": "cac-grooming:personaUsedIn", "@type": "@id" },
+    "claimedDisplayName": "cac-grooming:claimedDisplayName",
+    "claimedAge": "cac-grooming:claimedAge",
+    "claimedGender": "cac-grooming:claimedGender",
     "ConditioningPhase": {
       "@id": "cac-grooming:ConditioningPhase",
       "@type": "@id"
@@ -35,7 +55,7 @@
       "@id": "cac-core:Phase",
       "@type": "@id"
     },
-    "conditioningMode": "cac-core:conditioningMode",
+    "conditioningMode": "cac-grooming:conditioningMode",
     "precedes": { "@id": "cac-core:precedes", "@type": "@id" }
   }
 }

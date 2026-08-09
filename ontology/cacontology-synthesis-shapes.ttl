@@ -127,12 +127,13 @@ cacontology-synthesis-shapes:ClaimAboutShape rdf:type sh:NodeShape ;
         sh:message "When provided, claim about-links should reference IRI nodes."@en
     ] .
 
-# If exactQuote exists, require either a UCO HashFacet (preferred) or legacy quoteHashSha256 + hashScope.
+# If exactQuote exists, require either the UCO 1.5 ContentDataFacet hash pattern
+# (preferred) or legacy quoteHashSha256 + hashScope.
 cacontology-synthesis-shapes:TextEvidencePointerHashShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-synthesis:TextEvidencePointer ;
     rdfs:label "Text Evidence Pointer Hash Shape"@en ;
     sh:sparql [
-        sh:message "If exactQuote is present, include either (1) a UCO HashFacet, or (2) legacy quoteHashSha256 + hashScope."@en ;
+        sh:message "If exactQuote is present, include either (1) a UCO ContentDataFacet with uco-observable:hash, or (2) legacy quoteHashSha256 + hashScope."@en ;
         sh:severity sh:Violation ;
         sh:select """
           SELECT $this
@@ -140,10 +141,11 @@ cacontology-synthesis-shapes:TextEvidencePointerHashShape rdf:type sh:NodeShape 
             $this cacontology-synthesis:exactQuote ?q .
 
             FILTER NOT EXISTS {
-              # Preferred: HashFacet path
+              # Preferred UCO 1.5 path
               $this uco-core:hasFacet ?facet .
-              ?facet a uco-observable:HashFacet ;
+              ?facet a uco-observable:ContentDataFacet ;
                      uco-observable:hash ?h .
+              ?h a uco-types:Hash .
             }
 
             FILTER NOT EXISTS {
@@ -155,14 +157,14 @@ cacontology-synthesis-shapes:TextEvidencePointerHashShape rdf:type sh:NodeShape 
         """
     ] ;
     sh:sparql [
-        sh:message "When using HashFacet, hashMethod should indicate SHA-256 (common literal variants accepted)."@en ;
+        sh:message "When using a ContentDataFacet hash, hashMethod should indicate SHA-256 (common literal variants accepted)."@en ;
         sh:severity sh:Warning ;
         sh:select """
           SELECT $this
           WHERE {
             $this cacontology-synthesis:exactQuote ?q ;
                   uco-core:hasFacet ?facet .
-            ?facet a uco-observable:HashFacet ;
+            ?facet a uco-observable:ContentDataFacet ;
                    uco-observable:hash ?h .
             ?h a uco-types:Hash ;
                uco-types:hashMethod ?m .

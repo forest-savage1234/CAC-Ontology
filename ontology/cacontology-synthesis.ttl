@@ -227,7 +227,7 @@ cacontology-synthesis:lineNumberStart rdf:type owl:DatatypeProperty ;
 
 cacontology-synthesis:quoteHashSha256 rdf:type owl:DatatypeProperty ;
     rdfs:label "quote hash (SHA-256)"@en ;
-    rdfs:comment "Legacy inline SHA-256 hash of the exactQuote literal string only (optional). Prefer UCO HashFacet attached to TextEvidencePointer for operational data."@en ;
+    rdfs:comment "Legacy inline SHA-256 hash of the exactQuote literal string only (optional). For operational data, attach a uco-observable:ContentDataFacet to the TextEvidencePointer with uco-observable:hash referencing a uco-types:Hash."@en ;
     rdfs:domain cacontology-synthesis:TextEvidencePointer ;
     rdfs:range xsd:string .
 

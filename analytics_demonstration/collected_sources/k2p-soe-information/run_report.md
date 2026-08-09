@@ -33,7 +33,7 @@
 
 #### Reuse-first summary (initially no new ontology terms added)
 
-- **UCO Observable facets**: `uco-observable:FileFacet`, `uco-observable:URLFacet`, `uco-observable:HashFacet`, `uco-observable:ContentDataFacet`
+- **UCO Observable facets**: `uco-observable:FileFacet`, `uco-observable:URLFacet`, `uco-observable:ContentDataFacet`, `uco-observable:ContentDataFacet`
 - **UCO Action**: `uco-action:Action` (for brochure statements and list publication)
 - **CASE Investigation**: `investigation:InvestigativeAction`, `investigation:ProvenanceRecord` (for collection and statement provenance)
 - **CAC Extremist Enterprises**: `cacontology-enterprises:*` (enterprise + coercion + targeting patterns; includes 764-aligned modeling)

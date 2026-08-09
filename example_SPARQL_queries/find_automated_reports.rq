@@ -1,4 +1,4 @@
-# Query: Q1 find_automated_reports - Enhanced for CAC Ontology v3.0.0
+# Query: Q1 find_automated_reports - Enhanced for CAC Ontology v3.1.0
 # Purpose: Operations dashboard - reports from automated systems (ESP crawlers, etc.) with platform integration
 # Parameters: ?from (dateTime), ?to (dateTime), ?limit (integer)
 # Security: TLP-RED content excluded by default
@@ -82,7 +82,7 @@ WHERE {
     }
 }
 ORDER BY DESC(?createdTime) DESC(?confidenceScore)
-LIMIT ?limit
+LIMIT 100
 
 # Additional query for automated reporting effectiveness by platform
 ;

@@ -219,14 +219,14 @@ ex:FederalCharges rdf:type cacontology-legal-outcomes:CSAM_Possession ;
     cacontology-legal-outcomes:chargeLevel "federal_felony" ;
     cacontology-legal-outcomes:maximumPenalty 20 ;
     cacontology-legal-outcomes:minimumPenalty 0 ;
-    cacontology-legal-outcomes:chargeCount 15 .
+    cacontology-legal-outcomes:countNumber 15 .
 
 ex:EnticementCharges rdf:type cacontology-legal-outcomes:OnlineEnticement ;
     rdfs:label "Online Enticement Charges" ;
     cacontology-legal-outcomes:chargeStatute "18 USC 2422(b)" ;
     cacontology-legal-outcomes:chargeLevel "federal_felony" ;
     cacontology-legal-outcomes:maximumPenalty 10 ;
-    cacontology-legal-outcomes:chargeCount 2 .
+    cacontology-legal-outcomes:countNumber 2 .
 
 ex:PleaAgreement1 rdf:type cacontology-legal-outcomes:PleaAgreement ;
     rdfs:label "Douglas Plea Agreement" ;

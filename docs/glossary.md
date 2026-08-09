@@ -1,5 +1,7 @@
 # Glossary
 
+This glossary applies to **CAC Ontology v3.1.0**. The semantic spine entries identify their v3.0.0 introduction as historical release context. See [Namespaces and prefixes](namespaces-and-prefixes.md) for canonical IRIs.
+
 ## Acronyms
 
 - **CAID**: Child Abuse Image Database
@@ -50,7 +52,7 @@ The stable top-level class hierarchy introduced in v3.0.0 (`cac-core:` namespace
 - **HashFeedbackAction**: Action recording feedback on hash matches
 - **URLReference**: Reference to a URL containing potential CSAM
 
-### Core Investigation Classes (v3.0.0 Semantic Spine)
+### Core Investigation Classes (semantic spine)
 - **Investigation** (`cacontology:CACInvestigation`): Core investigation class; subclass of `cac-core:EnduringEntity` in the semantic spine.
 - **InitialPhase** (`cacontology:InitialPhase`): Initial investigation phase; subclass of `cac-core:Phase`
 - **AnalysisPhase** (`cacontology:AnalysisPhase`): Evidence analysis phase with temporal dependencies; subclass of `cac-core:Phase`
