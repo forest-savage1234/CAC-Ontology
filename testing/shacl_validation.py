@@ -35,7 +35,7 @@ shapes_files = {os.path.basename(f) for f in ontology_files if '-shapes' in f}
 
 for f in ontology_files:
     bn = os.path.basename(f)
-    if '-shapes' in bn or 'bridge' in bn or 'spine' in bn or 'integration' in bn:
+    if '-shapes' in bn or 'bridge' in bn or 'integration' in bn:
         continue
     
     shapes_name = bn.replace('.ttl', '-shapes.ttl')
@@ -184,6 +184,11 @@ domain_validations = [
     ('examples_knowledge_graphs/miami-icac-felipe-lopez-example.ttl', 'ontology/cacontology-legal-outcomes-shapes.ttl'),
     ('examples_knowledge_graphs/k2p-soe-information-example.ttl', 'ontology/cacontology-sadistic-online-exploitation-shapes.ttl'),
     ('examples_knowledge_graphs/k2p-soe-information-example.ttl', 'ontology/cacontology-sextortion-shapes.ttl'),
+    ('examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl', 'ontology/cacontology-sextortion-shapes.ttl'),
+    ('examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl', 'ontology/cacontology-platforms-shapes.ttl'),
+    ('examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl', 'ontology/cacontology-grooming-shapes.ttl'),
+    ('examples_knowledge_graphs/conditioning-phase-offense-trajectory-example.ttl', 'ontology/cacontology-grooming-shapes.ttl'),
+    ('examples_knowledge_graphs/caselinker-account-replacement-example.ttl', 'ontology/cacontology-grooming-shapes.ttl'),
 ]
 
 domain_passed = 0

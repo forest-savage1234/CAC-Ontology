@@ -1,0 +1,38 @@
+# Query: caselinker_state_machine_analytics
+# Purpose: List offense-trajectory state-machine nodes (CoercionCycle, ChannelMigrationEvent,
+#          AffordanceMisuse, AccountReplacementEvent) for CaseLinker graph review
+# Data: examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl
+#       examples_knowledge_graphs/caselinker-account-replacement-example.ttl
+# Security: TLP-RED content excluded by default
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX cacontology-sextortion: <https://cacontology.projectvic.org/sextortion#>
+PREFIX cacontology-platforms: <https://cacontology.projectvic.org/platforms#>
+PREFIX cacontology-grooming: <https://cacontology.projectvic.org/grooming#>
+PREFIX uco-confidentiality: <https://ontology.unifiedcyberontology.org/uco/confidentiality/>
+
+SELECT ?node ?nodeType ?label ?detail
+WHERE {
+    VALUES ?nodeType {
+        cacontology-sextortion:CoercionCycle
+        cacontology-platforms:ChannelMigrationEvent
+        cacontology-platforms:AffordanceMisuse
+        cacontology-grooming:AccountReplacementEvent
+    }
+    ?node a ?nodeType .
+    OPTIONAL { ?node rdfs:label ?label }
+    OPTIONAL {
+        ?node cacontology-sextortion:coercionCycleDemandType ?detail
+    }
+    OPTIONAL {
+        ?node cacontology-platforms:migrationRationale ?detail
+    }
+    OPTIONAL {
+        ?node cacontology-grooming:triggeredBy ?detail
+    }
+    FILTER NOT EXISTS {
+        ?node uco-confidentiality:TLP-RED ?whatever .
+    }
+}
+ORDER BY ?nodeType ?node

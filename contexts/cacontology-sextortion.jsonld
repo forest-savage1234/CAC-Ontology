@@ -1,0 +1,28 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://cacontology.projectvic.org/sextortion#",
+    "cacontology": "https://cacontology.projectvic.org#",
+    "cacontology-sextortion": "https://cacontology.projectvic.org/sextortion#",
+    "cac-core": "https://cacontology.projectvic.org/core#",
+    "uco": "https://ontology.unifiedcyberontology.org/uco/core#",
+    "CoercionCycle": {
+      "@id": "cacontology-sextortion:CoercionCycle",
+      "@type": "@id"
+    },
+    "sustainedBy": {
+      "@id": "cacontology-sextortion:sustainedBy",
+      "@type": "@id"
+    },
+    "cyclesBetween": {
+      "@id": "cacontology-sextortion:cyclesBetween",
+      "@type": "@id"
+    },
+    "coercionCycleDemandType": "cacontology-sextortion:coercionCycleDemandType",
+    "terminationCondition": "cacontology-sextortion:terminationCondition",
+    "precedes": {
+      "@id": "cac-core:precedes",
+      "@type": "@id"
+    }
+  }
+}

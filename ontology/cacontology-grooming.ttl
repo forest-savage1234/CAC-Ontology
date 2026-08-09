@@ -14,6 +14,7 @@
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 @prefix cacontology-temporal: <https://cacontology.projectvic.org/temporal#> .
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 # Ontology Declaration
 <https://cacontology.projectvic.org/grooming/3.0.0> rdf:type owl:Ontology ;
@@ -45,17 +46,22 @@ cacontology-grooming:GroomingBehavior rdf:type owl:Class ;
 cacontology-grooming:TrustBuildingBehavior rdf:type owl:Class ;
     rdfs:label "Trust Building Behavior"@en ;
     rdfs:comment "Early grooming stage focused on establishing emotional connection with the child victim."@en ;
+    rdfs:subClassOf cacontology-grooming:ConditioningBehavior .
+
+cacontology-grooming:ConditioningBehavior rdf:type owl:Class ;
+    rdfs:label "Conditioning Behavior"@en ;
+    rdfs:comment "Offender behavior that shapes victim readiness, compliance, dependency, or situational constraints preparatory to direct exploitation."@en ;
     rdfs:subClassOf cacontology-grooming:GroomingBehavior .
 
 cacontology-grooming:IsolationBehavior rdf:type owl:Class ;
     rdfs:label "Isolation Behavior"@en ;
     rdfs:comment "Attempts to separate child from parents, friends, or other support systems."@en ;
-    rdfs:subClassOf cacontology-grooming:GroomingBehavior .
+    rdfs:subClassOf cacontology-grooming:ConditioningBehavior .
 
 cacontology-grooming:NormalizationBehavior rdf:type owl:Class ;
     rdfs:label "Normalization Behavior"@en ;
     rdfs:comment "Gradual introduction of sexual topics to normalize inappropriate behavior."@en ;
-    rdfs:subClassOf cacontology-grooming:GroomingBehavior .
+    rdfs:subClassOf cacontology-grooming:ConditioningBehavior .
 
 cacontology-grooming:Enticement rdf:type owl:Class ;
     rdfs:label "Enticement"@en ;
@@ -86,20 +92,32 @@ cacontology-grooming:InitialContactPhase rdf:type owl:Class ;
     rdfs:comment "First phase of grooming involving initial contact and relationship establishment."@en ;
     rdfs:subClassOf cacontology-grooming:GroomingPhase .
 
+cacontology-grooming:ConditioningPhase rdf:type owl:Class ;
+    rdfs:label "Conditioning Phase"@en ;
+    rdfs:comment "Grooming-process phase in which the offender conditions the victim or situation for exploitation — including rapport, isolation, normalization, and compliance shaping prior to the primary exploitation act."@en ;
+    rdfs:subClassOf cacontology-grooming:GroomingPhase ,
+                    cac-core:ConditioningPhase ;
+    skos:scopeNote "Canonical instance type for macro-level ConditioningPhase nodes in ICAC offense-trajectory state machines. Always dual-type cac-core:Phase on every instance. Set cac-core:conditioningMode on this macro node only — not on SexualizationPhase or IsolationPhase variant nodes."@en .
+
 cacontology-grooming:TrustBuildingPhase rdf:type owl:Class ;
     rdfs:label "Trust Building Phase"@en ;
     rdfs:comment "Phase focused on building emotional connection and trust with victim."@en ;
-    rdfs:subClassOf cacontology-grooming:GroomingPhase .
+    rdfs:subClassOf cacontology-grooming:ConditioningPhase ;
+    owl:deprecated true ;
+    rdfs:seeAlso cacontology-grooming:ConditioningPhase ;
+    skos:editorialNote "Deprecated offense-trajectory phase label. For new graphs, type as cacontology-grooming:ConditioningPhase and cac-core:Phase with cac-core:conditioningMode trust_rapport."@en .
 
 cacontology-grooming:IsolationPhase rdf:type owl:Class ;
     rdfs:label "Isolation Phase"@en ;
     rdfs:comment "Phase aimed at separating victim from support systems and creating dependency."@en ;
-    rdfs:subClassOf cacontology-grooming:GroomingPhase .
+    rdfs:subClassOf cacontology-grooming:ConditioningPhase ;
+    skos:scopeNote "Subclass of ConditioningPhase (conditioning mechanism). State-machine modeling conventions: docs/glossary.md (Offense-trajectory state machine)."@en .
 
 cacontology-grooming:SexualizationPhase rdf:type owl:Class ;
     rdfs:label "Sexualization Phase"@en ;
     rdfs:comment "Phase involving introduction of sexual content and normalization of inappropriate behavior."@en ;
-    rdfs:subClassOf cacontology-grooming:GroomingPhase .
+    rdfs:subClassOf cacontology-grooming:ConditioningPhase ;
+    skos:scopeNote "Subclass of ConditioningPhase (conditioning mechanism). State-machine modeling conventions: docs/glossary.md (Offense-trajectory state machine)."@en .
 
 cacontology-grooming:ExploitationPhase rdf:type owl:Class ;
     rdfs:label "Exploitation Phase"@en ;
@@ -247,9 +265,49 @@ cacontology-grooming:groomingPhaseDuration rdf:type owl:DatatypeProperty ;
 # Grooming Stage Properties
 cacontology-grooming:groomingStage rdf:type owl:DatatypeProperty ;
     rdfs:label "grooming stage"@en ;
-    rdfs:comment "Stage of grooming process (initial_contact, trust_building, isolation, sexualization, maintenance)."@en ;
+    rdfs:comment "Behavior-axis stage tag on GroomingBehavior instances (not the offense-trajectory phase class used in state machines)."@en ;
     rdfs:domain cacontology-grooming:GroomingBehavior ;
+    rdfs:range xsd:string ;
+    skos:editorialNote "For offense-trajectory state machines, phase typing uses GroomingPhase subclasses and cac-core:conditioningMode on the macro ConditioningPhase node — not groomingStage. trust_building and sexual_introduction are legacy behavior-axis values retained for backward compatibility; prefer conditioning and sexualization in new behavior graphs."@en .
+
+cacontology-grooming:conditioningMode rdf:type owl:DatatypeProperty ;
+    rdfs:label "conditioning mode"@en ;
+    rdfs:comment "Dominant conditioning mechanism on a grooming ConditioningPhase instance or ConditioningBehavior instance."@en ;
+    rdfs:subPropertyOf cac-core:conditioningMode ;
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf ( cac-core:ConditioningPhase cacontology-grooming:ConditioningBehavior )
+    ] ;
+    rdfs:range xsd:string ;
+    skos:scopeNote "For conditioningMode value platform_confidence: offender models and develops operational confidence in a platform's affordances, detection characteristics, and community norms prior to exploitation — applicable to mainstream platforms, encrypted messaging apps, dark web forums, and generative AI tools. This mechanism is offender- and platform-directed, not victim-directed rapport or trust building."@en .
+
+cacontology-grooming:TrustBuilding rdf:type owl:Class ;
+    rdfs:label "Trust Building"@en ;
+    rdfs:comment "Trust-rapport conditioning behavior establishing emotional connection with the child victim."@en ;
+    rdfs:subClassOf cacontology-grooming:ConditioningBehavior .
+
+cacontology-grooming:trustBuildingMethod rdf:type owl:DatatypeProperty ;
+    rdfs:label "trust building method"@en ;
+    rdfs:comment "Method used to build trust during conditioning (active_listening, emotional_support, shared_interests, etc.)."@en ;
+    rdfs:domain cacontology-grooming:TrustBuilding ;
     rdfs:range xsd:string .
+
+cacontology-grooming:trustLevel rdf:type owl:DatatypeProperty ;
+    rdfs:label "trust level"@en ;
+    rdfs:comment "Assessed level of trust established during trust-rapport conditioning."@en ;
+    rdfs:domain cacontology-grooming:TrustBuilding ;
+    rdfs:range xsd:string .
+
+cacontology-grooming:trustDevelopmentRate rdf:type owl:DatatypeProperty ;
+    rdfs:label "trust development rate"@en ;
+    rdfs:comment "Rate at which trust is developed during conditioning, typically between 0.0 and 1.0."@en ;
+    rdfs:domain cacontology-grooming:TrustBuilding ;
+    rdfs:range xsd:double .
+
+cacontology-grooming:IsolationTactics rdf:type owl:Class ;
+    rdfs:label "Isolation Tactics"@en ;
+    rdfs:comment "Isolation conditioning behavior separating the victim from support systems."@en ;
+    rdfs:subClassOf cacontology-grooming:ConditioningBehavior .
 
 cacontology-grooming:behaviorDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "behavior duration"@en ;
@@ -727,7 +785,7 @@ cacontology-grooming:ImmediateExploitationAttempt rdf:type owl:Class ;
 
 cacontology-grooming:SkippedGroomingPhases rdf:type owl:Class ;
     rdfs:label "Skipped Grooming Phases"@en ;
-    rdfs:comment "Grooming that bypasses traditional phases like trust building, isolation, and normalization."@en ;
+    rdfs:comment "Grooming that bypasses traditional conditioning phases such as trust building, isolation, and normalization."@en ;
     rdfs:subClassOf cacontology-grooming:RapidEscalationGrooming .
 
 cacontology-grooming:OpportunisticGrooming rdf:type owl:Class ;
@@ -850,7 +908,7 @@ cacontology-grooming:sameDayProgression rdf:type owl:DatatypeProperty ;
 
 cacontology-grooming:skippedPhases rdf:type owl:DatatypeProperty ;
     rdfs:label "skipped phases"@en ;
-    rdfs:comment "Traditional grooming phases that were bypassed (trust_building, isolation, normalization)."@en ;
+    rdfs:comment "Traditional conditioning phases that were bypassed (conditioning, trust_building, isolation, normalization)."@en ;
     rdfs:domain cacontology-grooming:SkippedGroomingPhases ;
     rdfs:range xsd:string .
 
@@ -991,4 +1049,37 @@ cacontology-grooming:transitionsToLocation rdf:type owl:ObjectProperty ;
     rdfs:label "transitions to location"@en ;
     rdfs:comment "Links public-to-private grooming to exploitation location."@en ;
     rdfs:domain cacontology-grooming:PublicToPrivateGrooming ;
-    rdfs:range uco-location:Location . 
+    rdfs:range uco-location:Location .
+
+# =============================================================================
+# ACCOUNT REPLACEMENT EVENT (ban evasion trajectory reset)
+# =============================================================================
+
+cacontology-grooming:AccountReplacementEvent rdf:type owl:Class ;
+    rdfs:label "Account Replacement Event"@en ;
+    rdfs:comment "Pattern where an offender whose account is banned or blocked creates a new account and returns to an earlier offense phase (typically initial contact). The lifecycle resets rather than terminates — structurally distinct from a coercion cycle."@en ;
+    rdfs:subClassOf cac-core:ExploitationEvent .
+
+cacontology-grooming:triggeredBy rdf:type owl:DatatypeProperty ;
+    rdfs:label "triggered by"@en ;
+    rdfs:comment "What triggered account replacement (victim_block, platform_ban, detection_risk, voluntary)."@en ;
+    rdfs:domain cacontology-grooming:AccountReplacementEvent ;
+    rdfs:range xsd:string .
+
+cacontology-grooming:resumesAt rdf:type owl:ObjectProperty ;
+    rdfs:label "resumes at"@en ;
+    rdfs:comment "Phase instance the offender returns to after account replacement (typically InitialContactPhase)."@en ;
+    rdfs:domain cacontology-grooming:AccountReplacementEvent ;
+    rdfs:range cacontology-grooming:GroomingPhase .
+
+cacontology-grooming:originalAccountId rdf:type owl:ObjectProperty ;
+    rdfs:label "original account id"@en ;
+    rdfs:comment "Reference to the banned or blocked account if known."@en ;
+    rdfs:domain cacontology-grooming:AccountReplacementEvent ;
+    rdfs:range uco-observable:Account .
+
+cacontology-grooming:replacementAccountId rdf:type owl:ObjectProperty ;
+    rdfs:label "replacement account id"@en ;
+    rdfs:comment "Reference to the new account used to resume contact if known."@en ;
+    rdfs:domain cacontology-grooming:AccountReplacementEvent ;
+    rdfs:range uco-observable:Account . 

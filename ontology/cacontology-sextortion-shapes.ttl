@@ -5,6 +5,7 @@
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix cacontology-sextortion: <https://cacontology.projectvic.org/sextortion#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
@@ -675,4 +676,41 @@ cacontology-sextortion:DataQualityShape rdf:type sh:NodeShape ;
         sh:minLength 10 ;
         sh:maxLength 1000 ;
         sh:message "Comment should be between 10 and 1000 characters when provided."@en
+    ] .
+
+# =============================================================================
+# COERCION CYCLE SHAPES (CaseLinker state machine)
+# =============================================================================
+
+cacontology-sextortion:CoercionCycleShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-sextortion:CoercionCycle ;
+    rdfs:label "Coercion Cycle Shape"@en ;
+    rdfs:comment "Validation shape for sextortion coercion cycle instances."@en ;
+    sh:property [
+        sh:path cacontology-sextortion:sustainedBy ;
+        sh:class cac-core:Artifact ;
+        sh:minCount 1 ;
+        sh:message "Coercion cycle must reference retained leverage material via sustainedBy."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sextortion:cyclesBetween ;
+        sh:class cac-core:Phase ;
+        sh:minCount 2 ;
+        sh:message "Coercion cycle must link at least two phase instances via cyclesBetween."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sextortion:coercionCycleDemandType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "imagery_quota" "live_conduct" "financial" "victim_recruitment" ) ;
+        sh:message "Coercion cycle demand type must be imagery_quota, live_conduct, financial, or victim_recruitment."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-sextortion:terminationCondition ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:in ( "apprehension" "material_removal" "victim_ceased_response" "unknown" ) ;
+        sh:message "Termination condition must be apprehension, material_removal, victim_ceased_response, or unknown."@en
     ] . 

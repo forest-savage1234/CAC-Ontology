@@ -13,6 +13,8 @@
 @prefix cacontology-international: <https://cacontology.projectvic.org/international#> .
 @prefix cacontology-legal-outcomes: <https://cacontology.projectvic.org/legal-outcomes#> .
 @prefix cacontology-sextortion: <https://cacontology.projectvic.org/sextortion#> .
+@prefix cacontology-grooming: <https://cacontology.projectvic.org/grooming#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # =============================================================================
 # WA SEXTORTION CASE OVERVIEW
@@ -71,9 +73,11 @@
     rdfs:label "False Profile Creation"@en ;
     uco-core:description "Created false profile on instant messaging platform with fake age information" .
 
-:Trust_Building rdf:type cacontology-sextortion:TrustBuildingPhase ;
-    rdfs:label "Trust Building Phase"@en ;
-    uco-core:description "Building rapport and trust with victims through false peer identity" ;
+:Trust_Building rdf:type cacontology-grooming:ConditioningPhase ,
+        cac-core:Phase ;
+    rdfs:label "Deception and Rapport Conditioning"@en ;
+    uco-core:description "Building rapport with victims through false peer identity" ;
+    cac-core:conditioningMode "deception" ;
     cacontology-sextortion:progressionStage 2 .
 
 :Sexual_Solicitation rdf:type cacontology-sextortion:SexualSolicitationPhase ;

@@ -400,6 +400,10 @@ graph LR
 
 > **Note**: Blue components represent new gUFO-enhanced processing stages that provide semantic validation, temporal modeling, and enhanced analytics capabilities.
 
+### Offense-trajectory phase modeling
+
+ICAC state-machine graphs represent offense progression as `cac-core:Phase` instances linked by `cac-core:precedes`. The macro preparatory step between initial contact and exploitation is `cac-core:ConditioningPhase`, with grooming-module instances carrying both `cacontology-grooming:ConditioningPhase` and `cac-core:Phase` (spine and grooming SHACL shapes require both types). The dominant preparatory mechanism is recorded on the macro node via `cac-core:conditioningMode` (for example `deception`, `trust_rapport`, or `normalization`). Deprecated `TrustBuildingPhase` labels map to `ConditioningPhase` with an appropriate `conditioningMode`. Variant sub-stages (`SexualizationPhase`, `IsolationPhase`) model optional refinement nodes rather than substitutes for the macro ConditioningPhase instance. See `docs/glossary.md` (Offense-trajectory state machine) for authoring guidance.
+
 ## Class Hierarchy (Spine-Organized)
 
 The spine branches serve as the primary organizing structure for all CAC domain classes. Every domain class ultimately traces back to `cac-core:Entity` through one of the five top-level branches.
@@ -501,6 +505,17 @@ classDiagram
     Phase <|-- AnalysisPhase
     Phase <|-- LegalProcessPhase
 
+    class ConditioningPhase {
+        <<Phase>>
+        +conditioningMode
+    }
+    Phase <|-- ConditioningPhase
+
+    class GroomingConditioningPhase {
+        <<ConditioningPhase>>
+    }
+    ConditioningPhase <|-- GroomingConditioningPhase
+
     class HotlineReport {
         <<Artifact>>
         +ReporterRole reportedBy
@@ -588,8 +603,8 @@ graph TD
 The CAC Ontology Family consists of 30+ modules organized by domain:
 
 ### Semantic Spine & Bridges (5 modules)
-- **`cacontology-core-spine.ttl`:** Stable top-level class hierarchy (Entity → EnduringEntity, Occurrent, Role, Phase, Situation)
-- **`cacontology-core-spine-shapes.ttl`:** SHACL validation for spine classes
+- **`cacontology-core-spine.ttl`:** Stable top-level class hierarchy (Entity → EnduringEntity, Occurrent, Role, Phase, Situation); includes `cac-core:ConditioningPhase`, `cac-core:conditioningMode`, and `cac-core:precedes` for offense-trajectory state machines
+- **`cacontology-core-spine-shapes.ttl`:** SHACL validation for spine classes (including required `cac-core:Phase` dual typing on `ConditioningPhase` instances; validation fails when the spine phase type is absent)
 - **`cacontology-bridge-gufo.ttl`:** Spine-to-gUFO alignment (EnduringEntity → gufo:Object, Event → gufo:Event, etc.)
 - **`cacontology-bridge-uco.ttl`:** Spine-to-UCO alignment (EnduringEntity → uco-core:UcoObject, etc.)
 - **`cacontology-bridge-case.ttl`:** Spine-to-CASE alignment
@@ -608,7 +623,7 @@ The CAC Ontology Family consists of 30+ modules organized by domain:
 ### High-Priority Criminal Activities (5+ modules)
 - **`cacontology-production.ttl`:** Child sexual abuse material production
 - **`cacontology-custodial.ttl`:** Custodial relationships & positions of trust
-- **`cacontology-grooming.ttl`:** Online grooming & enticement
+- **`cacontology-grooming.ttl`:** Online grooming & enticement; `ConditioningPhase` grooming specialization; deprecated `TrustBuildingPhase`
 - **`cacontology-sextortion.ttl`:** Sexual extortion incidents
 - **`cacontology-athletic-exploitation.ttl`:** Athletic coaching exploitation
 

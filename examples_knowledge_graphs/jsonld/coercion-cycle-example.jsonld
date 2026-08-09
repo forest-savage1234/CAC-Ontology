@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "cac-sextortion": "https://cacontology.projectvic.org/sextortion#",
+    "cac-core": "https://cacontology.projectvic.org/core#",
+    "uco": "https://ontology.unifiedcyberontology.org/uco/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@id": "urn:uuid:01234567-89ab-cdef-0123-456789abcdef",
+  "@type": "cac-sextortion:CoercionCycle",
+  "uco:description": "Self-sustaining loop: offender redeploys retained images to demand additional content.",
+  "cac-sextortion:sustainedBy": { "@id": "urn:uuid:f6a7b8c9-d0e1-2345-f012-456789012345" },
+  "cac-sextortion:cyclesBetween": [
+    { "@id": "urn:uuid:d4e5f6a7-b8c9-0123-def0-234567890123" },
+    { "@id": "urn:uuid:c3d4e5f6-a7b8-9012-cdef-123456789012" }
+  ],
+  "cac-sextortion:coercionCycleDemandType": "imagery_quota",
+  "cac-sextortion:terminationCondition": "apprehension"
+}

@@ -3,7 +3,9 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
+@prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix cacontology-platforms: <https://cacontology.projectvic.org/platforms#> .
+@prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
@@ -773,4 +775,86 @@ cacontology-platforms:ModerationThroughputMetricsShape rdf:type sh:NodeShape ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Flag volume per month must be a non-negative integer when present."@en
+    ] .
+
+# =============================================================================
+# CHANNEL MIGRATION EVENT SHAPES (CaseLinker state machine)
+# =============================================================================
+
+cacontology-platforms:ChannelMigrationEventShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:ChannelMigrationEvent ;
+    rdfs:label "Channel Migration Event Shape"@en ;
+    rdfs:comment "Validation shape for cross-platform channel migration events."@en ;
+    sh:property [
+        sh:path cacontology-platforms:fromPlatform ;
+        sh:class uco-observable:DigitalService ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Channel migration must specify exactly one originating platform."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-platforms:toPlatform ;
+        sh:class uco-observable:DigitalService ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Channel migration must specify exactly one destination platform."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-platforms:migrationRationale ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "capability_upgrade" "evidence_evasion" "both" ) ;
+        sh:message "Migration rationale must be capability_upgrade, evidence_evasion, or both."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-platforms:occursBetween ;
+        sh:class cac-core:Phase ;
+        sh:minCount 2 ;
+        sh:message "Channel migration must separate at least two offense phases via occursBetween."@en
+    ] .
+
+# =============================================================================
+# AFFORDANCE MISUSE SHAPES (CaseLinker state machine)
+# =============================================================================
+
+cacontology-platforms:AffordanceMisuseShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-platforms:AffordanceMisuse ;
+    rdfs:label "Affordance Misuse Shape"@en ;
+    rdfs:comment "Validation shape for transition-level platform affordance misuse annotations."@en ;
+    sh:property [
+        sh:path cacontology-platforms:affordanceClass ;
+        sh:class cacontology-platforms:PlatformAffordance ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Affordance misuse must specify exactly one affordance class."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-platforms:enablesTransitionFrom ;
+        sh:class cac-core:Phase ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Affordance misuse must specify the source phase via enablesTransitionFrom."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-platforms:enablesTransitionTo ;
+        sh:class cac-core:Phase ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Affordance misuse must specify the target phase via enablesTransitionTo."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-platforms:misuseDescription ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 10 ;
+        sh:message "Affordance misuse must include a misuse description of at least 10 characters."@en
+    ] ;
+    sh:property [
+        sh:path cacontology-platforms:platform ;
+        sh:class uco-observable:DigitalService ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+        sh:message "Optional platform instance may be specified at most once."@en
     ] .

@@ -168,6 +168,20 @@ cac-core:Phase a owl:Class ;
     rdfs:subClassOf cac-core:Entity , gufo:Phase ;
     skos:scopeNote "Use when: the concept is a lifecycle stage such as grooming phase, escalation phase, active investigation phase, or recovery phase. Do not use when: the concept is an investigation — phases participate in investigations but are not investigations themselves."@en .
 
+cac-core:ConditioningPhase a owl:Class ;
+    rdfs:label "Conditioning Phase"@en ;
+    rdfs:comment "Temporal phase in which an offender shapes victim readiness, situational constraints, or compliance preparatory to the primary exploitation act — through rapport, deception, isolation, normalization, desensitization, dependency, or compliance training."@en ;
+    rdfs:subClassOf cac-core:Phase ;
+    skos:scopeNote "Offense-trajectory macro-phase between initial contact and exploitation in ICAC state-machine modeling (contact → conditioning → exploitation → maintenance). Denotes the macro-level preparatory phase instance — distinct from variant sub-stages such as SexualizationPhase, IsolationPhase, or platform transition events that may follow. Author state-machine instances as cacontology-grooming:ConditioningPhase and cac-core:Phase (dual-typed, always). Set cac-core:conditioningMode on the macro ConditioningPhase node. This structure supports cross-case offense-trajectory analysis. May be abbreviated, bypassed, or iterated."@en ;
+    skos:scopeNote "This class models the offense-trajectory preparatory phase in victim-contact crimes — the period in which an offender shapes victim compliance, readiness, or situational constraints before the primary exploitation act. It is unrelated to cacontology-athletic:ConditioningCoercion, which models physical conditioning as a coercion mechanism in athletic exploitation contexts."@en .
+
+cac-core:conditioningMode a owl:DatatypeProperty ;
+    rdfs:label "conditioning mode"@en ;
+    rdfs:comment "Dominant mechanism through which conditioning is accomplished in a documented offense phase instance."@en ;
+    rdfs:domain cac-core:ConditioningPhase ;
+    rdfs:range xsd:string ;
+    skos:scopeNote "For conditioningMode value platform_confidence: offender models and develops operational confidence in a platform's affordances, detection characteristics, and community norms prior to exploitation — applicable to mainstream platforms, encrypted messaging apps, dark web forums, and generative AI tools. This mechanism is offender- and platform-directed, not victim-directed rapport or trust building."@en .
+
 # =============================================================================
 # CORE OBJECT PROPERTIES
 # =============================================================================
@@ -182,6 +196,13 @@ cac-core:isPhaseOf a owl:ObjectProperty ;
     rdfs:comment "Links a phase to the entity, process, or situation it is a temporal stage of."@en ;
     rdfs:domain cac-core:Phase ;
     owl:inverseOf cac-core:hasPhase .
+
+cac-core:precedes a owl:ObjectProperty ;
+    rdfs:label "precedes"@en ;
+    rdfs:comment "Asserts that one exploitation phase or event directly precedes another in the documented offense timeline. Used to build temporally ordered traversal graphs for state machine analysis of case lifecycles. The subject phase occurs before the object phase in the same investigation."@en ;
+    rdfs:domain cac-core:Phase ;
+    rdfs:range cac-core:Phase ;
+    rdfs:isDefinedBy <https://cacontology.projectvic.org#> .
 
 cac-core:assesses a owl:ObjectProperty ;
     rdfs:label "assesses"@en ;
