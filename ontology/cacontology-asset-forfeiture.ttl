@@ -19,11 +19,11 @@
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-05-23"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.unifiedcyberontology.org/uco/identity/> ,
-                <https://ontology.unifiedcyberontology.org/uco/observable/> ,
-                <https://ontology.unifiedcyberontology.org/uco/action/> ,
-                <https://ontology.unifiedcyberontology.org/uco/role/> ,
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/role/1.5.0> ,
                 <https://cacontology.projectvic.org/3.0.0> ,
                 <https://cacontology.projectvic.org/core/3.0.0> ,
                 <http://purl.org/nemo/gufo#> .

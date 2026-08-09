@@ -19,7 +19,7 @@
     owl:imports <https://cacontology.projectvic.org/legal-outcomes/3.0.0> ,
                 <https://cacontology.projectvic.org/sex-offender-registry/3.0.0> ,
                 <http://purl.org/nemo/gufo#> ,
-                <https://ontology.unifiedcyberontology.org/uco/core/> .
+                <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
 
 # =============================================================================
 # SENTENCING OUTCOME SHAPES

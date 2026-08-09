@@ -23,7 +23,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/detection/shapes/3.0.0> ;
     owl:imports <https://cacontology.projectvic.org/detection/3.0.0> ,
                 <http://purl.org/nemo/gufo#> ,
-                <https://ontology.unifiedcyberontology.org/uco/core/> ;
+                <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ;
     owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2026-02-11"^^xsd:date .
@@ -661,8 +661,8 @@ cacontology-detection:DetectionWorkflowTemporalShape rdf:type sh:NodeShape ;
         ] ;
         sh:select """
             PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
-            PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/>
-            PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+            PREFIX uco-core: <https://ontology.unifiedcyberontology.org/uco/core/1.5.0>
+            PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/1.5.0>
             SELECT ?this
             WHERE {
                 ?this a cacontology-detection:ManualClassificationAction ;
@@ -695,7 +695,7 @@ cacontology-detection:DetectionActionResultCrossReferenceShape rdf:type sh:NodeS
         ] ;
         sh:select """
             PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
-            PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+            PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/1.5.0>
             SELECT ?this
             WHERE {
                 ?this a cacontology-detection:AutomatedDetectionAction .
@@ -722,8 +722,8 @@ cacontology-detection:HashingActionResultCrossReferenceShape rdf:type sh:NodeSha
         ] ;
         sh:select """
             PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
-            PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
-            PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
+            PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/1.5.0>
+            PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/1.5.0>
             SELECT ?this
             WHERE {
                 ?this a cacontology-detection:ContentHashingAction .
@@ -780,8 +780,8 @@ cacontology-detection:DatabaseMatchInputCrossReferenceShape rdf:type sh:NodeShap
         ] ;
         sh:select """
             PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
-            PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
-            PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/>
+            PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/1.5.0>
+            PREFIX uco-types: <https://ontology.unifiedcyberontology.org/uco/types/1.5.0>
             SELECT ?this
             WHERE {
                 ?this a cacontology-detection:DatabaseMatchAction .
@@ -821,7 +821,7 @@ cacontology-detection:DetectionRoleParticipationShape rdf:type sh:NodeShape ;
         sh:select """
             PREFIX cacontology-detection: <https://cacontology.projectvic.org/detection#>
             PREFIX gufo: <http://purl.org/nemo/gufo#>
-            PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/>
+            PREFIX uco-action: <https://ontology.unifiedcyberontology.org/uco/action/1.5.0>
             SELECT ?this
             WHERE {
                 ?this gufo:playsRole ?role ;

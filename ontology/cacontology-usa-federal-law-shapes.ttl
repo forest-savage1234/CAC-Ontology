@@ -19,7 +19,7 @@
     dcterms:modified "2025-11-18"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/usa-federal-law/3.0.0> ,
                 <http://purl.org/nemo/gufo#> ,
-                <https://ontology.unifiedcyberontology.org/uco/core/> .
+                <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
 
 # =============================================================================
 # gUFO TYPE CONSISTENCY VALIDATION

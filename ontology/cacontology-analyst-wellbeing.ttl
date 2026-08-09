@@ -21,9 +21,9 @@
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2026-02-11"^^xsd:date ;
     dcterms:modified "2026-02-11"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.unifiedcyberontology.org/uco/identity/> ,
-                <https://ontology.unifiedcyberontology.org/uco/action/> ,
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
                 <https://cacontology.projectvic.org/detection/3.0.0> ,
                 <https://cacontology.projectvic.org/3.0.0> ,
                 <https://cacontology.projectvic.org/core/3.0.0> ,

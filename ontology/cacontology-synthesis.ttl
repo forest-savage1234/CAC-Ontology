@@ -24,11 +24,11 @@
     owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:modified "2026-02-20"^^xsd:date ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.unifiedcyberontology.org/uco/action/> ,
-                <https://ontology.unifiedcyberontology.org/uco/observable/> ,
-                <https://ontology.unifiedcyberontology.org/uco/identity/> ,
-                <https://ontology.caseontology.org/case/investigation/> ,
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
+                <https://ontology.caseontology.org/case/investigation/1.5.0> ,
                 <https://cacontology.projectvic.org/3.0.0> ,
                 <https://cacontology.projectvic.org/multi-jurisdiction/3.0.0> ,
                 <https://cacontology.projectvic.org/legal-harmonization/3.0.0> .

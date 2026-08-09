@@ -25,11 +25,11 @@
     dcterms:issued "2026-03-16"^^xsd:date ;
     dcterms:modified "2026-03-16"^^xsd:date ;
     owl:imports <http://purl.org/nemo/gufo#> ,
-                <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.unifiedcyberontology.org/uco/action/> ,
-                <https://ontology.unifiedcyberontology.org/uco/observable/> ,
-                <https://ontology.unifiedcyberontology.org/uco/role/> ,
-                <https://ontology.caseontology.org/case/investigation/> .
+                <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/role/1.5.0> ,
+                <https://ontology.caseontology.org/case/investigation/1.5.0> .
 
 # =============================================================================
 # TOP-LEVEL ENTITY

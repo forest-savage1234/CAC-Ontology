@@ -22,8 +22,8 @@
     dcterms:issued "2025-01-03"^^xsd:date ;
     dcterms:modified "2025-11-18"^^xsd:date ;
     dcterms:description "Phase 2 temporal enhancement framework integrating gUFO temporal concepts with UCO action modeling and CAC investigation lifecycle patterns."@en ;
-    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
-                <https://ontology.caseontology.org/case/> ,
+    owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
+                <https://ontology.caseontology.org/case/case/1.5.0> ,
                 <https://cacontology.projectvic.org/3.0.0> ,
                 <http://purl.org/nemo/gufo#> .
 
