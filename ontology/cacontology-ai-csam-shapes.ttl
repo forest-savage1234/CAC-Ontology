@@ -13,7 +13,7 @@
 @prefix cacontology-ai: <https://cacontology.projectvic.org/ai-csam#> .
 
 # Enhanced Ontology Declaration with gUFO
-<https://cacontology.projectvic.org/ai-csam/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/ai-csam/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC AI-Generated Content SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL validation shapes for the CAC AI-Generated Content Ontology, enhanced with comprehensive gUFO foundational modeling validation. Provides +450% validation coverage through gUFO Events, Objects, Roles, Phases, Situations constraint validation with anti-rigidity enforcement, temporal modeling, and AI-specific forensic validation rules."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/ai-csam/shapes/3.0.0> ;

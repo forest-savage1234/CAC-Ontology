@@ -17,7 +17,7 @@
 # For modeling reports, structured claims, and resolvable evidence pointers.
 # =============================================================================
 
-<https://cacontology.projectvic.org/synthesis/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/synthesis> rdf:type owl:Ontology ;
     rdfs:label "CAC Knowledge Synthesis Ontology"@en ;
     rdfs:comment "An ontology for representing structured knowledge extracted from research reports (sections, figures, claims, distributions, and evidence pointers) to support queryable synthesis across CAC-related sources."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/synthesis/3.0.0> ;

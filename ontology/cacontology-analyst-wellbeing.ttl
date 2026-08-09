@@ -13,7 +13,7 @@
 @prefix cacontology-analyst: <https://cacontology.projectvic.org/analyst-wellbeing#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/analyst-wellbeing/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/analyst-wellbeing> rdf:type owl:Ontology ;
     rdfs:label "CAC Analyst Wellbeing & Exposure Mitigation Ontology"@en ;
     rdfs:comment "An ontology for representing analyst/investigator exposure mitigation measures and occupational harms arising from reviewing traumatic CSEA material, supporting ethically designed detection-to-action pipelines while preserving evidentiary integrity."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/analyst-wellbeing/3.0.0> ;

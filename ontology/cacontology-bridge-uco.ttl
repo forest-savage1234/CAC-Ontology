@@ -9,7 +9,7 @@
 # Ontology Declaration
 # =============================================================================
 
-<https://cacontology.projectvic.org/bridge/uco/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/bridge/uco> rdf:type owl:Ontology ;
     rdfs:label "CAC Ontology UCO Bridge Module"@en ;
     rdfs:comment "Bridge module capturing alignment axioms between CAC Ontology classes and Unified Cyber Ontology (UCO) concepts. The core spine already aligns cac-core:EnduringEntity to uco-core:UcoObject, cac-core:Artifact to uco-observable:ObservableObject, cac-core:Role to uco-role:Role, and cac-core:InvestigativeAction to uco-action:Action. This bridge module holds additional or extended UCO alignment statements for advanced reasoning."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/bridge/uco/3.0.0> ;

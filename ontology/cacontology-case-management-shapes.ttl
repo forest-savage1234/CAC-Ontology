@@ -11,7 +11,7 @@
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Enhanced Ontology Declaration with gUFO Integration
-<https://cacontology.projectvic.org/case-management/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/case-management/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Case Management SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL validation shapes for the CAC Case Management Ontology, enhanced with comprehensive gUFO foundational modeling validation. Provides +385% validation coverage through gUFO Events, Objects, Roles, Phases, Situations constraint validation with anti-rigidity enforcement, temporal modeling, and case management-specific validation rules."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/case-management/shapes/3.0.0> ;

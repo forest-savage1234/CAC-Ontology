@@ -12,7 +12,7 @@
 # Ontology Declaration
 # =============================================================================
 
-<https://cacontology.projectvic.org/bridge/gufo/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/bridge/gufo> rdf:type owl:Ontology ;
     rdfs:label "CAC Ontology gUFO Bridge Module"@en ;
     rdfs:comment "Bridge module capturing alignment axioms between CAC Ontology classes and gUFO foundational ontology concepts. This module holds stronger or legacy alignment statements that were previously expressed as owl:equivalentClass axioms in domain modules. Importing this module enables advanced gUFO-based reasoning but is not required for basic CAC interoperability."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/bridge/gufo/3.0.0> ;

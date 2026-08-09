@@ -9,7 +9,7 @@
 # Ontology Declaration
 # =============================================================================
 
-<https://cacontology.projectvic.org/bridge/case/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/bridge/case> rdf:type owl:Ontology ;
     rdfs:label "CAC Ontology CASE Bridge Module"@en ;
     rdfs:comment "Bridge module capturing alignment axioms between CAC Ontology classes and CASE Ontology investigation concepts. The core spine already aligns cac-core:InvestigativeAction to case-investigation:InvestigativeAction. This bridge module holds additional or extended CASE alignment statements for advanced reasoning."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/bridge/case/3.0.0> ;

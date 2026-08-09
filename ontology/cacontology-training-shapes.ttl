@@ -9,7 +9,7 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/training/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/training/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Training SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the CAC Training Ontology, providing validation for professional development, training programs, and capacity building initiatives."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/training/shapes/3.0.0> ;

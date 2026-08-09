@@ -12,7 +12,7 @@
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/forensics/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/forensics/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Forensics SHACL Shapes with gUFO Validation"@en ;
     rdfs:comment "SHACL validation shapes for gUFO-enhanced CAC forensics ontology, including anti-rigidity constraints, temporal validation, and foundational type compliance."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/forensics/shapes/3.0.0> ;

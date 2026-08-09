@@ -12,7 +12,7 @@
 @prefix cacontology-tactical: <https://cacontology.projectvic.org/tactical#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/tactical/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/tactical> rdf:type owl:Ontology ;
     rdfs:label "CAC Tactical Law Enforcement Operations Ontology"@en ;
     rdfs:comment "An ontology for representing tactical law enforcement operations including SWAT operations, high-risk arrests, and specialized tactical procedures in Internet Crimes Against Children investigations, extending UCO and CASE with CASE Investigation ontology integration."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/tactical/3.0.0> ;

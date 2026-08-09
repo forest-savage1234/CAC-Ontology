@@ -16,7 +16,7 @@
 # ONTOLOGY DECLARATION
 # =============================================================================
 
-<https://cacontology.projectvic.org/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Core SHACL Shapes with gUFO Validation"@en ;
     rdfs:comment "Comprehensive SHACL validation shapes for gUFO-enhanced CAC core ontology, including anti-rigidity constraints, temporal validation, phase transitions, and foundational type compliance."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/shapes/3.0.0> ;

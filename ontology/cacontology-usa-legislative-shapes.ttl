@@ -14,7 +14,7 @@
 # Raven US Extensions - USA-Specific Validation Shapes
 # =============================================================================
 
-<https://cacontology.projectvic.org/usa-legislative/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/usa-legislative/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC USA Legislative Framework SHACL Shapes"@en ;
     rdfs:comment "SHACL shapes for validating USA-specific legislative framework instances including federal agencies, congressional committees, state organizations, legislative stages, and funding mechanisms."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/usa-legislative/shapes/3.0.0> ;

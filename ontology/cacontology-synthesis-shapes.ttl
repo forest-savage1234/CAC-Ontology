@@ -18,7 +18,7 @@
 # CAC Knowledge Synthesis SHACL Shapes (minimal)
 # =============================================================================
 
-<https://cacontology.projectvic.org/synthesis/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/synthesis/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Knowledge Synthesis SHACL Shapes"@en ;
     rdfs:comment "Minimal SHACL shapes for validating report/claim/evidence-pointer patterns used in knowledge-synthesis example graphs."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/synthesis/shapes/3.0.0> ;

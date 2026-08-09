@@ -11,7 +11,7 @@
 @prefix cacontology-detection: <https://cacontology.projectvic.org/detection#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/analyst-wellbeing/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/analyst-wellbeing/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Analyst Wellbeing SHACL Shapes"@en ;
     rdfs:comment "SHACL shapes for validating analyst wellbeing and exposure mitigation concepts used in manual review workflows."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/analyst-wellbeing/shapes/3.0.0> ;

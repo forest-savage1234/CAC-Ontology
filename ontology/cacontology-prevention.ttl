@@ -12,7 +12,7 @@
 @prefix cacontology-prevention: <https://cacontology.projectvic.org/prevention#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-<https://cacontology.projectvic.org/prevention/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/prevention> rdf:type owl:Ontology ;
     rdfs:label "CAC Prevention and Education Ontology"@en ;
     rdfs:comment "An ontology for modeling prevention programs, education initiatives, safety protocols, and community outreach efforts for child protection with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/prevention/3.0.0> ;

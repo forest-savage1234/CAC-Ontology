@@ -12,7 +12,7 @@
 @prefix cacontology-physical: <https://cacontology.projectvic.org/physical#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/physical/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/physical> rdf:type owl:Ontology ;
     rdfs:label "CAC Physical Evidence & Procurement Ontology with gUFO Integration"@en ;
     rdfs:comment "An ontology for representing physical evidence, criminal procurement patterns, and abuse facilitation items in Internet Crimes Against Children investigations, extending UCO and CASE with comprehensive gUFO (gentle Unified Foundational Ontology) integration for enhanced semantic precision and quality assessment, and CASE Investigation ontology for evidence provenance tracking."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/physical/3.0.0> ;

@@ -17,7 +17,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/grooming/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/grooming> rdf:type owl:Ontology ;
     rdfs:label "CAC Online Grooming & Enticement Ontology"@en ;
     rdfs:comment "An ontology for representing online grooming behaviors, enticement patterns, and predatory communication tactics in Internet Crimes Against Children cases, extending UCO and CASE with gUFO foundational ontology enhancements."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/grooming/3.0.0> ;

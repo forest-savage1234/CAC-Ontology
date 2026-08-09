@@ -14,7 +14,7 @@
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/forensics/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/forensics> rdf:type owl:Ontology ;
     rdfs:label "CAC Digital Forensics Ontology"@en ;
     rdfs:comment "An ontology for representing digital forensics concepts specific to Internet Crimes Against Children investigations, extending UCO and CASE with gUFO foundational ontology enhancements. This ontology provides forensic acquisition, chain of custody, evidence handling, and tool provenance capabilities."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/forensics/3.0.0> ;

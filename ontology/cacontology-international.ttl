@@ -14,7 +14,7 @@
 @prefix cacontology-international: <https://cacontology.projectvic.org/international#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-<https://cacontology.projectvic.org/international/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/international> rdf:type owl:Ontology ;
     rdfs:label "CAC International Cooperation Ontology"@en ;
     rdfs:comment "An ontology for modeling international cooperation, cross-border investigations, diplomatic protocols, and multilateral frameworks in Internet Crimes Against Children cases with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/international/3.0.0> ;

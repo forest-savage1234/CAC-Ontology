@@ -11,7 +11,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/sextortion/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/sextortion> rdf:type owl:Ontology ;
     rdfs:label "CAC Sextortion Ontology"@en ;
     rdfs:comment "An ontology for representing sextortion incidents, progression patterns, and investigation approaches in Internet Crimes Against Children cases. Sextortion is online blackmail where offenders trick or coerce someone into sending sexual images, then threaten to share unless demands are met."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/sextortion/3.0.0> ;

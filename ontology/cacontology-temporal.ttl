@@ -13,7 +13,7 @@
 # ONTOLOGY DECLARATION
 # =============================================================================
 
-<https://cacontology.projectvic.org/temporal/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/temporal> rdf:type owl:Ontology ;
     rdfs:label "CAC Temporal Framework with gUFO Integration - Phase 2"@en ;
     rdfs:comment "Phase 2 gUFO integration for CAC ontology family, focusing on temporal enhancement and investigation lifecycle modeling patterns. Extends gUFO temporal framework for law enforcement applications, including age-at-time modeling patterns for victims and offenders."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/temporal/3.0.0> ;

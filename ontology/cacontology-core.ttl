@@ -15,7 +15,7 @@
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org> rdf:type owl:Ontology ;
     rdfs:label "CAC Ontology Core"@en ;
     rdfs:comment "A core ontology for representing concepts and relationships specific to Crimes Against Children investigations, extending UCO and CASE with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities. v3.0.0 introduces the semantic spine for disciplined ontological categorization."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/3.0.0> ;

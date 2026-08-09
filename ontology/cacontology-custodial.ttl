@@ -16,7 +16,7 @@
 
 
 # Ontology Declaration with gUFO Integration
-<https://cacontology.projectvic.org/custodial/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/custodial> rdf:type owl:Ontology ;
     rdfs:label "CAC Custodial Relationship & Position of Trust Ontology with gUFO Integration"@en ;
     rdfs:comment "An ontology for representing custodial relationships, positions of trust, and authority figure violations in Internet Crimes Against Children investigations, extending UCO and CASE with comprehensive gUFO foundational ontology enhancements for improved semantic precision, anti-rigidity modeling, temporal constraint validation, and enhanced situational modeling. Enhanced with gUFO Events, Objects, Roles, Phases, and Situations for formal ontological rigor."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/custodial/3.0.0> ;

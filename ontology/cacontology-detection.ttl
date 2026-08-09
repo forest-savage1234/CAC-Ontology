@@ -14,7 +14,7 @@
 @prefix gufo: <http://purl.org/nemo/gufo#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/detection/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/detection> rdf:type owl:Ontology ;
     rdfs:label "CAC CSAM Detection & Classification Ontology"@en ;
     rdfs:comment "An ontology for representing Child Sexual Abuse Material detection and classification systems with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities, extending UCO and CASE. This ontology covers automated detection tools, hash matching, machine learning models, and classification scales used in CSAM identification."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/detection/3.0.0> ;

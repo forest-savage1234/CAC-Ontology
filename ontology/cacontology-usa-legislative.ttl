@@ -19,7 +19,7 @@
 # Raven US Extensions - USA-Specific Legislative and Organizational Classes
 # =============================================================================
 
-<https://cacontology.projectvic.org/usa-legislative/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/usa-legislative> rdf:type owl:Ontology ;
     rdfs:label "CAC USA Legislative Framework Ontology"@en ;
     rdfs:comment "USA-specific legislative framework ontology for modeling U.S. federal agencies, congressional committees, state organizations, legislative stages, and funding mechanisms. Extends CAC Legal Harmonization with gUFO integration."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/usa-legislative/3.0.0> ;

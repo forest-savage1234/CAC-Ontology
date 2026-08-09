@@ -12,7 +12,7 @@
 @prefix cacontology-hotlines: <https://cacontology.projectvic.org/hotlines#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/hotlines/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/hotlines> rdf:type owl:Ontology ;
     rdfs:label "CAC Ontology Hotlines"@en ;
     rdfs:comment "A core ontology for representing hotline reports and their lifecycle, extending UCO with comprehensive gUFO foundational modeling. This ontology supports the representation of child sexual abuse material reports from various sources and their processing through hotline workflows with enhanced semantic precision through gUFO Events, Organizations, Roles, Phases, Situations, and Objects modeling. Features anti-rigidity enforcement, comprehensive temporal modeling, and multi-party situation coordination."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/hotlines/3.0.0> ;

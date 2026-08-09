@@ -11,7 +11,7 @@
 @prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec#> .
 
 # Ontology Declaration
-<https://cacontology.projectvic.org/us/ncmec/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/us/ncmec> rdf:type owl:Ontology ;
     rdfs:label "NCMEC Cybertip Report Ontology (US Extension)"@en ;
     rdfs:comment "An ontology for representing concepts specific to NCMEC Cybertip reports as an extension to the core CAC ontology. Version 3.0.0."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/us/ncmec/3.0.0> ;

@@ -9,7 +9,7 @@
 @prefix case-investigation: <https://ontology.caseontology.org/case/investigation/> .
 @prefix cacontology-recantation: <https://cacontology.projectvic.org/recantation#> .
 
-<https://cacontology.projectvic.org/recantation/shapes/3.0.0> rdf:type owl:Ontology ;
+<https://cacontology.projectvic.org/recantation/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Victim Recantation SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the CAC Victim Recantation Ontology."@en ;
     owl:versionIRI <https://cacontology.projectvic.org/recantation/shapes/3.0.0> ;
