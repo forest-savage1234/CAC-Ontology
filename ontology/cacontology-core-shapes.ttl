@@ -525,9 +525,9 @@ cacontology:PhasePrecedesShape rdf:type sh:NodeShape ;
         sh:message "Each cac-core:precedes object must be typed as a Phase instance (or subclass)."@en
     ] .
 
-cacontology:PrecedesPropertyShape rdf:type sh:PropertyShape ;
-    rdfs:label "Precedes Property Shape"@en ;
+cacontology:PrecedesSubjectShape rdf:type sh:NodeShape ;
+    rdfs:label "Precedes Subject Shape"@en ;
     rdfs:comment "Validates that the subject of cac-core:precedes is a Phase instance."@en ;
-    sh:path cac-core:precedes ;
+    sh:targetSubjectsOf cac-core:precedes ;
     sh:class cac-core:Phase ;
     sh:message "The subject of cac-core:precedes must be typed as a Phase instance (or subclass)."@en .

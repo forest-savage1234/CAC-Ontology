@@ -592,8 +592,8 @@ cacontology-sextortion:providesEvidence rdf:type owl:ObjectProperty ;
 
 cacontology-sextortion:CoercionCycle rdf:type owl:Class ;
     rdfs:label "Coercion Cycle"@en ;
-    rdfs:comment "Self-sustaining sextortion loop in which retained imagery becomes perpetual leverage: the offender redeploys the same retained material to demand new content, extending leverage further without acquiring new initial leverage. Structurally distinct from a single threat-delivery event; the cycle has no natural termination except apprehension or removal of material."@en ;
-    rdfs:subClassOf cac-core:Situation, cac-core:ExploitationEvent .
+    rdfs:comment "Self-sustaining sextortion loop in which retained imagery becomes perpetual leverage: the offender redeploys the same retained material to demand new content, extending leverage further without acquiring new initial leverage. Structurally distinct from a single threat-delivery event; the cycle has no natural termination except apprehension or removal of material. Modeled as a complex exploitation event (occurrent) rather than a situation, because gUFO declares events and situations disjoint; the persisting leverage state is carried by the retained artifact via sustainedBy."@en ;
+    rdfs:subClassOf cac-core:ExploitationEvent .
 
 cacontology-sextortion:sustainedBy rdf:type owl:ObjectProperty ;
     rdfs:label "sustained by"@en ;

@@ -37,7 +37,7 @@ Adds four offense-trajectory constructs for state-machine mapping (phases as sta
 
 #### Sextortion module (`cacontology-sextortion`)
 
-- `cacontology-sextortion:CoercionCycle` — self-sustaining leverage loop (subClassOf `cac-core:Situation`, `cac-core:ExploitationEvent`)
+- `cacontology-sextortion:CoercionCycle` — self-sustaining leverage loop (subClassOf `cac-core:ExploitationEvent`; maintainer adjustment: `cac-core:Situation` supertype dropped because gUFO declares events and situations disjoint)
 - `cacontology-sextortion:sustainedBy` — retained leverage artifact powering the cycle
 - `cacontology-sextortion:cyclesBetween` — phase instances forming the loop
 - `cacontology-sextortion:coercionCycleDemandType` — cycle demand enum (`imagery_quota`, `live_conduct`, `financial`, `victim_recruitment`); separate from `ExtortionDemand.demandType` to preserve existing semantics
@@ -70,7 +70,7 @@ Adds four offense-trajectory constructs for state-machine mapping (phases as sta
 #### Core / semantic spine (`cacontology-core-spine`, `cacontology-core-shapes`)
 
 - **New** `cac-core:precedes` — spine-level phase sequencing for offense-trajectory state machines (`rdfs:domain` / `rdfs:range` `cac-core:Phase`; defined in `ontology/cacontology-core-spine.ttl`). Not present on main before this branch. Distinct from pre-existing module-local ordering properties (`cacontology:transitionsTo`, `cacontology-temporal:temporallyPrecedes`, `cacontology-usa-federal:precedesPhase`). UCO and CASE imported ontologies do not define an equivalent property.
-- `PhasePrecedesShape` and `PrecedesPropertyShape` in `ontology/cacontology-core-shapes.ttl`
+- `PhasePrecedesShape` and `PrecedesSubjectShape` in `ontology/cacontology-core-shapes.ttl` (maintainer adjustment: subject-side check uses `sh:targetSubjectsOf` so it actually fires)
 
 ## v3.0.0 - 16 March 2026
 
