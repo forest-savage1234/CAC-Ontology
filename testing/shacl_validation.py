@@ -189,6 +189,7 @@ domain_validations = [
     ('examples_knowledge_graphs/caselinker-state-machine-extensions-example.ttl', 'ontology/cacontology-grooming-shapes.ttl'),
     ('examples_knowledge_graphs/conditioning-phase-offense-trajectory-example.ttl', 'ontology/cacontology-grooming-shapes.ttl'),
     ('examples_knowledge_graphs/caselinker-account-replacement-example.ttl', 'ontology/cacontology-grooming-shapes.ttl'),
+    ('examples_knowledge_graphs/synthetic-legal-outcomes-core-example.ttl', 'ontology/cacontology-legal-outcomes-shapes.ttl'),
 ]
 
 domain_passed = 0
