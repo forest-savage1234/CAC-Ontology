@@ -8,6 +8,7 @@
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
 @prefix investigation: <https://ontology.caseontology.org/case/investigation/> .
+@prefix cacontology-us-ncmec: <https://cacontology.projectvic.org/us/ncmec#> .
 
 @prefix ex: <urn:uuid:> .
 
@@ -18,9 +19,13 @@
 # Collected (UTC): 2026-07-19T05:03:58Z
 # Evidence spans: analytics_demonstration/collected_sources/ncmec-cybertipline-data/normalized.txt (keypoints 1–54)
 # Document namespace (UUIDv5 DNS of source URL): 3163ddce-323b-5805-b7d2-89b277787002
-# Policy: reuse-only ABox; statement/listing Actions for aggregates; no individual tip instances;
-#         no new classes/properties; interactive chart zeros not used as evidence.
-# Validation: Docker pySHACL Conforms (core, us-ncmec, hotlines); ROBOT convert OK; integrity suite OK.
+# Policy: statement/listing Actions for aggregates; no individual tip instances;
+#         interactive chart zeros not used as evidence.
+# Maintainer remodel (v3.1.0): aggregate statistics typed as
+#         cacontology-us-ncmec:AggregateReportStatistic with structured value/unit/period
+#         properties; compound published claims decomposed into one statistic per value.
+#         New node UUIDs are UUIDv5 in the document namespace with names "stat:<slug>".
+# Validation: pySHACL Conforms (core, us-ncmec, hotlines).
 # =============================================================================
 
 ###############################################################################
@@ -31,12 +36,12 @@ ex:c4f17b95-50da-5f23-a352-3d142f1ee68c a uco-observable:ObservableObject ;
     rdfs:label "NCMEC CyberTipline Data — 2025 CyberTipline Report (public HTML source)"@en ;
     uco-core:hasFacet ex:cf30ff7d-29e9-5b7d-a09a-6e298c22bf22 ;
     uco-core:hasFacet ex:dea63d1e-ee69-538f-b6f5-4765196172b8 ;
-    uco-core:hasFacet ex:38f85db4-e3b8-51ad-82f1-2f997bff0b66 ;
     uco-core:hasFacet ex:0c0927b0-c4f8-5a38-952b-478c8110d1d1 .
 
 ex:cf30ff7d-29e9-5b7d-a09a-6e298c22bf22 a uco-observable:ContentDataFacet ;
     uco-observable:mimeType "text/html" ;
-    uco-observable:sizeInBytes 725977 .
+    uco-observable:sizeInBytes 725977 ;
+    uco-observable:hash ex:0518d90b-c33c-559d-8cb7-1d48d9833a93 .
 
 ex:dea63d1e-ee69-538f-b6f5-4765196172b8 a uco-observable:URLFacet ;
     uco-observable:url <https://www.missingkids.org/cybertiplinedata> .
@@ -44,23 +49,20 @@ ex:dea63d1e-ee69-538f-b6f5-4765196172b8 a uco-observable:URLFacet ;
 ex:0c0927b0-c4f8-5a38-952b-478c8110d1d1 a uco-observable:FileFacet ;
     uco-observable:filePath "analytics_demonstration/collected_sources/ncmec-cybertipline-data/source.html" .
 
-ex:38f85db4-e3b8-51ad-82f1-2f997bff0b66 a uco-observable:HashFacet ;
-    uco-observable:hash ex:0518d90b-c33c-559d-8cb7-1d48d9833a93 .
-
 ex:0518d90b-c33c-559d-8cb7-1d48d9833a93 a uco-types:Hash ;
     uco-types:hashMethod "SHA-256" ;
     uco-types:hashValue "db3cf9214fb28679b5f709ec54a36aff3aa0fa0bd431ae6fff3bb52d75e9e9c4" .
 
 ex:b4e0227c-13ba-5997-aa36-d043becda92e a uco-core:UcoObject ;
     rdfs:label "CAC Ontology Path A Collection Agent"@en ;
-    uco-core:description "Agent performing public-page collection and keypoint normalization for CAC Ontology Path A ingestion (caseId ncmec-cybertipline-data)."@en .
+    uco-core:description "Agent performing public-page collection and keypoint normalization for CAC Ontology Path A ingestion (caseId ncmec-cybertipline-data)." .
 
 ex:d40757a2-0bf4-5a13-861a-0a2688fadf1a a investigation:InvestigativeAction ;
     rdfs:label "Collection action: NCMEC CyberTipline Data public webpage"@en ;
     uco-action:startTime "2026-07-19T05:03:58Z"^^xsd:dateTime ;
     uco-action:performer ex:b4e0227c-13ba-5997-aa36-d043becda92e ;
     uco-action:object ex:c4f17b95-50da-5f23-a352-3d142f1ee68c ;
-    uco-core:description "manual (HTTP GET via PowerShell Invoke-WebRequest) by CAC Ontology Path A agent; public page only. Confidence: high."@en .
+    uco-core:description "manual (HTTP GET via PowerShell Invoke-WebRequest) by CAC Ontology Path A agent; public page only. Confidence: high." .
 
 ex:d8bb8c02-d826-5735-992f-bc4306e3d092 a uco-action:Action ;
     rdfs:label "Normalization action: HTML to numbered keypoints (normalized.txt)"@en ;
@@ -68,23 +70,20 @@ ex:d8bb8c02-d826-5735-992f-bc4306e3d092 a uco-action:Action ;
     uco-action:performer ex:b4e0227c-13ba-5997-aa36-d043becda92e ;
     uco-action:object ex:c4f17b95-50da-5f23-a352-3d142f1ee68c ;
     uco-action:result ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    uco-core:description "manual_substantive_extract + whitespace_normalize + strip_nav/script/donation chrome + keypoint_normalize (numbered statements 1-54). Confidence: high (deterministic for evidence pointers)."@en .
+    uco-core:description "manual_substantive_extract + whitespace_normalize + strip_nav/script/donation chrome + keypoint_normalize (numbered statements 1-54). Confidence: high (deterministic for evidence pointers)." .
 
 ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c a uco-observable:ObservableObject ;
     rdfs:label "NCMEC CyberTipline Data page (normalized keypoints)"@en ;
     uco-core:hasFacet ex:4427d774-1a28-5968-bdbf-fcf61a9eda74 ;
-    uco-core:hasFacet ex:b0539e64-e8fb-59fa-9959-711e8cde0aa6 ;
-    uco-core:hasFacet ex:f291dd89-088e-57a3-875f-e079d2f936eb .
+    uco-core:hasFacet ex:b0539e64-e8fb-59fa-9959-711e8cde0aa6 .
 
 ex:4427d774-1a28-5968-bdbf-fcf61a9eda74 a uco-observable:ContentDataFacet ;
     uco-observable:mimeType "text/plain" ;
-    uco-observable:sizeInBytes 8746 .
+    uco-observable:sizeInBytes 8746 ;
+    uco-observable:hash ex:c9031b6a-be09-58f2-99bd-8a00b3e87a8c .
 
 ex:b0539e64-e8fb-59fa-9959-711e8cde0aa6 a uco-observable:FileFacet ;
     uco-observable:filePath "analytics_demonstration/collected_sources/ncmec-cybertipline-data/normalized.txt" .
-
-ex:f291dd89-088e-57a3-875f-e079d2f936eb a uco-observable:HashFacet ;
-    uco-observable:hash ex:c9031b6a-be09-58f2-99bd-8a00b3e87a8c .
 
 ex:c9031b6a-be09-58f2-99bd-8a00b3e87a8c a uco-types:Hash ;
     uco-types:hashMethod "SHA-256" ;
@@ -94,8 +93,8 @@ ex:b29c9903-8cb7-5634-8649-207aebc50295 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance record: collection of NCMEC CyberTipline Data public webpage"@en ;
     investigation:exhibitNumber "DOC-NCMEC-CYBERTIP-DATA-2025-0001" ;
     uco-core:object ex:c4f17b95-50da-5f23-a352-3d142f1ee68c ;
-    investigation:provenanceRecordAction ex:d40757a2-0bf4-5a13-861a-0a2688fadf1a ;
-    uco-core:description "Evidence pointer: analytics_demonstration/collected_sources/ncmec-cybertipline-data/manifest.yaml + source.html (SHA-256 db3cf921…). Confidence: high."@en .
+    uco-core:object ex:d40757a2-0bf4-5a13-861a-0a2688fadf1a ;
+    uco-core:description "Evidence pointer: analytics_demonstration/collected_sources/ncmec-cybertipline-data/manifest.yaml + source.html (SHA-256 db3cf921…). Confidence: high." .
 
 ###############################################################################
 # Core organizations and programs (page-grounded)
@@ -104,31 +103,31 @@ ex:b29c9903-8cb7-5634-8649-207aebc50295 a investigation:ProvenanceRecord ;
 ex:2f8ad703-8f71-5099-bf53-5c27da6bdc61 a uco-identity:Organization ;
     rdfs:label "National Center for Missing & Exploited Children (NCMEC)"@en ;
     uco-core:name "National Center for Missing & Exploited Children" ;
-    uco-core:description "Publisher of the CyberTipline Data public aggregate statistics page; operates CyberTipline. Typed as uco-identity:Organization only (Path A reuse-only); domain dual-type HotlineOrganization deferred to avoid ungrounded capability-property minCount traps."@en .
+    uco-core:description "Publisher of the CyberTipline Data public aggregate statistics page; operates CyberTipline. Typed as uco-identity:Organization only (Path A reuse-only); domain dual-type HotlineOrganization deferred to avoid ungrounded capability-property minCount traps." .
 
 ex:bb750857-1349-5375-87a8-0b7293e7f2ca a uco-core:UcoObject ;
     rdfs:label "CyberTipline (NCMEC program)"@en ;
-    uco-core:description "Created in 1998 to receive reports of suspected child sexual exploitation from the public and electronic service providers (ESPs); supported by OJJDP and partners; functions as a global clearinghouse. Typed as program concept (not millions of tip instances)."@en .
+    uco-core:description "Created in 1998 to receive reports of suspected child sexual exploitation from the public and electronic service providers (ESPs); supported by OJJDP and partners; functions as a global clearinghouse. Typed as program concept (not millions of tip instances)." .
 
 ex:8e8e5deb-4049-5711-8730-152415db9c0b a uco-identity:Organization ;
     rdfs:label "Office of Juvenile Justice and Delinquency Prevention (OJJDP)"@en ;
-    uco-core:description "DOJ component cited as supporting CyberTipline and funding acknowledgment; complementary transparency report noted on page."@en .
+    uco-core:description "DOJ component cited as supporting CyberTipline and funding acknowledgment; complementary transparency report noted on page." .
 
 ex:3d9e6ca5-45e2-5a44-ad05-bbcdeb82f6dd a uco-identity:Organization ;
     rdfs:label "U.S. Department of Justice (DOJ)"@en ;
-    uco-core:description "Parent agency for OJJDP funding acknowledgment; page states DOJ does not operate/control/endorse the website."@en .
+    uco-core:description "Parent agency for OJJDP funding acknowledgment; page states DOJ does not operate/control/endorse the website." .
 
 ex:f7025aa5-5c29-5018-b43f-dda0423f3197 a uco-identity:Organization ;
     rdfs:label "Federal Bureau of Investigation (FBI)"@en ;
-    uco-core:description "Named among domestic Case Management Tool (CMT) access holders."@en .
+    uco-core:description "Named among domestic Case Management Tool (CMT) access holders." .
 
 ex:8e9c82a1-17cb-51a3-86ef-784fd1701b97 a uco-identity:Organization ;
     rdfs:label "Homeland Security Investigations (HSI)"@en ;
-    uco-core:description "Named among domestic Case Management Tool (CMT) access holders."@en .
+    uco-core:description "Named among domestic Case Management Tool (CMT) access holders." .
 
 ex:f6a5ebc1-a02e-5987-8c8e-f3d886d3be2e a uco-identity:Organization ;
     rdfs:label "ICAC Task Forces (domestic CMT access cohort)"@en ;
-    uco-core:description "Page states domestic CMT access includes all ICAC Task Forces; CyberTipline reports made available to ICAC Task Forces and other agencies."@en .
+    uco-core:description "Page states domestic CMT access includes all ICAC Task Forces; CyberTipline reports made available to ICAC Task Forces and other agencies." .
 
 ex:5a2f3bc2-1ad7-5c1f-88a9-47ef23e724a9 a uco-identity:Organization ;
     rdfs:label "Interpol"@en .
@@ -156,24 +155,24 @@ ex:cc3b16d7-35f5-52fb-91a5-8311b64adce9 a uco-identity:Organization ;
 
 ex:d8e7cda4-9b06-57a9-88f5-1144190b50bb a uco-identity:Organization ;
     rdfs:label "INHOPE"@en ;
-    uco-core:description "NCMEC founding member; page states 50 member hotlines across six continents."@en .
+    uco-core:description "NCMEC founding member; page states 50 member hotlines across six continents." .
 
 ex:620494f1-d67b-5045-bdbd-2b04bf6e83cf a uco-identity:Organization ;
     rdfs:label "Amazon AI Services"@en ;
     uco-core:name "Amazon AI Services" ;
-    uco-core:description "Named on page for 2025 GAI nexus submissions related to potential CSAM in AI training datasets and for early-2026 reporting improvements. Modeled only as NCMEC public transparency reference (uco-identity:Organization); not dual-typed as ElectronicServiceProvider because page does not ground ESP capability properties required by shapes."@en .
+    uco-core:description "Named on page for 2025 GAI nexus submissions related to potential CSAM in AI training datasets and for early-2026 reporting improvements. Modeled only as NCMEC public transparency reference (uco-identity:Organization); not dual-typed as ElectronicServiceProvider because page does not ground ESP capability properties required by shapes." .
 
 ex:3f61c3ec-5cb5-57eb-9bec-ae32a184a527 a uco-identity:Organization ;
     rdfs:label "Meta"@en ;
-    uco-core:description "Named as supporting development of Case Management Tool (CMT) with OJJDP."@en .
+    uco-core:description "Named as supporting development of Case Management Tool (CMT) with OJJDP." .
 
 ex:b26d6498-f3c9-563c-8021-6518eb5116e7 a uco-core:UcoObject ;
     rdfs:label "Take It Down (NCMEC hash-based removal-assistance service)"@en ;
-    uco-core:description "Free hash-based removal-assistance service for explicit imagery of persons under 18; multi-language availability stated as of 2025-12-31."@en .
+    uco-core:description "Free hash-based removal-assistance service for explicit imagery of persons under 18; multi-language availability stated as of 2025-12-31." .
 
 ex:72489c87-85b4-5305-8434-53de4a6f986b a uco-core:UcoObject ;
     rdfs:label "Case Management Tool (CMT)"@en ;
-    uco-core:description "Tool developed with support from OJJDP and Meta; enables secure/quick report sharing with domestic and international LE; UI available in eight languages."@en .
+    uco-core:description "Tool developed with support from OJJDP and Meta; enables secure/quick report sharing with domestic and international LE; UI available in eight languages." .
 
 ###############################################################################
 # Reporting categories and process concepts (reuse-friendly concept nodes)
@@ -181,171 +180,427 @@ ex:72489c87-85b4-5305-8434-53de4a6f986b a uco-core:UcoObject ;
 
 ex:78c3a9cb-a086-5206-bb9a-01e26c6e2ee7 a uco-core:UcoObject ;
     rdfs:label "CSAM (largest CyberTipline reporting category)"@en ;
-    uco-core:description "Page states CSAM is the largest CyberTipline reporting category."@en .
+    uco-core:description "Page states CSAM is the largest CyberTipline reporting category." .
 
 ex:56815b6f-4cd0-508f-a41a-624343dad6df a uco-core:UcoObject ;
     rdfs:label "Online enticement (CyberTipline category)"@en ;
-    uco-core:description "Individual communicates with someone believed to be a child via the internet with intent to commit a sexual offense or abduction; includes sextortion and grooming pathways. Conceptual reuse: us-ncmec OnlineEnticementIncident (category-level claim object, not a case instance)."@en .
+    uco-core:description "Individual communicates with someone believed to be a child via the internet with intent to commit a sexual offense or abduction; includes sextortion and grooming pathways. Conceptual reuse: us-ncmec OnlineEnticementIncident (category-level claim object, not a case instance)." .
 
 ex:c90cd31f-193d-5159-9685-029d72feba0a a uco-core:UcoObject ;
     rdfs:label "Child sex trafficking (CyberTipline category)"@en ;
-    uco-core:description "Among fastest-growing categories in 2025; REPORT Act mandated ESP reporting. Conceptual reuse: us-ncmec ChildSexTraffickingIncident (category-level claim object)."@en .
+    uco-core:description "Among fastest-growing categories in 2025; REPORT Act mandated ESP reporting. Conceptual reuse: us-ncmec ChildSexTraffickingIncident (category-level claim object)." .
 
 ex:76618931-af23-5bd0-92ee-3dff179a0f57 a uco-core:UcoObject ;
     rdfs:label "Sadistic online exploitation (CyberTipline category)"@en ;
-    uco-core:description "More than 3,000 reports in 2025; largely driven by enhanced industry reporting."@en .
+    uco-core:description "More than 3,000 reports in 2025; largely driven by enhanced industry reporting." .
 
 ex:94d8af47-b1ea-5305-81fa-88dfb4446d3d a uco-core:UcoObject ;
     rdfs:label "Generative AI (GAI) nexus reporting (2025 trend)"@en ;
-    uco-core:description "Emerging 2025 trend: generative AI in child sexual exploitation reporting."@en .
+    uco-core:description "Emerging 2025 trend: generative AI in child sexual exploitation reporting." .
 
 ex:3d8150a6-e9ac-5553-bc05-98561323d889 a uco-core:UcoObject ;
     rdfs:label "Financial sextortion (reported under online enticement)"@en ;
-    uco-core:description "Reported under online enticement; 2025 average 137 financial sextortion reports per day (37% increase vs prior year)."@en .
+    uco-core:description "Reported under online enticement; 2025 average 137 financial sextortion reports per day (37% increase vs prior year)." .
 
 ex:bdebaaa4-a87f-5cca-a9f6-3554d49a18c0 a uco-core:UcoObject ;
     rdfs:label "Referral designation (CyberTipline response)"@en ;
-    uco-core:description "Tech company provides sufficient information for law enforcement (usually user details, imagery, possible location of child or offender)."@en .
+    uco-core:description "Tech company provides sufficient information for law enforcement (usually user details, imagery, possible location of child or offender)." .
 
 ex:63ecc0f9-547f-5a42-9220-256cb03f88a8 a uco-core:UcoObject ;
     rdfs:label "Informational designation (CyberTipline response)"@en ;
-    uco-core:description "Insufficient information or viral imagery reported many times."@en .
+    uco-core:description "Insufficient information or viral imagery reported many times." .
 
 ex:3f77036d-59fb-52c3-b12b-197c199c1c42 a uco-core:UcoObject ;
     rdfs:label "Hash matching automation (NCMEC analyst workflow)"@en ;
-    uco-core:description "Automates recognition of previously labeled files to reduce duplicative analyst review and prioritize newer/urgent imagery."@en .
+    uco-core:description "Automates recognition of previously labeled files to reduce duplicative analyst review and prioritize newer/urgent imagery." .
 
 ex:cc9aada3-c7c1-57f7-a204-a3b585abc57d a uco-core:UcoObject ;
     rdfs:label "Hash sharing with voluntary ESPs"@en ;
-    uco-core:description "Analysts review image/video at least three times before adding hash to list shared with companies; as of 2025-12-31 more than 12.1 million hashes shared with 78 voluntary ESPs. Modeled as concept claim object (not HashSharingProtocol instance) to avoid inventing protocol-level properties beyond page text."@en .
+    uco-core:description "Analysts review image/video at least three times before adding hash to list shared with companies; as of 2025-12-31 more than 12.1 million hashes shared with 78 voluntary ESPs. Modeled as concept claim object (not HashSharingProtocol instance) to avoid inventing protocol-level properties beyond page text." .
 
 ex:49d45d8f-eb73-552c-836f-accc6b78fff6 a uco-core:UcoObject ;
     rdfs:label "Removal notice categories (CSAM; Exploitative; Predatory Text)"@en ;
-    uco-core:description "CSAM; Exploitative (identified victims, may not meet legal CSAM threshold); Predatory Text (predatory comments or personal information about identified victim/survivor)."@en .
+    uco-core:description "CSAM; Exploitative (identified victims, may not meet legal CSAM threshold); Predatory Text (predatory comments or personal information about identified victim/survivor)." .
 
 ex:8bc02ae9-233e-56a4-87a7-4e97a1e2acff a uco-core:UcoObject ;
     rdfs:label "18 U.S.C. § 2258A ESP reporting duty"@en ;
-    uco-core:description "Requires U.S. companies to report suspected CSAM, online enticement, or child sex trafficking on their platforms/servers to the CyberTipline."@en .
+    uco-core:description "Requires U.S. companies to report suspected CSAM, online enticement, or child sex trafficking on their platforms/servers to the CyberTipline." .
 
 ex:ae8837d5-a22c-5c6b-8262-16d74b823917 a uco-core:UcoObject ;
     rdfs:label "REPORT Act 2024 (impact on category growth)"@en ;
-    uco-core:description "Requires ESPs to report online enticement and child sex trafficking in the same way they report CSAM; page links 2025 category growth trends to this mandate."@en .
+    uco-core:description "Requires ESPs to report online enticement and child sex trafficking in the same way they report CSAM; page links 2025 category growth trends to this mandate." .
 
 ex:7b5bac70-191e-57a4-a038-cf5b3c3bd8c0 a uco-core:UcoObject ;
     rdfs:label "ESP CyberTipline reporting cohort (2025)"@en ;
-    uco-core:description "Electronic service provider reports to CyberTipline in 2025 (21,181,300 of 21.3M total)."@en .
+    uco-core:description "Electronic service provider reports to CyberTipline in 2025 (21,181,300 of 21.3M total)." .
 
 ex:79eef726-82e4-5741-a67f-0eff172059a8 a uco-core:UcoObject ;
     rdfs:label "Public CyberTipline reporting cohort (2025)"@en ;
-    uco-core:description "Public reports to CyberTipline in 2025 (170,193 of 21.3M total)."@en .
+    uco-core:description "Public reports to CyberTipline in 2025 (170,193 of 21.3M total)." .
 
 ex:1fcd9a2f-a3c2-57c3-a77c-50076895d1a7 a uco-core:UcoObject ;
     rdfs:label "ESPs with majority inadequate jurisdictional information (NCMEC-listed, ≥100 reports)"@en ;
-    uco-core:description "Named on page (among companies with ≥100 reports) where more than half of reports lacked adequate jurisdictional information: Amazon AI Services; Box, Inc./Box.com; Character Technologies, Inc.; Grindr; Invoke AI, Inc.; Lightspeed Systems; Padlet/Wallwisher, Inc./cloudfront; Redgifs.com; Streamable, Inc.; Wizz App; X.AI LLC; Zoom Video Communications, Inc. Modeled as one transparency claim object (no defamation-style expansion beyond page text)."@en .
+    uco-core:description "Named on page (among companies with ≥100 reports) where more than half of reports lacked adequate jurisdictional information: Amazon AI Services; Box, Inc./Box.com; Character Technologies, Inc.; Grindr; Invoke AI, Inc.; Lightspeed Systems; Padlet/Wallwisher, Inc./cloudfront; Redgifs.com; Streamable, Inc.; Wizz App; X.AI LLC; Zoom Video Communications, Inc. Modeled as one transparency claim object (no defamation-style expansion beyond page text)." .
 
 ex:a770a576-808f-5bf7-aa43-7c0bbd5db9b6 a uco-core:UcoObject ;
     rdfs:label "Early 2026 reporting improvements (Amazon AI Services, Grindr, X.AI LLC)"@en ;
-    uco-core:description "NCMEC observed reporting improvements enabling more actionable referrals/notifications."@en .
+    uco-core:description "NCMEC observed reporting improvements enabling more actionable referrals/notifications." .
 
 ###############################################################################
-# Aggregate statistic claim objects (numbers in description; no tip minting)
+# Aggregate statistics (typed cacontology-us-ncmec:AggregateReportStatistic;
+# one primary value per node; no tip minting)
 ###############################################################################
 
-ex:0be494f1-c542-5e54-84a2-46cbcf9c1fad a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 CyberTipline received 21.3 million reports"@en ;
-    uco-core:description "In 2025, the CyberTipline received 21.3 million reports."@en .
+ex:0be494f1-c542-5e54-84a2-46cbcf9c1fad a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 CyberTipline received 21.3 million reports"@en ;
+    cacontology-us-ncmec:statisticValue 21300000 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:bb750857-1349-5375-87a8-0b7293e7f2ca ;
+    uco-core:description "In 2025, the CyberTipline received 21.3 million reports." .
 
-ex:973e4b99-f79e-57bf-bee6-fec52b0822cc a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 urgent/imminent-danger escalations >53,000"@en ;
-    uco-core:description "NCMEC identified and escalated for law enforcement more than 53,000 reports that were urgent or involved a child in imminent danger."@en .
+ex:973e4b99-f79e-57bf-bee6-fec52b0822cc a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 urgent/imminent-danger escalations >53,000"@en ;
+    cacontology-us-ncmec:statisticValue 53000 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "NCMEC identified and escalated for law enforcement more than 53,000 reports that were urgent or involved a child in imminent danger." .
 
-ex:8ee4f05e-5354-595f-aacb-6bf89dc4c1bd a uco-core:UcoObject ;
-    rdfs:label "Stat claim: online enticement +158% vs 2024"@en ;
-    uco-core:description "Online enticement reports increased 158% from 2024."@en .
+ex:8ee4f05e-5354-595f-aacb-6bf89dc4c1bd a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: online enticement report growth +158% vs 2024"@en ;
+    cacontology-us-ncmec:statisticValue 158 ;
+    cacontology-us-ncmec:statisticUnit "percent" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:56815b6f-4cd0-508f-a41a-624343dad6df ;
+    uco-core:description "Online enticement reports increased 158% from 2024." .
 
-ex:5b6c03e6-beeb-59ad-ace5-01fd1940d5a8 a uco-core:UcoObject ;
-    rdfs:label "Stat claim: child sex trafficking +323% vs 2024"@en ;
-    uco-core:description "Child sex trafficking reports increased 323% from 2024."@en .
+ex:5b6c03e6-beeb-59ad-ace5-01fd1940d5a8 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: child sex trafficking report growth +323% vs 2024"@en ;
+    cacontology-us-ncmec:statisticValue 323 ;
+    cacontology-us-ncmec:statisticUnit "percent" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:c90cd31f-193d-5159-9685-029d72feba0a ;
+    uco-core:description "Child sex trafficking reports increased 323% from 2024." .
 
-ex:623625a4-d6e3-5068-98e5-2abe570575c5 a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 ESP reports contained 61.8M files"@en ;
-    uco-core:description "ESP reports contained 61.8 million images, videos, and other files related to the reported child sexual exploitation incident (majority related to suspected CSAM)."@en .
+ex:623625a4-d6e3-5068-98e5-2abe570575c5 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 ESP reports contained 61.8M files"@en ;
+    cacontology-us-ncmec:statisticValue 61800000 ;
+    cacontology-us-ncmec:statisticUnit "files" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "ESP reports contained 61.8 million images, videos, and other files related to the reported child sexual exploitation incident (majority related to suspected CSAM)." .
 
-ex:df4f5850-9b28-5f7a-b694-f6c060cc4e19 a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 file breakdown 26.3M videos / 29.4M images / 6.1M other"@en ;
-    uco-core:description "File breakdown (2025): 26.3M videos; 29.4M images; 6.1M other files."@en .
+ex:df4f5850-9b28-5f7a-b694-f6c060cc4e19 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 ESP report files — 26.3M videos"@en ;
+    cacontology-us-ncmec:statisticValue 26300000 ;
+    cacontology-us-ncmec:statisticUnit "video files" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "File breakdown (2025): 26.3M videos (of 61.8M total files in ESP reports)." .
 
-ex:b910693a-2d46-5620-be7d-41bcee02c267 a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 online enticement 1.4M reports"@en ;
-    uco-core:description "1.4 million online enticement reports, including more than 800 travel-to-meet reports and more than 80,000 sextortion reports."@en .
+ex:56b9455b-ed37-54ba-a822-94a6533ff519 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 ESP report files — 29.4M images"@en ;
+    cacontology-us-ncmec:statisticValue 29400000 ;
+    cacontology-us-ncmec:statisticUnit "image files" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "File breakdown (2025): 29.4M images (of 61.8M total files in ESP reports)." .
 
-ex:51f4e50f-fa19-594a-9d59-3fceeebb25c6 a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 financial sextortion avg 137 reports/day (+37%)"@en ;
-    uco-core:description "2025 average 137 financial sextortion reports per day (37% increase vs prior year)."@en .
+ex:0e340713-172c-563e-9a76-13f072ad0263 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 ESP report files — 6.1M other files"@en ;
+    cacontology-us-ncmec:statisticValue 6100000 ;
+    cacontology-us-ncmec:statisticUnit "other files" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "File breakdown (2025): 6.1M other files (of 61.8M total files in ESP reports)." .
 
-ex:5c62f80a-6844-52eb-80af-0fce71c01b9f a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 sadistic online exploitation >3,000 reports (>+125% YoY)"@en ;
-    uco-core:description "More than 3,000 reports in 2025 (>125% increase YoY), largely driven by enhanced industry reporting."@en .
+ex:b910693a-2d46-5620-be7d-41bcee02c267 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 online enticement 1.4M reports"@en ;
+    cacontology-us-ncmec:statisticValue 1400000 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:56815b6f-4cd0-508f-a41a-624343dad6df ;
+    uco-core:description "1.4 million online enticement reports in 2025." .
 
-ex:5b56dbaf-c337-559d-a10b-22aff6f418da a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 GAI nexus reports 1.5M"@en ;
-    uco-core:description "2025 GAI nexus reports: 1.5 million; more than 1.1 million from Amazon AI Services related to potential CSAM in AI training datasets (those submissions lacked actionable offender/victim information)."@en .
+ex:5f73e085-9490-5a38-bd92-6855f4bed0a9 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 travel-to-meet reports >800"@en ;
+    cacontology-us-ncmec:statisticValue 800 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:56815b6f-4cd0-508f-a41a-624343dad6df ;
+    uco-core:description "More than 800 travel-to-meet reports within 2025 online enticement reporting." .
 
-ex:68d57072-095b-5aa9-a0ed-cd11ea4776f2 a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 GAI offender-related reports >182,000 (excl. Amazon training datasets)"@en ;
-    uco-core:description "Excluding Amazon AI training-dataset submissions: more than 182,000 reports involved offenders possessing, generating, or attempting to generate GAI CSAM."@en .
+ex:4b4ebb3a-1424-5ade-8d79-852b16ed34fc a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 sextortion reports >80,000"@en ;
+    cacontology-us-ncmec:statisticValue 80000 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:56815b6f-4cd0-508f-a41a-624343dad6df ;
+    uco-core:description "More than 80,000 sextortion reports within 2025 online enticement reporting." .
 
-ex:5da25013-d04d-5df5-8fb1-3a4dfbd88abb a uco-core:UcoObject ;
-    rdfs:label "Stat claim: since 2023 GAI tracking >275 victims; >158,000 GAI CSAM media"@en ;
-    uco-core:description "Since 2023 GAI tracking: more than 275 GAI CSAM victims identified; more than 158,000 images/videos categorized as GAI CSAM."@en .
+ex:51f4e50f-fa19-594a-9d59-3fceeebb25c6 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 financial sextortion avg 137 reports/day (+37%)"@en ;
+    cacontology-us-ncmec:statisticValue 137 ;
+    cacontology-us-ncmec:statisticUnit "reports per day" ;
+    cacontology-us-ncmec:statisticQualifier "average" ;
+    cacontology-us-ncmec:percentChangeFromPriorPeriod 37 ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:3d8150a6-e9ac-5553-bc05-98561323d889 ;
+    uco-core:description "2025 average 137 financial sextortion reports per day (37% increase vs prior year)." .
 
-ex:7d5465d0-06dc-55ca-a30b-7cbad0a75112 a uco-core:UcoObject ;
-    rdfs:label "Stat claim: >2,000 ESPs registered; ~300 companies submitted; five ESPs >75% of reports"@en ;
-    uco-core:description "More than 2,000 ESPs registered to report; 23% non-U.S.-based voluntary reporters; just over 300 companies submitted reports in 2025; five ESPs accounted for more than 75% of reports."@en .
+ex:5c62f80a-6844-52eb-80af-0fce71c01b9f a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 sadistic online exploitation >3,000 reports (>+125% YoY)"@en ;
+    cacontology-us-ncmec:statisticValue 3000 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:percentChangeFromPriorPeriod 125 ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:76618931-af23-5bd0-92ee-3dff179a0f57 ;
+    uco-core:description "More than 3,000 reports in 2025 (>125% increase YoY), largely driven by enhanced industry reporting." .
 
-ex:a8a783e6-9aa0-5407-b56d-098a0fea1cd2 a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 source split 170,193 public / 21,181,300 ESP"@en ;
-    uco-core:description "2025 report source split: 170,193 public; 21,181,300 ESP (total 21.3 million)."@en .
+ex:5b56dbaf-c337-559d-a10b-22aff6f418da a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 GAI nexus reports 1.5M"@en ;
+    cacontology-us-ncmec:statisticValue 1500000 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:94d8af47-b1ea-5305-81fa-88dfb4446d3d ;
+    uco-core:description "2025 GAI nexus reports: 1.5 million." .
 
-ex:9208715b-18c3-59c8-991f-da45092384d5 a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 victim-direct public reports >5,700 (>+100% vs 2024)"@en ;
-    uco-core:description "More than 5,700 reports directly from the victim (>100% increase from 2024)."@en .
+ex:834a8742-1710-5042-9045-bb17338a6e27 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 Amazon AI Services GAI training-dataset submissions >1.1M"@en ;
+    cacontology-us-ncmec:statisticValue 1100000 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:94d8af47-b1ea-5305-81fa-88dfb4446d3d ;
+    uco-core:description "More than 1.1 million of the 2025 GAI nexus reports came from Amazon AI Services related to potential CSAM in AI training datasets (those submissions lacked actionable offender/victim information)." .
 
-ex:14ba4816-ea5e-58b7-99bf-12853bc5b60d a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 Take It Down >130,000 submissions / >273,000 images-videos"@en ;
-    uco-core:description "2025: more than 130,000 submissions covering more than 273,000 images/videos; as of 2025-12-31 available in 36 languages; 2025 site >1.6M visitors and >4.2M page views."@en .
+ex:68d57072-095b-5aa9-a0ed-cd11ea4776f2 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 GAI offender-related reports >182,000 (excl. Amazon training datasets)"@en ;
+    cacontology-us-ncmec:statisticValue 182000 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:94d8af47-b1ea-5305-81fa-88dfb4446d3d ;
+    uco-core:description "Excluding Amazon AI training-dataset submissions: more than 182,000 reports involved offenders possessing, generating, or attempting to generate GAI CSAM." .
 
-ex:ebbf236e-7b4b-5419-b8c2-955157943435 a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 >18.8M referred / >4.5M informational"@en ;
-    uco-core:description "More than 18.8 million reports referred to law enforcement; more than 4.5 million designated informational when made available to law enforcement."@en .
+ex:5da25013-d04d-5df5-8fb1-3a4dfbd88abb a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: since 2023 GAI tracking >275 victims identified"@en ;
+    cacontology-us-ncmec:statisticValue 275 ;
+    cacontology-us-ncmec:statisticUnit "identified victims" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2023-2025 cumulative" ;
+    cacontology-us-ncmec:statisticTopic ex:94d8af47-b1ea-5305-81fa-88dfb4446d3d ;
+    uco-core:description "Since 2023 GAI tracking: more than 275 GAI CSAM victims identified." .
 
-ex:1d5d3bae-ab65-5800-a698-0e5e03e70e5c a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 >10% tech-industry reports lacked adequate jurisdiction info"@en ;
-    uco-core:description "More than 10% of tech-industry CyberTipline reports in 2025 lacked adequate information to determine where the offense occurred."@en .
+ex:baecb2ba-677a-5aaa-be28-a47c9aba8d40 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: since 2023 >158,000 media categorized as GAI CSAM"@en ;
+    cacontology-us-ncmec:statisticValue 158000 ;
+    cacontology-us-ncmec:statisticUnit "files" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2023-2025 cumulative" ;
+    cacontology-us-ncmec:statisticTopic ex:94d8af47-b1ea-5305-81fa-88dfb4446d3d ;
+    uco-core:description "Since 2023 GAI tracking: more than 158,000 images/videos categorized as GAI CSAM." .
 
-ex:cb6ae249-8c95-5a12-a794-6ffd95efdea6 a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 unique content rates (images 48%; videos 28%)"@en ;
-    uco-core:description "Of 29.4M images, 13.9M unique (48%); of 26.3M videos, 7.3M unique (28%). Example recirculation: one child's abusive imagery circulated 20 years and appeared more than 1.4 million times in NCMEC submissions (illustrative aggregate; no personal identifiers)."@en .
+ex:7d5465d0-06dc-55ca-a30b-7cbad0a75112 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: >2,000 ESPs registered to report"@en ;
+    cacontology-us-ncmec:statisticValue 2000 ;
+    cacontology-us-ncmec:statisticUnit "organizations" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "More than 2,000 ESPs registered to report; 23% non-U.S.-based voluntary reporters." .
 
-ex:61fb695a-291d-5b14-9753-95fc0da9e2e2 a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 files labeled >14.6M; cumulative >77.1M as of 2025-12-31"@en ;
-    uco-core:description "Files labeled: more than 14.6 million in 2025; more than 77.1 million cumulative as of 2025-12-31. Analysts label for content type, estimated age range, and prioritization cues."@en .
+ex:8322b3bd-b5c4-5849-9be9-4525acdcfca9 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 companies submitting reports just over 300"@en ;
+    cacontology-us-ncmec:statisticValue 300 ;
+    cacontology-us-ncmec:statisticUnit "organizations" ;
+    cacontology-us-ncmec:statisticQualifier "just over" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "Just over 300 companies submitted reports in 2025." .
 
-ex:05a54441-22be-5211-98c4-9e45fdf18f9c a uco-core:UcoObject ;
-    rdfs:label "Stat claim: as of 2025-12-31 >12.1M hashes shared with 78 voluntary ESPs"@en ;
-    uco-core:description "As of 2025-12-31, more than 12.1 million hashes shared with 78 voluntary ESPs."@en .
+ex:20a3ef10-f1de-5319-be31-ca8eb857071e a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 five ESPs accounted for >75% of reports"@en ;
+    cacontology-us-ncmec:statisticValue 75 ;
+    cacontology-us-ncmec:statisticUnit "percent" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "Five ESPs accounted for more than 75% of 2025 reports." .
 
-ex:8b9422be-a797-52d5-90dd-a38219505d4a a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 >172,000 removal notices; avg take-down 2.6 days"@en ;
-    uco-core:description "In 2025: more than 172,000 notices issued; average take-down time 2.6 days."@en .
+ex:a8a783e6-9aa0-5407-b56d-098a0fea1cd2 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 public-source reports 170,193"@en ;
+    cacontology-us-ncmec:statisticValue 170193 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:79eef726-82e4-5741-a67f-0eff172059a8 ;
+    uco-core:description "2025 report source split: 170,193 public reports (of 21.3 million total)." .
 
-ex:ba4b569b-49b0-59b0-a125-f5797a76a5a4 a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 geographic origin of upload 77% outside US / 9% US / 14% unknown"@en ;
-    uco-core:description "2025 geographic origin (upload): 77% outside U.S.; 9% U.S.-based; 14% unknown origin."@en .
+ex:66511022-8761-5fb9-9310-800dd0100fb4 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 ESP-source reports 21,181,300"@en ;
+    cacontology-us-ncmec:statisticValue 21181300 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:7b5bac70-191e-57a4-a038-cf5b3c3bd8c0 ;
+    uco-core:description "2025 report source split: 21,181,300 ESP reports (of 21.3 million total)." .
 
-ex:7216d0da-8342-59f6-ad26-900d831f0b55 a uco-core:UcoObject ;
-    rdfs:label "Stat claim: 2025 >2M reports resolved to US (1.9M state-specific; 153k state unknown)"@en ;
-    uco-core:description "More than 2 million reports resolved to the U.S. (all 50 states, D.C., Puerto Rico, other territories); 1.9M to a specific state; 153,000 state unknown."@en .
+ex:9208715b-18c3-59c8-991f-da45092384d5 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 victim-direct public reports >5,700 (>+100% vs 2024)"@en ;
+    cacontology-us-ncmec:statisticValue 5700 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:percentChangeFromPriorPeriod 100 ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "More than 5,700 reports directly from the victim (>100% increase from 2024)." .
+
+ex:14ba4816-ea5e-58b7-99bf-12853bc5b60d a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 Take It Down submissions >130,000"@en ;
+    cacontology-us-ncmec:statisticValue 130000 ;
+    cacontology-us-ncmec:statisticUnit "submissions" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:b26d6498-f3c9-563c-8021-6518eb5116e7 ;
+    uco-core:description "2025: more than 130,000 Take It Down submissions; as of 2025-12-31 available in 36 languages; 2025 site >1.6M visitors and >4.2M page views." .
+
+ex:f7a26f63-80fb-5691-9a66-6112ed19ed5b a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 Take It Down submissions covered >273,000 images/videos"@en ;
+    cacontology-us-ncmec:statisticValue 273000 ;
+    cacontology-us-ncmec:statisticUnit "files" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:b26d6498-f3c9-563c-8021-6518eb5116e7 ;
+    uco-core:description "2025 Take It Down submissions covered more than 273,000 images/videos." .
+
+ex:ebbf236e-7b4b-5419-b8c2-955157943435 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 reports referred to law enforcement >18.8M"@en ;
+    cacontology-us-ncmec:statisticValue 18800000 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:bdebaaa4-a87f-5cca-a9f6-3554d49a18c0 ;
+    uco-core:description "More than 18.8 million reports referred to law enforcement in 2025." .
+
+ex:e9e05ef2-7eba-5456-90fd-315fe8dcf563 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 reports designated informational >4.5M"@en ;
+    cacontology-us-ncmec:statisticValue 4500000 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:63ecc0f9-547f-5a42-9220-256cb03f88a8 ;
+    uco-core:description "More than 4.5 million reports designated informational when made available to law enforcement in 2025." .
+
+ex:1d5d3bae-ab65-5800-a698-0e5e03e70e5c a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 >10% tech-industry reports lacked adequate jurisdiction info"@en ;
+    cacontology-us-ncmec:statisticValue 10 ;
+    cacontology-us-ncmec:statisticUnit "percent" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "More than 10% of tech-industry CyberTipline reports in 2025 lacked adequate information to determine where the offense occurred." .
+
+ex:cb6ae249-8c95-5a12-a794-6ffd95efdea6 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 unique image rate 48%"@en ;
+    cacontology-us-ncmec:statisticValue 48 ;
+    cacontology-us-ncmec:statisticUnit "percent" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "Of 29.4M images, 13.9M unique (48%). Example recirculation: one child's abusive imagery circulated 20 years and appeared more than 1.4 million times in NCMEC submissions (illustrative aggregate; no personal identifiers)." .
+
+ex:2bac8e26-dc4f-5fae-ad3d-08ec02b41b4f a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 unique video rate 28%"@en ;
+    cacontology-us-ncmec:statisticValue 28 ;
+    cacontology-us-ncmec:statisticUnit "percent" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "Of 26.3M videos, 7.3M unique (28%)." .
+
+ex:61fb695a-291d-5b14-9753-95fc0da9e2e2 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 files labeled >14.6M"@en ;
+    cacontology-us-ncmec:statisticValue 14600000 ;
+    cacontology-us-ncmec:statisticUnit "files" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "Files labeled: more than 14.6 million in 2025. Analysts label for content type, estimated age range, and prioritization cues." .
+
+ex:37d32bd8-efdd-5c39-978b-424d667d3642 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: cumulative files labeled >77.1M as of 2025-12-31"@en ;
+    cacontology-us-ncmec:statisticValue 77100000 ;
+    cacontology-us-ncmec:statisticUnit "files" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "as of 2025-12-31" ;
+    uco-core:description "More than 77.1 million files labeled cumulatively as of 2025-12-31." .
+
+ex:05a54441-22be-5211-98c4-9e45fdf18f9c a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: >12.1M hashes shared with voluntary ESPs as of 2025-12-31"@en ;
+    cacontology-us-ncmec:statisticValue 12100000 ;
+    cacontology-us-ncmec:statisticUnit "hashes" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "as of 2025-12-31" ;
+    cacontology-us-ncmec:statisticTopic ex:cc9aada3-c7c1-57f7-a204-a3b585abc57d ;
+    uco-core:description "As of 2025-12-31, more than 12.1 million hashes shared with voluntary ESPs." .
+
+ex:ae3515d8-2b38-5217-b33d-9660f7f0ce2f a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 78 voluntary ESPs receiving shared hashes as of 2025-12-31"@en ;
+    cacontology-us-ncmec:statisticValue 78 ;
+    cacontology-us-ncmec:statisticUnit "organizations" ;
+    cacontology-us-ncmec:reportingPeriod "as of 2025-12-31" ;
+    cacontology-us-ncmec:statisticTopic ex:cc9aada3-c7c1-57f7-a204-a3b585abc57d ;
+    uco-core:description "78 voluntary ESPs received shared hashes as of 2025-12-31." .
+
+ex:8b9422be-a797-52d5-90dd-a38219505d4a a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 removal notices issued >172,000"@en ;
+    cacontology-us-ncmec:statisticValue 172000 ;
+    cacontology-us-ncmec:statisticUnit "removal notices" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:49d45d8f-eb73-552c-836f-accc6b78fff6 ;
+    uco-core:description "In 2025: more than 172,000 removal notices issued." .
+
+ex:3a74115b-dd3e-5671-a81a-8f8f1d7dca27 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 average take-down time 2.6 days"@en ;
+    cacontology-us-ncmec:statisticValue 2.6 ;
+    cacontology-us-ncmec:statisticUnit "days" ;
+    cacontology-us-ncmec:statisticQualifier "average" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    cacontology-us-ncmec:statisticTopic ex:49d45d8f-eb73-552c-836f-accc6b78fff6 ;
+    uco-core:description "2025 average take-down time following removal notices: 2.6 days." .
+
+ex:ba4b569b-49b0-59b0-a125-f5797a76a5a4 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 upload origin outside U.S. 77%"@en ;
+    cacontology-us-ncmec:statisticValue 77 ;
+    cacontology-us-ncmec:statisticUnit "percent" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "2025 geographic origin (upload): 77% outside U.S." .
+
+ex:8e83f52f-debd-591e-892b-245e582fcdcd a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 upload origin U.S.-based 9%"@en ;
+    cacontology-us-ncmec:statisticValue 9 ;
+    cacontology-us-ncmec:statisticUnit "percent" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "2025 geographic origin (upload): 9% U.S.-based." .
+
+ex:3bb261c3-0c01-5850-80f8-c457188209fe a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 upload origin unknown 14%"@en ;
+    cacontology-us-ncmec:statisticValue 14 ;
+    cacontology-us-ncmec:statisticUnit "percent" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "2025 geographic origin (upload): 14% unknown origin." .
+
+ex:7216d0da-8342-59f6-ad26-900d831f0b55 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 reports resolved to U.S. >2M"@en ;
+    cacontology-us-ncmec:statisticValue 2000000 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:statisticQualifier "more than" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "More than 2 million reports resolved to the U.S. (all 50 states, D.C., Puerto Rico, other territories)." .
+
+ex:925d99e8-e9f4-5378-8b5c-243f16d931bb a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 reports resolved to a specific U.S. state 1.9M"@en ;
+    cacontology-us-ncmec:statisticValue 1900000 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "1.9 million reports resolved to a specific U.S. state in 2025." .
+
+ex:f98b588c-1fff-580e-9f09-0b2ec894a4e0 a cacontology-us-ncmec:AggregateReportStatistic, uco-core:UcoObject ;
+    rdfs:label "Stat: 2025 U.S.-resolved reports with state unknown 153,000"@en ;
+    cacontology-us-ncmec:statisticValue 153000 ;
+    cacontology-us-ncmec:statisticUnit "reports" ;
+    cacontology-us-ncmec:reportingPeriod "2025" ;
+    uco-core:description "153,000 U.S.-resolved reports in 2025 could not be resolved to a specific state." .
 
 ###############################################################################
 # Statement / listing Actions + ProvenanceRecords (normalized.txt keypoints)
@@ -359,13 +614,13 @@ ex:d7455b2a-8cc8-5381-a1a5-ba7ecd919f3c a uco-action:Action ;
     uco-action:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ,
                     ex:bb750857-1349-5375-87a8-0b7293e7f2ca ,
                     ex:8e8e5deb-4049-5711-8730-152415db9c0b ;
-    uco-core:description "Grounded in normalized.txt keypoints 1-3, 28, 44. Confidence: high. CyberTipline created 1998; OJJDP-supported; page reports 2025 data; LE assistance and global clearinghouse role."@en .
+    uco-core:description "Grounded in normalized.txt keypoints 1-3, 28, 44. Confidence: high. CyberTipline created 1998; OJJDP-supported; page reports 2025 data; LE assistance and global clearinghouse role." .
 
 ex:dedfa660-9b28-5e5a-992a-a4a1d67f0615 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: CyberTipline program description"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:d7455b2a-8cc8-5381-a1a5-ba7ecd919f3c ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 1-3, 28, 44."@en .
+    uco-core:object ex:d7455b2a-8cc8-5381-a1a5-ba7ecd919f3c ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 1-3, 28, 44." .
 
 # --- 2025 volume totals (keypoints 4-5) ---
 ex:2219e4cf-db31-5894-b437-969ac3001ddc a uco-action:Action ;
@@ -376,13 +631,13 @@ ex:2219e4cf-db31-5894-b437-969ac3001ddc a uco-action:Action ;
                     ex:bb750857-1349-5375-87a8-0b7293e7f2ca ,
                     ex:0be494f1-c542-5e54-84a2-46cbcf9c1fad ,
                     ex:973e4b99-f79e-57bf-bee6-fec52b0822cc ;
-    uco-core:description "Grounded in normalized.txt keypoints 4-5. Confidence: high. 21.3M reports; >53,000 urgent/imminent-danger escalations."@en .
+    uco-core:description "Grounded in normalized.txt keypoints 4-5. Confidence: high. 21.3M reports; >53,000 urgent/imminent-danger escalations." .
 
 ex:ffca5378-ad08-5080-b083-1809a7d9d0a9 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: 2025 volume totals"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:2219e4cf-db31-5894-b437-969ac3001ddc ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 4-5."@en .
+    uco-core:object ex:2219e4cf-db31-5894-b437-969ac3001ddc ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 4-5." .
 
 # --- Category growth + REPORT Act (keypoints 6-9, 17) ---
 ex:98dc1013-8947-5672-a7ef-090a68de033d a uco-action:Action ;
@@ -396,13 +651,13 @@ ex:98dc1013-8947-5672-a7ef-090a68de033d a uco-action:Action ;
                     ex:8ee4f05e-5354-595f-aacb-6bf89dc4c1bd ,
                     ex:5b6c03e6-beeb-59ad-ace5-01fd1940d5a8 ,
                     ex:ae8837d5-a22c-5c6b-8262-16d74b823917 ;
-    uco-core:description "Grounded in normalized.txt keypoints 6-9, 17. Confidence: high. Enticement +158%; trafficking +323%; CSAM largest category; REPORT Act drives ESP reporting parity for enticement/trafficking."@en .
+    uco-core:description "Grounded in normalized.txt keypoints 6-9, 17. Confidence: high. Enticement +158%; trafficking +323%; CSAM largest category; REPORT Act drives ESP reporting parity for enticement/trafficking." .
 
 ex:775d9fe1-9f96-55e6-999f-adbce0c5e763 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: category growth and REPORT Act"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:98dc1013-8947-5672-a7ef-090a68de033d ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 6-9, 17."@en .
+    uco-core:object ex:98dc1013-8947-5672-a7ef-090a68de033d ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 6-9, 17." .
 
 # --- File volumes (keypoints 10-11) ---
 ex:40e236f9-270d-5f5e-908d-30c1e0dc265c a uco-action:Action ;
@@ -411,14 +666,16 @@ ex:40e236f9-270d-5f5e-908d-30c1e0dc265c a uco-action:Action ;
     uco-action:performer ex:2f8ad703-8f71-5099-bf53-5c27da6bdc61 ;
     uco-action:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ,
                     ex:623625a4-d6e3-5068-98e5-2abe570575c5 ,
-                    ex:df4f5850-9b28-5f7a-b694-f6c060cc4e19 ;
-    uco-core:description "Grounded in normalized.txt keypoints 10-11. Confidence: high."@en .
+                    ex:df4f5850-9b28-5f7a-b694-f6c060cc4e19 ,
+                    ex:56b9455b-ed37-54ba-a822-94a6533ff519 ,
+                    ex:0e340713-172c-563e-9a76-13f072ad0263 ;
+    uco-core:description "Grounded in normalized.txt keypoints 10-11. Confidence: high." .
 
 ex:f1e7e421-da7a-5c2a-8505-00aa16a88d54 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: 2025 ESP file volumes"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:40e236f9-270d-5f5e-908d-30c1e0dc265c ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 10-11."@en .
+    uco-core:object ex:40e236f9-270d-5f5e-908d-30c1e0dc265c ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 10-11." .
 
 # --- Online enticement + financial sextortion (keypoints 12-14; omit 15 suicide detail) ---
 ex:6c63ca3f-3dd9-5b25-b166-b0c5626fd3cc a uco-action:Action ;
@@ -429,14 +686,16 @@ ex:6c63ca3f-3dd9-5b25-b166-b0c5626fd3cc a uco-action:Action ;
                     ex:56815b6f-4cd0-508f-a41a-624343dad6df ,
                     ex:3d8150a6-e9ac-5553-bc05-98561323d889 ,
                     ex:b910693a-2d46-5620-be7d-41bcee02c267 ,
+                    ex:5f73e085-9490-5a38-bd92-6855f4bed0a9 ,
+                    ex:4b4ebb3a-1424-5ade-8d79-852b16ed34fc ,
                     ex:51f4e50f-fa19-594a-9d59-3fceeebb25c6 ;
-    uco-core:description "Grounded in normalized.txt keypoints 12-14. Confidence: high. Deliberately omits keypoint 15 (suicide awareness aggregate) to minimize harm surface while retaining category metrics."@en .
+    uco-core:description "Grounded in normalized.txt keypoints 12-14. Confidence: high. Deliberately omits keypoint 15 (suicide awareness aggregate) to minimize harm surface while retaining category metrics." .
 
 ex:681c52bc-074a-5faa-ab88-37768a2893a3 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: online enticement and financial sextortion volumes"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:6c63ca3f-3dd9-5b25-b166-b0c5626fd3cc ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 12-14."@en .
+    uco-core:object ex:6c63ca3f-3dd9-5b25-b166-b0c5626fd3cc ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 12-14." .
 
 # --- SOE volume (keypoint 16) ---
 ex:176bebef-5709-57d6-8cbb-73eb82d7911e a uco-action:Action ;
@@ -446,13 +705,13 @@ ex:176bebef-5709-57d6-8cbb-73eb82d7911e a uco-action:Action ;
     uco-action:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ,
                     ex:76618931-af23-5bd0-92ee-3dff179a0f57 ,
                     ex:5c62f80a-6844-52eb-80af-0fce71c01b9f ;
-    uco-core:description "Grounded in normalized.txt keypoint 16. Confidence: high."@en .
+    uco-core:description "Grounded in normalized.txt keypoint 16. Confidence: high." .
 
 ex:523ef447-68c7-5770-afed-8261ad7b9412 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: sadistic online exploitation volume"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:176bebef-5709-57d6-8cbb-73eb82d7911e ;
-    uco-core:description "Evidence pointer: normalized.txt keypoint 16."@en .
+    uco-core:object ex:176bebef-5709-57d6-8cbb-73eb82d7911e ;
+    uco-core:description "Evidence pointer: normalized.txt keypoint 16." .
 
 # --- Trafficking patterns (keypoints 17-18) ---
 ex:2d827359-51be-5471-92f9-d68ae2b096b4 a uco-action:Action ;
@@ -462,13 +721,13 @@ ex:2d827359-51be-5471-92f9-d68ae2b096b4 a uco-action:Action ;
     uco-action:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ,
                     ex:c90cd31f-193d-5159-9685-029d72feba0a ,
                     ex:5b6c03e6-beeb-59ad-ace5-01fd1940d5a8 ;
-    uco-core:description "Grounded in normalized.txt keypoints 17-18. Confidence: high. Patterns: buyers targeting children online; trafficking-CSAM overlap; multi-offender coordination."@en .
+    uco-core:description "Grounded in normalized.txt keypoints 17-18. Confidence: high. Patterns: buyers targeting children online; trafficking-CSAM overlap; multi-offender coordination." .
 
 ex:5daa42f0-ec8d-579a-a1b9-903028d2b8a0 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: trafficking growth and patterns"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:2d827359-51be-5471-92f9-d68ae2b096b4 ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 17-18."@en .
+    uco-core:object ex:2d827359-51be-5471-92f9-d68ae2b096b4 ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 17-18." .
 
 # --- GAI nexus (keypoints 8, 19-21) ---
 ex:85d4000b-d5b9-5fbb-a399-1c1d7345b46b a uco-action:Action ;
@@ -479,15 +738,17 @@ ex:85d4000b-d5b9-5fbb-a399-1c1d7345b46b a uco-action:Action ;
                     ex:94d8af47-b1ea-5305-81fa-88dfb4446d3d ,
                     ex:620494f1-d67b-5045-bdbd-2b04bf6e83cf ,
                     ex:5b56dbaf-c337-559d-a10b-22aff6f418da ,
+                    ex:834a8742-1710-5042-9045-bb17338a6e27 ,
                     ex:68d57072-095b-5aa9-a0ed-cd11ea4776f2 ,
-                    ex:5da25013-d04d-5df5-8fb1-3a4dfbd88abb ;
-    uco-core:description "Grounded in normalized.txt keypoints 8, 19-21. Confidence: high. Amazon AI Services named only as NCMEC public transparency statement about training-dataset submissions."@en .
+                    ex:5da25013-d04d-5df5-8fb1-3a4dfbd88abb ,
+                    ex:baecb2ba-677a-5aaa-be28-a47c9aba8d40 ;
+    uco-core:description "Grounded in normalized.txt keypoints 8, 19-21. Confidence: high. Amazon AI Services named only as NCMEC public transparency statement about training-dataset submissions." .
 
 ex:5f9d09f0-af39-5cce-b5ae-b060b65796ce a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: generative AI nexus statistics"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:85d4000b-d5b9-5fbb-a399-1c1d7345b46b ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 8, 19-21."@en .
+    uco-core:object ex:85d4000b-d5b9-5fbb-a399-1c1d7345b46b ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 8, 19-21." .
 
 # --- ESP / public sources (keypoints 22-25) ---
 ex:5fd0b382-c2e1-52ac-868b-f1890cef8a1b a uco-action:Action ;
@@ -498,15 +759,18 @@ ex:5fd0b382-c2e1-52ac-868b-f1890cef8a1b a uco-action:Action ;
                     ex:7b5bac70-191e-57a4-a038-cf5b3c3bd8c0 ,
                     ex:79eef726-82e4-5741-a67f-0eff172059a8 ,
                     ex:7d5465d0-06dc-55ca-a30b-7cbad0a75112 ,
+                    ex:8322b3bd-b5c4-5849-9be9-4525acdcfca9 ,
+                    ex:20a3ef10-f1de-5319-be31-ca8eb857071e ,
                     ex:a8a783e6-9aa0-5407-b56d-098a0fea1cd2 ,
+                    ex:66511022-8761-5fb9-9310-800dd0100fb4 ,
                     ex:9208715b-18c3-59c8-991f-da45092384d5 ;
-    uco-core:description "Grounded in normalized.txt keypoints 22-25. Confidence: high."@en .
+    uco-core:description "Grounded in normalized.txt keypoints 22-25. Confidence: high." .
 
 ex:fec1cc7f-ce8f-5b77-ae07-124a695c414a a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: ESP/public reporting sources"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:5fd0b382-c2e1-52ac-868b-f1890cef8a1b ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 22-25."@en .
+    uco-core:object ex:5fd0b382-c2e1-52ac-868b-f1890cef8a1b ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 22-25." .
 
 # --- Take It Down (keypoints 26-27) ---
 ex:f5d2417b-e949-5ff7-99d4-8ae1b65c7558 a uco-action:Action ;
@@ -515,14 +779,15 @@ ex:f5d2417b-e949-5ff7-99d4-8ae1b65c7558 a uco-action:Action ;
     uco-action:performer ex:2f8ad703-8f71-5099-bf53-5c27da6bdc61 ;
     uco-action:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ,
                     ex:b26d6498-f3c9-563c-8021-6518eb5116e7 ,
-                    ex:14ba4816-ea5e-58b7-99bf-12853bc5b60d ;
-    uco-core:description "Grounded in normalized.txt keypoints 26-27. Confidence: high."@en .
+                    ex:14ba4816-ea5e-58b7-99bf-12853bc5b60d ,
+                    ex:f7a26f63-80fb-5691-9a66-6112ed19ed5b ;
+    uco-core:description "Grounded in normalized.txt keypoints 26-27. Confidence: high." .
 
 ex:60c3c366-826d-5be9-bf9a-9ce65f06e932 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: Take It Down"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:f5d2417b-e949-5ff7-99d4-8ae1b65c7558 ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 26-27."@en .
+    uco-core:object ex:f5d2417b-e949-5ff7-99d4-8ae1b65c7558 ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 26-27." .
 
 # --- Referral vs informational (keypoints 28-32) ---
 ex:29b0998a-713b-595f-8e59-8428d22c05ba a uco-action:Action ;
@@ -533,14 +798,15 @@ ex:29b0998a-713b-595f-8e59-8428d22c05ba a uco-action:Action ;
                     ex:bdebaaa4-a87f-5cca-a9f6-3554d49a18c0 ,
                     ex:63ecc0f9-547f-5a42-9220-256cb03f88a8 ,
                     ex:ebbf236e-7b4b-5419-b8c2-955157943435 ,
+                    ex:e9e05ef2-7eba-5456-90fd-315fe8dcf563 ,
                     ex:1d5d3bae-ab65-5800-a698-0e5e03e70e5c ;
-    uco-core:description "Grounded in normalized.txt keypoints 28-32. Confidence: high."@en .
+    uco-core:description "Grounded in normalized.txt keypoints 28-32. Confidence: high." .
 
 ex:fd3987d1-0758-5346-9c42-77bb0bf4dafa a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: referral vs informational designations"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:29b0998a-713b-595f-8e59-8428d22c05ba ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 28-32."@en .
+    uco-core:object ex:29b0998a-713b-595f-8e59-8428d22c05ba ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 28-32." .
 
 # --- Inadequate jurisdiction transparency (keypoints 33-34) ---
 ex:62a945f0-50dc-5ea8-b7a0-475c067d83f1 a uco-action:Action ;
@@ -551,13 +817,13 @@ ex:62a945f0-50dc-5ea8-b7a0-475c067d83f1 a uco-action:Action ;
                     ex:1fcd9a2f-a3c2-57c3-a77c-50076895d1a7 ,
                     ex:a770a576-808f-5bf7-aa43-7c0bbd5db9b6 ,
                     ex:620494f1-d67b-5045-bdbd-2b04bf6e83cf ;
-    uco-core:description "Grounded in normalized.txt keypoints 33-34. Confidence: high. Company names retained only as NCMEC public transparency statements; no expansion beyond page text."@en .
+    uco-core:description "Grounded in normalized.txt keypoints 33-34. Confidence: high. Company names retained only as NCMEC public transparency statements; no expansion beyond page text." .
 
 ex:827c3228-4a47-5212-b8b6-e4fb1fd5dd61 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: inadequate jurisdiction transparency list"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:62a945f0-50dc-5ea8-b7a0-475c067d83f1 ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 33-34."@en .
+    uco-core:object ex:62a945f0-50dc-5ea8-b7a0-475c067d83f1 ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 33-34." .
 
 # --- Unique content + labeling (keypoints 35-38) ---
 ex:771af52c-8ae4-57a3-8f15-9bc8891eecbb a uco-action:Action ;
@@ -566,14 +832,16 @@ ex:771af52c-8ae4-57a3-8f15-9bc8891eecbb a uco-action:Action ;
     uco-action:performer ex:2f8ad703-8f71-5099-bf53-5c27da6bdc61 ;
     uco-action:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ,
                     ex:cb6ae249-8c95-5a12-a794-6ffd95efdea6 ,
-                    ex:61fb695a-291d-5b14-9753-95fc0da9e2e2 ;
-    uco-core:description "Grounded in normalized.txt keypoints 35-38. Confidence: high."@en .
+                    ex:2bac8e26-dc4f-5fae-ad3d-08ec02b41b4f ,
+                    ex:61fb695a-291d-5b14-9753-95fc0da9e2e2 ,
+                    ex:37d32bd8-efdd-5c39-978b-424d667d3642 ;
+    uco-core:description "Grounded in normalized.txt keypoints 35-38. Confidence: high." .
 
 ex:4971ffea-ec16-53a5-868c-79767db27693 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: unique content and labeling"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:771af52c-8ae4-57a3-8f15-9bc8891eecbb ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 35-38."@en .
+    uco-core:object ex:771af52c-8ae4-57a3-8f15-9bc8891eecbb ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 35-38." .
 
 # --- Hash matching + sharing (keypoints 39-40) ---
 ex:8eb57fcd-970a-51dc-aea2-4c70d9f6ca70 a uco-action:Action ;
@@ -583,14 +851,15 @@ ex:8eb57fcd-970a-51dc-aea2-4c70d9f6ca70 a uco-action:Action ;
     uco-action:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ,
                     ex:3f77036d-59fb-52c3-b12b-197c199c1c42 ,
                     ex:cc9aada3-c7c1-57f7-a204-a3b585abc57d ,
-                    ex:05a54441-22be-5211-98c4-9e45fdf18f9c ;
-    uco-core:description "Grounded in normalized.txt keypoints 39-40. Confidence: high."@en .
+                    ex:05a54441-22be-5211-98c4-9e45fdf18f9c ,
+                    ex:ae3515d8-2b38-5217-b33d-9660f7f0ce2f ;
+    uco-core:description "Grounded in normalized.txt keypoints 39-40. Confidence: high." .
 
 ex:b1494f2c-88c0-55a9-a6d3-10dd590485da a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: hash matching and sharing"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:8eb57fcd-970a-51dc-aea2-4c70d9f6ca70 ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 39-40."@en .
+    uco-core:object ex:8eb57fcd-970a-51dc-aea2-4c70d9f6ca70 ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 39-40." .
 
 # --- Removal notices (keypoints 41-42) ---
 ex:ec18c68f-a4a6-57f8-9119-656a58d8a3b4 a uco-action:Action ;
@@ -599,14 +868,15 @@ ex:ec18c68f-a4a6-57f8-9119-656a58d8a3b4 a uco-action:Action ;
     uco-action:performer ex:2f8ad703-8f71-5099-bf53-5c27da6bdc61 ;
     uco-action:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ,
                     ex:49d45d8f-eb73-552c-836f-accc6b78fff6 ,
-                    ex:8b9422be-a797-52d5-90dd-a38219505d4a ;
-    uco-core:description "Grounded in normalized.txt keypoints 41-42. Confidence: high."@en .
+                    ex:8b9422be-a797-52d5-90dd-a38219505d4a ,
+                    ex:3a74115b-dd3e-5671-a81a-8f8f1d7dca27 ;
+    uco-core:description "Grounded in normalized.txt keypoints 41-42. Confidence: high." .
 
 ex:482c401c-2b9e-5098-838b-4ed404cf27d4 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: removal notices"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:ec18c68f-a4a6-57f8-9119-656a58d8a3b4 ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 41-42."@en .
+    uco-core:object ex:ec18c68f-a4a6-57f8-9119-656a58d8a3b4 ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 41-42." .
 
 # --- Legal framework 2258A (keypoint 43) ---
 ex:89769dd5-7522-5d63-a74e-fcea411e09d1 a uco-action:Action ;
@@ -616,13 +886,13 @@ ex:89769dd5-7522-5d63-a74e-fcea411e09d1 a uco-action:Action ;
     uco-action:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ,
                     ex:8bc02ae9-233e-56a4-87a7-4e97a1e2acff ,
                     ex:bb750857-1349-5375-87a8-0b7293e7f2ca ;
-    uco-core:description "Grounded in normalized.txt keypoint 43. Confidence: high."@en .
+    uco-core:description "Grounded in normalized.txt keypoint 43. Confidence: high." .
 
 ex:3afc30cc-bc56-5ad2-9ac8-81847262917f a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: 18 U.S.C. § 2258A statement"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:89769dd5-7522-5d63-a74e-fcea411e09d1 ;
-    uco-core:description "Evidence pointer: normalized.txt keypoint 43."@en .
+    uco-core:object ex:89769dd5-7522-5d63-a74e-fcea411e09d1 ;
+    uco-core:description "Evidence pointer: normalized.txt keypoint 43." .
 
 # --- Geography domestic/global (keypoints 45-48) ---
 ex:761034db-57bf-5588-9620-2e5baa5fc23d a uco-action:Action ;
@@ -631,17 +901,21 @@ ex:761034db-57bf-5588-9620-2e5baa5fc23d a uco-action:Action ;
     uco-action:performer ex:2f8ad703-8f71-5099-bf53-5c27da6bdc61 ;
     uco-action:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ,
                     ex:ba4b569b-49b0-59b0-a125-f5797a76a5a4 ,
+                    ex:8e83f52f-debd-591e-892b-245e582fcdcd ,
+                    ex:3bb261c3-0c01-5850-80f8-c457188209fe ,
                     ex:7216d0da-8342-59f6-ad26-900d831f0b55 ,
+                    ex:925d99e8-e9f4-5378-8b5c-243f16d931bb ,
+                    ex:f98b588c-1fff-580e-9f09-0b2ec894a4e0 ,
                     ex:f6a5ebc1-a02e-5987-8c8e-f3d886d3be2e ,
                     ex:5a2f3bc2-1ad7-5c1f-88a9-47ef23e724a9 ,
                     ex:4e980710-bd04-565b-a5be-2351aa404c23 ;
-    uco-core:description "Grounded in normalized.txt keypoints 45-48. Confidence: high. Partnerships with LE in 170 countries/territories including Interpol and Europol."@en .
+    uco-core:description "Grounded in normalized.txt keypoints 45-48. Confidence: high. Partnerships with LE in 170 countries/territories including Interpol and Europol." .
 
 ex:b70433c0-44ac-558c-9dce-5c7eec8ac1c2 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: geography and global LE partnerships"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:761034db-57bf-5588-9620-2e5baa5fc23d ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 45-48."@en .
+    uco-core:object ex:761034db-57bf-5588-9620-2e5baa5fc23d ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 45-48." .
 
 # --- NGO + LE partnerships listing (keypoints 48-49) ---
 ex:9bc233d2-6686-5855-b5cf-8a2328c02e28 a uco-action:Action ;
@@ -656,13 +930,13 @@ ex:9bc233d2-6686-5855-b5cf-8a2328c02e28 a uco-action:Action ;
                     ex:4762413d-bca1-56ff-953a-4432ba8a5eeb ,
                     ex:cc3b16d7-35f5-52fb-91a5-8311b64adce9 ,
                     ex:d8e7cda4-9b06-57a9-88f5-1144190b50bb ;
-    uco-core:description "Grounded in normalized.txt keypoint 49 (and 48 for Interpol/Europol context). Confidence: high. Named: WeProtect, ECPAT, IJM, Internet Watch Foundation, Canadian Centre for Child Protection, UNICEF; NCMEC founding member of INHOPE."@en .
+    uco-core:description "Grounded in normalized.txt keypoint 49 (and 48 for Interpol/Europol context). Confidence: high. Named: WeProtect, ECPAT, IJM, Internet Watch Foundation, Canadian Centre for Child Protection, UNICEF; NCMEC founding member of INHOPE." .
 
 ex:e9170e73-0618-5a60-8ae9-4a5f0931fd2c a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: NGO and hotline network partnerships"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:9bc233d2-6686-5855-b5cf-8a2328c02e28 ;
-    uco-core:description "Evidence pointer: normalized.txt keypoint 49."@en .
+    uco-core:object ex:9bc233d2-6686-5855-b5cf-8a2328c02e28 ;
+    uco-core:description "Evidence pointer: normalized.txt keypoint 49." .
 
 # --- CMT (keypoints 50-52) ---
 ex:a73cd004-e283-5e9a-8cd1-a2e8833a2fba a uco-action:Action ;
@@ -676,13 +950,13 @@ ex:a73cd004-e283-5e9a-8cd1-a2e8833a2fba a uco-action:Action ;
                     ex:f6a5ebc1-a02e-5987-8c8e-f3d886d3be2e ,
                     ex:f7025aa5-5c29-5018-b43f-dda0423f3197 ,
                     ex:8e9c82a1-17cb-51a3-86ef-784fd1701b97 ;
-    uco-core:description "Grounded in normalized.txt keypoints 50-52. Confidence: high. CMT developed with OJJDP and Meta support; eight UI languages; domestic access includes all ICAC Task Forces, FBI, and HSI."@en .
+    uco-core:description "Grounded in normalized.txt keypoints 50-52. Confidence: high. CMT developed with OJJDP and Meta support; eight UI languages; domestic access includes all ICAC Task Forces, FBI, and HSI." .
 
 ex:d5701c3a-ee1e-5795-b889-9b84e702abbc a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: Case Management Tool (CMT)"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:a73cd004-e283-5e9a-8cd1-a2e8833a2fba ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 50-52."@en .
+    uco-core:object ex:a73cd004-e283-5e9a-8cd1-a2e8833a2fba ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 50-52." .
 
 # --- OJJDP funding acknowledgment (keypoints 53-54) ---
 ex:7fc6a866-ab74-512d-bd5d-9c42c24e5e5b a uco-action:Action ;
@@ -692,15 +966,17 @@ ex:7fc6a866-ab74-512d-bd5d-9c42c24e5e5b a uco-action:Action ;
     uco-action:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ,
                     ex:8e8e5deb-4049-5711-8730-152415db9c0b ,
                     ex:3d9e6ca5-45e2-5a44-ad05-bbcdeb82f6dd ;
-    uco-core:description "Grounded in normalized.txt keypoints 53-54. Confidence: high. Site funded in part through OJJDP/OJP/DOJ grant; DOJ does not operate/control/endorse the website; complementary OJJDP transparency report noted."@en .
+    uco-core:description "Grounded in normalized.txt keypoints 53-54. Confidence: high. Site funded in part through OJJDP/OJP/DOJ grant; DOJ does not operate/control/endorse the website; complementary OJJDP transparency report noted." .
 
 ex:1175ab48-0a88-5d87-b5d0-0103f24b9641 a investigation:ProvenanceRecord ;
     rdfs:label "Provenance: OJJDP/DOJ funding acknowledgment"@en ;
     uco-core:object ex:7e33c023-a82f-5fe5-b9d1-0b74e3a8513c ;
-    investigation:provenanceRecordAction ex:7fc6a866-ab74-512d-bd5d-9c42c24e5e5b ;
-    uco-core:description "Evidence pointer: normalized.txt keypoints 53-54."@en .
+    uco-core:object ex:7fc6a866-ab74-512d-bd5d-9c42c24e5e5b ;
+    uco-core:description "Evidence pointer: normalized.txt keypoints 53-54." .
 
 # =============================================================================
-# End of Path A example. Phase 3 skipped (no new TBox). Phase 5 SPARQL optional (not required for DoD).
-# C2.A3: Docker pySHACL Conforms True (core / us-ncmec / hotlines); ROBOT convert OK; integrity suite OK.
+# End of example. Aggregate statistics use cacontology-us-ncmec:AggregateReportStatistic
+# (added in CAC v3.1.0) so every published number is directly queryable via SPARQL
+# (statisticValue / statisticUnit / reportingPeriod / statisticQualifier /
+# percentChangeFromPriorPeriod / statisticTopic).
 # =============================================================================

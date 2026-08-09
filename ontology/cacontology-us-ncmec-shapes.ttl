@@ -732,4 +732,45 @@ cacontology-us-ncmec:CooperationLevelValidationShape rdf:type sh:NodeShape ;
                     FILTER (?data1 != ?data2)
                 }
             }
-        """     ] . 
+        """     ] .
+
+# =============================================================================
+# AGGREGATE TRANSPARENCY STATISTIC SHAPES
+# =============================================================================
+
+cacontology-us-ncmec:AggregateReportStatisticShape rdf:type sh:NodeShape ;
+    sh:targetClass cacontology-us-ncmec:AggregateReportStatistic ;
+    rdfs:label "Aggregate Report Statistic Shape"@en ;
+    rdfs:comment "Validates published aggregate transparency statistics: each statistic must carry exactly one primary numeric value, a unit, and a reporting period."@en ;
+    sh:property [
+        sh:path cacontology-us-ncmec:statisticValue ;
+        sh:or ( [ sh:datatype xsd:decimal ] [ sh:datatype xsd:integer ] ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "An aggregate report statistic must have exactly one numeric statisticValue (xsd:decimal or xsd:integer); decompose compound published claims into one statistic per value."@en     ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:statisticUnit ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "An aggregate report statistic must state the unit of its value (e.g., 'reports', 'files', 'percent')."@en     ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:reportingPeriod ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "An aggregate report statistic must state the reporting period it covers (e.g., '2025', 'as of 2025-12-31')."@en     ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:statisticQualifier ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        rdfs:comment "Optional qualifier from the published source (e.g., 'more than')."@en     ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:percentChangeFromPriorPeriod ;
+        sh:or ( [ sh:datatype xsd:decimal ] [ sh:datatype xsd:integer ] ) ;
+        sh:maxCount 1 ;
+        rdfs:comment "Optional published change relative to the prior period."@en     ] ;
+    sh:property [
+        sh:path cacontology-us-ncmec:statisticTopic ;
+        sh:nodeKind sh:IRI ;
+        rdfs:comment "Optional links to the category, program, or concept nodes the statistic describes."@en     ] .

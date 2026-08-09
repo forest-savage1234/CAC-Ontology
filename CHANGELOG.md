@@ -103,6 +103,25 @@ Declare charging/sentencing terms and the ConvictionRecord class that PACER-styl
 
 - Existing example graphs that used `chargeCount` as an ordinal on individual charges are **not** rewritten in this PR; migrate those triples to `countNumber` in a follow-up.
 
+### Added - NCMEC CyberTipline aggregate statistics vocabulary + 2025 example KG (PR #42)
+
+Merges the contributed NCMEC CyberTipline 2025 aggregate statistics example knowledge graph (thanks @forest-savage1234) with a maintainer remodel that makes every published number directly queryable.
+
+#### `ontology/cacontology-us-ncmec.ttl`
+
+- `cacontology-us-ncmec:AggregateReportStatistic` — owl:Class (subClassOf `uco-core:Assertion`) for single published aggregate statistics from NCMEC public transparency data; one primary numeric value per instance, no individual tip minting
+- Datatype properties: `statisticValue` (xsd:decimal), `statisticUnit`, `statisticQualifier`, `reportingPeriod`, `percentChangeFromPriorPeriod`
+- Object property: `statisticTopic` — links a statistic to the reporting category, program, or concept it describes
+
+#### `ontology/cacontology-us-ncmec-shapes.ttl`
+
+- `AggregateReportStatisticShape` — requires exactly one numeric `statisticValue`, one `statisticUnit`, and one `reportingPeriod`; optional qualifier, prior-period change, and IRI topics
+
+#### `examples_knowledge_graphs/ncmec-cybertipline-data-example.ttl`
+
+- Contributed example (PR #42) preserved: collection/normalization provenance chain with SHA-256 hashes, organization nodes, reporting-category concept nodes, and statement/listing Actions grounded in normalized keypoints
+- Maintainer remodel: 24 bare `uco-core:UcoObject` "stat claim" nodes retyped as `AggregateReportStatistic` with structured value/unit/period properties; compound published claims decomposed into 19 additional single-value statistics (deterministic UUIDv5 identifiers in the document namespace); statistics linked to their category/program nodes via `statisticTopic`; provenance grouping Actions extended to cover the decomposed nodes
+
 ## v3.0.0 - 16 March 2026
 
 ### Added - Semantic Spine Architecture

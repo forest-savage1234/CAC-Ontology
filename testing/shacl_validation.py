@@ -190,6 +190,8 @@ domain_validations = [
     ('examples_knowledge_graphs/conditioning-phase-offense-trajectory-example.ttl', 'ontology/cacontology-grooming-shapes.ttl'),
     ('examples_knowledge_graphs/caselinker-account-replacement-example.ttl', 'ontology/cacontology-grooming-shapes.ttl'),
     ('examples_knowledge_graphs/synthetic-legal-outcomes-core-example.ttl', 'ontology/cacontology-legal-outcomes-shapes.ttl'),
+    ('examples_knowledge_graphs/ncmec-cybertipline-data-example.ttl', 'ontology/cacontology-us-ncmec-shapes.ttl'),
+    ('examples_knowledge_graphs/ncmec-cybertipline-data-example.ttl', 'ontology/cacontology-hotlines-shapes.ttl'),
 ]
 
 domain_passed = 0
