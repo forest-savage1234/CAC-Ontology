@@ -1,0 +1,207 @@
+Source URL: https://www.missingkids.org/cybertiplinedata
+Canonical path (page meta): /gethelpnow/cybertipline/cybertiplinedata
+Captured (UTC): 2026-07-19T05:03:58Z
+Publisher: National Center for Missing & Exploited Children (NCMEC)
+Title: CyberTipline Data — 2025 CyberTipline Report
+Document type: Public high-level aggregate statistics and program description
+Collection method: HTTP GET of public HTML (Invoke-WebRequest) + manual substantive text extraction
+Raw HTML path: analytics_demonstration/collected_sources/ncmec-cybertipline-data/source.html
+Raw HTML SHA-256: db3cf9214fb28679b5f709ec54a36aff3aa0fa0bd431ae6fff3bb52d75e9e9c4
+
+================================================================================
+CLEAN TEXT (substantive page content; navigation, scripts, donation chrome omitted)
+================================================================================
+
+2025 CyberTipline Report
+
+NCMEC's CyberTipline was created in 1998 to receive reports of suspected child sexual exploitation from the public and electronic service providers (ESPs). With support from the Department of Justice Office of Juvenile Justice and Delinquency Prevention and other partners, it helps law enforcement efforts to stop child sexual exploitation and abuse and helps stop the harmful circulation of child sexual abuse material (CSAM).
+
+This NCMEC report includes data from reports made to the CyberTipline in 2025 and reflects the latest insights on the threats against children online and the infrastructure put in place to protect them.
+
+## Reports
+
+In 2025, the CyberTipline received 21.3 million reports.
+
+One of the critical functions of the CyberTipline is to assist law enforcement in identifying those reports where the most urgent action is needed in response to a child in critical danger. In 2025, through ESP notifications, internal alerts and manual review of chats, files or other information, NCMEC identified and escalated for law enforcement more than 53,000 reports that were urgent or involved a child in imminent danger.
+
+Trends that stood out this year within the data include the continued growth in the reporting categories of online enticement (158% increase in reports from 2024) and child sex trafficking (323% increase in reports from 2024), both of which were impacted by the 2024 enactment of the REPORT Act, which requires ESPs to report online enticement and child sex trafficking in the same way they report CSAM. Other emerging trends included continued growth in the use of generative artificial intelligence (GAI) in child sexual exploitation, the continued proliferation of financial sextortion cases and the complex forms of sexual exploitation being driven by violent online groups.
+
+Child sex trafficking reports rose 323%.
+
+NCMEC also released guidelines in 2024 for online platforms to help them comply with the new reporting requirements of the REPORT Act.
+
+### Reporting Categories
+
+Child sexual abuse material is the largest reporting category for the CyberTipline, but in 2025, two of the fastest growing reporting categories were online enticement and child sex trafficking.
+
+### Images, Videos & Other Files
+
+Reports made to the CyberTipline by ESPs can include images, videos and other files related to the child sexual exploitation incident being reported. The majority of reported files are related to suspected CSAM.
+
+In 2025, reports from ESPs contained 61.8 million images, videos and other files related to the child sexual exploitation incident being reported.
+
+- 61.8M total files included in 2025 reports to the CyberTipline
+- 26.3M videos
+- 29.4M images
+- 6.1M other files
+
+### Emerging Threats
+
+By identifying trends within the CyberTipline data, we can improve both the response to instances of child sexual exploitation and efforts to prevent harm. The trends that stood out in 2025 include:
+
+#### Online Enticement
+
+In 2025, NCMEC saw a staggering increase in the number of reports the CyberTipline received related to the online enticement of children for sexual acts, which involves an individual communicating with someone believed to be a child via the internet with the intent to commit a sexual offense or abduction. This is a broad category of online exploitation and includes sextortion, in which a child is being groomed to take sexually explicit images or ultimately meet face-to-face with someone for sexual purposes, or to engage in a sexual conversation online or, in some instances, to sell or trade the child's sexual images. This type of victimization takes place across every type of platform, including online gaming, social media and messaging apps. The CyberTipline received 1.4 million reports concerning online enticement in 2025, which included more than 800 reports in which an offender traveled to meet a child in person and more than 80,000 reports concerning sextortion. Within online enticement reports, NCMEC also continued to track the evolving threats of financial sextortion and sadistic online exploitation.
+
+- 1.4M reports of online enticement
+
+#### Financial Sextortion
+
+Financial sextortion is reported under the reporting category of online enticement and in 2025, we continued to see an increase in these cases. Many of them continue to involve teenage boys being targeted by offenders who often use fake social media accounts to convince the boys to send them a nude or sexual image and then immediately begin demanding money. In 2025, NCMEC received an average of 137 reports of financial sextortion a day – a 37% increase in reports daily compared to the year before. Tragically, NCMEC is aware of at least three dozen teenage boys in the U.S. who have taken their lives as a result of being victimized by this crime.
+
+- 137 reports of financial sextortion every day
+
+#### Sadistic Online Exploitation
+
+There has been a continued increase in reports of violent online groups or individuals targeting vulnerable children and encouraging them to harm themselves and others by creating CSAM and sexually exploiting other children. While still a relatively small portion of the overall CyberTipline reports, the extreme harm caused in these cases makes them especially concerning. In 2025, NCMEC's CyberTipline received more than 3,000 reports concerning sadistic online exploitation – a more than 125% increase over last year, largely driven by enhanced industry reporting.
+
+- More than 3,000 reports of sadistic online exploitation
+
+#### Child Sex Trafficking
+
+While the sex trafficking of children online is not a new crime, the mandated reporting required by the REPORT Act for the first time is exposing the pervasiveness of this crime across online platforms. In 2025, reports to the CyberTipline related to child sex trafficking increased by 323% compared to 2024. For years NCMEC had alerted law enforcement, online platforms and members of the public to traffickers' and buyers' overt use of the internet to target, groom, buy and sell children for sex. As a direct result of the REPORT Act, NCMEC is starting to see a more realistic reflection of the volume of children being trafficked for sex online. With this data, we are seeing clear patterns:
+
+- Buyers are directly targeting children, aggressively approaching them online and offering payment for sex acts without an apparent connection to a third-party trafficker, sometimes repeatedly over time.
+- There is increasing overlap between child sex trafficking and child sexual abuse material (CSAM). Offenders first offer to pay a child to produce and send them CSAM as a "preview," then escalate to in-person exploitation to pay the child for sex.
+- We are seeing coordination among offenders, multiple individuals working together online to coordinate the exploitation of a child through sex trafficking.
+
+#### Generative AI
+
+NCMEC continues to hear from many children and families who have been harmed by the use of AI technology in the exploitation of children. Reports to the CyberTipline in 2025 included 1.5 million reports of exploitation with a GAI nexus. Of the total volume, more than 1.1 million reports submitted by Amazon AI Services related to the detection of potential CSAM within AI training datasets. Those reports did not include actionable offender or victim-related information. Excluding those submissions, more than 182,000 reports involved offenders possessing, generating or attempting to generate GAI CSAM, underscoring the increasing role of generative AI in enabling and scaling child sexual exploitation and abuse. This also includes the revictimization of known victims of CSAM with offenders using AI to manipulate existing abusive imagery to create new content. Since 2023, when we started tracking the use of GAI, more than 275 victims of GAI CSAM have been identified, and more than 158,000 images and videos have been categorized as GAI CSAM. Across the country, NCMEC is also tracking cases in which individuals – oftentimes classmates or peers – are leveraging "nudify" apps to create and spread harmful content.
+
+- 158,000 images and videos categorized as GAI CSAM since 2023
+
+### Electronic Service Provider Reports
+
+The CyberTipline receives reports from the public and online electronic service providers (ESPs) with the majority coming from ESPs. To date, more than 2,000 ESPs are registered to make reports, and 23% of these are non-U.S.-based companies that have voluntarily registered to report to the CyberTipline. In 2025, just over 300 companies submitted CyberTipline reports and five ESPs accounted for more than 75% of the reports.
+
+In 2025:
+- 21.3 million CyberTipline reports total
+- 170,193 public reports
+- 21,181,300 ESP reports
+
+### Public Reports
+
+In addition to ESP reports, the CyberTipline received more than 170,000 reports from members of the public regarding suspected child sexual exploitation. Last year, NCMEC's CyberTipline saw an increase in reports from survivors or someone close to them. In 2025, NCMEC's CyberTipline received more than 5,700 reports directly from the victim, which is a more than 100% increase from 2024.
+
+- More than 5,700 reports directly from the victim
+
+In addition to the CyberTipline, NCMEC also offers Take It Down as a free service that helps members of the public who believe explicit imagery of them taken before they were 18 may be shared online. Take It Down assigns a digital marker or hash value to the nude, partially nude or sexually explicit content, and NCMEC provides that list of hash values to participating online platforms. Through voluntary efforts, the platforms can use that hash list to help them detect and remove content. In 2025, NCMEC's Take It Down program received more than 130,000 submissions requesting assistance in removing more than 273,000 images and videos.
+
+- More than 130,000 submissions to Take It Down
+- More than 273,000 images and videos requested for removal assistance
+
+In 2025, Take It Down was translated into three additional languages including Croatian, Serbian and Slovenian. As of December 31, 2025, Take It Down was available in 36 languages and has been promoted to potential users around the world. The Take It Down website recorded more than 1.6 million visitors and more than 4.2 million page views. The majority of website visitors were based in the U.S. followed by India, Brazil, Turkey and Mexico.
+
+## CyberTipline Report Response
+
+NCMEC's response to CyberTipline reports includes making the reports and our additional analysis available to law enforcement to help them prioritize the most urgent cases, as well as providing resources and notification services to companies to help them locate and remove content on their platforms. In 2025, that included:
+
+### Referrals & Informational Reports
+
+NCMEC categorizes CyberTipline reports based on the quantity and quality of information included and whether it can help law enforcement take action:
+
+Referral — A referral is a report in which the tech company provides sufficient information for law enforcement, usually including user details, imagery and a possible location for the child or the offender.
+
+Informational — An informational report is one in which the tech company provides insufficient information or where the imagery is considered viral and has been reported many times.
+
+In 2025, NCMEC referred more than 18.8 million reports to law enforcement and designated more than 4.5 million reports as informational when making them available to law enforcement.
+
+NCMEC notifies companies when their reports consistently lack substantive information.
+
+In 2025, more than 10% of CyberTipline reports submitted by the tech industry contained inadequate information for NCMEC to determine where the offense occurred. While all CyberTipline reports are made available to U.S. federal law enforcement, a lack of jurisdictional information prevents NCMEC from referring a report to a specific agency in the jurisdiction where the incident occurred. Among companies that made at least 100 reports in 2025, more than half of the reports submitted by the companies listed here lacked adequate information to determine the jurisdiction of the offense:
+
+- Amazon AI Services
+- Box, Inc./Box.com
+- Character Technologies, Inc.
+- Grindr
+- Invoke AI, Inc.
+- Lightspeed Systems
+- Padlet/Wallwisher, Inc./cloudfront
+- Redgifs.com
+- Streamable, Inc.
+- Wizz App
+- X.AI LLC
+- Zoom Video Communications, Inc.
+
+In the early months of 2026, NCMEC has already seen significant reporting improvements from Amazon AI Services, Grindr and X.AI LLC, enabling their submissions to result in more actionable referrals to law enforcement or notifications to hosting providers to remove CSAM from their services.
+
+### File Review & Triage
+
+Child sexual abuse images and videos are often circulated and shared online repeatedly. CSAM depicting a single child victim can be circulated for years after the initial abuse occurred. For example, one child's abusive imagery has been circulated for the past 20 years, appearing more than 1.4 million times in submissions to NCMEC. One of the CyberTipline's critical functions is to identify unique images among the reported files through the analysis of NCMEC staff and the use of technology. In 2025, ESPs submitted 29.4 million images to the CyberTipline, of which 13.9 million (48%) were unique. Of the 26.3 million videos reported by ESPs, 7.3 million (28%) were unique.
+
+NCMEC analysts review suspected CSAM submitted by companies and label images and videos with information about the type of content, the estimated age range of the children seen and other details that help law enforcement prioritize the reports for review. For example, labels can indicate if the imagery contains elements such as violence or bestiality or if it involves infants or toddlers.
+
+NCMEC labeled more than 14.6 million files in 2025 and has labeled more than 77.1 million files as of December 31, 2025.
+
+After labeling files, NCMEC's systems use robust hash matching technology to automatically recognize those same images and videos when reported to the CyberTipline in the future. The automated hash matching process reduces the amount of duplicative CSAM that NCMEC staff view and focuses their attention on newer imagery. This process helps ensure the most urgent CyberTipline reports, where a child may be suffering ongoing abuse, get immediate attention.
+
+### Hash Sharing
+
+Hash values are an important tool in stopping the spread of CSAM because they serve as a unique marker for each image and video. NCMEC analysts review an image or video at least three times to confirm that it contains CSAM before adding the hash value to a list that is shared with technology companies.
+
+On a voluntary basis, companies can elect to use NCMEC's hash list to detect CSAM on their systems so that abusive content can be reported and removed. As of December 31, 2025, NCMEC shared more than 12.1 million hashes with 78 ESPs who have voluntarily chosen to access this hash-sharing initiative.
+
+### Removing Content
+
+NCMEC can provide crucial support to child victims by notifying relevant platforms to review and remove any explicit images of the child.
+
+NCMEC staff review the reported imagery and if it falls in one of the three categories below, a notification is made to the ESP where the image or video is located:
+
+- CSAM — Child sexual abuse material, which may violate federal law, a company's terms of service and/or their published community guidelines or standards.
+- Exploitative — Exploitative content, which depicts identified child victims, but the images themselves may not reach the legal threshold of CSAM. Examples are images or videos that contain nudity, non-pornographic content associated with CSAM or otherwise sexually suggestive content of identified child victims.
+- Predatory Text — Text related to sexually predatory comments or personal information about an identified child victim or CSAM survivor. Personal information identifying the child in the image or video may pose safety concerns for the child or survivor.
+
+Based on a company's terms of service, imagery may be removed and/or users blocked in response to a notification. Once a notice has been sent, NCMEC staff track the status of each case and continue to generate additional notices until the content is addressed.
+
+In 2025, NCMEC issued more than 172,000 notices and the average take-down time for images or videos was 2.6 days.
+
+## Domestic & Global Response
+
+A critical function of the CyberTipline is to refer reports to the law enforcement agency that is best able to respond to and address the issue being reported. Federal statute 18 USC 2258A requires U.S. companies to report to the CyberTipline if they become aware of suspected CSAM, online enticement or child sex trafficking on their platforms and servers. Because these companies have users worldwide and those incidents are reported to NCMEC, by extension the CyberTipline serves as a global clearinghouse and reports are referred to law enforcement throughout the U.S. and around the world.
+
+77% of CyberTipline reports in 2025 involved the upload of CSAM or other child sexual exploitation by users outside of the U.S; 9% of CyberTipline reports were U.S.-based and 14% had an unknown origin.
+
+### Domestic Response
+
+While the majority of reports submitted to the CyberTipline resolved outside of the United States, more than 2 million reports resolved to the U.S., including all 50 states, Washington, D.C., Puerto Rico and other U.S. territories. Of these, 1.9 million reports resolved to a specific state and for 153,000 reports, the state was unknown. The CyberTipline reports are made available to Internet Crimes Against Children Task Forces and other local, state and federal agencies. When the state is unknown, the reports are made available to federal law enforcement in the U.S. NCMEC works closely with law enforcement throughout the country, providing training and resources to support their response to CyberTipline reports.
+
+- 1.9M reports resolved to a U.S. state
+
+### Global Response
+
+With more than 77% of reports being referred outside the U.S., NCMEC has forged partnerships with law enforcement in 170 countries and territories that receive CyberTipline reports, including Interpol and Europol. Interpol also assists in the dissemination of CyberTipline report information to certain countries where NCMEC doesn't have a direct connection to law enforcement.
+
+These important connections to law enforcement allow for a quick and seamless referral of CyberTipline reports to help ensure children around the world are safeguarded and offenders are held accountable. A report referred to a single country based on where the content may have been uploaded can still have a nexus with other offenders or victims located in other countries around the world, including the U.S.
+
+With private and public/federal support, NCMEC staff provide CyberTipline trainings in other countries, mentor NGOs seeking to expand technical and operational capacities within their own hotlines, educate on best practices and share child safety and prevention material around the world. We collaborate with dozens of global NGOs, including WeProtect, ECPAT, International Justice Mission (IJM), Internet Watch Foundation, the Canadian Centre for Child Protection, UNICEF and many others. NCMEC is also a founding member of INHOPE, a global network of 50 member hotlines across six continents.
+
+### Case Management Tool
+
+The NCMEC Case Management Tool (CMT), developed with support from the U.S. Office of Juvenile Justice and Delinquency Prevention (OJJDP) and Meta, enables NCMEC to share reports securely and quickly with law enforcement around the world.
+
+The CMT allows law enforcement in the U.S. and abroad to receive, triage, prioritize, organize and manage CyberTipline reports. Through robust and customizable display data, dashboards and metrics, law enforcement personnel can tailor their report queue for more immediate triage and better response.
+
+The CMT also helps police agencies refer reports to other law enforcement agencies for a more targeted response. The system helps NCMEC notify law enforcement of high priority reports.
+
+In support of easier adoption and use by international users, the CMT fields and interface are available in eight languages (English, Spanish, French, German, Portuguese, Arabic, Hindi and Thai). Domestically, all Internet Crimes Against Children Task Forces, the FBI and Homeland Security Investigations also have access.
+
+## OJJDP CT Report
+
+In consultation with the Office of Juvenile Justice and Delinquency Prevention (OJJDP), NCMEC prepared an additional transparency report regarding CyberTipline activity in 2025. It is a complementary resource to the report on this page and contains additional detail about the reports made to the CyberTipline in 2025.
+
+## Funding acknowledgment (footer)
+
+This Web site is funded, in part, through a grant from the Office of Juvenile Justice and Delinquency Prevention, Office of Justice Programs, U.S. Department of Justice. Neither the U.S. Department of Justice nor any of its components operate, control, are responsible for, or necessarily endorse, this Web site (including, without limitation, its content, technical infrastructure, and policies, and any services or tools provided).
+
+Copyright: National Center for Missing & Exploited Children. All rights reserved.
