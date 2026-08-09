@@ -19,7 +19,7 @@
     owl:versionInfo "3.0.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-02-16"^^xsd:date ;
+    dcterms:modified "2026-07-19"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/> ,
@@ -161,6 +161,18 @@ cacontology-legal-outcomes:CriminalCharge rdf:type owl:Class ;
     rdfs:label "Criminal Charge"@en ;
     rdfs:comment "Formal accusation of criminal activity in CAC cases. Modeled as gUFO Object."@en ;
     rdfs:subClassOf uco-observable:ObservableObject, cac-core:Artifact .
+
+# =============================================================================
+# CONVICTION RECORD (gUFO Object) — Issue #36
+# Shape: ConvictionRecordShape in cacontology-legal-outcomes-shapes.ttl
+# =============================================================================
+
+cacontology-legal-outcomes:ConvictionRecord rdf:type owl:Class ;
+    rdfs:label "Conviction Record"@en ;
+    rdfs:comment "A durable record that a person was convicted of one or more criminal charges (e.g., by jury verdict, bench trial, or plea agreement). Used for current-case dispositions and for limited prior-conviction history relevant to charging or sentencing. Trauma-informed modeling: store only structured legal facts needed for interoperability; do not encode graphic offense narrative in this class. Modeled as gUFO Object."@en ;
+    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Artifact ;
+    dcterms:source "Federal Rules of Criminal Procedure; AO 245B Judgment in a Criminal Case (U.S. Courts)."@en ;
+    rdfs:seeAlso <https://www.uscourts.gov/forms/criminal-judgment-forms/judgment-criminal-case-0> .
 
 cacontology-legal-outcomes:FederalCharge rdf:type owl:Class ;
     rdfs:label "Federal Charge"@en ;
@@ -494,6 +506,14 @@ cacontology-legal-outcomes:sentenceDuration rdf:type owl:DatatypeProperty ;
     rdfs:domain cacontology-legal-outcomes:CriminalSentence ;
     rdfs:range xsd:duration .
 
+cacontology-legal-outcomes:sentenceDurationMonths rdf:type owl:DatatypeProperty ;
+    rdfs:label "sentence duration in months"@en ;
+    rdfs:comment "Duration of a criminal sentence expressed as a whole number of months, as stated on the judgment (e.g. AO 245B, https://www.uscourts.gov/forms/criminal-judgment-forms/judgment-criminal-case-0). Convenience companion to sentenceDuration (xsd:duration) for direct numeric comparison in analytics (e.g. sentences over 120 months)."@en ;
+    rdfs:domain cacontology-legal-outcomes:CriminalSentence ;
+    rdfs:range xsd:integer ;
+    dcterms:source "AO 245B Judgment in a Criminal Case (U.S. Courts)."@en ;
+    rdfs:seeAlso <https://www.uscourts.gov/forms/criminal-judgment-forms/judgment-criminal-case-0> .
+
 cacontology-legal-outcomes:roleDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "role duration"@en ;
     rdfs:comment "Duration of individual's legal role."@en ;
@@ -529,6 +549,70 @@ cacontology-legal-outcomes:hasCharge rdf:type owl:ObjectProperty ;
     rdfs:comment "Links legal proceeding to criminal charges involved."@en ;
     rdfs:domain cacontology-legal-outcomes:LegalProceeding ;
     rdfs:range cacontology-legal-outcomes:CriminalCharge .
+
+# -----------------------------------------------------------------------------
+# Charging / sentencing properties (Issue #40) + ConvictionRecord props (#36)
+# -----------------------------------------------------------------------------
+
+cacontology-legal-outcomes:chargedWith rdf:type owl:ObjectProperty ;
+    rdfs:label "charged with"@en ;
+    rdfs:comment "Links a person (or investigation subject role continuity via Person) to a criminal charge filed against them. A person may face multiple charges; in multi-defendant instruments each defendant links only to the counts naming them. Complements the existing hasCharge property, which links a LegalProceeding to its charges. See Fed. R. Crim. P. 7 (https://www.law.cornell.edu/rules/frcrmp/rule_7)."@en ;
+    rdfs:domain uco-identity:Person ;
+    rdfs:range cacontology-legal-outcomes:CriminalCharge ;
+    dcterms:source "Fed. R. Crim. P. 7."@en ;
+    rdfs:seeAlso <https://www.law.cornell.edu/rules/frcrmp/rule_7> .
+
+cacontology-legal-outcomes:statuteCitation rdf:type owl:DatatypeProperty ;
+    rdfs:label "statute citation"@en ;
+    rdfs:comment "The statutory citation for a criminal charge, e.g. '18 U.S.C. §§ 2251(a), (e)'. United States Code citations follow the conventions of the Office of the Law Revision Counsel (https://uscode.house.gov/)."@en ;
+    rdfs:domain cacontology-legal-outcomes:CriminalCharge ;
+    rdfs:range xsd:string ;
+    dcterms:source "Office of the Law Revision Counsel, United States Code."@en ;
+    rdfs:seeAlso <https://uscode.house.gov/> .
+
+cacontology-legal-outcomes:chargeCount rdf:type owl:DatatypeProperty ;
+    rdfs:label "charge count"@en ;
+    rdfs:comment "The total number of criminal charges associated with a ConvictionRecord or LegalProceeding (aggregate total, not the ordinal of a single count). Constrained on ConvictionRecord by ConvictionRecordShape (minInclusive 1, maxInclusive 100). Distinct from countNumber, which is the ordinal count number within a charging instrument. NOTE: some existing example graphs historically used chargeCount on individual CriminalCharge nodes as an ordinal; that usage SHOULD migrate to countNumber in a follow-up (this declaration does not rewrite those examples)."@en ;
+    rdfs:range xsd:nonNegativeInteger .
+
+cacontology-legal-outcomes:countNumber rdf:type owl:DatatypeProperty ;
+    rdfs:label "count number"@en ;
+    rdfs:comment "The ordinal count number a charge holds within its charging instrument (e.g. Count 3 of an indictment). Distinct from chargeCount, which is the total number of charges on a ConvictionRecord or LegalProceeding. See Fed. R. Crim. P. 7(c)."@en ;
+    rdfs:domain cacontology-legal-outcomes:CriminalCharge ;
+    rdfs:range xsd:nonNegativeInteger ;
+    dcterms:source "Fed. R. Crim. P. 7(c)."@en ;
+    rdfs:seeAlso <https://www.law.cornell.edu/rules/frcrmp/rule_7> .
+
+cacontology-legal-outcomes:convictionDate rdf:type owl:DatatypeProperty ;
+    rdfs:label "conviction date"@en ;
+    rdfs:comment "Date and time when the conviction was entered (verdict, acceptance of plea, or equivalent disposition). Required by ConvictionRecordShape as xsd:dateTime."@en ;
+    rdfs:domain cacontology-legal-outcomes:ConvictionRecord ;
+    rdfs:range xsd:dateTime .
+
+cacontology-legal-outcomes:convictionType rdf:type owl:DatatypeProperty ;
+    rdfs:label "conviction type"@en ;
+    rdfs:comment "How the conviction was obtained. Allowed values (ConvictionRecordShape): jury_verdict, bench_trial, plea_agreement, default_judgment, summary_conviction."@en ;
+    rdfs:domain cacontology-legal-outcomes:ConvictionRecord ;
+    rdfs:range xsd:string .
+
+cacontology-legal-outcomes:priorConvictions rdf:type owl:DatatypeProperty ;
+    rdfs:label "prior convictions"@en ;
+    rdfs:comment "Number of prior criminal convictions associated with the subject of this ConvictionRecord (aggregate count for history context; 0–50 per ConvictionRecordShape). Use non-graphic, structured counts only."@en ;
+    rdfs:domain cacontology-legal-outcomes:ConvictionRecord ;
+    rdfs:range xsd:nonNegativeInteger .
+
+cacontology-legal-outcomes:phaseStatus rdf:type owl:DatatypeProperty ;
+    rdfs:label "phase status"@en ;
+    rdfs:comment "Status of a legal or operational phase (e.g., 'active', 'completed', 'pending'). Canonical declaration for cac-core:Phase-scoped use across legal proceedings and related workflows. The former module-local copy cacontology-asset-forfeiture:phaseStatus is deprecated in favor of this property."@en ;
+    rdfs:domain cac-core:Phase ;
+    rdfs:range xsd:string .
+
+# FederalProsecution namespace alignment (Issue #40 decision):
+# Canonical class IRI is cacontology-usa-federal:FederalProsecution in
+# ontology/cacontology-usa-federal-law.ttl. Graphs MUST use that IRI.
+# No legal-outcomes alias or owl:equivalentClass is introduced here; examples
+# that previously implied a legal-outcomes:FederalProsecution term should
+# migrate to the usa-federal namespace (SDK exemplars already prefer usa-federal).
 
 cacontology-legal-outcomes:resultsSentence rdf:type owl:ObjectProperty ;
     rdfs:label "results sentence"@en ;

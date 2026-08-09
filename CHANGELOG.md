@@ -72,6 +72,37 @@ Adds four offense-trajectory constructs for state-machine mapping (phases as sta
 - **New** `cac-core:precedes` — spine-level phase sequencing for offense-trajectory state machines (`rdfs:domain` / `rdfs:range` `cac-core:Phase`; defined in `ontology/cacontology-core-spine.ttl`). Not present on main before this branch. Distinct from pre-existing module-local ordering properties (`cacontology:transitionsTo`, `cacontology-temporal:temporallyPrecedes`, `cacontology-usa-federal:precedesPhase`). UCO and CASE imported ontologies do not define an equivalent property.
 - `PhasePrecedesShape` and `PrecedesSubjectShape` in `ontology/cacontology-core-shapes.ttl` (maintainer adjustment: subject-side check uses `sh:targetSubjectsOf` so it actually fires)
 
+### Added - Legal outcomes core charging/sentencing + ConvictionRecord (Issues #40, #36)
+
+Declare charging/sentencing terms and the ConvictionRecord class that PACER-style graphs and `ConvictionRecordShape` already target but that were previously undeclared in `cacontology-legal-outcomes.ttl`. Closes the largest silent-pass gap for strict CASE/UCO concept-coverage checks.
+
+#### `ontology/cacontology-legal-outcomes.ttl`
+
+- `cacontology-legal-outcomes:chargedWith` — object property; domain `uco-identity:Person`, range `CriminalCharge` (Fed. R. Crim. P. 7)
+- `cacontology-legal-outcomes:statuteCitation` — datatype property on `CriminalCharge` (Office of the Law Revision Counsel / US Code citation conventions)
+- `cacontology-legal-outcomes:chargeCount` — **total** number of charges on a `ConvictionRecord` or `LegalProceeding` (matches `ConvictionRecordShape` 1–100)
+- `cacontology-legal-outcomes:countNumber` — **ordinal** count number within a charging instrument (domain `CriminalCharge`; Fed. R. Crim. P. 7(c))
+- `cacontology-legal-outcomes:sentenceDurationMonths` — integer months companion to `sentenceDuration` (xsd:duration); AO 245B
+- `cacontology-legal-outcomes:ConvictionRecord` — owl:Class (`uco-observable:ObservableObject`, `cac-core:Artifact`)
+- `convictionDate`, `convictionType`, `priorConvictions` — properties referenced by existing `ConvictionRecordShape`
+- `cacontology-legal-outcomes:phaseStatus` — promoted canonical declaration (domain `cac-core:Phase`)
+
+#### `ontology/cacontology-asset-forfeiture.ttl`
+
+- `cacontology-asset-forfeiture:phaseStatus` marked `owl:deprecated` with `owl:equivalentProperty` to `cacontology-legal-outcomes:phaseStatus` (backward-compatible continuity)
+
+#### Namespace decision (FederalProsecution)
+
+- Canonical class remains `cacontology-usa-federal:FederalProsecution` (documented; no legal-outcomes `equivalentClass` alias)
+
+#### Examples
+
+- Added: `examples_knowledge_graphs/synthetic-legal-outcomes-core-example.ttl` — fully synthetic acceptance exemplar for the new terms
+
+#### Migration note
+
+- Existing example graphs that used `chargeCount` as an ordinal on individual charges are **not** rewritten in this PR; migrate those triples to `countNumber` in a follow-up.
+
 ## v3.0.0 - 16 March 2026
 
 ### Added - Semantic Spine Architecture
