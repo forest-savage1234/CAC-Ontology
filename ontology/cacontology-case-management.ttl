@@ -15,14 +15,14 @@
 <https://cacontology.projectvic.org/case-management> rdf:type owl:Ontology ;
     rdfs:label "CAC Case Management Ontology with gUFO Integration"@en ;
     rdfs:comment "Comprehensive ontology for modeling case management processes, workflows, assignments, tracking, documentation, and metrics within CAC investigations and prosecutions, enhanced with comprehensive gUFO foundational modeling for +85% semantic precision, +195% temporal modeling improvements, and +385% validation coverage."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/case-management/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/case-management/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-27"^^xsd:date ;
-    dcterms:modified "2026-03-13"^^xsd:date ;
+    dcterms:modified "2026-08-09"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.caseontology.org/case/case/1.5.0> ,
-                <https://cacontology.projectvic.org/core/3.0.0> ,
+                <https://cacontology.projectvic.org/core/3.1.0> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================

@@ -12,7 +12,7 @@
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 
 @prefix cacontology: <https://cacontology.projectvic.org#> .
-@prefix icacus: <https://cacontology.projectvic.org/us/ncmec/3.0.0#> .
+@prefix icacus: <https://cacontology.projectvic.org/us/ncmec/3.1.0#> .
 @prefix cacontology-production: <https://cacontology.projectvic.org/production#> .
 @prefix cacontology-custodial: <https://cacontology.projectvic.org/custodial#> .
 @prefix cacontology-victim-impact: <https://cacontology.projectvic.org/victim-impact#> .

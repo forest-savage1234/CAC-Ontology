@@ -19,7 +19,7 @@
 # =============================================================================
 # CASE EXAMPLE: United States v. McCormack (9th Cir. 2017) — appellate concepts
 # Source: https://www.courtlistener.com/opinion/8700418/united-states-v-mccormack/
-# Target: CAC Ontology v3.0.0 (sentencing module appellate terms)
+# Target: CAC Ontology v3.1.0 (sentencing module appellate terms)
 # =============================================================================
 
 # =============================================================================

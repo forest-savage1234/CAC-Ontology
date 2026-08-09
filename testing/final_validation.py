@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Comprehensive end-to-end validation for CAC Ontology v3.0.0.
+Comprehensive end-to-end validation for CAC Ontology v3.1.0.
 Validates: Turtle syntax, SHACL shapes syntax, version consistency,
 stale references, ICAC naming compliance, cross-references, imports,
 prefix consistency, and SPARQL query files.
@@ -26,7 +26,7 @@ results = {
 }
 
 print("=" * 70)
-print("  CAC Ontology v3.0.0 — Comprehensive Validation")
+print("  CAC Ontology v3.1.0 — Comprehensive Validation")
 print("=" * 70)
 
 # ============================================================
@@ -113,7 +113,7 @@ for f in sorted(glob.glob(os.path.join('ontology', '*.ttl'))):
     bn = os.path.basename(f)
     
     if 'owl:Ontology' in content:
-        if 'owl:versionInfo "3.0.0"' not in content:
+        if 'owl:versionInfo "3.1.0"' not in content:
             version_issues.append(bn)
             results['version_fail'] += 1
         else:
@@ -123,7 +123,7 @@ if version_issues:
     for v in version_issues:
         print(f"  MISSING: {v}")
 else:
-    print(f"  ALL OK: {results['version_ok']} modules have owl:versionInfo 3.0.0")
+    print(f"  ALL OK: {results['version_ok']} modules have owl:versionInfo 3.1.0")
 
 # ============================================================
 # Stage 4: Stale references
@@ -287,10 +287,11 @@ for f in sorted(glob.glob(os.path.join('ontology', '*.ttl'))):
         if is_external:
             if iri.startswith('https://ontology.unifiedcyberontology.org/') or \
                iri.startswith('https://ontology.caseontology.org/'):
-                if not iri.endswith('/'):
-                    imports_issues.append(f'{bn}: UCO/CASE import missing trailing slash: {iri}')
+                # CASE/UCO imports are pinned to versioned IRIs (e.g., .../uco/core/1.5.0)
+                if not iri.endswith('/1.5.0'):
+                    imports_issues.append(f'{bn}: UCO/CASE import not pinned to 1.5.0: {iri}')
         elif iri.startswith('https://cacontology.projectvic.org/'):
-            if iri == 'https://cacontology.projectvic.org/gufo/3.0.0':
+            if iri == 'https://cacontology.projectvic.org/gufo/3.1.0':
                 imports_issues.append(f'{bn}: Import references non-existent gufo module: {iri}')
 
 if imports_issues:

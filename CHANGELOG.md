@@ -5,7 +5,7 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [3.1.0] - 2026-08-09
 
 ### Added - Conditioning Phase (offense-trajectory macro phase)
 
@@ -122,6 +122,11 @@ Merges the contributed NCMEC CyberTipline 2025 aggregate statistics example know
 - Contributed example (PR #42) preserved: collection/normalization provenance chain with SHA-256 hashes, organization nodes, reporting-category concept nodes, and statement/listing Actions grounded in normalized keypoints
 - Maintainer remodel: 24 bare `uco-core:UcoObject` "stat claim" nodes retyped as `AggregateReportStatistic` with structured value/unit/period properties; compound published claims decomposed into 19 additional single-value statistics (deterministic UUIDv5 identifiers in the document namespace); statistics linked to their category/program nodes via `statisticTopic`; provenance grouping Actions extended to cover the decomposed nodes
 - CASE/UCO conformance fixes to the contributed example: nonexistent `uco-observable:HashFacet` replaced with `uco-observable:hash` on `ContentDataFacet`; nonexistent `investigation:provenanceRecordAction` replaced with `uco-core:object`; language tags removed from `uco-core:description` literals (UCO requires `xsd:string`)
+
+### Changed - Pinned to CASE/UCO v1.5.0
+
+- All 178 `owl:imports` references to CASE and UCO ontologies now use versioned IRIs pinned to the v1.5.0 releases (e.g., `<https://ontology.unifiedcyberontology.org/uco/core/1.5.0>`, `<https://ontology.caseontology.org/case/investigation/1.5.0>`); bare `<https://ontology.caseontology.org/case/>` imports corrected to the CASE master ontology versionIRI `<https://ontology.caseontology.org/case/case/1.5.0>`
+- Namespace prefixes are unchanged (term IRIs are version-independent)
 
 ### Changed - Unversioned ontology IRIs (CDO upstream request)
 

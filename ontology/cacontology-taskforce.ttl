@@ -16,17 +16,17 @@
 <https://cacontology.projectvic.org/taskforce> rdf:type owl:Ontology ;
     rdfs:label "CAC Task Force Organization Ontology"@en ;
     rdfs:comment "An ontology for representing CAC task force structures, specialized units, coordination mechanisms, resource sharing, and joint operations in Internet Crimes Against Children investigations, extending UCO and CASE with gUFO foundational ontology enhancements."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/taskforce/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/taskforce/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-08-09"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/role/1.5.0> ,
-                <https://cacontology.projectvic.org/3.0.0> ,
+                <https://cacontology.projectvic.org/3.1.0> ,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================

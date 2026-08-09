@@ -14,11 +14,11 @@
 <https://cacontology.projectvic.org/us/ncmec/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC US NCMEC SHACL Shapes"@en ;
     rdfs:comment "SHACL shapes for validating CAC US NCMEC ontology instances, covering NCMEC CyberTip reports, incident types, analysis processes, and investigation triggers."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/us/ncmec/shapes/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/us/ncmec/shapes/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/us/ncmec/3.0.0> ,
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/us/ncmec/3.1.0> ,
                 <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
 

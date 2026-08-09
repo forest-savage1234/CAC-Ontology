@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Comprehensive SHACL validation for CAC Ontology v3.0.0.
+Comprehensive SHACL validation for CAC Ontology v3.1.0.
 Validates every ontology module against its corresponding shapes file,
 and validates example knowledge graphs against relevant shapes.
 """
@@ -17,7 +17,7 @@ except ImportError:
     sys.exit(1)
 
 print("=" * 70)
-print("  CAC Ontology v3.0.0 — Comprehensive SHACL Validation")
+print("  CAC Ontology v3.1.0 — Comprehensive SHACL Validation")
 print("=" * 70)
 
 start_time = time.time()

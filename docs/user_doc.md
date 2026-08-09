@@ -1006,7 +1006,7 @@ example:investigation-001 cacontology:exportFormat "CASE-JSON", "UCO-Turtle", "S
 ## License and Support
 
 ### 1. Versioning
-- Current Version: 3.0.0 (16 March 2026)
+- Current Version: 3.1.0 (9 August 2026)
 - See CHANGELOG.md for complete version history
 - Follows semantic versioning (MAJOR.MINOR.PATCH)
 - Coordinated releases across all 30+ ontology modules

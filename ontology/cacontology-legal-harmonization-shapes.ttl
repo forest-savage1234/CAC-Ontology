@@ -21,12 +21,12 @@
 <https://cacontology.projectvic.org/legal-harmonization/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Legal Harmonization SHACL Shapes"@en ;
     rdfs:comment "SHACL shapes for validating CAC legal harmonization ontology instances with comprehensive gUFO integration for enhanced semantic validation, covering international legal frameworks, policy harmonization, and CSAM legislation analysis across 196 countries."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/legal-harmonization/shapes/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/legal-harmonization/shapes/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-02-11"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/legal-harmonization/3.0.0> ,
-                <https://cacontology.projectvic.org/multi-jurisdiction/3.0.0> ,
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/legal-harmonization/3.1.0> ,
+                <https://cacontology.projectvic.org/multi-jurisdiction/3.1.0> ,
                 <http://purl.org/nemo/gufo#> ,
                 <http://www.w3.org/ns/shacl#> .
 

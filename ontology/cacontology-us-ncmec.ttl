@@ -14,13 +14,13 @@
 # Ontology Declaration
 <https://cacontology.projectvic.org/us/ncmec> rdf:type owl:Ontology ;
     rdfs:label "NCMEC Cybertip Report Ontology (US Extension)"@en ;
-    rdfs:comment "An ontology for representing concepts specific to NCMEC Cybertip reports as an extension to the core CAC ontology. Version 3.0.0."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/us/ncmec/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    rdfs:comment "An ontology for representing concepts specific to NCMEC Cybertip reports as an extension to the core CAC ontology. Version 3.1.0."@en ;
+    owl:versionIRI <https://cacontology.projectvic.org/us/ncmec/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-03-20"^^xsd:date ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/3.0.0> .
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/3.1.0> .
 
 # NCMEC Report Structure
 cacontology-us-ncmec:NCMECCybertipReport rdf:type owl:Class ;

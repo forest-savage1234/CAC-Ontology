@@ -17,12 +17,12 @@
 <https://cacontology.projectvic.org/international> rdf:type owl:Ontology ;
     rdfs:label "CAC International Cooperation Ontology"@en ;
     rdfs:comment "An ontology for modeling international cooperation, cross-border investigations, diplomatic protocols, and multilateral frameworks in Internet Crimes Against Children cases with gUFO foundational ontology enhancements for improved semantic precision, temporal modeling, and validation capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/international/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/international/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2025-11-18"^^xsd:date ;
+    dcterms:modified "2026-08-09"^^xsd:date ;
     owl:imports <http://purl.org/nemo/gufo#> ,
-                <https://cacontology.projectvic.org/core/3.0.0> .
+                <https://cacontology.projectvic.org/core/3.1.0> .
 
 # =============================================================================
 # INTERNATIONAL PARTNERSHIP FRAMEWORK

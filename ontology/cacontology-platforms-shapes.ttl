@@ -13,11 +13,11 @@
 <https://cacontology.projectvic.org/platforms/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Platforms SHACL Shapes"@en ;
     rdfs:comment "SHACL validation shapes for the CAC Platforms Ontology, providing validation for technology platforms, digital services, and Electronic Service Provider capabilities."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/platforms/shapes/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/platforms/shapes/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-02-16"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/platforms/3.0.0> ,
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/platforms/3.1.0> ,
                 <http://purl.org/nemo/gufo#> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
 

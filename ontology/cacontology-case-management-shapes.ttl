@@ -14,12 +14,12 @@
 <https://cacontology.projectvic.org/case-management/shapes> rdf:type owl:Ontology ;
     rdfs:label "CAC Case Management SHACL Shapes with gUFO Integration"@en ;
     rdfs:comment "SHACL validation shapes for the CAC Case Management Ontology, enhanced with comprehensive gUFO foundational modeling validation. Provides +385% validation coverage through gUFO Events, Objects, Roles, Phases, Situations constraint validation with anti-rigidity enforcement, temporal modeling, and case management-specific validation rules."@en ;
-    owl:versionIRI <https://cacontology.projectvic.org/case-management/shapes/3.0.0> ;
-    owl:versionInfo "3.0.0" ;
+    owl:versionIRI <https://cacontology.projectvic.org/case-management/shapes/3.1.0> ;
+    owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-27"^^xsd:date ;
-    dcterms:modified "2026-03-13"^^xsd:date ;
-    owl:imports <https://cacontology.projectvic.org/case-management/3.0.0>,
+    dcterms:modified "2026-08-09"^^xsd:date ;
+    owl:imports <https://cacontology.projectvic.org/case-management/3.1.0>,
                 <http://purl.org/nemo/gufo#> .
 
 # =============================================================================
