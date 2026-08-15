@@ -425,11 +425,11 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 21712,
+      "bytes": 21711,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-hotlines.ttl",
       "requested_iri": "https://cacontology.projectvic.org/hotlines/3.1.0",
-      "sha256": "ecca80f9958a72c95926b5fe0c06bb9bea77123f0efff2540721f4b6dee43172",
+      "sha256": "e5754410e46e955edb4a3838cb59527bd669036e2d073d781075b3569b940af6",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -1152,10 +1152,10 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 21712,
+      "bytes": 21711,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-hotlines.ttl",
-      "sha256": "ecca80f9958a72c95926b5fe0c06bb9bea77123f0efff2540721f4b6dee43172",
+      "sha256": "e5754410e46e955edb4a3838cb59527bd669036e2d073d781075b3569b940af6",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
