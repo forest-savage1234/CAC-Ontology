@@ -1,0 +1,930 @@
+{
+  "imports": [
+    {
+      "bytes": null,
+      "path": null,
+      "requested_iri": "http://purl.org/nemo/gufo#/1.0.0",
+      "sha256": null,
+      "status": "unresolved-remote"
+    },
+    {
+      "bytes": null,
+      "path": null,
+      "requested_iri": "http://www.w3.org/ns/shacl#",
+      "sha256": null,
+      "status": "unresolved-remote"
+    },
+    {
+      "bytes": 27651,
+      "path": "ontology/cacontology-core.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/3.1.0",
+      "sha256": "79574f5f74b474cfc627540014910f371668bdecc5b639249967280cd11a8dff",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 37476,
+      "path": "ontology/cacontology-stranger-abduction.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/abduction/3.1.0",
+      "sha256": "fe33889e400d0f005a9fd4b77ad3bb178472b9c2981811439cae4a40ff4682c7",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 31709,
+      "path": "ontology/cacontology-ai-csam.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/ai-csam/3.1.0",
+      "sha256": "3a9610fb77cba9b1f39f3d3fcf7a72a4763ab627bb8cc919fa230734990ee570",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 6908,
+      "path": "ontology/cacontology-analyst-wellbeing.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/analyst-wellbeing/3.1.0",
+      "sha256": "9261ce8ecbfde5cf209e6ac1038d8289392594007514970382abf63a6d9ee7de",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 31313,
+      "path": "ontology/cacontology-asset-forfeiture.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/asset-forfeiture/3.1.0",
+      "sha256": "33fb6054022e9f9a2709c4b9d30ab9d1d93f15246497bf70a71cf64a20de3dcc",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 34090,
+      "path": "ontology/cacontology-athletic-exploitation.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/athletic/3.1.0",
+      "sha256": "8789389938a32cb2781c3dd3656ee3aded0691f53315eae79e77c9c8ed875a2f",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 5144,
+      "path": "ontology/cacontology-bridge-gufo.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/bridge/gufo/3.1.0",
+      "sha256": "3a6d195d5608f87ffe069fc59f315186fc3ec58c10e4b572e0a3c6df85582240",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 54331,
+      "path": "ontology/cacontology-case-management.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/case-management/3.1.0",
+      "sha256": "a67596b56539a9cb65370a2e613faee0048c176035858214a6791ea08e2eb259",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 17328,
+      "path": "ontology/cacontology-core-spine.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/core/3.1.0",
+      "sha256": "be4de3ca70614b38ef091b69a684bf24cfc17dd3baf7574bb5fa48e044e07f76",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 32928,
+      "path": "ontology/cacontology-custodial.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/custodial/3.1.0",
+      "sha256": "6e82489d4acb4cb6deddc53456309e92c03821e39392b2d3e6661b673b7154f6",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 28946,
+      "path": "ontology/cacontology-detection.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/detection/3.1.0",
+      "sha256": "87dd1dcb35de9d8012bdc0f0371b092a64f76ff04399437d9e452c415c6ba89a",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 53309,
+      "path": "ontology/cacontology-educational-exploitation.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/educational/3.1.0",
+      "sha256": "9714270a27caf94b1bde91039099698e9824793846aa01495dd3fa3142eb15a2",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 48466,
+      "path": "ontology/cacontology-extremist-enterprises.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/extremist-enterprises/3.1.0",
+      "sha256": "9ade3b3fce3e38f871d5e7a64436366e07daf1bbfa329a2ba2b7ce9041aba291",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 59488,
+      "path": "ontology/cacontology-forensics.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/forensics/3.1.0",
+      "sha256": "c730dc4f79ae4918002cfeb7aeb2fb870accfe29dee3e2889b759de82f8d2eaf",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 63606,
+      "path": "ontology/cacontology-grooming.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/grooming/3.1.0",
+      "sha256": "7f53ddb85dc25d8d5660d5bde3467dc23766fb24c4056728e68519acc9424cbe",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 21713,
+      "path": "ontology/cacontology-hotlines.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/hotlines/3.1.0",
+      "sha256": "60f462325abcebd3128d54d1f0fedb2f14d69e2b804cd306deb5c3b0853c7f2d",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 38888,
+      "path": "ontology/cacontology-platform-infrastructure.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/infrastructure/3.1.0",
+      "sha256": "266152a11971773a093847f07babba21334fc6c11040dbce2a1f92c6f23170ea",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 45970,
+      "path": "ontology/cacontology-institutional-exploitation.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/institutional-exploitation/3.1.0",
+      "sha256": "9637eeb030b518a580c16a63e8d4331a4ffe682445730fd0494c1deae213469f",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 55471,
+      "path": "ontology/cacontology-international.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/international/3.1.0",
+      "sha256": "be4b38cd79f224a94f5ca9a7aa46eb1bdc0d20b12efd3e6f612a2e7d02844288",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 57774,
+      "path": "ontology/cacontology-investigation-coordination.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/investigation-coordination/3.1.0",
+      "sha256": "4b55d439ef469e2beaef6b782ce0b39cfe94bcdf68c9296c1b665a0b8aa96948",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 27831,
+      "path": "ontology/cacontology-law-enforcement-corruption.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/law-enforcement-corruption/3.1.0",
+      "sha256": "ed4e68ad4df7d1ea817561aeac605a86a49962487d6a6daef7eb59dc261c7d9a",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 56434,
+      "path": "ontology/cacontology-legal-harmonization.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/legal-harmonization/3.1.0",
+      "sha256": "a7c31c10105394f68d34e41df370ce621a466512ec645bf98fa21063eccb42db",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 63287,
+      "path": "ontology/cacontology-legal-outcomes.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/legal-outcomes/3.1.0",
+      "sha256": "0238825e8900e8f49909b767838b9d02173c326f3c214ad0dcdc4f53749203d2",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 64002,
+      "path": "ontology/cacontology-multi-jurisdiction.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/multi-jurisdiction/3.1.0",
+      "sha256": "31217458a347fff4e05533f90b97d03c66951812eb73a3b90dfe63cc1c4a2564",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 26129,
+      "path": "ontology/cacontology-partnerships.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/partnerships/3.1.0",
+      "sha256": "e8c3b2035601e5a04e41e18ddc08b04cbcaac80efdaaa2781435c358c6ab460f",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 46650,
+      "path": "ontology/cacontology-physical-evidence.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/physical/3.1.0",
+      "sha256": "c6218d8973c0d42389867e5665c3cc0c5a72f8f108b99e826c4e0abd9d025052",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 61621,
+      "path": "ontology/cacontology-platforms.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/platforms/3.1.0",
+      "sha256": "ae0e2db3c761a097fd540c32353df35683b7e8ba1ebea669d0dce0bdfab8584a",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 55601,
+      "path": "ontology/cacontology-prevention.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/prevention/3.1.0",
+      "sha256": "f35ebace8a202048304e093ee2e2e89085c004be708d1cbb1badd3f3b7e6254a",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 29334,
+      "path": "ontology/cacontology-production.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/production/3.1.0",
+      "sha256": "7c39aef3caf799e26b7dfc3579313e00e6f3dca46664931d3bf41c8d4e2689f2",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 22848,
+      "path": "ontology/cacontology-recantation.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/recantation/3.1.0",
+      "sha256": "7ca72bfeff125a471b3ef11aa2f27ebba5513ddd00b5f9b62a5966f2164b6351",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 23753,
+      "path": "ontology/cacontology-recruitment-networks.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/recruitment-networks/3.1.0",
+      "sha256": "61dabdf3d86051093ea6c4a647a6de3f860dee1b681f8677edefaed49b893608",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 41371,
+      "path": "ontology/cacontology-sex-offender-registry.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/sex-offender-registry/3.1.0",
+      "sha256": "2fad8f18af71420bbc48c218ae51385e6e4980bba06ee1f560c4b17ea6a18047",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 34578,
+      "path": "ontology/cacontology-sextortion.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/sextortion/3.1.0",
+      "sha256": "4e49a0d0dc195397f6adf9b02f12ac6f777cfbe4a4164ae883217577d23391e1",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 5054,
+      "path": "ontology/cacontology-sadistic-online-exploitation.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/soe/3.1.0",
+      "sha256": "392ad52632ae5c561303f8f0003306977b29fddd5ed5b7fb3acdd0e468d322ee",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 21341,
+      "path": "ontology/cacontology-specialized-units.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/specialized-units/3.1.0",
+      "sha256": "b9fd7ee0fb2de3865c9ec1a672716dd5a7ce4c4c0b66e50ed513c787734fc915",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 37695,
+      "path": "ontology/cacontology-street-recruitment.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/street/3.1.0",
+      "sha256": "dfc6cc3540b46467ab594f138289ff402c2e4ed054aeec9c641654d0871806a8",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 18196,
+      "path": "ontology/cacontology-synthesis.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/synthesis/3.1.0",
+      "sha256": "084251fb8774c98863ed42c92640a8beeb3deeddbf3e814f5e02899458f6da5c",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 27454,
+      "path": "ontology/cacontology-tactical.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/tactical/3.1.0",
+      "sha256": "3ba23d2aa03984ea25c6cedb07d460ea685c60608517300a5e6fcbc9a700d6df",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 58317,
+      "path": "ontology/cacontology-taskforce.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/taskforce/3.1.0",
+      "sha256": "2a2a4ab8e87793b888eec3525635334e503a3039b96e3948f229c53cd3d5be1c",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 24032,
+      "path": "ontology/cacontology-temporal.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/temporal/3.1.0",
+      "sha256": "eba7abd5616cd4ad55e2ce072c699719477ddce9d76d4f782cf06d7d879e2baa",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 24360,
+      "path": "ontology/cacontology-sex-trafficking.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/trafficking/3.1.0",
+      "sha256": "a91a183c9c535d3fe8965312afff5ab7cdc92b2f295c953719aa2503bf547244",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 28262,
+      "path": "ontology/cacontology-training.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/training/3.1.0",
+      "sha256": "4c439dac35d838654c8a89e2d094530c6bd9bbb48ac624d8799feef7e653e9a5",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 54389,
+      "path": "ontology/cacontology-undercover.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/undercover/3.1.0",
+      "sha256": "b73e965dbc279611f11c95aa240c3da2b2f845537792fa2928354e51d88b4aed",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 26021,
+      "path": "ontology/cacontology-us-ncmec.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/us/ncmec/3.1.0",
+      "sha256": "ca0ecf93e3f98ab3433ddd09c020ba1ab3ee8aacb34a104a0f692a738fd5dd54",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 36366,
+      "path": "ontology/cacontology-usa-federal-law.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/usa-federal-law/3.1.0",
+      "sha256": "ab203a1162152b2d3f36547971e9e92c0ef0dc7e9e0b97832cb859bf8c8b9989",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 23042,
+      "path": "ontology/cacontology-usa-legislative.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/usa-legislative/3.1.0",
+      "sha256": "d7512d74f5f70665be0e46a7497424c7fab59cbde10fe979d70863af8b7b9c3e",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": 54041,
+      "path": "ontology/cacontology-victim-impact.ttl",
+      "requested_iri": "https://cacontology.projectvic.org/victim-impact/3.1.0",
+      "sha256": "b8abcf6244e5bc7ece5cf12d638e887f8cf91f475fb4fb89eff33d7a0c191426",
+      "status": "resolved-local"
+    },
+    {
+      "bytes": null,
+      "path": null,
+      "requested_iri": "https://ontology.caseontology.org/case/case/1.5.0",
+      "sha256": null,
+      "status": "unresolved-remote"
+    },
+    {
+      "bytes": null,
+      "path": null,
+      "requested_iri": "https://ontology.caseontology.org/case/investigation/1.5.0",
+      "sha256": null,
+      "status": "unresolved-remote"
+    },
+    {
+      "bytes": null,
+      "path": null,
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/action/1.5.0",
+      "sha256": null,
+      "status": "unresolved-remote"
+    },
+    {
+      "bytes": null,
+      "path": null,
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/core/1.5.0",
+      "sha256": null,
+      "status": "unresolved-remote"
+    },
+    {
+      "bytes": null,
+      "path": null,
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/identity/1.5.0",
+      "sha256": null,
+      "status": "unresolved-remote"
+    },
+    {
+      "bytes": null,
+      "path": null,
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/location/1.5.0",
+      "sha256": null,
+      "status": "unresolved-remote"
+    },
+    {
+      "bytes": null,
+      "path": null,
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/observable/1.5.0",
+      "sha256": null,
+      "status": "unresolved-remote"
+    },
+    {
+      "bytes": null,
+      "path": null,
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/pattern/1.5.0",
+      "sha256": null,
+      "status": "unresolved-remote"
+    },
+    {
+      "bytes": null,
+      "path": null,
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/role/1.5.0",
+      "sha256": null,
+      "status": "unresolved-remote"
+    },
+    {
+      "bytes": null,
+      "path": null,
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/tool/1.5.0",
+      "sha256": null,
+      "status": "unresolved-remote"
+    },
+    {
+      "bytes": null,
+      "path": null,
+      "requested_iri": "https://ontology.unifiedcyberontology.org/uco/types/1.5.0",
+      "sha256": null,
+      "status": "unresolved-remote"
+    }
+  ],
+  "ontology_files": [
+    {
+      "bytes": 36093,
+      "path": "ontology/cacontology-ai-csam-shapes.ttl",
+      "sha256": "15b953514882e052f2e4b72504685d95b37fd4265210cc08bbfa3aa6ac98d2ad"
+    },
+    {
+      "bytes": 31709,
+      "path": "ontology/cacontology-ai-csam.ttl",
+      "sha256": "3a9610fb77cba9b1f39f3d3fcf7a72a4763ab627bb8cc919fa230734990ee570"
+    },
+    {
+      "bytes": 3973,
+      "path": "ontology/cacontology-analyst-wellbeing-shapes.ttl",
+      "sha256": "dc72c5fb4595e4afee3de6a41ff609ae33dcbb0814af324d639919575c07d8d7"
+    },
+    {
+      "bytes": 6908,
+      "path": "ontology/cacontology-analyst-wellbeing.ttl",
+      "sha256": "9261ce8ecbfde5cf209e6ac1038d8289392594007514970382abf63a6d9ee7de"
+    },
+    {
+      "bytes": 26986,
+      "path": "ontology/cacontology-asset-forfeiture-shapes.ttl",
+      "sha256": "1ae53c2d4b8daf932393ae8d3141640fddb1c291fad60b25b9d3f87f32f30319"
+    },
+    {
+      "bytes": 31313,
+      "path": "ontology/cacontology-asset-forfeiture.ttl",
+      "sha256": "33fb6054022e9f9a2709c4b9d30ab9d1d93f15246497bf70a71cf64a20de3dcc"
+    },
+    {
+      "bytes": 38754,
+      "path": "ontology/cacontology-athletic-exploitation-shapes.ttl",
+      "sha256": "a0b151c3cab32e901a8fc5f6a2a644a8360021785999bc7eed356ea78365c12d"
+    },
+    {
+      "bytes": 34090,
+      "path": "ontology/cacontology-athletic-exploitation.ttl",
+      "sha256": "8789389938a32cb2781c3dd3656ee3aded0691f53315eae79e77c9c8ed875a2f"
+    },
+    {
+      "bytes": 2629,
+      "path": "ontology/cacontology-bridge-case.ttl",
+      "sha256": "2f66255815b0cdc9a03a848904153dc9e3742b556ec23af77855af7b351440e0"
+    },
+    {
+      "bytes": 5144,
+      "path": "ontology/cacontology-bridge-gufo.ttl",
+      "sha256": "3a6d195d5608f87ffe069fc59f315186fc3ec58c10e4b572e0a3c6df85582240"
+    },
+    {
+      "bytes": 3237,
+      "path": "ontology/cacontology-bridge-uco.ttl",
+      "sha256": "6189c10275fe17dd0b54f7a67a9c072f96b25e47e95503911cea491e24d95ec8"
+    },
+    {
+      "bytes": 26898,
+      "path": "ontology/cacontology-case-management-shapes.ttl",
+      "sha256": "c8b50d12482c5ee8f7217a0f341b3692bce2c6ae7a2eb3734ca65bcf3b95935f"
+    },
+    {
+      "bytes": 54331,
+      "path": "ontology/cacontology-case-management.ttl",
+      "sha256": "a67596b56539a9cb65370a2e613faee0048c176035858214a6791ea08e2eb259"
+    },
+    {
+      "bytes": 21731,
+      "path": "ontology/cacontology-core-shapes.ttl",
+      "sha256": "04910bdf17172dba6e0002e128066f1a4e91e0ddf8c6e7c988a12aff0a582929"
+    },
+    {
+      "bytes": 9434,
+      "path": "ontology/cacontology-core-spine-shapes.ttl",
+      "sha256": "4e2025f28c7de91c9b056ac93a05109465ad2a0e4692dfd4945dc1e0cfd9771e"
+    },
+    {
+      "bytes": 17328,
+      "path": "ontology/cacontology-core-spine.ttl",
+      "sha256": "be4de3ca70614b38ef091b69a684bf24cfc17dd3baf7574bb5fa48e044e07f76"
+    },
+    {
+      "bytes": 27651,
+      "path": "ontology/cacontology-core.ttl",
+      "sha256": "79574f5f74b474cfc627540014910f371668bdecc5b639249967280cd11a8dff"
+    },
+    {
+      "bytes": 39800,
+      "path": "ontology/cacontology-custodial-shapes.ttl",
+      "sha256": "d880863addf9a9b9a612198ed1e89211025c8a5a9145d310e471988e998b36b7"
+    },
+    {
+      "bytes": 32928,
+      "path": "ontology/cacontology-custodial.ttl",
+      "sha256": "6e82489d4acb4cb6deddc53456309e92c03821e39392b2d3e6661b673b7154f6"
+    },
+    {
+      "bytes": 42697,
+      "path": "ontology/cacontology-detection-shapes.ttl",
+      "sha256": "b8187b03d3eccfc0baf6551fabafa8c20d976fb742466cc69d60fd321a97dbf6"
+    },
+    {
+      "bytes": 28946,
+      "path": "ontology/cacontology-detection.ttl",
+      "sha256": "87dd1dcb35de9d8012bdc0f0371b092a64f76ff04399437d9e452c415c6ba89a"
+    },
+    {
+      "bytes": 34586,
+      "path": "ontology/cacontology-educational-exploitation-shapes.ttl",
+      "sha256": "c3a724e9000ccb9f3c4825d79b93aca1b360f5c1d1dc643017e33c8b3ff5b788"
+    },
+    {
+      "bytes": 53309,
+      "path": "ontology/cacontology-educational-exploitation.ttl",
+      "sha256": "9714270a27caf94b1bde91039099698e9824793846aa01495dd3fa3142eb15a2"
+    },
+    {
+      "bytes": 40519,
+      "path": "ontology/cacontology-extremist-enterprises-shapes.ttl",
+      "sha256": "91346e37c7d85474374397f4fc2569a759c005158cd04f172a52586ec72dc551"
+    },
+    {
+      "bytes": 48466,
+      "path": "ontology/cacontology-extremist-enterprises.ttl",
+      "sha256": "9ade3b3fce3e38f871d5e7a64436366e07daf1bbfa329a2ba2b7ce9041aba291"
+    },
+    {
+      "bytes": 27411,
+      "path": "ontology/cacontology-forensics-extended-shapes.ttl",
+      "sha256": "9ea79a7c0dbb1d599aa9ebbd555dea95e089ab151d14c1730fc5db9683f30959"
+    },
+    {
+      "bytes": 34047,
+      "path": "ontology/cacontology-forensics-shapes.ttl",
+      "sha256": "2a2475a4170c0db3ad30cc296a88cd9aa66ab46eca3f16aee53c4c9afc1f7345"
+    },
+    {
+      "bytes": 59488,
+      "path": "ontology/cacontology-forensics.ttl",
+      "sha256": "c730dc4f79ae4918002cfeb7aeb2fb870accfe29dee3e2889b759de82f8d2eaf"
+    },
+    {
+      "bytes": 44171,
+      "path": "ontology/cacontology-grooming-shapes.ttl",
+      "sha256": "f2ec229a4759bbd263245caaa20063ddadd66382d0de3adeae5998a77bc08de6"
+    },
+    {
+      "bytes": 63606,
+      "path": "ontology/cacontology-grooming.ttl",
+      "sha256": "7f53ddb85dc25d8d5660d5bde3467dc23766fb24c4056728e68519acc9424cbe"
+    },
+    {
+      "bytes": 22568,
+      "path": "ontology/cacontology-hotlines-shapes.ttl",
+      "sha256": "42f65d52a22551bacc5e3fed5a114a2dcfc570b02e69edf2e8c051f8e412fba9"
+    },
+    {
+      "bytes": 21713,
+      "path": "ontology/cacontology-hotlines.ttl",
+      "sha256": "60f462325abcebd3128d54d1f0fedb2f14d69e2b804cd306deb5c3b0853c7f2d"
+    },
+    {
+      "bytes": 40320,
+      "path": "ontology/cacontology-institutional-exploitation-shapes.ttl",
+      "sha256": "2b6c2255c46406287bfaec86933da6de5453212bac2aa1aee3e61bef868b365f"
+    },
+    {
+      "bytes": 45970,
+      "path": "ontology/cacontology-institutional-exploitation.ttl",
+      "sha256": "9637eeb030b518a580c16a63e8d4331a4ffe682445730fd0494c1deae213469f"
+    },
+    {
+      "bytes": 25151,
+      "path": "ontology/cacontology-integration-patterns.ttl",
+      "sha256": "c2f0d2907a37e58b0fedf9119a7f25c191e17b690155931abd722958e3ce7c69"
+    },
+    {
+      "bytes": 53110,
+      "path": "ontology/cacontology-international-shapes.ttl",
+      "sha256": "8c570f86039bcced44dbcb4e5f3c4035ffbc2a8f526ed9f508e5c458a8187594"
+    },
+    {
+      "bytes": 55471,
+      "path": "ontology/cacontology-international.ttl",
+      "sha256": "be4b38cd79f224a94f5ca9a7aa46eb1bdc0d20b12efd3e6f612a2e7d02844288"
+    },
+    {
+      "bytes": 50937,
+      "path": "ontology/cacontology-investigation-coordination-shapes.ttl",
+      "sha256": "e263c68dd510a8962a8991a38f682ff2def1fddca40a26fb434826d8d09868c7"
+    },
+    {
+      "bytes": 57774,
+      "path": "ontology/cacontology-investigation-coordination.ttl",
+      "sha256": "4b55d439ef469e2beaef6b782ce0b39cfe94bcdf68c9296c1b665a0b8aa96948"
+    },
+    {
+      "bytes": 29267,
+      "path": "ontology/cacontology-law-enforcement-corruption-shapes.ttl",
+      "sha256": "52ff2b2fdb4ad9a8daf1d986727bf21ddf57d7e4f270b7e2cc0c438fbe45a8db"
+    },
+    {
+      "bytes": 27831,
+      "path": "ontology/cacontology-law-enforcement-corruption.ttl",
+      "sha256": "ed4e68ad4df7d1ea817561aeac605a86a49962487d6a6daef7eb59dc261c7d9a"
+    },
+    {
+      "bytes": 48609,
+      "path": "ontology/cacontology-legal-harmonization-shapes.ttl",
+      "sha256": "d0d2bf0001b310432917653ebebf77a3e5f3e07213e88d28097a659b6c3f001b"
+    },
+    {
+      "bytes": 56434,
+      "path": "ontology/cacontology-legal-harmonization.ttl",
+      "sha256": "a7c31c10105394f68d34e41df370ce621a466512ec645bf98fa21063eccb42db"
+    },
+    {
+      "bytes": 43960,
+      "path": "ontology/cacontology-legal-outcomes-shapes.ttl",
+      "sha256": "351285c4949f9b875c46aeb20e62c9e066ee788c0b3a328565734c463acde6eb"
+    },
+    {
+      "bytes": 63287,
+      "path": "ontology/cacontology-legal-outcomes.ttl",
+      "sha256": "0238825e8900e8f49909b767838b9d02173c326f3c214ad0dcdc4f53749203d2"
+    },
+    {
+      "bytes": 56597,
+      "path": "ontology/cacontology-multi-jurisdiction-shapes.ttl",
+      "sha256": "700f0bd58230becab953fece36a9ba7f11dbc280cd0a00a7089a32a4238da2ac"
+    },
+    {
+      "bytes": 64002,
+      "path": "ontology/cacontology-multi-jurisdiction.ttl",
+      "sha256": "31217458a347fff4e05533f90b97d03c66951812eb73a3b90dfe63cc1c4a2564"
+    },
+    {
+      "bytes": 60999,
+      "path": "ontology/cacontology-partnerships-shapes.ttl",
+      "sha256": "613aa7e23f1026c58e23728a293694d6698a5fce803455df8b5e731d05d01fec"
+    },
+    {
+      "bytes": 26129,
+      "path": "ontology/cacontology-partnerships.ttl",
+      "sha256": "e8c3b2035601e5a04e41e18ddc08b04cbcaac80efdaaa2781435c358c6ab460f"
+    },
+    {
+      "bytes": 51252,
+      "path": "ontology/cacontology-physical-evidence-shapes.ttl",
+      "sha256": "b952a134d29a5a7be1f93a685297a4deb8ed6e0ae6df05daa916d871a3b7c56a"
+    },
+    {
+      "bytes": 46650,
+      "path": "ontology/cacontology-physical-evidence.ttl",
+      "sha256": "c6218d8973c0d42389867e5665c3cc0c5a72f8f108b99e826c4e0abd9d025052"
+    },
+    {
+      "bytes": 63803,
+      "path": "ontology/cacontology-platform-infrastructure-shapes.ttl",
+      "sha256": "cf395f61080580666f53f7a04093771d500c5237c563b897066c83a9107187ae"
+    },
+    {
+      "bytes": 38888,
+      "path": "ontology/cacontology-platform-infrastructure.ttl",
+      "sha256": "266152a11971773a093847f07babba21334fc6c11040dbce2a1f92c6f23170ea"
+    },
+    {
+      "bytes": 36322,
+      "path": "ontology/cacontology-platforms-shapes.ttl",
+      "sha256": "39945954d42b39c6a338098e91107ac836e260c2334279b0d43e2d909e184092"
+    },
+    {
+      "bytes": 61621,
+      "path": "ontology/cacontology-platforms.ttl",
+      "sha256": "ae0e2db3c761a097fd540c32353df35683b7e8ba1ebea669d0dce0bdfab8584a"
+    },
+    {
+      "bytes": 38388,
+      "path": "ontology/cacontology-prevention-shapes.ttl",
+      "sha256": "91d0376c8441701bd94cce63bf74d49ebdfee45db9fe662119ad02a5df3975b3"
+    },
+    {
+      "bytes": 55601,
+      "path": "ontology/cacontology-prevention.ttl",
+      "sha256": "f35ebace8a202048304e093ee2e2e89085c004be708d1cbb1badd3f3b7e6254a"
+    },
+    {
+      "bytes": 30481,
+      "path": "ontology/cacontology-production-shapes.ttl",
+      "sha256": "ab66bf9a0e91678acc97116472a89b8340833a1eb2ac586b12b08a8fe3909b0e"
+    },
+    {
+      "bytes": 29334,
+      "path": "ontology/cacontology-production.ttl",
+      "sha256": "7c39aef3caf799e26b7dfc3579313e00e6f3dca46664931d3bf41c8d4e2689f2"
+    },
+    {
+      "bytes": 9336,
+      "path": "ontology/cacontology-recantation-shapes.ttl",
+      "sha256": "559561b3ae98c4c95eb16bdf0e8fd7e267f4ab9127ea02e5ab8cbc4256e9917c"
+    },
+    {
+      "bytes": 22848,
+      "path": "ontology/cacontology-recantation.ttl",
+      "sha256": "7ca72bfeff125a471b3ef11aa2f27ebba5513ddd00b5f9b62a5966f2164b6351"
+    },
+    {
+      "bytes": 21916,
+      "path": "ontology/cacontology-recruitment-networks-shapes.ttl",
+      "sha256": "4dac761bb10479d78e46c8f3b363dfbee467e03641578dea5d60b02723e781e6"
+    },
+    {
+      "bytes": 23753,
+      "path": "ontology/cacontology-recruitment-networks.ttl",
+      "sha256": "61dabdf3d86051093ea6c4a647a6de3f860dee1b681f8677edefaed49b893608"
+    },
+    {
+      "bytes": 3884,
+      "path": "ontology/cacontology-sadistic-online-exploitation-shapes.ttl",
+      "sha256": "086f9db156c3c87707c94f37aa75764c1a316041f70f006fda7a8bece919784e"
+    },
+    {
+      "bytes": 5054,
+      "path": "ontology/cacontology-sadistic-online-exploitation.ttl",
+      "sha256": "392ad52632ae5c561303f8f0003306977b29fddd5ed5b7fb3acdd0e468d322ee"
+    },
+    {
+      "bytes": 29299,
+      "path": "ontology/cacontology-sex-offender-registry-shapes.ttl",
+      "sha256": "1cb10ed14021522d8ca25ffae2c646670f9490bc88c4ef1eae7b0774881ec06d"
+    },
+    {
+      "bytes": 41371,
+      "path": "ontology/cacontology-sex-offender-registry.ttl",
+      "sha256": "2fad8f18af71420bbc48c218ae51385e6e4980bba06ee1f560c4b17ea6a18047"
+    },
+    {
+      "bytes": 9882,
+      "path": "ontology/cacontology-sex-trafficking-shapes.ttl",
+      "sha256": "d24b6299c6e66dd2d4e6275f2a7462e9cb6f564aa64b8b623ec26820636892e0"
+    },
+    {
+      "bytes": 24360,
+      "path": "ontology/cacontology-sex-trafficking.ttl",
+      "sha256": "a91a183c9c535d3fe8965312afff5ab7cdc92b2f295c953719aa2503bf547244"
+    },
+    {
+      "bytes": 31691,
+      "path": "ontology/cacontology-sextortion-shapes.ttl",
+      "sha256": "d4cd7bc191d1f236adcf772004221739400163e320509786efd50ab25b7f787c"
+    },
+    {
+      "bytes": 34578,
+      "path": "ontology/cacontology-sextortion.ttl",
+      "sha256": "4e49a0d0dc195397f6adf9b02f12ac6f777cfbe4a4164ae883217577d23391e1"
+    },
+    {
+      "bytes": 31429,
+      "path": "ontology/cacontology-specialized-units-shapes.ttl",
+      "sha256": "d8562fb2195f865f412599707e07b241a8185c24a8f9ca0887da933b3dc5c47b"
+    },
+    {
+      "bytes": 21341,
+      "path": "ontology/cacontology-specialized-units.ttl",
+      "sha256": "b9fd7ee0fb2de3865c9ec1a672716dd5a7ce4c4c0b66e50ed513c787734fc915"
+    },
+    {
+      "bytes": 32290,
+      "path": "ontology/cacontology-stranger-abduction-shapes.ttl",
+      "sha256": "873feccb087f7ca500b8aac97a8cb098b705a95d0c0dd2862e0e49956e6c744c"
+    },
+    {
+      "bytes": 37476,
+      "path": "ontology/cacontology-stranger-abduction.ttl",
+      "sha256": "fe33889e400d0f005a9fd4b77ad3bb178472b9c2981811439cae4a40ff4682c7"
+    },
+    {
+      "bytes": 43472,
+      "path": "ontology/cacontology-street-recruitment-shapes.ttl",
+      "sha256": "56f058857387069982331d811b3359f1852dc0b3ec77aba4ed57e6950bc2b37f"
+    },
+    {
+      "bytes": 37695,
+      "path": "ontology/cacontology-street-recruitment.ttl",
+      "sha256": "dfc6cc3540b46467ab594f138289ff402c2e4ed054aeec9c641654d0871806a8"
+    },
+    {
+      "bytes": 14451,
+      "path": "ontology/cacontology-synthesis-shapes.ttl",
+      "sha256": "68ff18c73fe1e03c967e15185eeeb20930f94f4ab8c83e61f281f02aceeb953c"
+    },
+    {
+      "bytes": 18196,
+      "path": "ontology/cacontology-synthesis.ttl",
+      "sha256": "084251fb8774c98863ed42c92640a8beeb3deeddbf3e814f5e02899458f6da5c"
+    },
+    {
+      "bytes": 40515,
+      "path": "ontology/cacontology-tactical-shapes.ttl",
+      "sha256": "f662b6d6255dca39c7a0c0ed866aff1ce78de3d17e65873dc459f03391620544"
+    },
+    {
+      "bytes": 27454,
+      "path": "ontology/cacontology-tactical.ttl",
+      "sha256": "3ba23d2aa03984ea25c6cedb07d460ea685c60608517300a5e6fcbc9a700d6df"
+    },
+    {
+      "bytes": 27258,
+      "path": "ontology/cacontology-taskforce-shapes.ttl",
+      "sha256": "d69ef4d145585de69390d85043132bdbc1f94702516d75d0b766c97d6ef8c369"
+    },
+    {
+      "bytes": 58317,
+      "path": "ontology/cacontology-taskforce.ttl",
+      "sha256": "2a2a4ab8e87793b888eec3525635334e503a3039b96e3948f229c53cd3d5be1c"
+    },
+    {
+      "bytes": 7465,
+      "path": "ontology/cacontology-temporal-shapes.ttl",
+      "sha256": "552ef894ba2bcecc5bb986bf134825338ddbaa69598047d7651e9b8fa96f92ad"
+    },
+    {
+      "bytes": 24032,
+      "path": "ontology/cacontology-temporal.ttl",
+      "sha256": "eba7abd5616cd4ad55e2ce072c699719477ddce9d76d4f782cf06d7d879e2baa"
+    },
+    {
+      "bytes": 36364,
+      "path": "ontology/cacontology-training-shapes.ttl",
+      "sha256": "4c53677b78a52fa89d2ec4a4c5ebf8ee9fef8700f5eab9641d0d4135fc9ce257"
+    },
+    {
+      "bytes": 28262,
+      "path": "ontology/cacontology-training.ttl",
+      "sha256": "4c439dac35d838654c8a89e2d094530c6bd9bbb48ac624d8799feef7e653e9a5"
+    },
+    {
+      "bytes": 39610,
+      "path": "ontology/cacontology-undercover-shapes.ttl",
+      "sha256": "9dc4f2287add59c6c1f35c58cfa669492cbc124e91f5f7e2e577a9303a512f0d"
+    },
+    {
+      "bytes": 54389,
+      "path": "ontology/cacontology-undercover.ttl",
+      "sha256": "b73e965dbc279611f11c95aa240c3da2b2f845537792fa2928354e51d88b4aed"
+    },
+    {
+      "bytes": 38119,
+      "path": "ontology/cacontology-us-ncmec-shapes.ttl",
+      "sha256": "43b19587e90831aa2c562100211113e43d567bbb9cac40c1d513865a8a8bd4c9"
+    },
+    {
+      "bytes": 26021,
+      "path": "ontology/cacontology-us-ncmec.ttl",
+      "sha256": "ca0ecf93e3f98ab3433ddd09c020ba1ab3ee8aacb34a104a0f692a738fd5dd54"
+    },
+    {
+      "bytes": 23160,
+      "path": "ontology/cacontology-usa-federal-law-shapes.ttl",
+      "sha256": "786066fc1b5bb71805c9a5c582b419083c8ef23c78e974694df4cc1e0670a2f4"
+    },
+    {
+      "bytes": 36366,
+      "path": "ontology/cacontology-usa-federal-law.ttl",
+      "sha256": "ab203a1162152b2d3f36547971e9e92c0ef0dc7e9e0b97832cb859bf8c8b9989"
+    },
+    {
+      "bytes": 16281,
+      "path": "ontology/cacontology-usa-legislative-shapes.ttl",
+      "sha256": "aa3096ec7497ff777eda5504119c65a077937208d52d3947bbb555a31239007f"
+    },
+    {
+      "bytes": 23042,
+      "path": "ontology/cacontology-usa-legislative.ttl",
+      "sha256": "d7512d74f5f70665be0e46a7497424c7fab59cbde10fe979d70863af8b7b9c3e"
+    },
+    {
+      "bytes": 30004,
+      "path": "ontology/cacontology-victim-impact-shapes.ttl",
+      "sha256": "db1266a35822fa697fd6e7aac798f887322aff3cee71dd43f8a3c7cf32e90e1f"
+    },
+    {
+      "bytes": 54041,
+      "path": "ontology/cacontology-victim-impact.ttl",
+      "sha256": "b8abcf6244e5bc7ece5cf12d638e887f8cf91f475fb4fb89eff33d7a0c191426"
+    }
+  ],
+  "policy": "Remote imports must be content-addressed before C2/C4 and OWL 2 DL gates run.",
+  "runtime": {
+    "html5rdf": "1.2.1",
+    "owlrl": "7.6.2",
+    "packaging": "26.3",
+    "prettytable": "3.18.0",
+    "pyparsing": "3.3.2",
+    "pyshacl": "0.40.1",
+    "rdflib": "7.6.0",
+    "wcwidth": "0.8.2"
+  },
+  "schema_version": 1,
+  "uco_gufo_profile": {
+    "commit": null,
+    "path": null,
+    "revision_prefix": "4b98b988",
+    "sha256": null,
+    "status": "unresolved-remote"
+  }
+}
