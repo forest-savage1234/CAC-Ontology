@@ -11,7 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Corrected seven malformed SHACL-SPARQL statements in `cacontology-detection-shapes.ttl` that used property-list continuation where a new triple was required (#47).
 
-
 ## [3.1.0] - 2026-08-09
 
 ### Added - Conditioning Phase (offense-trajectory macro phase)
