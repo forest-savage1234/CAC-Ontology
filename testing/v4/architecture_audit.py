@@ -87,6 +87,16 @@ def audit_graph(graph: Graph) -> dict:
         "META005_CORE_PHASE_SUBCLASSES_GUFO_PHASE": sorted(
             str(o) for o in graph.objects(CAC_CORE.Phase, RDFS.subClassOf) if o == GUFO.Phase
         ),
+        "META006_ROLE_ASSIGNMENT_INSTANCE_AS_GUFO_CLASSIFIER": sorted(
+            str(node)
+            for node in graph.subjects(RDF.type, CAC_CORE.RoleAssignment)
+            if (node, RDF.type, GUFO.Role) in graph
+        ),
+        "META007_PHASE_OCCURRENCE_AS_GUFO_CLASSIFIER": sorted(
+            str(node)
+            for node in graph.subjects(RDF.type, CAC_CORE.Phase)
+            if (node, RDF.type, GUFO.Phase) in graph and (node, RDF.type, OWL.Class) not in graph
+        ),
     }
     return {
         "counts": {

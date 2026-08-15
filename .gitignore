@@ -57,6 +57,7 @@ temp/
 !examples_knowledge_graphs/*.ttl
 !raven-us-extensions.ttl
 !analytics_demonstration/**/*.ttl
+!testing/v4/fixtures/*.ttl
 
 # Explicitly exclude Ed_graph.ttl
 Ed_graph.ttl
