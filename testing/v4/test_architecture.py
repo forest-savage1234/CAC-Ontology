@@ -38,9 +38,12 @@ class DiagnosticControls(unittest.TestCase):
             cac-core:Role a owl:Class ; rdfs:subClassOf gufo:Role .
             cac-core:Phase a owl:Class ; rdfs:subClassOf gufo:Phase .
             cac-core:EnduringEntity a owl:Class .
-            ex:BadRole a owl:Class, gufo:Role ; rdfs:subClassOf cac-core:Role .
+            ex:BadRole a owl:Class, gufo:Role ;
+                rdfs:subClassOf cac-core:Role, cac-core:EnduringEntity .
             ex:BadPhase a owl:Class, gufo:Phase ;
                 rdfs:subClassOf cac-core:Phase, cac-core:EnduringEntity .
+            cac-core:Event a owl:Class .
+            ex:BadEventPhase a owl:Class ; rdfs:subClassOf cac-core:Phase, cac-core:Event .
         """)
         findings = AUDIT.audit_graph(candidate)["diagnostics"]
         self.assertEqual(1, len(findings["META001_OPERATIONAL_ROLE_AS_GUFO_CLASSIFIER"]))
@@ -48,6 +51,8 @@ class DiagnosticControls(unittest.TestCase):
         self.assertEqual(1, len(findings["META003_ENDURING_PHASE_OVERLAP"]))
         self.assertEqual(1, len(findings["META004_CORE_ROLE_SUBCLASSES_GUFO_ROLE"]))
         self.assertEqual(1, len(findings["META005_CORE_PHASE_SUBCLASSES_GUFO_PHASE"]))
+        self.assertEqual(1, len(findings["META008_OPERATIONAL_ROLE_ENDURING_OVERLAP"]))
+        self.assertEqual(1, len(findings["META010_OPERATIONAL_PHASE_EVENT_OVERLAP"]))
 
     def test_accepts_separated_record_assignment_occurrence_classifier_pattern(self):
         candidate = graph(PREFIXES + """

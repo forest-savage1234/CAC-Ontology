@@ -72,6 +72,7 @@ def audit_graph(graph: Graph) -> dict:
     enduring_branch = {
         c for c in classes if c == CAC_CORE.EnduringEntity or CAC_CORE.EnduringEntity in parents.get(c, set())
     }
+    event_branch = {c for c in classes if c == CAC_CORE.Event or CAC_CORE.Event in parents.get(c, set())}
 
     diagnostics = {
         "META001_OPERATIONAL_ROLE_AS_GUFO_CLASSIFIER": sorted(
@@ -96,6 +97,16 @@ def audit_graph(graph: Graph) -> dict:
             str(node)
             for node in graph.subjects(RDF.type, CAC_CORE.Phase)
             if (node, RDF.type, GUFO.Phase) in graph and (node, RDF.type, OWL.Class) not in graph
+        ),
+        "META008_OPERATIONAL_ROLE_ENDURING_OVERLAP": sorted(str(c) for c in role_branch & enduring_branch),
+        "META009_OPERATIONAL_ROLE_PHASE_OVERLAP": sorted(str(c) for c in role_branch & phase_branch),
+        "META010_OPERATIONAL_PHASE_EVENT_OVERLAP": sorted(str(c) for c in phase_branch & event_branch),
+        "META011_GUFO_ROLE_CLASSIFIER_WITHOUT_ENDURING_BEARER_BRANCH": sorted(
+            str(c)
+            for c in classes
+            if str(c).startswith("https://cacontology.projectvic.org/")
+            and (c, RDF.type, GUFO.Role) in graph
+            and c not in enduring_branch
         ),
     }
     return {

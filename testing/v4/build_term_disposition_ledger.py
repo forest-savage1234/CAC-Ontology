@@ -70,6 +70,28 @@ def main() -> int:
             if iri in group_overrides:
                 raise ValueError(f"Term appears in multiple reviewed groups: {iri}")
             group_overrides[iri] = values
+    unchanged = json.loads((here / "reviewed-unchanged-terms.json").read_text(encoding="utf-8"))
+    unchanged_overrides = {}
+    for iri in unchanged["role_record_iris"]:
+        unchanged_overrides[iri] = {
+            "primary_level": "role-record",
+            "v4_action": "unchanged",
+            "migration_mode": "automatic",
+            "asserted_delta": "none; verified operational role branch with no classifier or cross-branch overlap",
+            "inferred_delta": "none intended",
+            "fixture_ids": "RQ-07|RQ-08",
+            "reviewer_status": "reviewed",
+        }
+    for iri in unchanged["phase_occurrence_iris"]:
+        unchanged_overrides[iri] = {
+            "primary_level": "phase-occurrence",
+            "v4_action": "unchanged",
+            "migration_mode": "automatic",
+            "asserted_delta": "none; verified operational phase branch with no classifier or cross-branch overlap",
+            "inferred_delta": "none intended",
+            "fixture_ids": "PQ-01|PQ-05|PQ-08",
+            "reviewer_status": "reviewed",
+        }
     branch_candidates = {
         term for term in classes
         if term in (CAC_CORE.Role, CAC_CORE.Phase)
@@ -82,6 +104,7 @@ def main() -> int:
         branch_candidates
         | {URIRef(iri) for iri in overrides}
         | {URIRef(iri) for iri in group_overrides}
+        | {URIRef(iri) for iri in unchanged_overrides}
     )
     rows = []
     for term in candidates:
@@ -113,6 +136,7 @@ def main() -> int:
             "reviewer_status": "pending",
         }
         row.update(group_overrides.get(str(term), {}))
+        row.update(unchanged_overrides.get(str(term), {}))
         row.update(overrides.get(str(term), {}))
         rows.append(row)
 
