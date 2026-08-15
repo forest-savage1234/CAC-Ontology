@@ -1,13 +1,13 @@
 {
-  "asserted_triples": 23835,
-  "configuration": "C3",
+  "asserted_triples": 24043,
+  "configuration": "C4",
   "counts": {
     "diagnostic_findings": 0,
     "enduring_branch_classes": 528,
-    "owl_classes": 2111,
+    "owl_classes": 2125,
     "phase_branch_classes": 124,
     "role_branch_classes": 161,
-    "triples": 23835
+    "triples": 48039
   },
   "dependency_lock_sha256": "76a39c72d292fb74aa81cde3063e1580e763145769f9c5202190c53c51c6a2b3",
   "diagnostics": {
@@ -23,8 +23,8 @@
     "META010_OPERATIONAL_PHASE_EVENT_OVERLAP": [],
     "META011_GUFO_ROLE_CLASSIFIER_WITHOUT_ENDURING_BEARER_BRANCH": []
   },
-  "generated_at": "2026-08-15T17:39:13.488083+00:00",
-  "inference": "asserted",
+  "generated_at": "2026-08-15T17:40:42.829918+00:00",
+  "inference": "rdfs",
   "inputs": [
     {
       "bytes": 31709,
@@ -275,6 +275,11 @@
       "bytes": 53911,
       "path": "ontology/cacontology-victim-impact.ttl",
       "sha256": "0208cebbf88b85a873fcbd2ac7cd211fc9ba732028e30ca30cd328b292f8ffce"
+    },
+    {
+      "bytes": 11980,
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/uco-gufo.ttl",
+      "sha256": "af8c803646d59e22402abbc613257572b63219cd6725f8d49b10dd9ad4b38c64"
     }
   ],
   "runtime": {

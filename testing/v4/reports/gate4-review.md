@@ -1,16 +1,17 @@
 # CAC v4 Foundational Proposal — Gate 4 Review
 
-**Recommendation:** **HOLD for missing normative evidence; do not publish or open a GitHub PR yet.**
+**Recommendation:** **HOLD the strict release gate; retain the local candidate for remediation and maintainer review. Do not publish or mutate GitHub yet.**
 
-The approved local Gate 3 implementation is complete through Slices 1–8. The architecture corrections, consumer contracts, bounded compatibility layer, tests, and evidence generator are committed on `proposal/issue-44-v4-foundational-architecture`. This is a foundational proposal under issue #44, not a v4.0.0 release artifact.
+Gate 4 is now executed against the exact UCO gUFO Profile revision and a content-addressed runtime import closure. The candidate's bounded architecture is coherent in all gated diagnostic configurations, but the unmodified full import closure does not satisfy the normative OWL 2 DL gate. This is a foundational proposal under issue #44, not a v4.0.0 release artifact.
 
 ## Source identity
 
 | Item | Value |
 |---|---|
 | Frozen base | `93de063951b758dd68a27611638c177fcf910eab` (`v3.1.0`) |
-| Evidence candidate | `b7a88c45c1bd7a0243c6f4c4f3959bbe9253685d` |
-| Local commits | 15 |
+| Clean evidence candidate | `129fc1f1efe772e8eac5a2a9be4c819d5f7af49a` |
+| Candidate tree | `96a78e3dbacc941936111a8f7ce5b61311508c64` |
+| Local commits from base | 19 |
 | Missing DCO sign-offs | 0 |
 | Tracked source dirty during evidence run | No |
 | Detection-shape file changed | No |
@@ -21,35 +22,38 @@ The approved local Gate 3 implementation is complete through Slices 1–8. The a
 | Configuration/layer | Result | Meaning |
 |---|---|---|
 | C1 frozen v3.1 asserted baseline | Observed: 148 findings | Preserved baseline evidence, not a v4 failure |
-| C2 v3.1 + pinned UCO gUFO overlay | Blocked | Exact profile bytes unavailable |
-| C3 v4 asserted diagnostics | Pass: 0 findings | Proposed asserted architecture satisfies implemented diagnostics |
-| C3 v4 RDFS diagnostics | Pass: 0 findings | RDFS closure does not restore a forbidden overlap |
-| C4 v4 + pinned UCO gUFO overlay | Blocked | Same unavailable profile bytes as C2 |
-| C5 v4 + bounded compatibility, asserted | Pass: 0 findings | Safe compatibility axioms do not restore conflation |
-| C5 RDFS diagnostics | Pass: 0 findings | Compatibility remains clean under RDFS closure |
-| Executable unit/fixture tests | Pass: 40/40 | Positive, negative, consumer, syntax, ledger, and closure controls pass |
-| Term disposition ledger | Pass: 299 reviewed, 0 pending | Every in-scope candidate has a recorded disposition |
-| Embedded SHACL SPARQL | 459 audited; 0 proposal failures | Seven remaining failures are confined to the untouched detection module owned by PR #48 |
+| C2 v3.1 + exact profile | Asserted: 263; RDFS: 271 findings | Baseline overlay demonstrates the pre-v4 incompatibility |
+| C3 v4 architecture | Asserted/RDFS pass: 0 findings | Proposed architecture satisfies the bounded diagnostics |
+| C4 v4 + exact profile | Asserted/RDFS pass: 0 findings | Exact profile overlay does not restore the diagnosed level conflicts |
+| C5 v4 + bounded compatibility | Asserted/RDFS pass: 0 findings | Compatibility axioms do not restore the diagnosed conflation |
+| Executable unit/fixture tests | Pass: 53/53 | First-party syntax, semantics, fixtures, consumers, and regression controls pass |
+| Embedded SHACL SPARQL | 459 audited; 0 proposal failures | Seven failures remain isolated to the untouched detection shapes owned by PR #48 |
+| Dependency closure | Pass: 75/75 imports resolved | 48 local and 27 vendored resolutions; zero unresolved imports |
+| Dependency Turtle syntax | Pass: 27/27 locked Turtle artifacts | Every content-addressed Turtle artifact in the runtime closure parses |
+| Exact profile OWL/RDF structures | Fail upstream: 8 findings | Four malformed negative assertions and four malformed reified axioms block OWLAPI |
+| HermiT diagnostic projections | Pass: C3, C4, C5 | No remaining named-class/property incoherence in the bounded projections |
+| Strict full-closure OWL 2 DL | Fail: C3, C4, C5 | Normative gate remains unsatisfied |
 
-## What was built
+## Gate 4 repairs completed locally
 
-- Operational role records are separated from bearer classifiers through `RoleRecord` and `RoleAssignment`.
-- Operational phase/state occurrences are separated from `gufo:Phase` classifiers and support repeated history.
-- Custodial relationships and arrangements are separated from `CustodyState` occurrences.
-- `MembershipTier` is a controlled concept without unsafe operational domains.
-- Reviewed role, phase, enduring, and event terms have explicit, tested dispositions.
-- SHACL `SELECT`, `ASK`, and `CONSTRUCT` bodies are repository-audited; 99 non-detection syntax failures discovered during QC were repaired (40 direct constraints and 59 rule bodies).
-- JSON-LD and SPARQL consumer contracts are executable against synthetic fixtures.
-- The v3 compatibility artifact contains only one-way, deprecated custody-property bridges and no class equivalence.
+- Vendored and hashed the exact UCO gUFO Profile and its runtime dependency closure, including exact UCO, CDO-Shapes-gufo, Collections, SPAR Error, CASE, and W3C SHACL artifacts.
+- Added pinned Java 21 and ROBOT 1.9.10 runtime evidence and deterministic strict-profile report compression.
+- Corrected five CAC bridge metadata records that were malformed as incomplete `owl:Axiom` resources.
+- Removed the UCO object/inherent-characterization contradiction from the CAC perceptual-hash classes.
+- Corrected property alignments whose domains, ranges, or inverse direction forced bottom properties under the profile.
+- Corrected 28 exact-profile class-category collisions across hotline, evidence, production, taskforce, and victim-impact branches.
+- Added regression controls for hash categories, OWLAPI structures, profile category compatibility, and property coherence.
 
-## Blocking evidence still required
+## Strict blockers preserved for remediation
 
-1. Resolve all 13 remote-only imports through an approved catalog and record byte length, final target, SHA-256, retrieval date, and source/license note.
-2. Obtain the exact UCO gUFO Profile artifacts at commit `4b98b9881aa29ed80f39b589d15725fa696c921a`; run C2 and C4 with those locked bytes.
-3. Run an approved ROBOT/HermiT OWL 2 DL profile, consistency, classification, and unsatisfiable-named-class check for C3, C4, and C5. Java and ROBOT are absent, and the installed Docker client has no running engine, so no OWL 2 DL result is claimed.
-4. After PR #48 merges, rebase this branch and require the detection-module query findings to fall from 7 to 0 without duplicating #48’s commits.
-5. Re-run the complete evidence generator on the rebased, dependency-locked tree and obtain maintainer Gate 4 publication approval.
+1. The C3/C5 strict profile reports contain 7,287 and 7,289 violations respectively. The findings span CAC declarations/modeling and pinned dependency closure; they must be decomposed before claiming OWL 2 DL conformance.
+2. The exact UCO gUFO Profile contains eight malformed OWL/RDF structures. These cause the C4 strict profile and HermiT routes to fail before logical classification.
+3. The pinned UCO profile makes `uco-action:phase` a subproperty of `uco-action:subaction` while their inherited range categories are disjoint, producing an upstream bottom-property condition.
+4. The pinned Collections ontology contains SWRL built-in atoms unsupported by the selected HermiT execution route, blocking strict C3/C5 classification through that route.
+5. The seven detection-shape SPARQL findings remain external to this branch and require PR #48 integration or maintainer disposition.
+
+The diagnostic projection removes only explicitly inventoried upstream/tooling blockers to isolate logical root causes. Its pass is evidence that the repaired CAC candidate is coherent under that bounded projection; it is not a substitute for the strict gate.
 
 ## Gate decision
 
-The local proposal is ready for technical review as a coherent implementation, but it is **not release-ready and not publication-authorized**. Applicable local evidence is green; missing deterministic closure, overlay, and OWL 2 DL evidence remain hard release blockers under the approved charter.
+Gate 4 is **complete as an evaluation** and **HOLD as a release decision**. The local candidate, dependency closure, tests, reasoner results, and remediation records are ready for continued local work. External publication remains unauthorized, and no GitHub mutation occurred.
