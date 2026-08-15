@@ -5,6 +5,13 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- Corrected seven malformed SHACL-SPARQL statements in `cacontology-detection-shapes.ttl` that used property-list continuation where a new triple was required (#47).
+- Replaced semantic uses of the undeclared `uco-observable:DigitalService` class with the UCO 1.5.0 `uco-observable:OnlineService` class across ontology modules, SHACL constraints, examples, and tests (#46).
+
 ## [3.1.0] - 2026-08-09
 
 ### Added - Conditioning Phase (offense-trajectory macro phase)
