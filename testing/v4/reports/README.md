@@ -8,6 +8,8 @@ The canonical final evidence files are:
 - `c4-asserted.json` and `c4-rdfs.json` — exact-profile overlay diagnostics;
 - `c5-asserted.json` and `c5-rdfs.json` — compatibility-profile diagnostics;
 - `owl2dl-summary.json` — pinned full-closure and diagnostic ROBOT/HermiT results;
+- `rem-014-decomposition.json` and `rem-014-decomposition.md` — current strict-profile ownership, root-cause, priority, and baseline-delta summary;
+- `rem-014-findings.jsonl.gz` — deterministic full finding-level REM-014 evidence;
 - `c3-owl2dl-profile.txt.gz` and `c5-owl2dl-profile.txt.gz` — deterministic compressed strict-profile reports;
 - `dependency-owlapi-rdf-structures.json` — malformed upstream OWL/RDF structures;
 - `dependency-turtle-syntax.json` — syntax audit of every content-addressed Turtle file in the vendored runtime closure;

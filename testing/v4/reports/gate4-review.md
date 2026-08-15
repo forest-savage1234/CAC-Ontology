@@ -1,6 +1,6 @@
 # CAC v4 Foundational Proposal — Gate 4 Review
 
-**Recommendation:** **HOLD the strict release gate; retain the local candidate for remediation and maintainer review. Do not publish or mutate GitHub yet.**
+**Recommendation:** **HOLD the strict release gate; retain the candidate for remediation and maintainer review. The candidate is published only as a draft in the contributor's personal fork.**
 
 Gate 4 is now executed against the exact UCO gUFO Profile revision and a content-addressed runtime import closure. The candidate's bounded architecture is coherent in all gated diagnostic configurations, but the unmodified full import closure does not satisfy the normative OWL 2 DL gate. This is a foundational proposal under issue #44, not a v4.0.0 release artifact.
 
@@ -15,7 +15,7 @@ Gate 4 is now executed against the exact UCO gUFO Profile revision and a content
 | Missing DCO sign-offs | 0 |
 | Tracked source dirty during evidence run | No |
 | Detection-shape file changed | No |
-| GitHub mutation | None |
+| GitHub publication | Contributor-fork draft only; no upstream mutation |
 
 ## Evidence outcome
 
@@ -26,7 +26,7 @@ Gate 4 is now executed against the exact UCO gUFO Profile revision and a content
 | C3 v4 architecture | Asserted/RDFS pass: 0 findings | Proposed architecture satisfies the bounded diagnostics |
 | C4 v4 + exact profile | Asserted/RDFS pass: 0 findings | Exact profile overlay does not restore the diagnosed level conflicts |
 | C5 v4 + bounded compatibility | Asserted/RDFS pass: 0 findings | Compatibility axioms do not restore the diagnosed conflation |
-| Executable unit/fixture tests | Pass: 53/53 | First-party syntax, semantics, fixtures, consumers, and regression controls pass |
+| Executable unit/fixture tests | Pass: 58/58 | Original Gate 4 controls plus REM-014 decomposition and repair regressions pass |
 | Embedded SHACL SPARQL | 459 audited; 0 proposal failures | Seven failures remain isolated to the untouched detection shapes owned by PR #48 |
 | Dependency closure | Pass: 75/75 imports resolved | 48 local and 27 vendored resolutions; zero unresolved imports |
 | Dependency Turtle syntax | Pass: 27/27 locked Turtle artifacts | Every content-addressed Turtle artifact in the runtime closure parses |
@@ -46,7 +46,7 @@ Gate 4 is now executed against the exact UCO gUFO Profile revision and a content
 
 ## Strict blockers preserved for remediation
 
-1. The C3/C5 strict profile reports contain 7,287 and 7,289 violations respectively. The findings span CAC declarations/modeling and pinned dependency closure; they must be decomposed before claiming OWL 2 DL conformance.
+1. REM-014 established true C3/C5 baselines of 6,947 and 6,949 recognized ROBOT violation headers; the earlier 7,287/7,289 figures counted multiline report text. The first repair slice removed 21 CAC-owned single-operand equivalence violations, producing current totals of 6,926/6,928. The remaining findings are decomposed in `rem-014-decomposition.*`; strict OWL 2 DL conformance is not yet claimed.
 2. The exact UCO gUFO Profile contains eight malformed OWL/RDF structures. These cause the C4 strict profile and HermiT routes to fail before logical classification.
 3. The pinned UCO profile makes `uco-action:phase` a subproperty of `uco-action:subaction` while their inherited range categories are disjoint, producing an upstream bottom-property condition.
 4. The pinned Collections ontology contains SWRL built-in atoms unsupported by the selected HermiT execution route, blocking strict C3/C5 classification through that route.
@@ -56,4 +56,4 @@ The diagnostic projection removes only explicitly inventoried upstream/tooling b
 
 ## Gate decision
 
-Gate 4 is **complete as an evaluation** and **HOLD as a release decision**. The local candidate, dependency closure, tests, reasoner results, and remediation records are ready for continued local work. External publication remains unauthorized, and no GitHub mutation occurred.
+Gate 4 is **complete as an evaluation** and **HOLD as a release decision**. The candidate, dependency closure, tests, reasoner results, and remediation records are ready for continued work. Later authorization permitted publication as a draft in the contributor's personal fork; Project VIC's upstream repository remains untouched.

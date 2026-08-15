@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import build_reasoner_closure as closure
+from decompose_owl2dl_profile import parse_profile_lines
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
@@ -56,11 +57,12 @@ def execute(command: list[str], log: Path, timeout: int) -> dict:
 
 def summarize_profile_report(path: Path) -> dict:
     lines = path.read_text(encoding="utf-8").splitlines()
-    violations = [line for line in lines if line and not line.startswith("OWL 2 DL Profile Report:")]
-    categories = Counter(line.split(":", 1)[0] for line in violations)
+    violations = parse_profile_lines(lines)
+    categories = Counter(record["category"] for record in violations)
     return {
         "violation_count": len(violations),
-        "cac_mention_count": sum("cacontology.projectvic.org" in line for line in violations),
+        "cac_owned_count": sum(record["owner"] == "cac" for record in violations),
+        "upstream_owned_count": sum(record["owner"] == "upstream" for record in violations),
         "categories": dict(sorted(categories.items())),
     }
 

@@ -134,28 +134,28 @@ cacontology-usa-federal:ChildPornographyProduction rdf:type owl:Class ;
     rdfs:seeAlso cacontology-usa-federal:FederalChildPornographyLaw ;
     rdfs:label "Child Pornography Production"@en ;
     rdfs:comment "Federal crime of producing child pornography, carrying severe mandatory minimum sentences. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:ChildPornographyProduction .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 cacontology-usa-federal:ChildPornographyDistribution rdf:type owl:Class ;
     rdfs:subClassOf cac-core:ExploitationEvent ;
     rdfs:seeAlso cacontology-usa-federal:FederalChildPornographyLaw ;
     rdfs:label "Child Pornography Distribution"@en ;
     rdfs:comment "Federal crime of distributing child pornography across state or international boundaries. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:ChildPornographyDistribution .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 cacontology-usa-federal:ChildPornographyReceipt rdf:type owl:Class ;
     rdfs:subClassOf cac-core:ExploitationEvent ;
     rdfs:seeAlso cacontology-usa-federal:FederalChildPornographyLaw ;
     rdfs:label "Child Pornography Receipt"@en ;
     rdfs:comment "Federal crime of knowingly receiving child pornography through interstate or foreign commerce. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:ChildPornographyReceipt .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 cacontology-usa-federal:ChildPornographyPossession rdf:type owl:Class ;
     rdfs:subClassOf cac-core:ExploitationEvent ;
     rdfs:seeAlso cacontology-usa-federal:FederalChildPornographyLaw ;
     rdfs:label "Child Pornography Possession"@en ;
     rdfs:comment "Federal crime of possessing child pornography that has traveled in interstate or foreign commerce. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:ChildPornographyPossession .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 # =============================================================================
 # CHILD SEX TRAFFICKING FEDERAL LAW (gUFO Event modeling)
@@ -172,21 +172,21 @@ cacontology-usa-federal:SexTraffickingOfMinors rdf:type owl:Class ;
     rdfs:seeAlso cacontology-usa-federal:FederalChildSexTraffickingLaw ;
     rdfs:label "Sex Trafficking of Minors"@en ;
     rdfs:comment "Federal crime of sex trafficking involving minors, including recruitment, harboring, transportation, or obtaining. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:SexTraffickingOfMinors .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 cacontology-usa-federal:CommercialSexualExploitation rdf:type owl:Class ;
     rdfs:subClassOf cac-core:ExploitationEvent ;
     rdfs:seeAlso cacontology-usa-federal:FederalChildSexTraffickingLaw ;
     rdfs:label "Commercial Sexual Exploitation"@en ;
     rdfs:comment "Federal crime involving commercial sexual exploitation of children through force, fraud, or coercion. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:CommercialSexualExploitation .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 cacontology-usa-federal:SexTraffickingConspiracy rdf:type owl:Class ;
     rdfs:subClassOf cac-core:ExploitationEvent ;
     rdfs:seeAlso cacontology-usa-federal:FederalChildSexTraffickingLaw ;
     rdfs:label "Sex Trafficking Conspiracy"@en ;
     rdfs:comment "Federal crime of conspiracy to engage in sex trafficking of minors. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:SexTraffickingConspiracy .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 # =============================================================================
 # CHILD SEXUAL ABUSE FEDERAL LAW (gUFO Event modeling)
@@ -203,21 +203,21 @@ cacontology-usa-federal:AggravatedSexualAbuse rdf:type owl:Class ;
     rdfs:seeAlso cacontology-usa-federal:FederalChildSexualAbuseLaw ;
     rdfs:label "Aggravated Sexual Abuse"@en ;
     rdfs:comment "Federal crime of aggravated sexual abuse involving children in federal jurisdiction. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:AggravatedSexualAbuse .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 cacontology-usa-federal:SexualAbuseOfMinor rdf:type owl:Class ;
     rdfs:subClassOf cac-core:ExploitationEvent ;
     rdfs:seeAlso cacontology-usa-federal:FederalChildSexualAbuseLaw ;
     rdfs:label "Sexual Abuse of Minor"@en ;
     rdfs:comment "Federal crime of sexual abuse specifically involving minor victims. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:SexualAbuseOfMinor .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 cacontology-usa-federal:AbusiveContactWithMinor rdf:type owl:Class ;
     rdfs:subClassOf cac-core:ExploitationEvent ;
     rdfs:seeAlso cacontology-usa-federal:FederalChildSexualAbuseLaw ;
     rdfs:label "Abusive Contact with Minor"@en ;
     rdfs:comment "Federal crime involving abusive sexual contact with minor victims. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:AbusiveContactWithMinor .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 # =============================================================================
 # CHILD SUPPORT ENFORCEMENT INTERSECTION (gUFO Event and Situation modeling)
@@ -234,7 +234,7 @@ cacontology-usa-federal:ChildSupportEvasion rdf:type owl:Class ;
     rdfs:seeAlso cacontology-usa-federal:ChildSupportEnforcementLaw ;
     rdfs:label "Child Support Evasion"@en ;
     rdfs:comment "Federal crime of willfully failing to pay child support across state lines. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:ChildSupportEvasion .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 # Child Support Exploitation Connections as gUFO Situations
 cacontology-usa-federal:ChildSupportExploitationLink rdf:type owl:Class ;
@@ -262,28 +262,28 @@ cacontology-usa-federal:SexTourism rdf:type owl:Class ;
     rdfs:seeAlso cacontology-usa-federal:ExtraterritorialSexualExploitationLaw ;
     rdfs:label "Sex Tourism"@en ;
     rdfs:comment "Federal crime of traveling abroad with intent to engage in sexual conduct with minors. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:SexTourism .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 cacontology-usa-federal:ForeignCommerceExploitation rdf:type owl:Class ;
     rdfs:subClassOf cac-core:ExploitationEvent ;
     rdfs:seeAlso cacontology-usa-federal:ExtraterritorialSexualExploitationLaw ;
     rdfs:label "Foreign Commerce Exploitation"@en ;
     rdfs:comment "Federal crime involving sexual exploitation of children in foreign commerce. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:ForeignCommerceExploitation .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 cacontology-usa-federal:ExtraterritorialProduction rdf:type owl:Class ;
     rdfs:subClassOf cac-core:ExploitationEvent ;
     rdfs:seeAlso cacontology-usa-federal:ExtraterritorialSexualExploitationLaw ;
     rdfs:label "Extraterritorial Production"@en ;
     rdfs:comment "Federal crime of producing child pornography outside U.S. by U.S. citizens or residents. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:ExtraterritorialProduction .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 cacontology-usa-federal:TransportationForSexualExploitation rdf:type owl:Class ;
     rdfs:subClassOf cac-core:ExploitationEvent ;
     rdfs:seeAlso cacontology-usa-federal:ExtraterritorialSexualExploitationLaw ;
     rdfs:label "Transportation for Sexual Exploitation"@en ;
     rdfs:comment "Federal crime of transporting minors across international boundaries for sexual exploitation. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:TransportationForSexualExploitation .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 # =============================================================================
 # OBSCENITY LAW FRAMEWORK (gUFO Event modeling)
@@ -295,27 +295,27 @@ cacontology-usa-federal:ObscenityDistribution rdf:type owl:Class ;
     rdfs:seeAlso cacontology-usa-federal:FederalObscenityLaw ;
     rdfs:label "Obscenity Distribution"@en ;
     rdfs:comment "Federal crime of distributing obscene materials through interstate or foreign commerce. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:ObscenityDistribution .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 cacontology-usa-federal:ObscenityTransportation rdf:type owl:Class ;
     rdfs:subClassOf cac-core:ExploitationEvent ;
     rdfs:seeAlso cacontology-usa-federal:FederalObscenityLaw ;
     rdfs:label "Obscenity Transportation"@en ;
     rdfs:comment "Federal crime of transporting obscene materials across state or international boundaries. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:ObscenityTransportation .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 cacontology-usa-federal:ObscenityImportation rdf:type owl:Class ;
     rdfs:subClassOf cac-core:ExploitationEvent ;
     rdfs:seeAlso cacontology-usa-federal:FederalObscenityLaw ;
     rdfs:label "Obscenity Importation"@en ;
     rdfs:comment "Federal crime of importing obscene materials into the United States. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:ObscenityImportation .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 cacontology-usa-federal:OnlineObscenityDistribution rdf:type owl:Class ;
     rdfs:subClassOf cacontology-usa-federal:ObscenityDistribution ;
     rdfs:label "Online Obscenity Distribution"@en ;
     rdfs:comment "Federal crime of distributing obscene materials through internet and digital platforms. Modeled as gUFO Event."@en ;
-    owl:equivalentClass cacontology-usa-federal:OnlineObscenityDistribution .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 # =============================================================================
 # FEDERAL LAW ENFORCEMENT ROLES (gUFO Role anti-rigid modeling)
@@ -341,13 +341,13 @@ cacontology-usa-federal:FederalDefendantRole rdf:type owl:Class ;
     rdfs:label "Federal Defendant Role"@en ;
     rdfs:comment "Role of individual charged in federal child exploitation case. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role ;
-    owl:equivalentClass cacontology-usa-federal:FederalDefendantRole .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 cacontology-usa-federal:FederalVictimRole rdf:type owl:Class ;
     rdfs:label "Federal Victim Role"@en ;
     rdfs:comment "Role of victim in federal child exploitation prosecution. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role ;
-    owl:equivalentClass cacontology-usa-federal:FederalVictimRole .
+    rdfs:isDefinedBy <https://cacontology.projectvic.org/usa-federal-law> .
 
 # =============================================================================
 # gUFO TEMPORAL PROPERTIES

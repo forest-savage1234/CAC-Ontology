@@ -81,9 +81,9 @@
       "sha256": "8b688febdf394551191f3c450ef1d8274c2df1aed62e09336c4f2b435f64c7ac"
     },
     {
-      "bytes": 21712,
+      "bytes": 21711,
       "path": "ontology/cacontology-hotlines.ttl",
-      "sha256": "ecca80f9958a72c95926b5fe0c06bb9bea77123f0efff2540721f4b6dee43172"
+      "sha256": "e5754410e46e955edb4a3838cb59527bd669036e2d073d781075b3569b940af6"
     },
     {
       "bytes": 45907,
@@ -236,9 +236,9 @@
       "sha256": "ca0ecf93e3f98ab3433ddd09c020ba1ab3ee8aacb34a104a0f692a738fd5dd54"
     },
     {
-      "bytes": 35230,
+      "bytes": 35250,
       "path": "ontology/cacontology-usa-federal-law.ttl",
-      "sha256": "d88fa210997b38025a1e3fb0765fcbcd37fdf9a1e44916a3d51278de4e2184aa"
+      "sha256": "d00d62a6eb698a4528838e4cf5e0953b64efb0a33b14c31b3a8d72c685857dd3"
     },
     {
       "bytes": 23028,
@@ -472,11 +472,11 @@
   ],
   "diagnostic_projection": null,
   "imports_materialized": 318,
-  "input_set_sha256": "1ac346a179fa6a3884ce5d74ba608b2ba0033bc64c4efa9e6905076e6f838755",
+  "input_set_sha256": "5ac15aa04ad9b3c1df084f8d4c7021696bc76aa4e3a81c1281bb504beeb27885",
   "schema_version": 1,
   "scope": "Offline transitive semantic closure with owl:imports declarations removed only after all locked imported graphs are materialized.",
-  "serialized_bytes": 4452808,
+  "serialized_bytes": 4452240,
   "serialized_path": "testing/v4/tmp/reasoner/c3-closure.owl",
-  "serialized_sha256": "3b8a1a42c903c41261025f2a7a0598e97cc6d8d8eb1ec68ac1bfdfeb57cfaf63",
+  "serialized_sha256": "d2af2e0098b5f4f0e039dbae637fd1b1a5212e633dd2bffca0c0038ea1cbf9b6",
   "triples": 38525
 }
