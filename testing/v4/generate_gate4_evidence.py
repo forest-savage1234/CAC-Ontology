@@ -119,6 +119,13 @@ def main() -> int:
         if "Signed-off-by:" not in git("show", "-s", "--format=%B", commit)
     ]
     changed_paths = git("diff", "--name-only", f"{BASE}..HEAD").splitlines()
+    tracked_changes = git("status", "--porcelain", "--untracked-files=no").splitlines()
+    tracked_source_changes = [
+        line for line in tracked_changes if "testing/v4/reports/" not in line
+    ]
+    tracked_evidence_changes = [
+        line for line in tracked_changes if "testing/v4/reports/" in line
+    ]
 
     owl_summary_path = REPORTS / "owl2dl-summary.json"
     owl_summary = (
@@ -142,7 +149,9 @@ def main() -> int:
             "candidate_commit": git("rev-parse", "HEAD"),
             "candidate_tree": git("rev-parse", "HEAD^{tree}"),
             "branch": git("branch", "--show-current"),
-            "tracked_dirty": bool(git("status", "--porcelain", "--untracked-files=no")),
+            "tracked_dirty": bool(tracked_source_changes),
+            "tracked_source_changes": tracked_source_changes,
+            "tracked_evidence_dirty": bool(tracked_evidence_changes),
             "commits": len(commits),
             "unsigned_commits": unsigned,
             "changed_paths": len(changed_paths),
