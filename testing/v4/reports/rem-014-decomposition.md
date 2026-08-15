@@ -20,14 +20,17 @@ The earlier 7,287/7,289 figures were non-empty line counts. Multiline SPARQL ann
 
 ## Prioritized remediation units
 
-| Priority | Root cause | Occurrences | Unique IRIs | Score |
-|---:|---|---:|---:|---:|
-| 1 | property-kind-punning | 2 | 1 | 40 |
-| 2 | missing-or-invalid-first-party-declaration | 292 | 66 | 27 |
-| 3 | unsupported-defined-datatype-literal | 14 | 1 | 21 |
-| 4 | annotation-vocabulary-not-declared-for-owlapi | 412 | 19 | 15 |
-| 5 | missing-or-invalid-upstream-declaration | 577 | 6 | 7 |
-| 6 | embedded-shacl-vocabulary-not-declared-for-owlapi | 5,537 | 26 | 5 |
+| Priority | Root cause | Scope | CAC occurrences | Total occurrences | Unique IRIs | Score |
+|---:|---|---|---:|---:|---:|---:|
+| 1 | missing-local-declaration | cac-actionable | 75 | 75 | 37 | 36 |
+| 2 | invalid-or-version-mismatched-external-reference | cac-actionable | 120 | 120 | 25 | 30 |
+| 3 | unsupported-xsd-datatype-policy | cac-actionable | 68 | 68 | 2 | 21 |
+| 4 | unsupported-defined-datatype-literal | cac-actionable | 14 | 14 | 1 | 21 |
+| 5 | unimported-shared-vocabulary | cac-actionable | 29 | 29 | 2 | 18 |
+| 6 | annotation-vocabulary-not-declared-for-owlapi | cac-actionable | 393 | 412 | 19 | 15 |
+| 7 | embedded-shacl-vocabulary-not-declared-for-owlapi | external | 0 | 5,537 | 26 | 0 |
+| 8 | missing-or-invalid-upstream-declaration | external | 0 | 577 | 6 | 0 |
+| 9 | property-kind-punning | external | 0 | 2 | 1 | 0 |
 
 ## Interpretation boundary
 

@@ -140,7 +140,16 @@ def root_cause(line: str, owner: str, primary: str | None) -> str:
         return "annotation-vocabulary-not-declared-for-owlapi"
     if value.startswith("Use of undeclared"):
         if owner == "cac":
-            return "missing-or-invalid-first-party-declaration"
+            primary_owner = namespace_owner(primary)
+            if primary_owner == "cac":
+                return "missing-local-declaration"
+            if primary_owner == "standard":
+                return "unsupported-xsd-datatype-policy"
+            if primary_owner == "shared-vocabulary":
+                return "unimported-shared-vocabulary"
+            if primary_owner.startswith("upstream-"):
+                return "invalid-or-version-mismatched-external-reference"
+            return "unattributed-first-party-reference"
         if owner == "upstream":
             return "missing-or-invalid-upstream-declaration"
         return "unattributed-declaration-gap"
@@ -183,9 +192,11 @@ def aggregate(configuration: str, path: Path) -> dict:
     by_category = Counter(record["category"] for record in records)
     by_owner = Counter(record["owner"] for record in records)
     by_root = Counter(record["root_cause"] for record in records)
+    by_owner_and_root: dict[str, Counter] = defaultdict(Counter)
     unique_by_root: dict[str, set[str]] = defaultdict(set)
     examples: dict[str, list[str]] = defaultdict(list)
     for record in records:
+        by_owner_and_root[record["owner"]][record["root_cause"]] += 1
         if record["primary_iri"]:
             unique_by_root[record["root_cause"]].add(record["primary_iri"])
         if len(examples[record["root_cause"]]) < 3:
@@ -196,6 +207,10 @@ def aggregate(configuration: str, path: Path) -> dict:
         "violation_count": len(records),
         "by_category": dict(sorted(by_category.items())),
         "by_owner": dict(sorted(by_owner.items())),
+        "by_owner_and_root_cause": {
+            owner: dict(sorted(counts.items()))
+            for owner, counts in sorted(by_owner_and_root.items())
+        },
         "by_root_cause": dict(sorted(by_root.items())),
         "unique_primary_iris_by_root_cause": {
             key: len(value) for key, value in sorted(unique_by_root.items())
@@ -207,13 +222,17 @@ def aggregate(configuration: str, path: Path) -> dict:
 
 def priority_units(c3: dict) -> list[dict]:
     counts = c3["by_root_cause"]
+    owner_counts = c3["by_owner_and_root_cause"]
     unique = c3["unique_primary_iris_by_root_cause"]
     definitions = [
         ("single-operand-equivalence", 5, 5, 1, "Remove or complete invalid one-member equivalent-class axioms."),
         ("property-kind-punning", 5, 5, 2, "Separate object and datatype property meanings; preserve compatibility explicitly."),
         ("class-used-as-datatype", 5, 5, 2, "Correct datatype ranges that name OWL classes."),
         ("reserved-owl-vocabulary-as-domain-or-range", 4, 4, 2, "Replace owl:Class domain/range metamodeling with a DL-safe contract."),
-        ("missing-or-invalid-first-party-declaration", 5, 4, 3, "Declare intended CAC entities or repair invalid external references."),
+        ("missing-local-declaration", 5, 4, 2, "Declare intended CAC entities with the narrowest evidence-supported entity kind."),
+        ("invalid-or-version-mismatched-external-reference", 5, 5, 3, "Replace obsolete or invalid external terms with verified pinned-version vocabulary."),
+        ("unsupported-xsd-datatype-policy", 3, 4, 3, "Adopt a supported datatype representation without silently changing value meaning."),
+        ("unimported-shared-vocabulary", 3, 3, 3, "Add a bounded SKOS vocabulary/import strategy for shared controlled concepts."),
         ("unsupported-defined-datatype-literal", 3, 4, 3, "Move planning durations out of the OWL DL semantic layer or adopt a supported representation."),
         ("annotation-vocabulary-not-declared-for-owlapi", 2, 3, 3, "Add a bounded annotation vocabulary/declaration strategy for first-party metadata."),
         ("embedded-shacl-vocabulary-not-declared-for-owlapi", 2, 3, 5, "Treat upstream embedded shapes separately or obtain an upstream/profile correction."),
@@ -224,19 +243,31 @@ def priority_units(c3: dict) -> list[dict]:
         count = counts.get(root, 0)
         if not count:
             continue
+        cac_count = owner_counts.get("cac", {}).get(root, 0)
+        scope = "cac-actionable" if cac_count else "external"
         units.append(
             {
                 "root_cause": root,
                 "occurrences": count,
+                "cac_occurrences": cac_count,
+                "scope": scope,
                 "unique_primary_iris": unique.get(root, 0),
                 "impact": impact,
                 "risk": risk,
                 "effort": effort,
-                "priority_score": (impact + risk) * (6 - effort),
+                "priority_score": (impact + risk) * (6 - effort) if cac_count else 0,
                 "remedy": remedy,
             }
         )
-    return sorted(units, key=lambda value: (-value["priority_score"], -value["occurrences"], value["root_cause"]))
+    return sorted(
+        units,
+        key=lambda value: (
+            value["scope"] != "cac-actionable",
+            -value["priority_score"],
+            -value["cac_occurrences"],
+            value["root_cause"],
+        ),
+    )
 
 
 def markdown(report: dict) -> str:
@@ -261,10 +292,10 @@ def markdown(report: dict) -> str:
         "|---|---:|",
     ]
     lines.extend(f"| {owner} | {count:,} |" for owner, count in c3["by_owner"].items())
-    lines.extend(["", "## Prioritized remediation units", "", "| Priority | Root cause | Occurrences | Unique IRIs | Score |", "|---:|---|---:|---:|---:|"])
+    lines.extend(["", "## Prioritized remediation units", "", "| Priority | Root cause | Scope | CAC occurrences | Total occurrences | Unique IRIs | Score |", "|---:|---|---|---:|---:|---:|---:|"])
     for index, unit in enumerate(report["priority_units"], start=1):
         lines.append(
-            f"| {index} | {unit['root_cause']} | {unit['occurrences']:,} | {unit['unique_primary_iris']:,} | {unit['priority_score']} |"
+            f"| {index} | {unit['root_cause']} | {unit['scope']} | {unit['cac_occurrences']:,} | {unit['occurrences']:,} | {unit['unique_primary_iris']:,} | {unit['priority_score']} |"
         )
     lines.extend(
         [

@@ -26,7 +26,7 @@ Gate 4 is now executed against the exact UCO gUFO Profile revision and a content
 | C3 v4 architecture | Asserted/RDFS pass: 0 findings | Proposed architecture satisfies the bounded diagnostics |
 | C4 v4 + exact profile | Asserted/RDFS pass: 0 findings | Exact profile overlay does not restore the diagnosed level conflicts |
 | C5 v4 + bounded compatibility | Asserted/RDFS pass: 0 findings | Compatibility axioms do not restore the diagnosed conflation |
-| Executable unit/fixture tests | Pass: 60/60 | Original Gate 4 controls plus REM-014 decomposition and repair regressions pass |
+| Executable unit/fixture tests | Pass: 62/62 | Original Gate 4 controls plus REM-014 decomposition, ownership-priority, and repair regressions pass |
 | Embedded SHACL SPARQL | 459 audited; 0 proposal failures | Seven failures remain isolated to the untouched detection shapes owned by PR #48 |
 | Dependency closure | Pass: 75/75 imports resolved | 48 local and 27 vendored resolutions; zero unresolved imports |
 | Dependency Turtle syntax | Pass: 27/27 locked Turtle artifacts | Every content-addressed Turtle artifact in the runtime closure parses |
