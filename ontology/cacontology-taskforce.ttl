@@ -237,6 +237,11 @@ cacontology-taskforce:RegionalCoordination rdf:type owl:Class ;
     rdfs:comment "Coordination mechanism for regional task force activities."@en ;
     rdfs:subClassOf cacontology-taskforce:CoordinationMechanism .
 
+# Explicit declaration prevents OWLAPI from treating this object-property
+# target as a datatype when it also occurs in data-property domains.
+cacontology-taskforce:TaskForceTraining rdf:type owl:Class ;
+    rdfs:label "Task Force Training"@en .
+
 # =============================================================================
 # gUFO TEMPORAL PROPERTIES
 # =============================================================================

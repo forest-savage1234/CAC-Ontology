@@ -8,8 +8,8 @@
           "log": "testing/v4/reports/c3-diagnostic-hermit.log",
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "output_excerpt": "",
-          "reasoned_bytes": 6572083,
-          "reasoned_sha256": "856896034f6af5dbd91b1e19d3d06700fb5e92e86fa5bb04e764d3f2634c216a",
+          "reasoned_bytes": 6569502,
+          "reasoned_sha256": "7ebc18e7c89a39a6b013c3319dc523fc1194c1c4f124fbbd5790ce854f313879",
           "return_code": 0,
           "status": "pass"
         },
@@ -27,31 +27,30 @@
       "profile": {
         "failure_kind": "owl2dl-profile-violations",
         "log": "testing/v4/reports/c3-owl2dl-profile.log",
-        "log_sha256": "a6c62fcf64c81995b12ad525106eb9a4253142977d05d92c323207fe3c2b7e5f",
-        "output_excerpt": "PROFILE VIOLATION ERROR https://cacontology.projectvic.org/taskforce violates profile DL\nFor details see: http://robot.obolibrary.org/validate-profile#profile-violation-error\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
+        "log_sha256": "f1d72fa442ede269dfa572fe98dab2aa8e4729352e433478691eb27ac929ef66",
+        "output_excerpt": "PROFILE VIOLATION ERROR https://cacontology.projectvic.org/partnerships violates profile DL\nFor details see: http://robot.obolibrary.org/validate-profile#profile-violation-error\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
         "report": "testing/v4/reports/c3-owl2dl-profile.txt.gz",
-        "report_bytes": 134918,
+        "report_bytes": 132360,
         "report_compression": "gzip-mtime-0",
-        "report_sha256": "c71dc4c11687ce1505aa9021197bf51bf3f1c6d4110e2267ddc3113603d2dbba",
+        "report_sha256": "829cbfbe055c5e21cb37abb6c487f2e2ad5df64bc9225cfae1042a6cc939f8f0",
         "return_code": 1,
         "status": "fail",
         "summary": {
-          "cac_owned_count": 790,
+          "cac_owned_count": 705,
           "categories": {
-            "Cannot pun between properties": 29,
-            "Datatype IRI also used as Class IRI": 25,
+            "Cannot pun between properties": 2,
             "Use of defined datatype in datatype restriction": 14,
             "Use of reserved vocabulary for class IRI": 6,
             "Use of undeclared annotation property": 5949,
-            "Use of undeclared class": 755,
-            "Use of undeclared data property": 60,
-            "Use of undeclared datatype": 78,
+            "Use of undeclared class": 739,
+            "Use of undeclared data property": 51,
+            "Use of undeclared datatype": 69,
             "Use of undeclared object property": 10
           },
           "counting_method": "recognized-robot-violation-headers-v2",
           "shared_or_unattributed_count": 19,
-          "upstream_owned_count": 6117,
-          "violation_count": 6926
+          "upstream_owned_count": 6116,
+          "violation_count": 6840
         }
       },
       "status": "fail"
@@ -64,8 +63,8 @@
           "log": "testing/v4/reports/c4-diagnostic-hermit.log",
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "output_excerpt": "",
-          "reasoned_bytes": 6589081,
-          "reasoned_sha256": "e69f7bd7dea46dc47d5700a627a91875b3ee7ea0845ae8b9d7f8c9c081bf9a5c",
+          "reasoned_bytes": 6586500,
+          "reasoned_sha256": "0399d41d23ab36730c3ca308100a7392aec1f4e155d2d999c5f5eedc842110a0",
           "return_code": 0,
           "status": "pass"
         },
@@ -98,8 +97,8 @@
           "log": "testing/v4/reports/c5-diagnostic-hermit.log",
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "output_excerpt": "",
-          "reasoned_bytes": 6574304,
-          "reasoned_sha256": "37ecde51717e927650c74969f3e463bb60a79ab8e8835c19e1635689c7956b38",
+          "reasoned_bytes": 6571723,
+          "reasoned_sha256": "ea559f08efe2bf0bb224c515f3289d9bbbaed63dccf9fd5e8bff4d5132933a68",
           "return_code": 0,
           "status": "pass"
         },
@@ -117,37 +116,36 @@
       "profile": {
         "failure_kind": "owl2dl-profile-violations",
         "log": "testing/v4/reports/c5-owl2dl-profile.log",
-        "log_sha256": "a6c62fcf64c81995b12ad525106eb9a4253142977d05d92c323207fe3c2b7e5f",
-        "output_excerpt": "PROFILE VIOLATION ERROR https://cacontology.projectvic.org/taskforce violates profile DL\nFor details see: http://robot.obolibrary.org/validate-profile#profile-violation-error\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
+        "log_sha256": "f1d72fa442ede269dfa572fe98dab2aa8e4729352e433478691eb27ac929ef66",
+        "output_excerpt": "PROFILE VIOLATION ERROR https://cacontology.projectvic.org/partnerships violates profile DL\nFor details see: http://robot.obolibrary.org/validate-profile#profile-violation-error\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
         "report": "testing/v4/reports/c5-owl2dl-profile.txt.gz",
-        "report_bytes": 134981,
+        "report_bytes": 132392,
         "report_compression": "gzip-mtime-0",
-        "report_sha256": "b8f722111274b01e6d9012313c40ad484191a97f258e1f977e06386bfbe0bf03",
+        "report_sha256": "009e3257d55e80f50e1598dfceb30ed970469d956192c911b65f34c1b4257420",
         "return_code": 1,
         "status": "fail",
         "summary": {
-          "cac_owned_count": 792,
+          "cac_owned_count": 707,
           "categories": {
-            "Cannot pun between properties": 29,
-            "Datatype IRI also used as Class IRI": 25,
+            "Cannot pun between properties": 2,
             "Use of defined datatype in datatype restriction": 14,
             "Use of reserved vocabulary for class IRI": 8,
             "Use of undeclared annotation property": 5949,
-            "Use of undeclared class": 755,
-            "Use of undeclared data property": 60,
-            "Use of undeclared datatype": 78,
+            "Use of undeclared class": 739,
+            "Use of undeclared data property": 51,
+            "Use of undeclared datatype": 69,
             "Use of undeclared object property": 10
           },
           "counting_method": "recognized-robot-violation-headers-v2",
           "shared_or_unattributed_count": 19,
-          "upstream_owned_count": 6117,
-          "violation_count": 6928
+          "upstream_owned_count": 6116,
+          "violation_count": 6842
         }
       },
       "status": "fail"
     }
   },
-  "generated_at": "2026-08-15T19:45:54.879078+00:00",
+  "generated_at": "2026-08-15T20:15:31.631661+00:00",
   "runtime": {
     "java": "openjdk version \"21.0.12\" 2026-07-21 LTS\nOpenJDK Runtime Environment Temurin-21.0.12+8 (build 21.0.12+8-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12+8 (build 21.0.12+8-LTS, mixed mode, sharing)",
     "robot": "ROBOT version 1.9.10",

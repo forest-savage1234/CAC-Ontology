@@ -16,7 +16,12 @@ REPO = HERE.parents[1]
 REPORTS = HERE / "reports"
 
 REM014_BASELINE = {
-    "C3": {"violation_count": 6947, "cac_owned_count": 811},
+    "C3": {
+        "violation_count": 6947,
+        "cac_owned_count": 812,
+        "upstream_owned_count": 6116,
+        "shared_or_unattributed_count": 19,
+    },
     "C5": {"violation_count": 6949},
 }
 
@@ -98,6 +103,11 @@ def actor_owner(line: str, primary: str | None) -> str:
 
 def effective_owner(line: str, primary: str | None) -> str:
     primary_owner = namespace_owner(primary)
+    if line.startswith(("Cannot pun between properties:", "Datatype IRI also used as Class IRI:")):
+        if primary_owner == "cac":
+            return "cac"
+        if primary_owner.startswith("upstream-"):
+            return "upstream"
     actor = actor_owner(line, primary)
     if actor == "cac":
         return "cac"
