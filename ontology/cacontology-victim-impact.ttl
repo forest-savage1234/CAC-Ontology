@@ -31,6 +31,17 @@
                 <https://cacontology.projectvic.org/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> .
 
+# Explicit declarations for classes already used by victim-impact properties
+# and subclass axioms.
+cacontology-impact:MentalHealthProfessional rdf:type owl:Class ;
+    rdfs:label "Mental Health Professional"@en .
+
+cacontology-impact:RecoveryBarriers rdf:type owl:Class ;
+    rdfs:label "Recovery Barriers"@en .
+
+cacontology-impact:VictimBehavior rdf:type owl:Class ;
+    rdfs:label "Victim Behavior"@en .
+
 # =============================================================================
 # VICTIM IMPACT ASSESSMENT CLASSES (extending UCO Observable with gUFO Situation)
 # =============================================================================

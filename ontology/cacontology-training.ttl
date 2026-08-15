@@ -21,6 +21,26 @@
     owl:imports <https://cacontology.projectvic.org/core/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> .
 
+# Explicit declarations for metric and evaluation classes already used by
+# properties, SHACL shapes, and example data.
+cacontology-training:GlobalTrainingReach rdf:type owl:Class ;
+    rdfs:label "Global Training Reach"@en .
+
+cacontology-training:K9ProgramMetrics rdf:type owl:Class ;
+    rdfs:label "K9 Program Metrics"@en .
+
+cacontology-training:OperationalTrainingMetrics rdf:type owl:Class ;
+    rdfs:label "Operational Training Metrics"@en .
+
+cacontology-training:OutreachEventMetrics rdf:type owl:Class ;
+    rdfs:label "Outreach Event Metrics"@en .
+
+cacontology-training:ProfessionalTrainingMetrics rdf:type owl:Class ;
+    rdfs:label "Professional Training Metrics"@en .
+
+cacontology-training:TrainingEffectiveness rdf:type owl:Class ;
+    rdfs:label "Training Effectiveness"@en .
+
 # =============================================================================
 # TRAINING INFRASTRUCTURE (gUFO Event and Organization modeling)
 # =============================================================================

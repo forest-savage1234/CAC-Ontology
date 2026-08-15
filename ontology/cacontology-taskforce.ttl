@@ -29,6 +29,16 @@
                 <https://cacontology.projectvic.org/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> .
 
+# Explicit declarations for classes already used by task-force properties and examples.
+cacontology-taskforce:CertificationProgram rdf:type owl:Class ;
+    rdfs:label "Certification Program"@en .
+
+cacontology-taskforce:FederalLawEnforcementPartner rdf:type owl:Class ;
+    rdfs:label "Federal Law Enforcement Partner"@en .
+
+cacontology-taskforce:LocalLawEnforcementPartner rdf:type owl:Class ;
+    rdfs:label "Local Law Enforcement Partner"@en .
+
 # =============================================================================
 # CAC TASK FORCE CLASSES (extending UCO Observable with gUFO Object)
 # =============================================================================

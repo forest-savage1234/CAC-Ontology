@@ -132,6 +132,15 @@ cacontology:ChildSexualAbuseEvent rdf:type owl:Class ;
     rdfs:comment "A class representing any event involving child sexual abuse or exploitation. This is the base class for all CAC incidents modeled as gUFO Event. Victim and offender ages at the time of the event SHOULD be represented using cacontology-temporal:AgeAtTimeSituation instances rather than static age literals to support age-of-consent, Romeo-and-Juliet, and other temporal legal analyses."@en ;
     rdfs:subClassOf cac-core:ExploitationEvent , uco-action:Crime .
 
+cacontology:ChildSexualExploitation rdf:type owl:Class ;
+    rdfs:label "Child Sexual Exploitation"@en ;
+    rdfs:comment "An event in which a child is sexually exploited, including exploitation committed through a position of trust or authority."@en ;
+    rdfs:subClassOf cacontology:ChildSexualAbuseEvent .
+
+cacontology:ChildSexualExploitationCharge rdf:type owl:Class ;
+    rdfs:label "Child Sexual Exploitation Charge"@en ;
+    rdfs:comment "A criminal charge arising from an alleged child sexual exploitation event."@en .
+
 cacontology:CSAMIncident rdf:type owl:Class ;
     rdfs:label "Child Sexual Abuse Material Incident"@en ;
     rdfs:comment "Incidents involving possession, manufacture, or distribution of child sexual abuse material. This replaces the deprecated 'ChildPornographyIncident' term."@en ;

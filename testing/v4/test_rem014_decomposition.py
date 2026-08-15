@@ -44,17 +44,17 @@ class Rem014DecompositionTests(unittest.TestCase):
         )
         self.assertEqual(2, roots.get("property-kind-punning", 0))
         self.assertNotIn("class-used-as-datatype", roots)
+        self.assertNotIn("missing-local-declaration", roots)
 
-    def test_first_party_declaration_findings_are_decomposed(self):
+    def test_remaining_first_party_declaration_findings_are_decomposed(self):
         roots = self.report["configurations"]["C3"]["by_owner_and_root_cause"]["cac"]
         expected = {
-            "missing-local-declaration": 75,
             "invalid-or-version-mismatched-external-reference": 120,
             "unsupported-xsd-datatype-policy": 68,
-            "unimported-shared-vocabulary": 29,
+            "unimported-shared-vocabulary": 31,
         }
         self.assertEqual(expected, {root: roots[root] for root in expected})
-        self.assertEqual(292, sum(roots[root] for root in expected))
+        self.assertEqual(219, sum(roots[root] for root in expected))
 
     def test_priority_queue_puts_cac_work_before_external_findings(self):
         units = self.report["priority_units"]

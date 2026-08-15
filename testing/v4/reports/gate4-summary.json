@@ -23,25 +23,25 @@
       "asserted": {
         "diagnostic_findings": 0,
         "status": "pass",
-        "triples": 23835
+        "triples": 23972
       },
       "rdfs": {
         "diagnostic_findings": 0,
         "status": "pass",
-        "triples": 46749
+        "triples": 47024
       }
     },
     "C4": {
       "asserted": {
         "diagnostic_findings": 0,
         "status": "pass",
-        "triples": 24043
+        "triples": 24180
       },
       "gate": true,
       "rdfs": {
         "diagnostic_findings": 0,
         "status": "pass",
-        "triples": 48039
+        "triples": 48314
       },
       "scope_note": "Exact profile ontology applied to the candidate; imported submodule closure is not included."
     },
@@ -49,12 +49,12 @@
       "asserted": {
         "diagnostic_findings": 0,
         "status": "pass",
-        "triples": 23851
+        "triples": 23988
       },
       "rdfs": {
         "diagnostic_findings": 0,
         "status": "pass",
-        "triples": 46775
+        "triples": 47050
       }
     }
   },
@@ -253,7 +253,7 @@
     "reason": "CAC-only and exact-profile diagnostic projections are coherent, but the unmodified full import closure fails the normative OWL 2 DL gate: profile violations span CAC and pinned dependencies, exact upstream profile RDF structures are malformed, and imported SWRL built-ins are unsupported by HermiT.",
     "status": "hold"
   },
-  "generated_at": "2026-08-15T17:42:24.360953+00:00",
+  "generated_at": "2026-08-15T22:32:07.933975+00:00",
   "owl_2_dl": {
     "claim": "The non-normative diagnostic projections are coherent under HermiT, but they do not satisfy the full-import OWL 2 DL gate.",
     "diagnostic_projection_status": "pass",
@@ -270,14 +270,27 @@
   "source": {
     "base_commit": "93de063951b758dd68a27611638c177fcf910eab",
     "branch": "proposal/issue-44-v4-foundational-architecture",
-    "candidate_commit": "129fc1f1efe772e8eac5a2a9be4c819d5f7af49a",
-    "candidate_tree": "96a78e3dbacc941936111a8f7ce5b61311508c64",
-    "changed_paths": 181,
-    "commits": 19,
+    "candidate_commit": "e35d2af1a6b9471165adb8408bb463df913b5d1a",
+    "candidate_tree": "10ef2811af10b1b8a55839614d5af27349c78f75",
+    "changed_paths": 204,
+    "commits": 24,
     "detection_shapes_changed": false,
-    "tracked_dirty": false,
+    "tracked_dirty": true,
     "tracked_evidence_dirty": true,
-    "tracked_source_changes": [],
+    "tracked_source_changes": [
+      "M ontology/cacontology-core.ttl",
+      " M ontology/cacontology-detection-shapes.ttl",
+      " M ontology/cacontology-detection.ttl",
+      " M ontology/cacontology-educational-exploitation.ttl",
+      " M ontology/cacontology-hotlines.ttl",
+      " M ontology/cacontology-international.ttl",
+      " M ontology/cacontology-prevention.ttl",
+      " M ontology/cacontology-taskforce.ttl",
+      " M ontology/cacontology-training.ttl",
+      " M ontology/cacontology-victim-impact.ttl",
+      " M testing/v4/dependency-lock.json",
+      " M testing/v4/test_rem014_decomposition.py"
+    ],
     "unsigned_commits": []
   },
   "term_dispositions": {
@@ -290,6 +303,6 @@
   "tests": {
     "return_code": 0,
     "status": "pass",
-    "tests_run": 53
+    "tests_run": 66
   }
 }

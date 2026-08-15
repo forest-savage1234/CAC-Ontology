@@ -409,12 +409,12 @@ cacontology-detection:modelVersion rdf:type owl:DatatypeProperty ;
 cacontology-detection:sarClassification rdf:type owl:ObjectProperty ;
     rdfs:label "SAR classification"@en ;
     rdfs:comment "Links content to its SAR (1-5) classification level."@en ;
-    rdfs:range cacontology-detection:SARClassificationScheme .
+    rdfs:range skos:Concept .
 
 cacontology-detection:copineClassification rdf:type owl:ObjectProperty ;
     rdfs:label "COPINE classification"@en ;
     rdfs:comment "Links content to its COPINE classification level."@en ;
-    rdfs:range cacontology-detection:COPINEClassificationScheme .
+    rdfs:range skos:Concept .
 
 cacontology-detection:ageEstimate rdf:type owl:DatatypeProperty ;
     rdfs:label "age estimate"@en ;

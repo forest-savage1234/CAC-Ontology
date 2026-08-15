@@ -387,6 +387,10 @@ cacontology-hotlines:coordinationBeginTime rdf:type owl:DatatypeProperty ;
     rdfs:range xsd:dateTime .
 
 # Transitive Properties Enhanced with gUFO
+cacontology-hotlines:hasStep rdf:type owl:ObjectProperty ;
+    rdfs:label "has step"@en ;
+    rdfs:comment "Links a hotline workflow entity to an ordered step in that workflow."@en .
+
 cacontology-hotlines:nextStep rdf:type owl:TransitiveProperty ;
     rdfs:label "next step"@en ;
     rdfs:comment "Denotes the chronologically next action in the lifecycle. Enhanced with gUFO temporal sequence modeling."@en ;

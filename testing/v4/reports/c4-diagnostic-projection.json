@@ -46,9 +46,9 @@
       "sha256": "d0451e3e88775e4fb6f39418a221e6182daf4e0b4d91235d46b21555b3a3f310"
     },
     {
-      "bytes": 27513,
+      "bytes": 28036,
       "path": "ontology/cacontology-core.ttl",
-      "sha256": "daf8f11938b8a1b8234a9713a01884df86098745c433781d9c9596bd3949c814"
+      "sha256": "486361230774cdbe49c2f58acd75780251280cbba06d968867d4b675a969bd06"
     },
     {
       "bytes": 34636,
@@ -56,14 +56,14 @@
       "sha256": "56061b13103673df553f1ba5edbb964544219af09f36e76eaaf3abd5fbd31cb1"
     },
     {
-      "bytes": 28901,
+      "bytes": 28824,
       "path": "ontology/cacontology-detection.ttl",
-      "sha256": "f5abe51659f5a6040fcd6ae7c96bcee6190cc73d8bcb3abcb6875a8388b170c1"
+      "sha256": "be11578a93cd019a46e517523a5abf3874698f130673802f98109a709ffa9396"
     },
     {
-      "bytes": 54376,
+      "bytes": 56728,
       "path": "ontology/cacontology-educational-exploitation.ttl",
-      "sha256": "4783550d3be121d3ad05ee91eac464058ad358023da651ec5f28af740e51f148"
+      "sha256": "c2dd2a484b62a50c7c93921189be2571e94643e77aa7e816783b634dbceb46fb"
     },
     {
       "bytes": 48685,
@@ -81,9 +81,9 @@
       "sha256": "8b688febdf394551191f3c450ef1d8274c2df1aed62e09336c4f2b435f64c7ac"
     },
     {
-      "bytes": 21711,
+      "bytes": 21893,
       "path": "ontology/cacontology-hotlines.ttl",
-      "sha256": "e5754410e46e955edb4a3838cb59527bd669036e2d073d781075b3569b940af6"
+      "sha256": "11cffd335d2553d0520bb762b5608a7d5dd7bc6694cd46f709b507424ff833b2"
     },
     {
       "bytes": 45907,
@@ -91,14 +91,14 @@
       "sha256": "b0a6306f6955036b0775903f928c8fa9e0dd761c33b9c057f5e916e2f4ba6b34"
     },
     {
-      "bytes": 26574,
+      "bytes": 26573,
       "path": "ontology/cacontology-integration-patterns.ttl",
-      "sha256": "db6537eaa5bfa46a982c6c156c5450411d34354257442ab806176f1c25757b5e"
+      "sha256": "949b4651dfc9532bfdd1c9e96e625fb9d3926c31cc5afb4153cfedcbfa8091a5"
     },
     {
-      "bytes": 55471,
+      "bytes": 55506,
       "path": "ontology/cacontology-international.ttl",
-      "sha256": "be4b38cd79f224a94f5ca9a7aa46eb1bdc0d20b12efd3e6f612a2e7d02844288"
+      "sha256": "0bed86cecbd8fdca4341a10ec2a785983b45adc08f4fb8ead33d203795b0b049"
     },
     {
       "bytes": 57760,
@@ -146,9 +146,9 @@
       "sha256": "ae0e2db3c761a097fd540c32353df35683b7e8ba1ebea669d0dce0bdfab8584a"
     },
     {
-      "bytes": 55601,
+      "bytes": 56003,
       "path": "ontology/cacontology-prevention.ttl",
-      "sha256": "f35ebace8a202048304e093ee2e2e89085c004be708d1cbb1badd3f3b7e6254a"
+      "sha256": "f39a19a67b0752919e0f16ebeb0782ed938ec95c8aef06241620c77a2c1d93a9"
     },
     {
       "bytes": 29905,
@@ -211,9 +211,9 @@
       "sha256": "3ba23d2aa03984ea25c6cedb07d460ea685c60608517300a5e6fcbc9a700d6df"
     },
     {
-      "bytes": 58414,
+      "bytes": 58857,
       "path": "ontology/cacontology-taskforce.ttl",
-      "sha256": "ef8108cd7d74773af5c72888b99c76d88d427d15decaac01c898ed4a13892e20"
+      "sha256": "1efd98a7eae362655518a4e8723f103cae65883fece7f087f1af1be9e4eab010"
     },
     {
       "bytes": 24005,
@@ -221,9 +221,9 @@
       "sha256": "b284b5cbb089b710b00f9dfddde0d9b510f2bba4496b6b7442ae49d736509382"
     },
     {
-      "bytes": 28201,
+      "bytes": 28988,
       "path": "ontology/cacontology-training.ttl",
-      "sha256": "49f51dcf3ddb5056754c74ce51d88be3925cedd139f84d94aae3f97ea4a213f5"
+      "sha256": "b0c0e76bfa7711e6bedef291fe260176c415203821530b2e1488a193bdf31321"
     },
     {
       "bytes": 54352,
@@ -246,9 +246,9 @@
       "sha256": "4b4f1c83c61f071c4e9efa0b4c80bf462e3cb9aada2d4b199f4d92fb7f67a080"
     },
     {
-      "bytes": 53911,
+      "bytes": 54314,
       "path": "ontology/cacontology-victim-impact.ttl",
-      "sha256": "0208cebbf88b85a873fcbd2ac7cd211fc9ba732028e30ca30cd328b292f8ffce"
+      "sha256": "d0c91c89577a02ef46d0620b4cb00517c44913ee121673725532c0eb2c6114cf"
     },
     {
       "bytes": 11980,
@@ -492,11 +492,11 @@
     "status": "non-normative-diagnostic-only"
   },
   "imports_materialized": 320,
-  "input_set_sha256": "26658de63f9cee545fc1cdcc778ebb54f7e8444403f5939d8cf35f2ac89220d7",
+  "input_set_sha256": "f48cc5f03ab107c9ca410ccb323f4e40bf6a75bad7b2b644395bfdeec68cc866",
   "schema_version": 1,
   "scope": "Offline transitive semantic closure with owl:imports declarations removed only after all locked imported graphs are materialized.",
-  "serialized_bytes": 4448787,
+  "serialized_bytes": 4461592,
   "serialized_path": "testing/v4/tmp/reasoner/c4-diagnostic-projection.owl",
-  "serialized_sha256": "3767eaf8956d3b27406bd8764094e2295f808998a9ad769a1a58d146a3a3df05",
-  "triples": 38470
+  "serialized_sha256": "cc33c9d33c8d2e593aed336b87ea87966951b10b682710a32df08963ec4ac275",
+  "triples": 38570
 }
