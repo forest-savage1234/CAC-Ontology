@@ -1,0 +1,97 @@
+{
+  "configurations": {
+    "C1": {
+      "diagnostic_findings": 148,
+      "source_commit": "93de063951b758dd68a27611638c177fcf910eab",
+      "status": "observed-baseline"
+    },
+    "C2": {
+      "blocker": "Pinned UCO gUFO Profile bytes at 4b98b9881aa29ed80f39b589d15725fa696c921a are unavailable locally; official Git and browser retrieval failed.",
+      "status": "blocked"
+    },
+    "C3": {
+      "asserted": {
+        "diagnostic_findings": 0,
+        "status": "pass",
+        "triples": 23851
+      },
+      "rdfs": {
+        "diagnostic_findings": 0,
+        "status": "pass",
+        "triples": 46772
+      }
+    },
+    "C4": {
+      "blocker": "Same unavailable pinned UCO gUFO Profile bytes as C2.",
+      "status": "blocked"
+    },
+    "C5": {
+      "asserted": {
+        "diagnostic_findings": 0,
+        "status": "pass",
+        "triples": 23867
+      },
+      "rdfs": {
+        "diagnostic_findings": 0,
+        "status": "pass",
+        "triples": 46798
+      }
+    }
+  },
+  "dependencies": {
+    "imports": 61,
+    "resolved_local": 48,
+    "uco_gufo_profile": {
+      "commit": null,
+      "path": null,
+      "revision_prefix": "4b98b988",
+      "sha256": null,
+      "status": "unresolved-remote"
+    },
+    "unresolved_remote": 13
+  },
+  "gate4_recommendation": {
+    "github_mutation_authorized": false,
+    "reason": "Applicable local diagnostics pass, but deterministic imports, C4 overlay execution, and normative OWL 2 DL reasoning remain release blockers.",
+    "status": "hold"
+  },
+  "generated_at": "2026-08-15T15:24:06.194072+00:00",
+  "owl_2_dl": {
+    "claim": "No HermiT/ROBOT OWL 2 DL consistency or unsatisfiable-class result is claimed.",
+    "docker_client": "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.EXE",
+    "docker_server_available": false,
+    "java": null,
+    "robot": null,
+    "status": "blocked"
+  },
+  "schema_version": 1,
+  "sensitive_data": "Synthetic fixtures only; no real investigative, victim, or adopter data is present.",
+  "shacl_sparql": {
+    "pr48_detection_failures": 7,
+    "proposal_failures": 0,
+    "queries": 459
+  },
+  "source": {
+    "base_commit": "93de063951b758dd68a27611638c177fcf910eab",
+    "branch": "proposal/issue-44-v4-foundational-architecture",
+    "candidate_commit": "b7a88c45c1bd7a0243c6f4c4f3959bbe9253685d",
+    "candidate_tree": "4c8c3b374d341aa914a858a476a8db7a3bd56c93",
+    "changed_paths": 93,
+    "commits": 15,
+    "detection_shapes_changed": false,
+    "tracked_dirty": false,
+    "unsigned_commits": []
+  },
+  "term_dispositions": {
+    "pending": 0,
+    "policy": "A pending or ambiguous row is not authorized for semantic edit.",
+    "reviewed": 299,
+    "rows": 299,
+    "schema_version": 1
+  },
+  "tests": {
+    "return_code": 0,
+    "status": "pass",
+    "tests_run": 40
+  }
+}
