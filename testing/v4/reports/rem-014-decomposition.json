@@ -15,7 +15,6 @@
       "by_category": {
         "Cannot pun between properties": 2,
         "Use of defined datatype in datatype restriction": 14,
-        "Use of reserved vocabulary for class IRI": 6,
         "Use of undeclared annotation property": 5949,
         "Use of undeclared class": 739,
         "Use of undeclared data property": 51,
@@ -23,7 +22,7 @@
         "Use of undeclared object property": 10
       },
       "by_owner": {
-        "cac": 705,
+        "cac": 699,
         "shared-or-unattributed": 19,
         "upstream": 6116
       },
@@ -33,7 +32,6 @@
         "missing-or-invalid-first-party-declaration": 292,
         "missing-or-invalid-upstream-declaration": 577,
         "property-kind-punning": 2,
-        "reserved-owl-vocabulary-as-domain-or-range": 6,
         "unsupported-defined-datatype-literal": 14
       },
       "configuration": "C3",
@@ -44,33 +42,28 @@
           "Use of undeclared annotation property: <http://purl.org/dc/terms/description> in annotation [Annotation(<http://purl.org/dc/terms/description> \"Comprehensive strategy for Phase 3 full integration of gUFO across CAC ontology family, including validation patterns, module mapping, and integration guidelines.\"@en) in null]"
         ],
         "embedded-shacl-vocabulary-not-declared-for-owlapi": [
-          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#path> in annotation [Annotation(<http://www.w3.org/ns/shacl#path> <https://ontology.unifiedcyberontology.org/uco/observable/sourceApplication>) in AnnotationAssertion(<http://www.w3.org/ns/shacl#path> _:genid2147484565 <https://ontology.unifiedcyberontology.org/uco/observable/sourceApplication>)]",
-          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#property> in annotation [Annotation(<http://www.w3.org/ns/shacl#property> _:genid2147483753) in AnnotationAssertion(<http://www.w3.org/ns/shacl#property> <https://ontology.unifiedcyberontology.org/uco/observable/OperatingSystemFacet> _:genid2147483753)]",
-          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#class> in annotation [Annotation(<http://www.w3.org/ns/shacl#class> <https://ontology.unifiedcyberontology.org/uco/observable/GlobalFlagType>) in AnnotationAssertion(<http://www.w3.org/ns/shacl#class> _:genid2147483771 <https://ontology.unifiedcyberontology.org/uco/observable/GlobalFlagType>)]"
+          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#nodeKind> in annotation [Annotation(<http://www.w3.org/ns/shacl#nodeKind> <http://www.w3.org/ns/shacl#IRI>) in AnnotationAssertion(<http://www.w3.org/ns/shacl#nodeKind> _:genid2147484297 <http://www.w3.org/ns/shacl#IRI>)]",
+          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#severity> in annotation [Annotation(<http://www.w3.org/ns/shacl#severity> <http://www.w3.org/ns/shacl#Warning>) in AnnotationAssertion(<http://www.w3.org/ns/shacl#severity> _:genid2147484719 <http://www.w3.org/ns/shacl#Warning>)]",
+          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#nodeKind> in annotation [Annotation(<http://www.w3.org/ns/shacl#nodeKind> <http://www.w3.org/ns/shacl#Literal>) in AnnotationAssertion(<http://www.w3.org/ns/shacl#nodeKind> _:genid2147484443 <http://www.w3.org/ns/shacl#Literal>)]"
         ],
         "missing-or-invalid-first-party-declaration": [
-          "Use of undeclared class: <https://cacontology.projectvic.org/victim-impact#MentalHealthProfessional> [ObjectPropertyRange(<https://cacontology.projectvic.org/victim-impact#documentedBy> <https://cacontology.projectvic.org/victim-impact#MentalHealthProfessional>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of undeclared object property: <http://purl.org/nemo/gufo#participantIn> [SubObjectPropertyOf(<https://cacontology.projectvic.org/usa-federal-law#defendedBy> <http://purl.org/nemo/gufo#participantIn>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of undeclared datatype: xsd:duration [DataPropertyRange(<https://cacontology.projectvic.org/specialized-units#unitDuration> xsd:duration) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]"
+          "Use of undeclared class: <https://cacontology.projectvic.org/victim-impact#MentalHealthProfessional> [ObjectPropertyRange(<https://cacontology.projectvic.org/victim-impact#documentedBy> <https://cacontology.projectvic.org/victim-impact#MentalHealthProfessional>) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]",
+          "Use of undeclared object property: <http://purl.org/nemo/gufo#participantIn> [SubObjectPropertyOf(<https://cacontology.projectvic.org/usa-federal-law#defendedBy> <http://purl.org/nemo/gufo#participantIn>) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]",
+          "Use of undeclared datatype: xsd:duration [DataPropertyRange(<https://cacontology.projectvic.org/specialized-units#unitDuration> xsd:duration) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]"
         ],
         "missing-or-invalid-upstream-declaration": [
-          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/core/ConfidenceFacet>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/tool/BuildUtilityType>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/observable/TableFieldFacet>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]"
+          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/core/ConfidenceFacet>) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]",
+          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/tool/BuildUtilityType>) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]",
+          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/observable/TableFieldFacet>) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]"
         ],
         "property-kind-punning": [
-          "Cannot pun between properties: <https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> [Declaration(DataProperty(<https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression>)) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Cannot pun between properties: <https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> [ObjectPropertyRange(<https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> <https://ontology.unifiedcyberontology.org/uco/pattern/PatternExpression>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]"
-        ],
-        "reserved-owl-vocabulary-as-domain-or-range": [
-          "Use of reserved vocabulary for class IRI: owl:Class [ObjectPropertyDomain(<https://cacontology.projectvic.org/integration-patterns#extendsPattern> owl:Class) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of reserved vocabulary for class IRI: owl:Class [ObjectPropertyRange(<https://cacontology.projectvic.org/integration-patterns#hasIntegrationPattern> owl:Class) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of reserved vocabulary for class IRI: owl:Class [ObjectPropertyRange(<https://cacontology.projectvic.org/integration-patterns#dependsOnPattern> owl:Class) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]"
+          "Cannot pun between properties: <https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> [Declaration(DataProperty(<https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression>)) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]",
+          "Cannot pun between properties: <https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> [ObjectPropertyRange(<https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> <https://ontology.unifiedcyberontology.org/uco/pattern/PatternExpression>) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]"
         ],
         "unsupported-defined-datatype-literal": [
-          "Use of defined datatype in datatype restriction \"P30D\"^^xsd:duration [DataPropertyAssertion(<https://cacontology.projectvic.org/integration-patterns#hasIntegrationTimeline> <https://cacontology.projectvic.org/integration-patterns#SpecializedUnitsModule> \"P30D\"^^xsd:duration) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of defined datatype in datatype restriction \"P45D\"^^xsd:duration [DataPropertyAssertion(<https://cacontology.projectvic.org/integration-patterns#hasIntegrationTimeline> <https://cacontology.projectvic.org/integration-patterns#InternationalModule> \"P45D\"^^xsd:duration) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of defined datatype in datatype restriction \"P30D\"^^xsd:duration [DataPropertyAssertion(<https://cacontology.projectvic.org/integration-patterns#hasIntegrationTimeline> <https://cacontology.projectvic.org/integration-patterns#TaskforceModule> \"P30D\"^^xsd:duration) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]"
+          "Use of defined datatype in datatype restriction \"P30D\"^^xsd:duration [DataPropertyAssertion(<https://cacontology.projectvic.org/integration-patterns#hasIntegrationTimeline> <https://cacontology.projectvic.org/integration-patterns#SpecializedUnitsModule> \"P30D\"^^xsd:duration) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]",
+          "Use of defined datatype in datatype restriction \"P45D\"^^xsd:duration [DataPropertyAssertion(<https://cacontology.projectvic.org/integration-patterns#hasIntegrationTimeline> <https://cacontology.projectvic.org/integration-patterns#InternationalModule> \"P45D\"^^xsd:duration) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]",
+          "Use of defined datatype in datatype restriction \"P30D\"^^xsd:duration [DataPropertyAssertion(<https://cacontology.projectvic.org/integration-patterns#hasIntegrationTimeline> <https://cacontology.projectvic.org/integration-patterns#TaskforceModule> \"P30D\"^^xsd:duration) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]"
         ]
       },
       "report": "testing/v4/reports/c3-owl2dl-profile.txt.gz",
@@ -80,16 +73,15 @@
         "missing-or-invalid-first-party-declaration": 66,
         "missing-or-invalid-upstream-declaration": 6,
         "property-kind-punning": 1,
-        "reserved-owl-vocabulary-as-domain-or-range": 1,
         "unsupported-defined-datatype-literal": 1
       },
-      "violation_count": 6840
+      "violation_count": 6834
     },
     "C5": {
       "by_category": {
         "Cannot pun between properties": 2,
         "Use of defined datatype in datatype restriction": 14,
-        "Use of reserved vocabulary for class IRI": 8,
+        "Use of reserved vocabulary for class IRI": 2,
         "Use of undeclared annotation property": 5949,
         "Use of undeclared class": 739,
         "Use of undeclared data property": 51,
@@ -97,7 +89,7 @@
         "Use of undeclared object property": 10
       },
       "by_owner": {
-        "cac": 707,
+        "cac": 701,
         "shared-or-unattributed": 19,
         "upstream": 6116
       },
@@ -107,7 +99,7 @@
         "missing-or-invalid-first-party-declaration": 292,
         "missing-or-invalid-upstream-declaration": 577,
         "property-kind-punning": 2,
-        "reserved-owl-vocabulary-as-domain-or-range": 8,
+        "reserved-owl-vocabulary-as-domain-or-range": 2,
         "unsupported-defined-datatype-literal": 14
       },
       "configuration": "C5",
@@ -118,33 +110,32 @@
           "Use of undeclared annotation property: <http://purl.org/dc/terms/description> in annotation [Annotation(<http://purl.org/dc/terms/description> \"Comprehensive strategy for Phase 3 full integration of gUFO across CAC ontology family, including validation patterns, module mapping, and integration guidelines.\"@en) in null]"
         ],
         "embedded-shacl-vocabulary-not-declared-for-owlapi": [
-          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#path> in annotation [Annotation(<http://www.w3.org/ns/shacl#path> <https://ontology.unifiedcyberontology.org/uco/observable/displayName>) in AnnotationAssertion(<http://www.w3.org/ns/shacl#path> _:genid2147483784 <https://ontology.unifiedcyberontology.org/uco/observable/displayName>)]",
-          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#nodeKind> in annotation [Annotation(<http://www.w3.org/ns/shacl#nodeKind> <http://www.w3.org/ns/shacl#IRI>) in AnnotationAssertion(<http://www.w3.org/ns/shacl#nodeKind> _:genid2147484285 <http://www.w3.org/ns/shacl#IRI>)]",
-          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#datatype> in annotation [Annotation(<http://www.w3.org/ns/shacl#datatype> <http://www.w3.org/2001/XMLSchema#dateTime>) in AnnotationAssertion(<http://www.w3.org/ns/shacl#datatype> _:genid2147484404 <http://www.w3.org/2001/XMLSchema#dateTime>)]"
+          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#nodeKind> in annotation [Annotation(<http://www.w3.org/ns/shacl#nodeKind> <http://www.w3.org/ns/shacl#Literal>) in AnnotationAssertion(<http://www.w3.org/ns/shacl#nodeKind> _:genid2147484443 <http://www.w3.org/ns/shacl#Literal>)]",
+          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#nodeKind> in annotation [Annotation(<http://www.w3.org/ns/shacl#nodeKind> <http://www.w3.org/ns/shacl#Literal>) in AnnotationAssertion(<http://www.w3.org/ns/shacl#nodeKind> _:genid2147484455 <http://www.w3.org/ns/shacl#Literal>)]",
+          "Use of undeclared annotation property: <http://www.w3.org/ns/shacl#targetClass> in annotation [Annotation(<http://www.w3.org/ns/shacl#targetClass> <https://ontology.unifiedcyberontology.org/uco/observable/WindowsPEBinaryFile>) in AnnotationAssertion(<http://www.w3.org/ns/shacl#targetClass> <https://ontology.unifiedcyberontology.org/uco/observable/WindowsPEBinaryFile> <https://ontology.unifiedcyberontology.org/uco/observable/WindowsPEBinaryFile>)]"
         ],
         "missing-or-invalid-first-party-declaration": [
-          "Use of undeclared class: <https://cacontology.projectvic.org/victim-impact#MentalHealthProfessional> [ObjectPropertyRange(<https://cacontology.projectvic.org/victim-impact#documentedBy> <https://cacontology.projectvic.org/victim-impact#MentalHealthProfessional>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of undeclared object property: <http://purl.org/nemo/gufo#participantIn> [SubObjectPropertyOf(<https://cacontology.projectvic.org/usa-federal-law#defendedBy> <http://purl.org/nemo/gufo#participantIn>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of undeclared datatype: xsd:duration [DataPropertyRange(<https://cacontology.projectvic.org/specialized-units#unitDuration> xsd:duration) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]"
+          "Use of undeclared class: <https://cacontology.projectvic.org/victim-impact#MentalHealthProfessional> [ObjectPropertyRange(<https://cacontology.projectvic.org/victim-impact#documentedBy> <https://cacontology.projectvic.org/victim-impact#MentalHealthProfessional>) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]",
+          "Use of undeclared object property: <http://purl.org/nemo/gufo#participantIn> [SubObjectPropertyOf(<https://cacontology.projectvic.org/usa-federal-law#defendedBy> <http://purl.org/nemo/gufo#participantIn>) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]",
+          "Use of undeclared datatype: xsd:duration [DataPropertyRange(<https://cacontology.projectvic.org/specialized-units#unitDuration> xsd:duration) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]"
         ],
         "missing-or-invalid-upstream-declaration": [
-          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/core/ConfidenceFacet>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/tool/BuildUtilityType>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/observable/TableFieldFacet>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]"
+          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/core/ConfidenceFacet>) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]",
+          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/tool/BuildUtilityType>) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]",
+          "Use of undeclared class: <http://www.w3.org/ns/shacl#NodeShape> [ClassAssertion(<http://www.w3.org/ns/shacl#NodeShape> <https://ontology.unifiedcyberontology.org/uco/observable/TableFieldFacet>) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]"
         ],
         "property-kind-punning": [
-          "Cannot pun between properties: <https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> [Declaration(DataProperty(<https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression>)) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Cannot pun between properties: <https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> [ObjectPropertyRange(<https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> <https://ontology.unifiedcyberontology.org/uco/pattern/PatternExpression>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]"
+          "Cannot pun between properties: <https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> [Declaration(DataProperty(<https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression>)) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]",
+          "Cannot pun between properties: <https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> [ObjectPropertyRange(<https://ontology.unifiedcyberontology.org/uco/pattern/patternExpression> <https://ontology.unifiedcyberontology.org/uco/pattern/PatternExpression>) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]"
         ],
         "reserved-owl-vocabulary-as-domain-or-range": [
-          "Use of reserved vocabulary for class IRI: owl:Class [ObjectPropertyDomain(<https://cacontology.projectvic.org/integration-patterns#extendsPattern> owl:Class) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of reserved vocabulary for class IRI: owl:Class [ObjectPropertyRange(<https://cacontology.projectvic.org/integration-patterns#hasIntegrationPattern> owl:Class) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of reserved vocabulary for class IRI: rdfs:Resource [ClassAssertion(rdfs:Resource <https://cacontology.projectvic.org/compatibility#RolePhaseMigration>) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]"
+          "Use of reserved vocabulary for class IRI: rdfs:Resource [ClassAssertion(rdfs:Resource <https://cacontology.projectvic.org/compatibility#RolePhaseMigration>) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]",
+          "Use of reserved vocabulary for class IRI: rdfs:Resource [ClassAssertion(rdfs:Resource <https://cacontology.projectvic.org/compatibility#CustodyPropertyMigration>) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]"
         ],
         "unsupported-defined-datatype-literal": [
-          "Use of defined datatype in datatype restriction \"P30D\"^^xsd:duration [DataPropertyAssertion(<https://cacontology.projectvic.org/integration-patterns#hasIntegrationTimeline> <https://cacontology.projectvic.org/integration-patterns#SpecializedUnitsModule> \"P30D\"^^xsd:duration) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of defined datatype in datatype restriction \"P45D\"^^xsd:duration [DataPropertyAssertion(<https://cacontology.projectvic.org/integration-patterns#hasIntegrationTimeline> <https://cacontology.projectvic.org/integration-patterns#InternationalModule> \"P45D\"^^xsd:duration) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]",
-          "Use of defined datatype in datatype restriction \"P30D\"^^xsd:duration [DataPropertyAssertion(<https://cacontology.projectvic.org/integration-patterns#hasIntegrationTimeline> <https://cacontology.projectvic.org/integration-patterns#TaskforceModule> \"P30D\"^^xsd:duration) in OntologyID(OntologyIRI(<https://cacontology.projectvic.org/partnerships>) VersionIRI(<https://cacontology.projectvic.org/partnerships/3.1.0>))]"
+          "Use of defined datatype in datatype restriction \"P30D\"^^xsd:duration [DataPropertyAssertion(<https://cacontology.projectvic.org/integration-patterns#hasIntegrationTimeline> <https://cacontology.projectvic.org/integration-patterns#SpecializedUnitsModule> \"P30D\"^^xsd:duration) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]",
+          "Use of defined datatype in datatype restriction \"P45D\"^^xsd:duration [DataPropertyAssertion(<https://cacontology.projectvic.org/integration-patterns#hasIntegrationTimeline> <https://cacontology.projectvic.org/integration-patterns#InternationalModule> \"P45D\"^^xsd:duration) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]",
+          "Use of defined datatype in datatype restriction \"P30D\"^^xsd:duration [DataPropertyAssertion(<https://cacontology.projectvic.org/integration-patterns#hasIntegrationTimeline> <https://cacontology.projectvic.org/integration-patterns#TaskforceModule> \"P30D\"^^xsd:duration) in OntologyID(OntologyIRI(<https://ontology.unifiedcyberontology.org/uco/uco>) VersionIRI(<https://ontology.unifiedcyberontology.org/uco/uco/1.5.0>))]"
         ]
       },
       "report": "testing/v4/reports/c5-owl2dl-profile.txt.gz",
@@ -154,21 +145,21 @@
         "missing-or-invalid-first-party-declaration": 66,
         "missing-or-invalid-upstream-declaration": 6,
         "property-kind-punning": 1,
-        "reserved-owl-vocabulary-as-domain-or-range": 2,
+        "reserved-owl-vocabulary-as-domain-or-range": 1,
         "unsupported-defined-datatype-literal": 1
       },
-      "violation_count": 6842
+      "violation_count": 6836
     }
   },
   "delta_from_baseline": {
-    "C3": -107,
-    "C5": -107
+    "C3": -113,
+    "C5": -113
   },
   "details": {
-    "bytes": 386608,
+    "bytes": 386490,
     "format": "gzip-compressed JSON Lines; one record per recognized ROBOT violation header",
     "path": "testing/v4/reports/rem-014-findings.jsonl.gz",
-    "sha256": "2603eb9b4cd25da3bcc7846792b9703a09a6eb04d40816681ca92d7467754ddc"
+    "sha256": "a781fe75289c6b58a044493fd74f451acbdc5d007fbd8a0cefc3c76a2d76c24e"
   },
   "method": "Count recognized ROBOT violation headers; classify primary IRI and axiom actor without treating multiline annotation text as separate violations.",
   "mission": "REM-014",
@@ -181,16 +172,6 @@
       "remedy": "Separate object and datatype property meanings; preserve compatibility explicitly.",
       "risk": 5,
       "root_cause": "property-kind-punning",
-      "unique_primary_iris": 1
-    },
-    {
-      "effort": 2,
-      "impact": 4,
-      "occurrences": 6,
-      "priority_score": 32,
-      "remedy": "Replace owl:Class domain/range metamodeling with a DL-safe contract.",
-      "risk": 4,
-      "root_cause": "reserved-owl-vocabulary-as-domain-or-range",
       "unique_primary_iris": 1
     },
     {

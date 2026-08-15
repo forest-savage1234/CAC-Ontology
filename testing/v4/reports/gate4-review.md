@@ -26,7 +26,7 @@ Gate 4 is now executed against the exact UCO gUFO Profile revision and a content
 | C3 v4 architecture | Asserted/RDFS pass: 0 findings | Proposed architecture satisfies the bounded diagnostics |
 | C4 v4 + exact profile | Asserted/RDFS pass: 0 findings | Exact profile overlay does not restore the diagnosed level conflicts |
 | C5 v4 + bounded compatibility | Asserted/RDFS pass: 0 findings | Compatibility axioms do not restore the diagnosed conflation |
-| Executable unit/fixture tests | Pass: 59/59 | Original Gate 4 controls plus REM-014 decomposition and repair regressions pass |
+| Executable unit/fixture tests | Pass: 60/60 | Original Gate 4 controls plus REM-014 decomposition and repair regressions pass |
 | Embedded SHACL SPARQL | 459 audited; 0 proposal failures | Seven failures remain isolated to the untouched detection shapes owned by PR #48 |
 | Dependency closure | Pass: 75/75 imports resolved | 48 local and 27 vendored resolutions; zero unresolved imports |
 | Dependency Turtle syntax | Pass: 27/27 locked Turtle artifacts | Every content-addressed Turtle artifact in the runtime closure parses |
@@ -46,7 +46,7 @@ Gate 4 is now executed against the exact UCO gUFO Profile revision and a content
 
 ## Strict blockers preserved for remediation
 
-1. REM-014 established true C3/C5 baselines of 6,947 and 6,949 recognized ROBOT violation headers; the earlier 7,287/7,289 figures counted multiline report text. Two bounded repair slices removed 107 CAC-owned violations: 21 single-operand equivalence findings, all 25 class-as-datatype findings, all 27 CAC property-punning findings, and 34 coupled declaration findings. Current totals are 6,840/6,842; the two remaining property-punning findings belong to pinned UCO. The remaining findings are decomposed in `rem-014-decomposition.*`; strict OWL 2 DL conformance is not yet claimed.
+1. REM-014 established true C3/C5 baselines of 6,947 and 6,949 recognized ROBOT violation headers; the earlier 7,287/7,289 figures counted multiline report text. Three bounded repair slices removed 113 CAC-owned violations: 21 single-operand equivalence findings, all 25 class-as-datatype findings, all 27 CAC property-punning findings, 34 coupled declaration findings, and all six C3 reserved-`owl:Class` domain/range findings. Current totals are 6,834/6,836; the two remaining property-punning findings belong to pinned UCO and the two C5 reserved-vocabulary findings belong to the compatibility layer. The remaining findings are decomposed in `rem-014-decomposition.*`; strict OWL 2 DL conformance is not yet claimed.
 2. The exact UCO gUFO Profile contains eight malformed OWL/RDF structures. These cause the C4 strict profile and HermiT routes to fail before logical classification.
 3. The pinned UCO profile makes `uco-action:phase` a subproperty of `uco-action:subaction` while their inherited range categories are disjoint, producing an upstream bottom-property condition.
 4. The pinned Collections ontology contains SWRL built-in atoms unsupported by the selected HermiT execution route, blocking strict C3/C5 classification through that route.

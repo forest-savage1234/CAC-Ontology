@@ -6,7 +6,7 @@ from __future__ import annotations
 import unittest
 
 import decompose_owl2dl_profile as decomposition
-from rdflib import Graph, OWL, RDF, URIRef
+from rdflib import Graph, OWL, RDF, RDFS, URIRef
 
 
 class Rem014DecompositionTests(unittest.TestCase):
@@ -32,8 +32,8 @@ class Rem014DecompositionTests(unittest.TestCase):
         self.assertEqual(2, c5["violation_count"] - c3["violation_count"])
         self.assertEqual(
             2,
-            c5["by_root_cause"]["reserved-owl-vocabulary-as-domain-or-range"]
-            - c3["by_root_cause"]["reserved-owl-vocabulary-as-domain-or-range"],
+            c5["by_root_cause"].get("reserved-owl-vocabulary-as-domain-or-range", 0)
+            - c3["by_root_cause"].get("reserved-owl-vocabulary-as-domain-or-range", 0),
         )
 
     def test_completed_high_confidence_roots_leave_the_priority_queue(self):
@@ -87,6 +87,37 @@ class Rem014DecompositionTests(unittest.TestCase):
         for graph, iris in targets.items():
             for iri in iris:
                 self.assertIn((URIRef(iri), RDF.type, OWL.Class), graph)
+
+    def test_integration_pattern_metamodeling_is_dl_safe(self):
+        graph = Graph().parse(
+            decomposition.REPO / "ontology" / "cacontology-integration-patterns.ttl",
+            format="turtle",
+        )
+        base = "https://cacontology.projectvic.org/integration-patterns#"
+        integration_pattern = URIRef(base + "IntegrationPattern")
+        properties = tuple(
+            URIRef(base + name)
+            for name in (
+                "hasIntegrationPattern",
+                "requiresValidation",
+                "dependsOnPattern",
+                "extendsPattern",
+            )
+        )
+        self.assertIn((integration_pattern, RDF.type, OWL.Class), graph)
+        for property_iri in properties:
+            self.assertNotIn((property_iri, RDFS.domain, OWL.Class), graph)
+            self.assertNotIn((property_iri, RDFS.range, OWL.Class), graph)
+
+        pattern_nodes = set(graph.objects(None, properties[0]))
+        for property_iri in properties[1:]:
+            pattern_nodes.update(graph.subjects(property_iri, None))
+            if property_iri != properties[1]:
+                pattern_nodes.update(graph.objects(None, property_iri))
+        self.assertTrue(pattern_nodes)
+        for node in pattern_nodes:
+            self.assertIn((node, RDF.type, OWL.Class), graph)
+            self.assertIn((node, RDF.type, integration_pattern), graph)
 
     def test_no_class_is_declared_equivalent_only_to_itself(self):
         graph = Graph().parse(
