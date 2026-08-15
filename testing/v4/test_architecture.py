@@ -33,6 +33,15 @@ PREFIXES = """
 
 
 class DiagnosticControls(unittest.TestCase):
+    def test_ignores_the_owl_bottom_class_in_closed_graphs(self):
+        candidate = graph(PREFIXES + """
+            owl:Nothing a owl:Class ;
+                rdfs:subClassOf cac-core:Role, cac-core:Phase,
+                    cac-core:EnduringEntity, cac-core:Event .
+        """)
+        findings = AUDIT.audit_graph(candidate)["diagnostics"]
+        self.assertTrue(all(not values for values in findings.values()))
+
     def test_detects_operational_classifier_conflation_and_overlap(self):
         candidate = graph(PREFIXES + """
             cac-core:Role a owl:Class ; rdfs:subClassOf gufo:Role .

@@ -66,7 +66,13 @@ def subclass_index(graph: Graph) -> dict[URIRef, set[URIRef]]:
 
 def audit_graph(graph: Graph) -> dict:
     parents = subclass_index(graph)
-    classes = {s for s in graph.subjects(RDF.type, OWL.Class) if isinstance(s, URIRef)}
+    # OWL-RL closure entails that owl:Nothing is a subclass of every class.
+    # It is the built-in bottom class, not a modeled CAC term or a conflict.
+    classes = {
+        s
+        for s in graph.subjects(RDF.type, OWL.Class)
+        if isinstance(s, URIRef) and s != OWL.Nothing
+    }
     role_branch = {c for c in classes if c == CAC_CORE.Role or CAC_CORE.Role in parents.get(c, set())}
     phase_branch = {c for c in classes if c == CAC_CORE.Phase or CAC_CORE.Phase in parents.get(c, set())}
     enduring_branch = {
