@@ -14,6 +14,7 @@ from pathlib import Path
 
 import rdflib
 from rdflib import OWL, RDF, RDFS, Graph, Namespace, URIRef
+from owlrl import DeductiveClosure, RDFSClosure
 
 CAC_CORE = Namespace("https://cacontology.projectvic.org/core#")
 GUFO = Namespace("http://purl.org/nemo/gufo#")
@@ -33,11 +34,15 @@ def git_value(repo: Path, *args: str) -> str:
     ).stdout.strip()
 
 
-def ontology_files(repo: Path) -> list[Path]:
+def ontology_files(repo: Path, configuration: str) -> list[Path]:
     return sorted(
         path
         for path in (repo / "ontology").glob("*.ttl")
         if "-shapes" not in path.name
+        and (
+            path.name != "cacontology-v3-compatibility.ttl"
+            or configuration == "C5"
+        )
     )
 
 
@@ -128,15 +133,24 @@ def audit_graph(graph: Graph) -> dict:
     }
 
 
-def build_report(repo: Path, configuration: str) -> dict:
-    paths = ontology_files(repo)
+def build_report(repo: Path, configuration: str, inference: str = "asserted") -> dict:
+    if configuration not in {"C3", "C5"}:
+        raise ValueError("Current-worktree audit supports C3 and C5; C1 is frozen separately")
+    paths = ontology_files(repo, configuration)
     graph = load_graph(paths)
+    asserted_triples = len(graph)
+    if inference == "rdfs":
+        DeductiveClosure(RDFSClosure.RDFS_Semantics).expand(graph)
     result = audit_graph(graph)
-    dirty = bool(git_value(repo, "status", "--porcelain"))
+    dirty = bool(git_value(repo, "status", "--porcelain", "--untracked-files=no"))
+    dependency_lock = repo / "testing" / "v4" / "dependency-lock.json"
     result.update(
         {
             "schema_version": 1,
             "configuration": configuration,
+            "inference": inference,
+            "status": "pass" if result["counts"]["diagnostic_findings"] == 0 else "fail",
+            "scope": "CAC asserted architecture diagnostics with optional RDFS closure; not an OWL 2 DL consistency result",
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "source": {
                 "commit": git_value(repo, "rev-parse", "HEAD"),
@@ -149,6 +163,8 @@ def build_report(repo: Path, configuration: str) -> dict:
                 "rdflib": rdflib.__version__,
                 "platform": platform.platform(),
             },
+            "asserted_triples": asserted_triples,
+            "dependency_lock_sha256": sha256(dependency_lock),
             "inputs": [
                 {"path": path.relative_to(repo).as_posix(), "bytes": path.stat().st_size, "sha256": sha256(path)}
                 for path in paths
@@ -161,11 +177,12 @@ def build_report(repo: Path, configuration: str) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--configuration", choices=("C1", "C2", "C3", "C4", "C5"), required=True)
+    parser.add_argument("--configuration", choices=("C3", "C5"), required=True)
+    parser.add_argument("--inference", choices=("asserted", "rdfs"), default="asserted")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     repo = Path(__file__).resolve().parents[2]
-    report = build_report(repo, args.configuration)
+    report = build_report(repo, args.configuration, args.inference)
     rendered = json.dumps(report, indent=2, sort_keys=True) + "\n"
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)

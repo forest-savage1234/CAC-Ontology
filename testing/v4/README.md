@@ -20,9 +20,15 @@ checks. C5 must pass before compatibility support is claimed.
 Use Python 3.12 with the exact packages in `requirements.lock`, then run:
 
 ```text
-python testing/v4/architecture_audit.py --configuration C1 --output <report.json>
+python testing/v4/architecture_audit.py --configuration C3 --output <report.json>
+python testing/v4/architecture_audit.py --configuration C5 --inference rdfs --output <report.json>
 python -m unittest discover -s testing/v4 -p "test_*.py" -v
 ```
+
+The C1 report is frozen in `baselines/c1-v3.1-asserted.json` at the recorded
+base commit. C2 and C4 require the exact pinned overlay bytes and therefore
+must emit a blocked status rather than silently falling back to a different
+revision. The local audit is not an OWL 2 DL consistency substitute.
 
 The audit reports the source commit, dirty state, runtime versions, graph
 counts, and stable diagnostic identifiers. Remote imports are never silently
