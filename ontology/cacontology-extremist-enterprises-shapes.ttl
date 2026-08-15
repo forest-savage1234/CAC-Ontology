@@ -17,7 +17,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/extremist-enterprises/shapes/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/extremist-enterprises/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> .
@@ -258,6 +258,10 @@ cacontology-enterprises:InnerCoreShape rdf:type sh:NodeShape ;
 
 cacontology-enterprises:MembershipTierShape rdf:type sh:NodeShape ;
     sh:targetClass cacontology-enterprises:MembershipTier ;
+    sh:not [ sh:class cacontology-enterprises:EnterpriseHierarchy ] ;
+    sh:not [ sh:class cac-core:Phase ] ;
+    sh:not [ sh:class gufo:Phase ] ;
+    sh:message "A MembershipTier is a controlled concept, not a hierarchy object, phase occurrence, or gUFO Phase classifier."@en ;
     sh:property [
         sh:path cacontology-enterprises:membershipLevel ;
         sh:datatype xsd:string ;
@@ -270,6 +274,15 @@ cacontology-enterprises:MembershipTierShape rdf:type sh:NodeShape ;
         sh:maxCount 1 ;
         sh:in ("restricted" "basic" "enhanced" "privileged" "full") ;
         sh:message "Access level must be valid level."@en     ] .
+
+cacontology-enterprises:MembershipTierReferenceShape rdf:type sh:NodeShape ;
+    sh:targetSubjectsOf cacontology-enterprises:hasMembershipTier ;
+    sh:property [
+        sh:path cacontology-enterprises:hasMembershipTier ;
+        sh:minCount 1 ;
+        sh:class cacontology-enterprises:MembershipTier ;
+        sh:message "hasMembershipTier values must be controlled MembershipTier concepts."@en
+    ] .
 
 # =============================================================================
 # CONTENT COMPILATION SHAPES
@@ -834,4 +847,4 @@ cacontology-enterprises:GufoCollectionMembershipRule rdf:type sh:NodeShape ;
     sh:property [
         sh:path [ sh:inversePath gufo:isCollectionMemberOf ] ;
         sh:minCount 1 ;
-        sh:message "gUFO Collections must have at least one member."@en     ] . 
+        sh:message "gUFO Collections must have at least one member."@en     ] .

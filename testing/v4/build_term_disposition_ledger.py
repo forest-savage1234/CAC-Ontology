@@ -61,13 +61,16 @@ def main() -> int:
 
     parents = transitive_parents(ontology)
     classes = {term for term in ontology.subjects(RDF.type, OWL.Class) if isinstance(term, URIRef)}
-    candidates = sorted(
+    overrides = json.loads((here / "term-disposition-overrides.json").read_text(encoding="utf-8"))
+    branch_candidates = {
         term for term in classes
         if term in (CAC_CORE.Role, CAC_CORE.Phase)
         or CAC_CORE.Role in parents.get(term, set())
         or CAC_CORE.Phase in parents.get(term, set())
-    )
-    overrides = json.loads((here / "term-disposition-overrides.json").read_text(encoding="utf-8"))
+    }
+    # Preserve reviewed dispositions after a move removes the term from the
+    # current branch; otherwise regeneration would erase the migration record.
+    candidates = sorted(branch_candidates | {URIRef(iri) for iri in overrides})
     rows = []
     for term in candidates:
         instances = set(examples.subjects(RDF.type, term))
