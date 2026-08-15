@@ -62,6 +62,14 @@ def main() -> int:
     parents = transitive_parents(ontology)
     classes = {term for term in ontology.subjects(RDF.type, OWL.Class) if isinstance(term, URIRef)}
     overrides = json.loads((here / "term-disposition-overrides.json").read_text(encoding="utf-8"))
+    reviewed_groups = json.loads((here / "reviewed-term-groups.json").read_text(encoding="utf-8"))["groups"]
+    group_overrides = {}
+    for group in reviewed_groups:
+        values = {key: value for key, value in group.items() if key not in ("group_id", "exact_iris")}
+        for iri in group["exact_iris"]:
+            if iri in group_overrides:
+                raise ValueError(f"Term appears in multiple reviewed groups: {iri}")
+            group_overrides[iri] = values
     branch_candidates = {
         term for term in classes
         if term in (CAC_CORE.Role, CAC_CORE.Phase)
@@ -70,7 +78,11 @@ def main() -> int:
     }
     # Preserve reviewed dispositions after a move removes the term from the
     # current branch; otherwise regeneration would erase the migration record.
-    candidates = sorted(branch_candidates | {URIRef(iri) for iri in overrides})
+    candidates = sorted(
+        branch_candidates
+        | {URIRef(iri) for iri in overrides}
+        | {URIRef(iri) for iri in group_overrides}
+    )
     rows = []
     for term in candidates:
         instances = set(examples.subjects(RDF.type, term))
@@ -100,6 +112,7 @@ def main() -> int:
             "fixture_ids": "",
             "reviewer_status": "pending",
         }
+        row.update(group_overrides.get(str(term), {}))
         row.update(overrides.get(str(term), {}))
         rows.append(row)
 

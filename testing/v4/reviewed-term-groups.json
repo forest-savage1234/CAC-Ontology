@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "groups": [
+    {
+      "group_id": "PHASE-OCCURRENCE-001",
+      "exact_iris": [
+        "https://cacontology.projectvic.org#AnalysisPhase",
+        "https://cacontology.projectvic.org#ConclusionPhase",
+        "https://cacontology.projectvic.org#EvidencePhase",
+        "https://cacontology.projectvic.org#InitialPhase",
+        "https://cacontology.projectvic.org#LegalProcessPhase",
+        "https://cacontology.projectvic.org#VictimPhase",
+        "https://cacontology.projectvic.org/infrastructure#InfrastructureDecommissionPhase",
+        "https://cacontology.projectvic.org/infrastructure#InfrastructureDeploymentPhase",
+        "https://cacontology.projectvic.org/infrastructure#InfrastructureMaintenancePhase",
+        "https://cacontology.projectvic.org/infrastructure#InfrastructureOperationalPhase",
+        "https://cacontology.projectvic.org/production#ActiveProductionPhase",
+        "https://cacontology.projectvic.org/production#ProductionDistributionPhase",
+        "https://cacontology.projectvic.org/production#ProductionPreparationPhase",
+        "https://cacontology.projectvic.org/temporal#CompletedPhase",
+        "https://cacontology.projectvic.org/temporal#ResolutionPhase",
+        "https://cacontology.projectvic.org/usa-federal-law#PostConvictionPhase",
+        "https://cacontology.projectvic.org/usa-federal-law#PreTrialPhase",
+        "https://cacontology.projectvic.org/usa-federal-law#SentencingPhase",
+        "https://cacontology.projectvic.org/usa-federal-law#TrialPhase",
+        "https://cacontology.projectvic.org/usa-legislative#LegislativeStage"
+      ],
+      "primary_level": "phase-occurrence",
+      "v4_action": "move-branch",
+      "replacement_iri": "",
+      "migration_mode": "automatic",
+      "asserted_delta": "remove explicit gufo:Phase metaclass type; remove event/prosecution parent where it creates occurrence/event level mixing",
+      "inferred_delta": "operational stages retain cac-core:Phase occurrence semantics and cease to infer gUFO classifier identity or event identity",
+      "fixture_ids": "PQ-01|PQ-03|PQ-05|PQ-08|M-P1",
+      "reviewer_status": "reviewed"
+    }
+  ]
+}

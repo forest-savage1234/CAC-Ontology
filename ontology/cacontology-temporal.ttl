@@ -20,7 +20,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-03"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     dcterms:description "Phase 2 temporal enhancement framework integrating gUFO temporal concepts with UCO action modeling and CAC investigation lifecycle patterns."@en ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.caseontology.org/case/case/1.5.0> ,
@@ -70,12 +70,12 @@ cacontology-temporal:concernsAgeQuality rdf:type owl:ObjectProperty ;
 # EXTENDED INVESTIGATION PHASES (lifecycle-specific, complement core phases)
 # =============================================================================
 
-cacontology-temporal:ResolutionPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-temporal:ResolutionPhase rdf:type owl:Class ;
     rdfs:label "Resolution Phase"@en ;
     rdfs:comment "Phase focused on resolution of investigation outcomes such as plea agreements, sentencing, and restitution orders."@en ;
     rdfs:subClassOf cac-core:Phase .
 
-cacontology-temporal:CompletedPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-temporal:CompletedPhase rdf:type owl:Class ;
     rdfs:label "Completed Phase"@en ;
     rdfs:comment "Terminal phase indicating investigation has been fully concluded with all actions finalized."@en ;
     rdfs:subClassOf cac-core:Phase .
@@ -439,4 +439,4 @@ cacontology-temporal:statuteOfLimitationsDeadline rdf:type owl:DatatypeProperty 
     rdfs:label "statute of limitations deadline"@en ;
     rdfs:comment "Legal deadline by which charges must be filed or case becomes time-barred."@en ;
     rdfs:domain cacontology:CACInvestigation ;
-    rdfs:range xsd:dateTimeStamp . 
+    rdfs:range xsd:dateTimeStamp .

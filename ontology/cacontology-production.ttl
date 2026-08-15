@@ -20,7 +20,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -80,23 +80,23 @@ cacontology-production:DigitalManipulation rdf:type owl:Class ;
     rdfs:subClassOf cacontology-production:ContentCreation .
 
 # =============================================================================
-# PRODUCTION PHASES (gUFO Phase anti-rigid modeling)
+# OPERATIONAL PRODUCTION PHASE OCCURRENCES
 # =============================================================================
 
-cacontology-production:ActiveProductionPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-production:ActiveProductionPhase rdf:type owl:Class ;
     rdfs:label "Active Production Phase"@en ;
     rdfs:comment "Phase during which production activities are actively occurring."@en ;
-    rdfs:subClassOf cacontology-production:ProductionOffense , cac-core:Phase .
+    rdfs:subClassOf cac-core:Phase .
 
-cacontology-production:ProductionPreparationPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-production:ProductionPreparationPhase rdf:type owl:Class ;
     rdfs:label "Production Preparation Phase"@en ;
     rdfs:comment "Phase involving preparation and setup for production activities."@en ;
-    rdfs:subClassOf cacontology-production:ProductionOffense , cac-core:Phase .
+    rdfs:subClassOf cac-core:Phase .
 
-cacontology-production:ProductionDistributionPhase rdf:type owl:Class, gufo:Phase ;
+cacontology-production:ProductionDistributionPhase rdf:type owl:Class ;
     rdfs:label "Production Distribution Phase"@en ;
     rdfs:comment "Phase during which produced content is distributed or shared."@en ;
-    rdfs:subClassOf cacontology-production:ProductionOffense , cac-core:Phase .
+    rdfs:subClassOf cac-core:Phase .
 
 # =============================================================================
 # PRODUCTION SESSION CLASSES (extending UCO Observable with gUFO Situation)
@@ -558,4 +558,4 @@ cacontology-production:evidenceOf rdf:type owl:ObjectProperty ;
     rdfs:label "evidence of"@en ;
     rdfs:comment "Links produced content to the production offense it evidences."@en ;
     rdfs:domain cacontology-production:ProducedContent ;
-    rdfs:range cacontology-production:ProductionOffense . 
+    rdfs:range cacontology-production:ProductionOffense .

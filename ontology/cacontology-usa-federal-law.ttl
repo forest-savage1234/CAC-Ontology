@@ -18,7 +18,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:created "2025-01-03"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     rdfs:comment "Based on US DOJ Child Exploitation and Obscenity Section (CEOS) Citizens Guide to U.S. Federal Child Exploitation and Obscenity Laws. Grounded in gUFO foundational ontology."@en ;
     owl:imports <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://cacontology.projectvic.org/core/3.1.0> .
@@ -59,16 +59,6 @@ cacontology-usa-federal:ObscenityDistribution rdf:type gufo:EventType .
 cacontology-usa-federal:ObscenityTransportation rdf:type gufo:EventType .
 cacontology-usa-federal:ObscenityImportation rdf:type gufo:EventType .
 cacontology-usa-federal:OnlineObscenityDistribution rdf:type gufo:EventType .
-
-# Federal Legal Phases as Phases (anti-rigid temporal stages)
-cacontology-usa-federal:PreTrialPhase rdf:type gufo:Phase ;
-    rdfs:subClassOf cac-core:Phase .
-cacontology-usa-federal:TrialPhase rdf:type gufo:Phase ;
-    rdfs:subClassOf cac-core:Phase .
-cacontology-usa-federal:SentencingPhase rdf:type gufo:Phase ;
-    rdfs:subClassOf cac-core:Phase .
-cacontology-usa-federal:PostConvictionPhase rdf:type gufo:Phase ;
-    rdfs:subClassOf cac-core:Phase .
 
 # Federal Law Enforcement Roles as Roles (anti-rigid relationally dependent)
 cacontology-usa-federal:FederalProsecutorRole rdf:type gufo:Role .
@@ -115,30 +105,26 @@ cacontology-usa-federal:FederalInvestigation rdf:type owl:Class ;
     rdfs:comment "Federal investigation of child exploitation crimes. Modeled as gUFO Event with temporal boundaries and evidence gathering."@en ;
     rdfs:subClassOf cac-core:InvestigativeAction .
 
-# Federal Legal Phases (gUFO Phase anti-rigid modeling)
+# Operational federal legal phase occurrences
 cacontology-usa-federal:PreTrialPhase rdf:type owl:Class ;
     rdfs:label "Pre-Trial Phase"@en ;
     rdfs:comment "Pre-trial phase of federal prosecution including investigation and charging."@en ;
-    rdfs:subClassOf cacontology-usa-federal:FederalProsecution ,
-                    cac-core:Phase .
+    rdfs:subClassOf cac-core:Phase .
 
 cacontology-usa-federal:TrialPhase rdf:type owl:Class ;
     rdfs:label "Trial Phase"@en ;
     rdfs:comment "Trial phase of federal prosecution including court proceedings."@en ;
-    rdfs:subClassOf cacontology-usa-federal:FederalProsecution ,
-                    cac-core:Phase .
+    rdfs:subClassOf cac-core:Phase .
 
 cacontology-usa-federal:SentencingPhase rdf:type owl:Class ;
     rdfs:label "Sentencing Phase"@en ;
-    rdfs:comment "Sentencing phase of federal prosecution including penalty determination. Modeled as anti-rigid gUFO Phase that prosecution temporarily exemplifies."@en ;
-    rdfs:subClassOf cacontology-usa-federal:FederalProsecution ,
-                    cac-core:Phase .
+    rdfs:comment "Operational sentencing-stage occurrence within a federal prosecution, including penalty determination."@en ;
+    rdfs:subClassOf cac-core:Phase .
 
 cacontology-usa-federal:PostConvictionPhase rdf:type owl:Class ;
     rdfs:label "Post-Conviction Phase"@en ;
     rdfs:comment "Post-conviction phase including appeals and compliance monitoring."@en ;
-    rdfs:subClassOf cacontology-usa-federal:FederalProsecution ,
-                    cac-core:Phase .
+    rdfs:subClassOf cac-core:Phase .
 
 # =============================================================================
 # CHILD PORNOGRAPHY FEDERAL LAW (gUFO Event modeling)
@@ -637,4 +623,4 @@ cacontology-usa-federal:collaboratesWith rdf:type owl:ObjectProperty ;
     rdfs:comment "Collaboration relationship between federal legal roles (gUFO relational dependence)."@en ;
     rdfs:domain cac-core:Role ;
     rdfs:range cac-core:Role ;
-    rdf:type owl:SymmetricProperty . 
+    rdf:type owl:SymmetricProperty .
