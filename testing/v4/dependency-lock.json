@@ -461,29 +461,29 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 57760,
+      "bytes": 57855,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-investigation-coordination.ttl",
       "requested_iri": "https://cacontology.projectvic.org/investigation-coordination/3.1.0",
-      "sha256": "cfae030f6c4cec8575bffeeeb3098400bf8d13524ee5655ef16d9c6f25f4ef4f",
+      "sha256": "27c2e67c1a3c84869c10dda8bd9b679a962cf7ffa27bf34083b63b2809c49d52",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
     {
-      "bytes": 27869,
+      "bytes": 27949,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-law-enforcement-corruption.ttl",
       "requested_iri": "https://cacontology.projectvic.org/law-enforcement-corruption/3.1.0",
-      "sha256": "e58f74767e4cc2dd9592b791484268fab4707d6e0c016ecc321bf74dff98e6b5",
+      "sha256": "5515cdf91b08f75f9dffb2f4316d463c0a6fb6efc9b652f535d49704705f31fb",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
     {
-      "bytes": 56550,
+      "bytes": 56630,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-legal-harmonization.ttl",
       "requested_iri": "https://cacontology.projectvic.org/legal-harmonization/3.1.0",
-      "sha256": "f45e0b9115bafcfc13b24e003552d4982bbb805f85c9a3f5f0ec2b0920f31084",
+      "sha256": "f8313f924dfedd583e73d629743f21091cf97b4480d4f658c9166fd18055027c",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -1088,10 +1088,10 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 41067,
+      "bytes": 41072,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-extremist-enterprises-shapes.ttl",
-      "sha256": "45fb321de4102b1ce32b054477feb45480e7f8521cdbd71173b3eaf414aeee06",
+      "sha256": "2e96ad666c11407a5fde1090f7dfefc3f3f559e162db6df13c2518e515946fbf",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -1208,10 +1208,10 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 57760,
+      "bytes": 57855,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-investigation-coordination.ttl",
-      "sha256": "cfae030f6c4cec8575bffeeeb3098400bf8d13524ee5655ef16d9c6f25f4ef4f",
+      "sha256": "27c2e67c1a3c84869c10dda8bd9b679a962cf7ffa27bf34083b63b2809c49d52",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -1224,10 +1224,10 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 27869,
+      "bytes": 27949,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-law-enforcement-corruption.ttl",
-      "sha256": "e58f74767e4cc2dd9592b791484268fab4707d6e0c016ecc321bf74dff98e6b5",
+      "sha256": "5515cdf91b08f75f9dffb2f4316d463c0a6fb6efc9b652f535d49704705f31fb",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -1240,10 +1240,10 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 56550,
+      "bytes": 56630,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-legal-harmonization.ttl",
-      "sha256": "f45e0b9115bafcfc13b24e003552d4982bbb805f85c9a3f5f0ec2b0920f31084",
+      "sha256": "f8313f924dfedd583e73d629743f21091cf97b4480d4f658c9166fd18055027c",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },

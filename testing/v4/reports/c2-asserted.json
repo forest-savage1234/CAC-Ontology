@@ -9,7 +9,7 @@
     "role_branch_classes": 169,
     "triples": 24128
   },
-  "dependency_lock_sha256": "642685549a596ac0ba51bbc914b1ee112fa7c01880d278c98cadfe441747cf4e",
+  "dependency_lock_sha256": "dfcc2b06f5ff47ad87771a75783bd5e8a104a4cbe637a6f9ff007ed39d266700",
   "diagnostics": {
     "META001_OPERATIONAL_ROLE_AS_GUFO_CLASSIFIER": [
       "https://cacontology.projectvic.org#AnalystRole",
@@ -293,7 +293,7 @@
       "https://cacontology.projectvic.org/victim-impact#VictimInRecovery"
     ]
   },
-  "generated_at": "2026-08-15T22:25:34.188711+00:00",
+  "generated_at": "2026-08-15T22:40:16.534939+00:00",
   "inference": "asserted",
   "inputs": [
     {
@@ -562,9 +562,9 @@
   "sensitive_data": "Synthetic fixtures only; no real sensitive case data.",
   "source": {
     "branch": "proposal/issue-44-v4-foundational-architecture",
-    "commit": "e35d2af1a6b9471165adb8408bb463df913b5d1a",
+    "commit": "f1e5246c74f6678d659141044ee082acfdfbd96c",
     "dirty": true,
-    "tree": "10ef2811af10b1b8a55839614d5af27349c78f75"
+    "tree": "1121c80b56c3630311a06cda77750179b0ac01f3"
   },
   "status": "fail"
 }

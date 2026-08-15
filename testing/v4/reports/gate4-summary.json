@@ -253,7 +253,7 @@
     "reason": "CAC-only and exact-profile diagnostic projections are coherent, but the unmodified full import closure fails the normative OWL 2 DL gate: profile violations span CAC and pinned dependencies, exact upstream profile RDF structures are malformed, and imported SWRL built-ins are unsupported by HermiT.",
     "status": "hold"
   },
-  "generated_at": "2026-08-15T22:32:07.933975+00:00",
+  "generated_at": "2026-08-15T22:44:47.118760+00:00",
   "owl_2_dl": {
     "claim": "The non-normative diagnostic projections are coherent under HermiT, but they do not satisfy the full-import OWL 2 DL gate.",
     "diagnostic_projection_status": "pass",
@@ -270,28 +270,24 @@
   "source": {
     "base_commit": "93de063951b758dd68a27611638c177fcf910eab",
     "branch": "proposal/issue-44-v4-foundational-architecture",
-    "candidate_commit": "e35d2af1a6b9471165adb8408bb463df913b5d1a",
-    "candidate_tree": "10ef2811af10b1b8a55839614d5af27349c78f75",
-    "changed_paths": 204,
-    "commits": 24,
-    "detection_shapes_changed": false,
+    "candidate_commit": "f1e5246c74f6678d659141044ee082acfdfbd96c",
+    "candidate_tree": "1121c80b56c3630311a06cda77750179b0ac01f3",
+    "changed_paths": 208,
+    "commits": 25,
+    "detection_shapes_changed": true,
     "tracked_dirty": true,
     "tracked_evidence_dirty": true,
     "tracked_source_changes": [
-      "M ontology/cacontology-core.ttl",
-      " M ontology/cacontology-detection-shapes.ttl",
-      " M ontology/cacontology-detection.ttl",
-      " M ontology/cacontology-educational-exploitation.ttl",
-      " M ontology/cacontology-hotlines.ttl",
-      " M ontology/cacontology-international.ttl",
-      " M ontology/cacontology-prevention.ttl",
-      " M ontology/cacontology-taskforce.ttl",
-      " M ontology/cacontology-training.ttl",
-      " M ontology/cacontology-victim-impact.ttl",
+      "M ontology/cacontology-extremist-enterprises-shapes.ttl",
+      " M ontology/cacontology-investigation-coordination.ttl",
+      " M ontology/cacontology-law-enforcement-corruption.ttl",
+      " M ontology/cacontology-legal-harmonization.ttl",
       " M testing/v4/dependency-lock.json",
       " M testing/v4/test_rem014_decomposition.py"
     ],
-    "unsigned_commits": []
+    "unsigned_commits": [
+      "f1e5246c74f6678d659141044ee082acfdfbd96c"
+    ]
   },
   "term_dispositions": {
     "pending": 0,
@@ -303,6 +299,6 @@
   "tests": {
     "return_code": 0,
     "status": "pass",
-    "tests_run": 66
+    "tests_run": 68
   }
 }

@@ -53,6 +53,8 @@ test_object_property_targets_have_explicit_class_declarations (test_rem014_decom
 test_priority_queue_puts_cac_work_before_external_findings (test_rem014_decomposition.Rem014DecompositionTests.test_priority_queue_puts_cac_work_before_external_findings) ... ok
 test_remaining_first_party_declaration_findings_are_decomposed (test_rem014_decomposition.Rem014DecompositionTests.test_remaining_first_party_declaration_findings_are_decomposed) ... ok
 test_remediation_reduces_only_cac_owned_findings (test_rem014_decomposition.Rem014DecompositionTests.test_remediation_reduces_only_cac_owned_findings) ... ok
+test_quality_properties_use_the_pinned_gufo_term (test_rem014_external_references.Rem014ExternalReferenceTests.test_quality_properties_use_the_pinned_gufo_term) ... ok
+test_quality_value_superproperty_exists_in_pinned_gufo (test_rem014_external_references.Rem014ExternalReferenceTests.test_quality_value_superproperty_exists_in_pinned_gufo) ... ok
 test_classification_properties_range_over_concepts_not_schemes (test_rem014_local_declarations.Rem014LocalDeclarationTests.test_classification_properties_range_over_concepts_not_schemes) ... ok
 test_hotline_property_chain_member_is_an_object_property (test_rem014_local_declarations.Rem014LocalDeclarationTests.test_hotline_property_chain_member_is_an_object_property) ... ok
 test_referenced_cac_classes_are_explicitly_declared (test_rem014_local_declarations.Rem014LocalDeclarationTests.test_referenced_cac_classes_are_explicitly_declared) ... ok
@@ -66,6 +68,6 @@ test_audit_detects_a_malformed_query (test_shacl_sparql.RepositoryShaclSparqlCon
 test_role_and_phase_mentions_do_not_reintroduce_level_conflation (test_shacl_sparql.RepositoryShaclSparqlControls.test_role_and_phase_mentions_do_not_reintroduce_level_conflation) ... ok
 
 ----------------------------------------------------------------------
-Ran 66 tests in 35.299s
+Ran 68 tests in 25.483s
 
 OK

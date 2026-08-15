@@ -49,12 +49,12 @@ class Rem014DecompositionTests(unittest.TestCase):
     def test_remaining_first_party_declaration_findings_are_decomposed(self):
         roots = self.report["configurations"]["C3"]["by_owner_and_root_cause"]["cac"]
         expected = {
-            "invalid-or-version-mismatched-external-reference": 120,
+            "invalid-or-version-mismatched-external-reference": 69,
             "unsupported-xsd-datatype-policy": 68,
             "unimported-shared-vocabulary": 31,
         }
         self.assertEqual(expected, {root: roots[root] for root in expected})
-        self.assertEqual(219, sum(roots[root] for root in expected))
+        self.assertEqual(168, sum(roots[root] for root in expected))
 
     def test_priority_queue_puts_cac_work_before_external_findings(self):
         units = self.report["priority_units"]

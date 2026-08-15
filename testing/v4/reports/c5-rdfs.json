@@ -9,7 +9,7 @@
     "role_branch_classes": 161,
     "triples": 47050
   },
-  "dependency_lock_sha256": "642685549a596ac0ba51bbc914b1ee112fa7c01880d278c98cadfe441747cf4e",
+  "dependency_lock_sha256": "dfcc2b06f5ff47ad87771a75783bd5e8a104a4cbe637a6f9ff007ed39d266700",
   "diagnostics": {
     "META001_OPERATIONAL_ROLE_AS_GUFO_CLASSIFIER": [],
     "META002_OPERATIONAL_PHASE_AS_GUFO_CLASSIFIER": [],
@@ -23,7 +23,7 @@
     "META010_OPERATIONAL_PHASE_EVENT_OVERLAP": [],
     "META011_GUFO_ROLE_CLASSIFIER_WITHOUT_ENDURING_BEARER_BRANCH": []
   },
-  "generated_at": "2026-08-15T22:31:07.645276+00:00",
+  "generated_at": "2026-08-15T22:44:04.611487+00:00",
   "inference": "rdfs",
   "inputs": [
     {
@@ -127,19 +127,19 @@
       "sha256": "0bed86cecbd8fdca4341a10ec2a785983b45adc08f4fb8ead33d203795b0b049"
     },
     {
-      "bytes": 57760,
+      "bytes": 57855,
       "path": "ontology/cacontology-investigation-coordination.ttl",
-      "sha256": "cfae030f6c4cec8575bffeeeb3098400bf8d13524ee5655ef16d9c6f25f4ef4f"
+      "sha256": "27c2e67c1a3c84869c10dda8bd9b679a962cf7ffa27bf34083b63b2809c49d52"
     },
     {
-      "bytes": 27869,
+      "bytes": 27949,
       "path": "ontology/cacontology-law-enforcement-corruption.ttl",
-      "sha256": "e58f74767e4cc2dd9592b791484268fab4707d6e0c016ecc321bf74dff98e6b5"
+      "sha256": "5515cdf91b08f75f9dffb2f4316d463c0a6fb6efc9b652f535d49704705f31fb"
     },
     {
-      "bytes": 56550,
+      "bytes": 56630,
       "path": "ontology/cacontology-legal-harmonization.ttl",
-      "sha256": "f45e0b9115bafcfc13b24e003552d4982bbb805f85c9a3f5f0ec2b0920f31084"
+      "sha256": "f8313f924dfedd583e73d629743f21091cf97b4480d4f658c9166fd18055027c"
     },
     {
       "bytes": 63202,
@@ -292,9 +292,9 @@
   "sensitive_data": "Synthetic fixtures only; no real sensitive case data.",
   "source": {
     "branch": "proposal/issue-44-v4-foundational-architecture",
-    "commit": "e35d2af1a6b9471165adb8408bb463df913b5d1a",
+    "commit": "f1e5246c74f6678d659141044ee082acfdfbd96c",
     "dirty": true,
-    "tree": "10ef2811af10b1b8a55839614d5af27349c78f75"
+    "tree": "1121c80b56c3630311a06cda77750179b0ac01f3"
   },
   "status": "pass"
 }

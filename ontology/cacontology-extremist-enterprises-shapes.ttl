@@ -675,7 +675,7 @@ cacontology-enterprises:GufoFunctionalComplexPartRule rdf:type sh:NodeShape ;
 cacontology-enterprises:GufoQualityInherentRule rdf:type sh:NodeShape ;
     sh:targetClass gufo:Quality ;
     sh:property [
-        sh:path [ sh:inversePath [ sh:alternativePath ( gufo:hasQuality cacontology-enterprises:hasNetworkNotorietyQuality ) ] ] ;
+        sh:path [ sh:inversePath [ sh:alternativePath ( gufo:hasQualityValue cacontology-enterprises:hasNetworkNotorietyQuality ) ] ] ;
         sh:class cac-core:EnduringEntity ;
         sh:minCount 1 ;
         sh:message "gUFO Qualities must inhere in at least one Object."@en     ] .

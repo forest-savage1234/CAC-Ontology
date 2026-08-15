@@ -101,19 +101,19 @@
       "sha256": "0bed86cecbd8fdca4341a10ec2a785983b45adc08f4fb8ead33d203795b0b049"
     },
     {
-      "bytes": 57760,
+      "bytes": 57855,
       "path": "ontology/cacontology-investigation-coordination.ttl",
-      "sha256": "cfae030f6c4cec8575bffeeeb3098400bf8d13524ee5655ef16d9c6f25f4ef4f"
+      "sha256": "27c2e67c1a3c84869c10dda8bd9b679a962cf7ffa27bf34083b63b2809c49d52"
     },
     {
-      "bytes": 27869,
+      "bytes": 27949,
       "path": "ontology/cacontology-law-enforcement-corruption.ttl",
-      "sha256": "e58f74767e4cc2dd9592b791484268fab4707d6e0c016ecc321bf74dff98e6b5"
+      "sha256": "5515cdf91b08f75f9dffb2f4316d463c0a6fb6efc9b652f535d49704705f31fb"
     },
     {
-      "bytes": 56550,
+      "bytes": 56630,
       "path": "ontology/cacontology-legal-harmonization.ttl",
-      "sha256": "f45e0b9115bafcfc13b24e003552d4982bbb805f85c9a3f5f0ec2b0920f31084"
+      "sha256": "f8313f924dfedd583e73d629743f21091cf97b4480d4f658c9166fd18055027c"
     },
     {
       "bytes": 63202,
@@ -472,11 +472,11 @@
   ],
   "diagnostic_projection": null,
   "imports_materialized": 318,
-  "input_set_sha256": "6ba1dfe4b81c84f66c00fcc7db1582171a2db4f5b51d9e2fc5724014d93d884d",
+  "input_set_sha256": "1998b953d25c62da8942731e8e994e3299f8665424f76ac146d22b99c8f1dd1f",
   "schema_version": 1,
   "scope": "Offline transitive semantic closure with owl:imports declarations removed only after all locked imported graphs are materialized.",
-  "serialized_bytes": 4469699,
+  "serialized_bytes": 4469954,
   "serialized_path": "testing/v4/tmp/reasoner/c3-closure.owl",
-  "serialized_sha256": "89fdbf6847e2eb2b8a1acbc03eaf64265f50cf79dbca1fd1cc89ffca86bef051",
+  "serialized_sha256": "cd28c1540dece72ae7dde9bcee09df8f11618871abc939933e5d04b62108626c",
   "triples": 38662
 }

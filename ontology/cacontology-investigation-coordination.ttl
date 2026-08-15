@@ -833,35 +833,35 @@ cacontology-coord:hasCoordinationEffectiveness rdf:type owl:DatatypeProperty ;
     rdfs:comment "Coordination effectiveness level assessment (poor, fair, good, excellent, outstanding) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:InvestigationCoordination ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasComplexityLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has complexity level"@en ;
     rdfs:comment "Coordination complexity level assessment (simple, moderate, complex, highly_complex, extremely_complex) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:InvestigationCoordination ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasSuccessRate rdf:type owl:DatatypeProperty ;
     rdfs:label "has success rate"@en ;
     rdfs:comment "Success rate measurement (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:InvestigationCoordination ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasCoordinationIntensity rdf:type owl:DatatypeProperty ;
     rdfs:label "has coordination intensity"@en ;
     rdfs:comment "Coordination integration intensity (minimal, moderate, high, intensive, fully_integrated) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:JointInvestigation ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasUnificationLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has unification level"@en ;
     rdfs:comment "Unification degree measurement (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:JointInvestigation ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # Information Sharing Quality Aspects
 cacontology-coord:hasSharingEfficiency rdf:type owl:DatatypeProperty ;
@@ -869,35 +869,35 @@ cacontology-coord:hasSharingEfficiency rdf:type owl:DatatypeProperty ;
     rdfs:comment "Information sharing efficiency level (poor, fair, good, excellent, optimal) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:InformationSharing ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasSecurityLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has security level"@en ;
     rdfs:comment "Security assessment level (basic, standard, enhanced, high, maximum) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:InformationSharing ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasTimeliness rdf:type owl:DatatypeProperty ;
     rdfs:label "has timeliness"@en ;
     rdfs:comment "Timeliness score measurement (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:InformationSharing ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasIntelligenceValue rdf:type owl:DatatypeProperty ;
     rdfs:label "has intelligence value"@en ;
     rdfs:comment "Intelligence value assessment (low, moderate, high, critical, exceptional) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:IntelligenceSharing ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasActionability rdf:type owl:DatatypeProperty ;
     rdfs:label "has actionability"@en ;
     rdfs:comment "Actionability score measurement (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:IntelligenceSharing ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # Personnel Quality Aspects
 cacontology-coord:hasLiaisonEffectiveness rdf:type owl:DatatypeProperty ;
@@ -905,21 +905,21 @@ cacontology-coord:hasLiaisonEffectiveness rdf:type owl:DatatypeProperty ;
     rdfs:comment "Liaison effectiveness level (poor, adequate, good, excellent, exceptional) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:LiaisonOfficer ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasTrustLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has trust level"@en ;
     rdfs:comment "Trust relationship measurement (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:LiaisonOfficer ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasResponsiveness rdf:type owl:DatatypeProperty ;
     rdfs:label "has responsiveness"@en ;
     rdfs:comment "Response capability level (slow, moderate, good, rapid, immediate) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:LiaisonOfficer ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # Data Quality Aspects
 cacontology-coord:hasDataQuality rdf:type owl:DatatypeProperty ;
@@ -936,7 +936,7 @@ cacontology-coord:hasDataQuality rdf:type owl:DatatypeProperty ;
         ) 
     ] ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasDataCompleteness rdf:type owl:DatatypeProperty ;
     rdfs:label "has data completeness"@en ;
@@ -952,7 +952,7 @@ cacontology-coord:hasDataCompleteness rdf:type owl:DatatypeProperty ;
         ) 
     ] ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasDataConsistency rdf:type owl:DatatypeProperty ;
     rdfs:label "has data consistency"@en ;
@@ -968,7 +968,7 @@ cacontology-coord:hasDataConsistency rdf:type owl:DatatypeProperty ;
         ) 
     ] ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasValidationLevel rdf:type owl:DatatypeProperty ;
     rdfs:label "has validation level"@en ;
@@ -984,21 +984,21 @@ cacontology-coord:hasValidationLevel rdf:type owl:DatatypeProperty ;
         ) 
     ] ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasReliability rdf:type owl:DatatypeProperty ;
     rdfs:label "has reliability"@en ;
     rdfs:comment "Reliability measurement (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:CoordinationMetrics ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 cacontology-coord:hasAccuracy rdf:type owl:DatatypeProperty ;
     rdfs:label "has accuracy"@en ;
     rdfs:comment "Accuracy measurement (0.0 to 1.0) - gUFO quality aspect."@en ;
     rdfs:domain cacontology-coord:CoordinationMetrics ;
     rdfs:range xsd:double ;
-    rdfs:subPropertyOf gufo:hasQuality .
+    rdfs:subPropertyOf gufo:hasQualityValue .
 
 # =============================================================================
 # gUFO PARTICIPATION AND PART-WHOLE RELATIONSHIPS
