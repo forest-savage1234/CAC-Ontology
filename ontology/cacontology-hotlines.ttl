@@ -8,6 +8,7 @@
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-hotlines: <https://cacontology.projectvic.org/hotlines#> .
@@ -121,7 +122,7 @@ cacontology-hotlines:ESPReport rdf:type owl:Class ;
 cacontology-hotlines:AutomatedReporterAgent rdf:type owl:Class ;
     rdfs:label "Automated Reporter Agent"@en ;
     rdfs:comment "A software agent that automatically reports content to hotlines. Enhanced as gUFO Object for comprehensive software entity modeling."@en ;
-    rdfs:subClassOf uco-identity:Software,
+    rdfs:subClassOf uco-observable:Software,
                     cac-core:DigitalSystemEntity .
 
 cacontology-hotlines:ReporterRole rdf:type owl:Class ;
@@ -133,7 +134,7 @@ cacontology-hotlines:ReporterRole rdf:type owl:Class ;
 cacontology-hotlines:IntakeChannel rdf:type owl:Class ;
     rdfs:label "Intake Channel"@en ;
     rdfs:comment "A channel through which reports are received (web form, API, phone, etc.). Enhanced as gUFO Object for comprehensive communication infrastructure modeling."@en ;
-    rdfs:subClassOf uco-core:Observable,
+    rdfs:subClassOf uco-observable:Observable,
                     cac-core:EnduringEntity .
 
 cacontology-hotlines:EvidenceItem rdf:type owl:Class ;
@@ -290,13 +291,13 @@ cacontology-hotlines:producesHash rdf:type owl:ObjectProperty ;
     rdfs:label "produces hash"@en ;
     rdfs:comment "Links a hash submission action to the produced hash."@en ;
     rdfs:domain cacontology-hotlines:HashSubmissionAction ;
-    rdfs:range uco-observable:Hash .
+    rdfs:range uco-types:Hash .
 
 cacontology-hotlines:referencesHash rdf:type owl:ObjectProperty ;
     rdfs:label "references hash"@en ;
     rdfs:comment "Links a hash feedback action to the hash it references."@en ;
     rdfs:domain cacontology-hotlines:HashFeedbackAction ;
-    rdfs:range uco-observable:Hash .
+    rdfs:range uco-types:Hash .
 
 cacontology-hotlines:foundAtURL rdf:type owl:ObjectProperty ;
     rdfs:label "found at URL"@en ;

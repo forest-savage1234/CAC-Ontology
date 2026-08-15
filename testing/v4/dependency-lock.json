@@ -425,11 +425,11 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 21893,
+      "bytes": 21965,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-hotlines.ttl",
       "requested_iri": "https://cacontology.projectvic.org/hotlines/3.1.0",
-      "sha256": "11cffd335d2553d0520bb762b5608a7d5dd7bc6694cd46f709b507424ff833b2",
+      "sha256": "44587db52261b149b03d368ba44b62a67adcd8f87fd22c4b4e4775f48fa722e7",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -479,11 +479,11 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 56630,
+      "bytes": 56702,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-legal-harmonization.ttl",
       "requested_iri": "https://cacontology.projectvic.org/legal-harmonization/3.1.0",
-      "sha256": "f8313f924dfedd583e73d629743f21091cf97b4480d4f658c9166fd18055027c",
+      "sha256": "9b21cb24ae05356290fdd34146d6459f5c8940a9b5e930cf17df7d5e4093c69c",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -1144,18 +1144,18 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 22641,
+      "bytes": 22700,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-hotlines-shapes.ttl",
-      "sha256": "cf4bf046f5cc6e0f2557d1725a0fb65367936624358f006fa61f9fe5d4141494",
+      "sha256": "b6854e96dd5bbb5c1289e611fed992f19b1eefb6816cd6a80f3b0f6c7fceb048",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
     {
-      "bytes": 21893,
+      "bytes": 21965,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-hotlines.ttl",
-      "sha256": "11cffd335d2553d0520bb762b5608a7d5dd7bc6694cd46f709b507424ff833b2",
+      "sha256": "44587db52261b149b03d368ba44b62a67adcd8f87fd22c4b4e4775f48fa722e7",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -1240,10 +1240,10 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 56630,
+      "bytes": 56702,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-legal-harmonization.ttl",
-      "sha256": "f8313f924dfedd583e73d629743f21091cf97b4480d4f658c9166fd18055027c",
+      "sha256": "9b21cb24ae05356290fdd34146d6459f5c8940a9b5e930cf17df7d5e4093c69c",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },

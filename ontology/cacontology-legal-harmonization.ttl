@@ -7,6 +7,7 @@
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
+@prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
 
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-legal: <https://cacontology.projectvic.org/legal-harmonization#> .
@@ -581,7 +582,7 @@ cacontology-legal:isCountrySpecific rdf:type owl:AnnotationProperty ;
 # =============================================================================
 
 cacontology-legal:LegislativeRole rdf:type owl:Class ;
-    rdfs:subClassOf cac-core:Role , uco-core:Role ;
+    rdfs:subClassOf cac-core:Role , uco-role:Role ;
     rdfs:label "Legislative Role"@en ;
     rdfs:comment "Role an actor plays in the legislative ecosystem."@en ;
     cacontology-legal:isCountrySpecific false .

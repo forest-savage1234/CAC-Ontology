@@ -28,7 +28,7 @@
       "rdfs": {
         "diagnostic_findings": 0,
         "status": "pass",
-        "triples": 47024
+        "triples": 47012
       }
     },
     "C4": {
@@ -41,7 +41,7 @@
       "rdfs": {
         "diagnostic_findings": 0,
         "status": "pass",
-        "triples": 48314
+        "triples": 48302
       },
       "scope_note": "Exact profile ontology applied to the candidate; imported submodule closure is not included."
     },
@@ -54,7 +54,7 @@
       "rdfs": {
         "diagnostic_findings": 0,
         "status": "pass",
-        "triples": 47050
+        "triples": 47038
       }
     }
   },
@@ -253,7 +253,7 @@
     "reason": "CAC-only and exact-profile diagnostic projections are coherent, but the unmodified full import closure fails the normative OWL 2 DL gate: profile violations span CAC and pinned dependencies, exact upstream profile RDF structures are malformed, and imported SWRL built-ins are unsupported by HermiT.",
     "status": "hold"
   },
-  "generated_at": "2026-08-15T22:44:47.118760+00:00",
+  "generated_at": "2026-08-15T22:56:57.088987+00:00",
   "owl_2_dl": {
     "claim": "The non-normative diagnostic projections are coherent under HermiT, but they do not satisfy the full-import OWL 2 DL gate.",
     "diagnostic_projection_status": "pass",
@@ -270,23 +270,24 @@
   "source": {
     "base_commit": "93de063951b758dd68a27611638c177fcf910eab",
     "branch": "proposal/issue-44-v4-foundational-architecture",
-    "candidate_commit": "f1e5246c74f6678d659141044ee082acfdfbd96c",
-    "candidate_tree": "1121c80b56c3630311a06cda77750179b0ac01f3",
-    "changed_paths": 208,
-    "commits": 25,
+    "candidate_commit": "b92a830e8e4d3ce875b70c7292392a76eb756717",
+    "candidate_tree": "dddc7376b82dea37f9164da1a55f89905df21bc0",
+    "changed_paths": 209,
+    "commits": 26,
     "detection_shapes_changed": true,
     "tracked_dirty": true,
     "tracked_evidence_dirty": true,
     "tracked_source_changes": [
-      "M ontology/cacontology-extremist-enterprises-shapes.ttl",
-      " M ontology/cacontology-investigation-coordination.ttl",
-      " M ontology/cacontology-law-enforcement-corruption.ttl",
+      "M ontology/cacontology-hotlines-shapes.ttl",
+      " M ontology/cacontology-hotlines.ttl",
       " M ontology/cacontology-legal-harmonization.ttl",
       " M testing/v4/dependency-lock.json",
-      " M testing/v4/test_rem014_decomposition.py"
+      " M testing/v4/test_rem014_decomposition.py",
+      " M testing/v4/test_rem014_external_references.py"
     ],
     "unsigned_commits": [
-      "f1e5246c74f6678d659141044ee082acfdfbd96c"
+      "f1e5246c74f6678d659141044ee082acfdfbd96c",
+      "b92a830e8e4d3ce875b70c7292392a76eb756717"
     ]
   },
   "term_dispositions": {
@@ -299,6 +300,6 @@
   "tests": {
     "return_code": 0,
     "status": "pass",
-    "tests_run": 68
+    "tests_run": 70
   }
 }

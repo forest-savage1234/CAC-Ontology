@@ -8,8 +8,8 @@
           "log": "testing/v4/reports/c3-diagnostic-hermit.log",
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "output_excerpt": "",
-          "reasoned_bytes": 6578300,
-          "reasoned_sha256": "82861714dc8811edf5685224862a0c88a76e804c8c8b26ff5e768dc753b37314",
+          "reasoned_bytes": 6577156,
+          "reasoned_sha256": "8f68532cc9724d10c467ca755a79a38d86d97ab3deda7903fb7da3685734c538",
           "return_code": 0,
           "status": "pass"
         },
@@ -27,28 +27,28 @@
       "profile": {
         "failure_kind": "owl2dl-profile-violations",
         "log": "testing/v4/reports/c3-owl2dl-profile.log",
-        "log_sha256": "6921b93e0a38a27feb71d8f672c0bd8195858d1a7cae234dc1823e3fd7612163",
-        "output_excerpt": "PROFILE VIOLATION ERROR https://ontology.unifiedcyberontology.org/uco/observable violates profile DL\nFor details see: http://robot.obolibrary.org/validate-profile#profile-violation-error\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
+        "log_sha256": "c45abf029c5cbf372a6084e1605fcd016f299e2d378d7506db31ee3f3187d4a4",
+        "output_excerpt": "PROFILE VIOLATION ERROR https://cacontology.projectvic.org/law-enforcement-corruption violates profile DL\nFor details see: http://robot.obolibrary.org/validate-profile#profile-violation-error\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
         "report": "testing/v4/reports/c3-owl2dl-profile.txt.gz",
-        "report_bytes": 126622,
+        "report_bytes": 126787,
         "report_compression": "gzip-mtime-0",
-        "report_sha256": "cf82f0466888f298ea45e9440084a038eefb35cc1596a1c6c768cd8c998a23a8",
+        "report_sha256": "3f340667f4fa33f91ad0b9e34406082a21f759574a26a218ab29c12f9bbda91c",
         "return_code": 1,
         "status": "fail",
         "summary": {
-          "cac_owned_count": 575,
+          "cac_owned_count": 570,
           "categories": {
             "Cannot pun between properties": 2,
             "Use of defined datatype in datatype restriction": 14,
             "Use of undeclared annotation property": 5949,
-            "Use of undeclared class": 667,
+            "Use of undeclared class": 662,
             "Use of undeclared datatype": 69,
             "Use of undeclared object property": 9
           },
           "counting_method": "recognized-robot-violation-headers-v2",
           "shared_or_unattributed_count": 19,
           "upstream_owned_count": 6116,
-          "violation_count": 6710
+          "violation_count": 6705
         }
       },
       "status": "fail"
@@ -61,8 +61,8 @@
           "log": "testing/v4/reports/c4-diagnostic-hermit.log",
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "output_excerpt": "",
-          "reasoned_bytes": 6595298,
-          "reasoned_sha256": "663741ecd98d540a1758781051153904451a1d5e3b47d2594a60ff8ebded7f58",
+          "reasoned_bytes": 6594154,
+          "reasoned_sha256": "4f51a059be8d21427a3b784a3df5fc5cac3047ce68ad0054f3f15a35331d4e5e",
           "return_code": 0,
           "status": "pass"
         },
@@ -95,8 +95,8 @@
           "log": "testing/v4/reports/c5-diagnostic-hermit.log",
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "output_excerpt": "",
-          "reasoned_bytes": 6580521,
-          "reasoned_sha256": "27614bbb47677453501d4d28b6fef2088b4d814f6b1c91043886b7c83b2aed96",
+          "reasoned_bytes": 6579377,
+          "reasoned_sha256": "e584b876bc2f139297198a17d3fb0534c4233111aaeeef5bf028917f95fc4bb9",
           "return_code": 0,
           "status": "pass"
         },
@@ -114,35 +114,35 @@
       "profile": {
         "failure_kind": "owl2dl-profile-violations",
         "log": "testing/v4/reports/c5-owl2dl-profile.log",
-        "log_sha256": "6921b93e0a38a27feb71d8f672c0bd8195858d1a7cae234dc1823e3fd7612163",
-        "output_excerpt": "PROFILE VIOLATION ERROR https://ontology.unifiedcyberontology.org/uco/observable violates profile DL\nFor details see: http://robot.obolibrary.org/validate-profile#profile-violation-error\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
+        "log_sha256": "c45abf029c5cbf372a6084e1605fcd016f299e2d378d7506db31ee3f3187d4a4",
+        "output_excerpt": "PROFILE VIOLATION ERROR https://cacontology.projectvic.org/law-enforcement-corruption violates profile DL\nFor details see: http://robot.obolibrary.org/validate-profile#profile-violation-error\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
         "report": "testing/v4/reports/c5-owl2dl-profile.txt.gz",
-        "report_bytes": 126885,
+        "report_bytes": 126505,
         "report_compression": "gzip-mtime-0",
-        "report_sha256": "559ad1a1ca5c85ca085dbf4d37b1d4b5e40fcfd74f2babb15f04aed84c2c4ad2",
+        "report_sha256": "2ae5d9b15e4922f5f010d30cbe92d7e8586889dbea2ab61c84268a9f745930f6",
         "return_code": 1,
         "status": "fail",
         "summary": {
-          "cac_owned_count": 577,
+          "cac_owned_count": 572,
           "categories": {
             "Cannot pun between properties": 2,
             "Use of defined datatype in datatype restriction": 14,
             "Use of reserved vocabulary for class IRI": 2,
             "Use of undeclared annotation property": 5949,
-            "Use of undeclared class": 667,
+            "Use of undeclared class": 662,
             "Use of undeclared datatype": 69,
             "Use of undeclared object property": 9
           },
           "counting_method": "recognized-robot-violation-headers-v2",
           "shared_or_unattributed_count": 19,
           "upstream_owned_count": 6116,
-          "violation_count": 6712
+          "violation_count": 6707
         }
       },
       "status": "fail"
     }
   },
-  "generated_at": "2026-08-15T22:37:16.350546+00:00",
+  "generated_at": "2026-08-15T22:50:16.410881+00:00",
   "runtime": {
     "java": "openjdk version \"21.0.12\" 2026-07-21 LTS\nOpenJDK Runtime Environment Temurin-21.0.12+8 (build 21.0.12+8-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12+8 (build 21.0.12+8-LTS, mixed mode, sharing)",
     "robot": "ROBOT version 1.9.10",

@@ -13,6 +13,21 @@ from rdflib import Graph, Namespace, OWL, RDF
 REPOSITORY = Path(__file__).resolve().parents[2]
 ONTOLOGY = REPOSITORY / "ontology"
 GUFO = Namespace("http://purl.org/nemo/gufo#")
+UCO_OBSERVABLE = Namespace("https://ontology.unifiedcyberontology.org/uco/observable/")
+UCO_ROLE = Namespace("https://ontology.unifiedcyberontology.org/uco/role/")
+UCO_TYPES = Namespace("https://ontology.unifiedcyberontology.org/uco/types/")
+PINNED_UCO = (
+    REPOSITORY
+    / "testing"
+    / "v4"
+    / "dependencies"
+    / "uco-gufo-profile"
+    / "4b98b9881aa29ed80f39b589d15725fa696c921a"
+    / "dependencies"
+    / "UCO"
+    / "ontology"
+    / "uco"
+)
 PINNED_GUFO = (
     REPOSITORY
     / "testing"
@@ -52,6 +67,34 @@ class Rem014ExternalReferenceTests(unittest.TestCase):
         graph = Graph().parse(PINNED_GUFO, format="turtle")
         self.assertIn((GUFO.hasQualityValue, RDF.type, OWL.DatatypeProperty), graph)
         self.assertNotIn((GUFO.hasQuality, RDF.type, OWL.DatatypeProperty), graph)
+
+    def test_relocated_uco_classes_exist_in_their_pinned_modules(self):
+        modules = {
+            PINNED_UCO / "observable" / "observable.ttl": {
+                UCO_OBSERVABLE.Observable,
+                UCO_OBSERVABLE.Software,
+            },
+            PINNED_UCO / "role" / "role.ttl": {UCO_ROLE.Role},
+            PINNED_UCO / "types" / "types.ttl": {UCO_TYPES.Hash},
+        }
+        for path, expected_classes in modules.items():
+            with self.subTest(path=path):
+                graph = Graph().parse(path, format="turtle")
+                for class_iri in expected_classes:
+                    self.assertIn((class_iri, RDF.type, OWL.Class), graph)
+
+    def test_obsolete_uco_namespaces_are_absent_from_first_party_turtle(self):
+        obsolete_terms = {
+            "uco-core:Observable",
+            "uco-core:Role",
+            "uco-identity:Software",
+            "uco-observable:Hash",
+        }
+        for path in ONTOLOGY.glob("*.ttl"):
+            text = path.read_text(encoding="utf-8")
+            for term in obsolete_terms:
+                with self.subTest(path=path.name, term=term):
+                    self.assertNotIn(term, text)
 
 
 if __name__ == "__main__":

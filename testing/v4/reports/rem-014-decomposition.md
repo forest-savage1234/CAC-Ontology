@@ -4,17 +4,17 @@ The earlier 7,287/7,289 figures were non-empty line counts. Multiline SPARQL ann
 
 - C3 REM-014 baseline: **6,947**
 - C5 REM-014 baseline: **6,949**
-- C3 actual violations: **6,710**
-- C5 actual violations: **6,712**
-- C3 reduction from baseline: **-237**
-- C5 reduction from baseline: **-237**
+- C3 actual violations: **6,705**
+- C5 actual violations: **6,707**
+- C3 reduction from baseline: **-242**
+- C5 reduction from baseline: **-242**
 - C5 compatibility delta: **+2**
 
 ## Ownership
 
 | Owner | C3 occurrences |
 |---|---:|
-| cac | 575 |
+| cac | 570 |
 | shared-or-unattributed | 19 |
 | upstream | 6,116 |
 
@@ -22,7 +22,7 @@ The earlier 7,287/7,289 figures were non-empty line counts. Multiline SPARQL ann
 
 | Priority | Root cause | Scope | CAC occurrences | Total occurrences | Unique IRIs | Score |
 |---:|---|---|---:|---:|---:|---:|
-| 1 | invalid-or-version-mismatched-external-reference | cac-actionable | 69 | 69 | 24 | 30 |
+| 1 | invalid-or-version-mismatched-external-reference | cac-actionable | 64 | 64 | 20 | 30 |
 | 2 | unsupported-xsd-datatype-policy | cac-actionable | 68 | 68 | 2 | 21 |
 | 3 | unsupported-defined-datatype-literal | cac-actionable | 14 | 14 | 1 | 21 |
 | 4 | unimported-shared-vocabulary | cac-actionable | 31 | 31 | 2 | 18 |

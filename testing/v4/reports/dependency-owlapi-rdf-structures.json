@@ -8,7 +8,7 @@
         "http://www.w3.org/2002/07/owl#sourceIndividual",
         "owl:targetIndividual|owl:targetValue"
       ],
-      "node": "nf01c678b43c942cdaa4ef0a51429a3aab11",
+      "node": "ne5a5572da108449b9cf79cfff6f63090b11",
       "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/uco-gufo.ttl",
       "predicates_present": [
         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
@@ -26,7 +26,7 @@
         "http://www.w3.org/2002/07/owl#sourceIndividual",
         "owl:targetIndividual|owl:targetValue"
       ],
-      "node": "nf01c678b43c942cdaa4ef0a51429a3aab12",
+      "node": "ne5a5572da108449b9cf79cfff6f63090b12",
       "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/uco-gufo.ttl",
       "predicates_present": [
         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
@@ -44,7 +44,7 @@
         "http://www.w3.org/2002/07/owl#sourceIndividual",
         "owl:targetIndividual|owl:targetValue"
       ],
-      "node": "nf01c678b43c942cdaa4ef0a51429a3aab13",
+      "node": "ne5a5572da108449b9cf79cfff6f63090b13",
       "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/uco-gufo.ttl",
       "predicates_present": [
         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
@@ -62,7 +62,7 @@
         "http://www.w3.org/2002/07/owl#sourceIndividual",
         "owl:targetIndividual|owl:targetValue"
       ],
-      "node": "nf01c678b43c942cdaa4ef0a51429a3aab14",
+      "node": "ne5a5572da108449b9cf79cfff6f63090b14",
       "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/uco-gufo.ttl",
       "predicates_present": [
         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
@@ -79,7 +79,7 @@
         "http://www.w3.org/2002/07/owl#annotatedSource",
         "http://www.w3.org/2002/07/owl#annotatedTarget"
       ],
-      "node": "nf01c678b43c942cdaa4ef0a51429a3aab10",
+      "node": "ne5a5572da108449b9cf79cfff6f63090b10",
       "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/uco-gufo.ttl",
       "predicates_present": [
         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
@@ -96,25 +96,7 @@
         "http://www.w3.org/2002/07/owl#annotatedSource",
         "http://www.w3.org/2002/07/owl#annotatedTarget"
       ],
-      "node": "nf01c678b43c942cdaa4ef0a51429a3aab7",
-      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/uco-gufo.ttl",
-      "predicates_present": [
-        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-        "http://www.w3.org/2000/01/rdf-schema#comment",
-        "http://www.w3.org/2000/01/rdf-schema#seeAlso",
-        "http://www.w3.org/2002/07/owl#annotatedObject",
-        "http://www.w3.org/2002/07/owl#annotatedProperty",
-        "http://www.w3.org/2002/07/owl#annotatedSubject"
-      ],
-      "source": "ucoProject/UCO-Profile-gufo@4b98b9881aa29ed80f39b589d15725fa696c921a"
-    },
-    {
-      "kind": "incomplete-owl-axiom",
-      "missing": [
-        "http://www.w3.org/2002/07/owl#annotatedSource",
-        "http://www.w3.org/2002/07/owl#annotatedTarget"
-      ],
-      "node": "nf01c678b43c942cdaa4ef0a51429a3aab8",
+      "node": "ne5a5572da108449b9cf79cfff6f63090b7",
       "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/uco-gufo.ttl",
       "predicates_present": [
         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
@@ -132,7 +114,25 @@
         "http://www.w3.org/2002/07/owl#annotatedSource",
         "http://www.w3.org/2002/07/owl#annotatedTarget"
       ],
-      "node": "nf01c678b43c942cdaa4ef0a51429a3aab9",
+      "node": "ne5a5572da108449b9cf79cfff6f63090b8",
+      "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/uco-gufo.ttl",
+      "predicates_present": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://www.w3.org/2000/01/rdf-schema#comment",
+        "http://www.w3.org/2000/01/rdf-schema#seeAlso",
+        "http://www.w3.org/2002/07/owl#annotatedObject",
+        "http://www.w3.org/2002/07/owl#annotatedProperty",
+        "http://www.w3.org/2002/07/owl#annotatedSubject"
+      ],
+      "source": "ucoProject/UCO-Profile-gufo@4b98b9881aa29ed80f39b589d15725fa696c921a"
+    },
+    {
+      "kind": "incomplete-owl-axiom",
+      "missing": [
+        "http://www.w3.org/2002/07/owl#annotatedSource",
+        "http://www.w3.org/2002/07/owl#annotatedTarget"
+      ],
+      "node": "ne5a5572da108449b9cf79cfff6f63090b9",
       "path": "testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/uco-gufo.ttl",
       "predicates_present": [
         "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",

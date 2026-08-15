@@ -6,6 +6,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@prefix uco-types: <https://ontology.unifiedcyberontology.org/uco/types/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
@@ -181,7 +182,7 @@ hotline:MediaEvidenceShape rdf:type sh:NodeShape ;
     sh:property [
         sh:path uco-observable:hash ;
         sh:minCount 1 ;
-        sh:class uco-observable:Hash ;
+        sh:class uco-types:Hash ;
         sh:message "Media evidence must have at least one hash"@en
     ] ;
     # Forensic integrity validation
@@ -380,7 +381,7 @@ hotline:HashSubmissionActionShape rdf:type sh:NodeShape ;
     sh:property [
         sh:path hotline:producesHash ;
         sh:minCount 1 ;
-        sh:class uco-observable:Hash ;
+        sh:class uco-types:Hash ;
         sh:message "A hash submission action must produce at least one hash"@en
     ] ;
     # Hash validation integrity
@@ -409,7 +410,7 @@ hotline:HashFeedbackActionShape rdf:type sh:NodeShape ;
     sh:property [
         sh:path hotline:referencesHash ;
         sh:minCount 1 ;
-        sh:class uco-observable:Hash ;
+        sh:class uco-types:Hash ;
         sh:message "A hash feedback action must reference at least one hash"@en
     ] ;
     sh:property [
