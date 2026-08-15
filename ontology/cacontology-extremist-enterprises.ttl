@@ -757,10 +757,10 @@ cacontology-enterprises:hasNetworkComponent rdf:type owl:ObjectProperty ;
 
 cacontology-enterprises:hasMember rdf:type owl:ObjectProperty ;
     rdfs:label "has member"@en ;
-    rdfs:comment "Links enterprise to its members using gUFO collection membership pattern."@en ;
+    rdfs:comment "Links an enterprise, modeled as a gUFO FunctionalComplex, to a person who is one of its functional components. Its direction is the inverse of gufo:isComponentOf; it is not collection membership."@en ;
     rdfs:domain cacontology-enterprises:ChildExploitationEnterprise ;
     rdfs:range uco-identity:Person ;
-    rdfs:subPropertyOf gufo:isCollectionMemberOf .
+    rdfs:subPropertyOf [ owl:inverseOf gufo:isComponentOf ] .
 
 # Temporal Properties using gUFO temporal framework
 cacontology-enterprises:hasOperationalPeriod rdf:type owl:ObjectProperty ;

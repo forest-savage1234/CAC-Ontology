@@ -462,27 +462,24 @@ cacontology-custodial:checkScope rdf:type owl:DatatypeProperty ;
 # gUFO RELATIONSHIPS (Enhanced Object Properties)
 # =============================================================================
 
-# Participant Relationships (enhanced with gUFO participation patterns)
+# Enduring custodial-association relationships
 cacontology-custodial:involvesCustodian rdf:type owl:ObjectProperty ;
     rdfs:label "involves custodian"@en ;
-    rdfs:comment "Links custodial relationship to the custodian or authority figure. Enhanced with gUFO participation patterns."@en ;
+    rdfs:comment "Links an enduring custodial relationship to its custodian or authority figure. This is not gufo:participatedIn, which relates an object to an event."@en ;
     rdfs:domain cacontology-custodial:CustodialRelationship ;
-    rdfs:range cacontology-custodial:AuthorityFigure ;
-    rdfs:subPropertyOf gufo:participatedIn .
+    rdfs:range cacontology-custodial:AuthorityFigure .
 
 cacontology-custodial:involvesChild rdf:type owl:ObjectProperty ;
     rdfs:label "involves child"@en ;
-    rdfs:comment "Links custodial relationship to the child under care. Enhanced with gUFO participation patterns."@en ;
+    rdfs:comment "Links an enduring custodial relationship to the child under care. This is not gufo:participatedIn, which ranges over events."@en ;
     rdfs:domain cacontology-custodial:CustodialRelationship ;
-    rdfs:range uco-identity:Person ;
-    rdfs:subPropertyOf gufo:participatedIn .
+    rdfs:range uco-identity:Person .
 
 cacontology-custodial:involvesParent rdf:type owl:ObjectProperty ;
     rdfs:label "involves parent"@en ;
-    rdfs:comment "Links custodial arrangement to the parent or legal guardian. Enhanced with gUFO participation patterns."@en ;
+    rdfs:comment "Links a custodial arrangement artifact to the parent or legal guardian it concerns. This is not gufo:participatedIn, which ranges over events."@en ;
     rdfs:domain cacontology-custodial:CustodyArrangement ;
-    rdfs:range uco-identity:Person ;
-    rdfs:subPropertyOf gufo:participatedIn .
+    rdfs:range uco-identity:Person .
 
 # Trust and Authority Relationships (enhanced with gUFO role patterns)
 cacontology-custodial:holdsPositionOf rdf:type owl:ObjectProperty ;
@@ -518,18 +515,17 @@ cacontology-custodial:violatesRelationship rdf:type owl:ObjectProperty ;
 
 cacontology-custodial:perpetratedBy rdf:type owl:ObjectProperty ;
     rdfs:label "perpetrated by"@en ;
-    rdfs:comment "Links trust violation to the authority figure who perpetrated it. Enhanced with gUFO event participation patterns."@en ;
+    rdfs:comment "Links a trust-violation event to the authority figure who participated as perpetrator. Its direction is event-to-object, so it specializes the inverse of gufo:participatedIn."@en ;
     rdfs:domain cacontology-custodial:TrustViolation ;
     rdfs:range cacontology-custodial:AuthorityFigure ;
-    rdfs:subPropertyOf gufo:participatedIn .
+    rdfs:subPropertyOf [ owl:inverseOf gufo:participatedIn ] .
 
 # gUFO Situation Relationships
 cacontology-custodial:occursInCustodialSituation rdf:type owl:ObjectProperty ;
     rdfs:label "occurs in custodial situation"@en ;
-    rdfs:comment "Links custodial event to situation in which it occurs. Enhanced with gUFO situation modeling."@en ;
+    rdfs:comment "Links a custodial event to the situation in which it occurs. This CAC event-to-situation relation is intentionally not aligned to gufo:participatedIn, which relates an object to an event."@en ;
     rdfs:domain cacontology-custodial:TrustViolation ;
-    rdfs:range cac-core:Situation ;
-    rdfs:subPropertyOf gufo:participatedIn .
+    rdfs:range cac-core:Situation .
 
 cacontology-custodial:createsCustodialSituation rdf:type owl:ObjectProperty ;
     rdfs:label "creates custodial situation"@en ;

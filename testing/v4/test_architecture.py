@@ -121,10 +121,16 @@ class CompetencyFixtureControls(unittest.TestCase):
 
 
 class RepositoryParseControls(unittest.TestCase):
-    def test_every_turtle_document_parses(self):
+    def test_every_first_party_turtle_document_parses(self):
         repo = HERE.parents[1]
+        dependency_root = HERE / "dependencies"
+        generated_roots = (repo / "tmp", HERE / "tmp")
         failures = []
         for path in sorted(repo.rglob("*.ttl")):
+            if dependency_root in path.parents:
+                continue
+            if any(root in path.parents for root in generated_roots):
+                continue
             try:
                 Graph().parse(path, format="turtle")
             except Exception as exc:  # pragma: no cover - failure detail matters

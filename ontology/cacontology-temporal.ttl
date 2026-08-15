@@ -32,7 +32,7 @@
 # =============================================================================
 
 # Age as gUFO Quality for legal and analytical reasoning
-cacontology-temporal:Age rdf:type owl:Class ;
+cacontology-temporal:Age rdf:type owl:Class, gufo:Kind ;
     rdfs:label "Age Quality"@en ;
     rdfs:comment "Age of a person modeled as a gUFO Quality whose concrete value is attributed in time-bounded situations. Intended for age-of-consent, Romeo-and-Juliet, and other age-dependent legal reasoning."@en ;
     rdfs:subClassOf gufo:Quality .
@@ -64,7 +64,7 @@ cacontology-temporal:concernsAgeQuality rdf:type owl:ObjectProperty ;
     rdfs:comment "Specialization of gufo:concernsQualityType making explicit that an Age At Time Situation attributes a value for the Age quality type."@en ;
     rdfs:subPropertyOf gufo:concernsQualityType ;
     rdfs:domain cacontology-temporal:AgeAtTimeSituation ;
-    rdfs:range cacontology-temporal:Age .
+    rdfs:range gufo:EndurantType .
 
 # =============================================================================
 # EXTENDED INVESTIGATION PHASES (lifecycle-specific, complement core phases)

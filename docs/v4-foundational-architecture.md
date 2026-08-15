@@ -1,6 +1,6 @@
 # v4 Foundational Architecture Proposal
 
-> **Status:** Gate 3 local proposal under issue #44. This document does not announce a release and does not supersede the published v3.1.0 artifacts until maintainer approval.
+> **Status:** Gate 4 local candidate under issue #44. The architecture implementation is complete, but the strict full-import OWL 2 DL gate is on hold. This document does not announce a release and does not supersede the published v3.1.0 artifacts until maintainer approval.
 
 ## Decision
 
@@ -74,6 +74,10 @@ Deprecated custody properties can forward to their state-oriented replacements. 
 3. The architecture diagnostic reports no asserted role/phase, enduring/phase, or event/phase level conflict.
 4. Positive fixtures conform and negative level-mixing fixtures fail.
 5. The 299-term disposition ledger contains no pending term.
-6. Dependency and reasoner evidence states unresolved imports or unavailable engines explicitly; absence of evidence is never reported as conformance.
+6. Every import resolves to content-addressed local bytes with provenance, license notes, and hashes.
+7. Pinned ROBOT/HermiT evidence distinguishes the normative full import closure from any explicitly non-normative diagnostic projection.
+8. Full-closure OWL 2 DL profile, consistency, classification, and satisfiability gates pass; diagnostic coherence alone is not release conformance.
 
-The proposal advances to release engineering only after Gate 4 maintainer approval.
+The local candidate currently passes C3, C4, and C5 architecture diagnostics under asserted and RDFS interpretations and passes HermiT on the bounded diagnostic projections. The unmodified full closure still fails the strict OWL 2 DL gate because profile violations span CAC and pinned dependencies, the exact upstream profile contains malformed OWL/RDF structures, and an imported dependency uses SWRL built-ins unsupported by the pinned HermiT route. Those failures remain release blockers with durable post-v4 remediation entries.
+
+The proposal advances to external publication or release engineering only after the strict blockers are dispositioned and Gate 4 maintainer approval is obtained.

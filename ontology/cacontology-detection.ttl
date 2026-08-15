@@ -165,19 +165,19 @@ cacontology-detection:RiskStratificationAction rdf:type owl:Class ;
     rdfs:subClassOf cac-core:DetectionEvent .
 
 # =============================================================================
-# HASH AND DETECTION ARTIFACT CLASSES (extending UCO Observable with gUFO Object)
+# HASH VALUE AND DETECTION RESULT CLASSES
 # =============================================================================
 
-# Hash and Detection Results as gUFO Objects
+# UCO Hash is an inherent-characterization branch, disjoint from UcoObject.
 cacontology-detection:PhotoDNAHash rdf:type owl:Class ;
     rdfs:label "PhotoDNA Hash"@en ;
-    rdfs:comment "A Microsoft PhotoDNA hash for robust image matching that survives common transformations. Modeled as gUFO Object."@en ;
-    rdfs:subClassOf uco-types:Hash, cac-core:Artifact .
+    rdfs:comment "A Microsoft PhotoDNA hash for robust image matching that survives common transformations. Modeled as a UCO Hash, not as an Artifact/UcoObject."@en ;
+    rdfs:subClassOf uco-types:Hash .
 
 cacontology-detection:PerceptualHash rdf:type owl:Class ;
     rdfs:label "Perceptual Hash"@en ;
-    rdfs:comment "A hash that captures visual similarity rather than exact bit patterns (e.g., pHash, aHash, dHash). Modeled as gUFO Object."@en ;
-    rdfs:subClassOf uco-types:Hash, cac-core:Artifact .
+    rdfs:comment "A hash that captures visual similarity rather than exact bit patterns (e.g., pHash, aHash, dHash). Modeled as a UCO Hash, not as an Artifact/UcoObject."@en ;
+    rdfs:subClassOf uco-types:Hash .
 
 cacontology-detection:DetectionResult rdf:type owl:Class ;
     rdfs:label "Detection Result"@en ;

@@ -18,6 +18,8 @@ from owlrl import DeductiveClosure, RDFSClosure
 
 CAC_CORE = Namespace("https://cacontology.projectvic.org/core#")
 GUFO = Namespace("http://purl.org/nemo/gufo#")
+BASE = "93de063951b758dd68a27611638c177fcf910eab"
+PROFILE_REVISION = "4b98b9881aa29ed80f39b589d15725fa696c921a"
 
 
 def sha256(path: Path) -> str:
@@ -30,8 +32,21 @@ def sha256(path: Path) -> str:
 
 def git_value(repo: Path, *args: str) -> str:
     return subprocess.run(
-        ["git", *args], cwd=repo, check=True, capture_output=True, text=True
+        ["git", "-c", f"safe.directory={repo}", *args],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+        text=True,
     ).stdout.strip()
+
+
+def git_bytes(repo: Path, *args: str) -> bytes:
+    return subprocess.run(
+        ["git", "-c", f"safe.directory={repo}", *args],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+    ).stdout
 
 
 def ontology_files(repo: Path, configuration: str) -> list[Path]:
@@ -46,11 +61,65 @@ def ontology_files(repo: Path, configuration: str) -> list[Path]:
     )
 
 
-def load_graph(paths: list[Path]) -> Graph:
+def overlay_path(repo: Path) -> Path:
+    return (
+        repo
+        / "testing"
+        / "v4"
+        / "dependencies"
+        / "uco-gufo-profile"
+        / PROFILE_REVISION
+        / "ontology"
+        / "uco-gufo.ttl"
+    )
+
+
+def load_configuration_graph(repo: Path, configuration: str) -> tuple[Graph, list[dict]]:
+    if configuration not in {"C2", "C3", "C4", "C5"}:
+        raise ValueError(f"Unsupported configuration: {configuration}")
+
     graph = Graph()
-    for path in paths:
-        graph.parse(path, format="turtle")
-    return graph
+    inputs: list[dict] = []
+    if configuration == "C2":
+        names = [
+            name
+            for name in git_value(repo, "ls-tree", "-r", "--name-only", BASE, "--", "ontology").splitlines()
+            if name.endswith(".ttl") and "-shapes" not in Path(name).name
+        ]
+        for name in names:
+            data = git_bytes(repo, "show", f"{BASE}:{name}")
+            graph.parse(data=data.decode("utf-8"), format="turtle")
+            inputs.append(
+                {
+                    "path": f"git:{BASE}:{name}",
+                    "bytes": len(data),
+                    "sha256": hashlib.sha256(data).hexdigest(),
+                }
+            )
+    else:
+        for path in ontology_files(repo, configuration):
+            graph.parse(path, format="turtle")
+            inputs.append(
+                {
+                    "path": path.relative_to(repo).as_posix(),
+                    "bytes": path.stat().st_size,
+                    "sha256": sha256(path),
+                }
+            )
+
+    if configuration in {"C2", "C4"}:
+        profile = overlay_path(repo)
+        if not profile.is_file():
+            raise FileNotFoundError(f"Pinned overlay is unavailable: {profile}")
+        graph.parse(profile, format="turtle")
+        inputs.append(
+            {
+                "path": profile.relative_to(repo).as_posix(),
+                "bytes": profile.stat().st_size,
+                "sha256": sha256(profile),
+            }
+        )
+    return graph, inputs
 
 
 def subclass_index(graph: Graph) -> dict[URIRef, set[URIRef]]:
@@ -134,10 +203,7 @@ def audit_graph(graph: Graph) -> dict:
 
 
 def build_report(repo: Path, configuration: str, inference: str = "asserted") -> dict:
-    if configuration not in {"C3", "C5"}:
-        raise ValueError("Current-worktree audit supports C3 and C5; C1 is frozen separately")
-    paths = ontology_files(repo, configuration)
-    graph = load_graph(paths)
+    graph, inputs = load_configuration_graph(repo, configuration)
     asserted_triples = len(graph)
     if inference == "rdfs":
         DeductiveClosure(RDFSClosure.RDFS_Semantics).expand(graph)
@@ -150,7 +216,7 @@ def build_report(repo: Path, configuration: str, inference: str = "asserted") ->
             "configuration": configuration,
             "inference": inference,
             "status": "pass" if result["counts"]["diagnostic_findings"] == 0 else "fail",
-            "scope": "CAC asserted architecture diagnostics with optional RDFS closure; not an OWL 2 DL consistency result",
+            "scope": "CAC architecture diagnostics with optional RDFS closure. C2/C4 include the exact pinned profile ontology but do not follow its imports; this is not an OWL 2 DL consistency result.",
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "source": {
                 "commit": git_value(repo, "rev-parse", "HEAD"),
@@ -165,10 +231,7 @@ def build_report(repo: Path, configuration: str, inference: str = "asserted") ->
             },
             "asserted_triples": asserted_triples,
             "dependency_lock_sha256": sha256(dependency_lock),
-            "inputs": [
-                {"path": path.relative_to(repo).as_posix(), "bytes": path.stat().st_size, "sha256": sha256(path)}
-                for path in paths
-            ],
+            "inputs": inputs,
             "sensitive_data": "Synthetic fixtures only; no real sensitive case data.",
         }
     )
@@ -177,7 +240,7 @@ def build_report(repo: Path, configuration: str, inference: str = "asserted") ->
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--configuration", choices=("C3", "C5"), required=True)
+    parser.add_argument("--configuration", choices=("C2", "C3", "C4", "C5"), required=True)
     parser.add_argument("--inference", choices=("asserted", "rdfs"), default="asserted")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()

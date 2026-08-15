@@ -1024,14 +1024,14 @@ cacontology-coord:participatesInSharing rdf:type owl:ObjectProperty ;
 # Part-whole relationships for complex coordination structures
 cacontology-coord:isComponentOf rdf:type owl:ObjectProperty ;
     rdfs:label "is component of"@en ;
-    rdfs:comment "Links component agencies to task force or multi-agency coordination structures - gUFO part-whole relation."@en ;
+    rdfs:comment "Links an agency to a task-force or multi-agency coordination event in which it participates. The legacy property name is retained for compatibility; the formal alignment is participation, not object parthood."@en ;
     rdfs:domain uco-identity:Organization ;
     rdfs:range [ owl:unionOf ( cacontology-coord:TaskForceCoordination cacontology-coord:MultiAgencyCoordination ) ] ;
-    rdfs:subPropertyOf gufo:isComponentOf .
+    rdfs:subPropertyOf gufo:participatedIn .
 
 cacontology-coord:hasComponent rdf:type owl:ObjectProperty ;
     rdfs:label "has component"@en ;
-    rdfs:comment "Links coordination structures to their component agencies - gUFO part-whole relation."@en ;
+    rdfs:comment "Inverse compatibility relation from a coordination event to a participating agency. The legacy property name is retained, but the relation is not gUFO object parthood."@en ;
     rdfs:domain [ owl:unionOf ( cacontology-coord:TaskForceCoordination cacontology-coord:MultiAgencyCoordination cacontology-coord:JointInvestigation ) ] ;
     rdfs:range uco-identity:Organization ;
     owl:inverseOf cacontology-coord:isComponentOf .

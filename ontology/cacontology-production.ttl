@@ -105,12 +105,12 @@ cacontology-production:ProductionDistributionPhase rdf:type owl:Class ;
 cacontology-production:ProductionSession rdf:type owl:Class ;
     rdfs:label "Production Session"@en ;
     rdfs:comment "Individual instance or session of producing child sexual abuse material."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-production:ExtendedProductionPeriod rdf:type owl:Class ;
     rdfs:label "Extended Production Period"@en ;
     rdfs:comment "Ongoing pattern of production over an extended time period."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-production:ProductionSeries rdf:type owl:Class ;
     rdfs:label "Production Series"@en ;

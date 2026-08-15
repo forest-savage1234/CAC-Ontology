@@ -514,9 +514,12 @@ classDiagram
         +EvidenceItem[] hasEvidence
     }
     class PhotoDNAHash {
-        <<Artifact>>
+        <<UCO Hash>>
         +String photoDNAValue
         +String hashAlgorithm
+    }
+    class UcoHash {
+        <<UCO Hash>>
     }
     class SocialMediaPlatform {
         <<DigitalSystemEntity>>
@@ -524,7 +527,7 @@ classDiagram
     }
 
     Artifact <|-- HotlineReport
-    Artifact <|-- PhotoDNAHash
+    UcoHash <|-- PhotoDNAHash
     DigitalSystemEntity <|-- SocialMediaPlatform
 
     class ForensicAcquisitionAction {

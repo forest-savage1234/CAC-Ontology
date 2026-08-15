@@ -453,15 +453,15 @@ cacontology-usa-federal:victimizedBy rdf:type owl:ObjectProperty ;
 # Part-Whole Relationships for Federal Legal Processes
 cacontology-usa-federal:hasLegalPhase rdf:type owl:ObjectProperty ;
     rdfs:label "has legal phase"@en ;
-    rdfs:comment "Links federal prosecution to its constituent phases (gUFO part-whole)."@en ;
-    rdfs:subPropertyOf gufo:isObjectProperPartOf ;
+    rdfs:comment "Links a federal prosecution to an operational phase occurrence through the CAC lifecycle relation. Operational phases are situations, so this relation is not gUFO object parthood."@en ;
+    rdfs:subPropertyOf cac-core:hasPhase ;
     rdfs:domain cacontology-usa-federal:FederalProsecution ;
     rdfs:range cac-core:Phase .
 
 cacontology-usa-federal:isPhaseOf rdf:type owl:ObjectProperty ;
     rdfs:label "is phase of"@en ;
-    rdfs:comment "Links legal phase to its parent prosecution (gUFO part-whole)."@en ;
-    rdfs:subPropertyOf gufo:isObjectProperPartOf ;
+    rdfs:comment "Links an operational legal-phase situation to its parent prosecution through the CAC lifecycle relation."@en ;
+    rdfs:subPropertyOf cac-core:isPhaseOf ;
     rdfs:domain cac-core:Phase ;
     rdfs:range cacontology-usa-federal:FederalProsecution ;
     owl:inverseOf cacontology-usa-federal:hasLegalPhase .

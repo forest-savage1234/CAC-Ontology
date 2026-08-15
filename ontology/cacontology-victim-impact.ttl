@@ -226,7 +226,7 @@ cacontology-impact:PeerSupportService rdf:type owl:Class ;
 cacontology-impact:RecoveryProcess rdf:type owl:Class ;
     rdfs:label "Recovery Process"@en ;
     rdfs:comment "Process of healing and recovery from victimization."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-impact:RecoveryMilestone rdf:type owl:Class ;
     rdfs:label "Recovery Milestone"@en ;
@@ -236,7 +236,7 @@ cacontology-impact:RecoveryMilestone rdf:type owl:Class ;
 cacontology-impact:LongTermEffect rdf:type owl:Class ;
     rdfs:label "Long Term Effect"@en ;
     rdfs:comment "Long-term consequences of victimization on the child's life."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-impact:ResilienceFactors rdf:type owl:Class ;
     rdfs:label "Resilience Factors"@en ;

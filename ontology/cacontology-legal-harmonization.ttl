@@ -407,10 +407,9 @@ cacontology-legal:participatesIn rdf:type owl:ObjectProperty ;
 
 cacontology-legal:isAssessedBy rdf:type owl:ObjectProperty ;
     rdfs:label "is assessed by"@en ;
-    rdfs:comment "Links legislation to assessment activities - gUFO participation relation."@en ;
+    rdfs:comment "Links legislation to the resulting legislative assessment. This CAC relation is intentionally not a subproperty of gufo:participatedIn because both endpoints are enduring information objects, whereas gufo:participatedIn ranges over events."@en ;
     rdfs:domain cacontology-legal:NationalLegislation ;
-    rdfs:range cacontology-legal:LegislativeAssessment ;
-    rdfs:subPropertyOf gufo:participatedIn .
+    rdfs:range cacontology-legal:LegislativeAssessment .
 
 # Part-whole relationships for legal frameworks
 cacontology-legal:isComponentOf rdf:type owl:ObjectProperty ;

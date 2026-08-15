@@ -191,7 +191,7 @@ cacontology-taskforce:ReactiveOperation rdf:type owl:Class ;
 cacontology-taskforce:ResourceSharing rdf:type owl:Class ;
     rdfs:label "Resource Sharing"@en ;
     rdfs:comment "Sharing of resources, personnel, or expertise between task forces."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-taskforce:PersonnelSharing rdf:type owl:Class ;
     rdfs:label "Personnel Sharing"@en ;
@@ -220,7 +220,7 @@ cacontology-taskforce:IntelligenceSharing rdf:type owl:Class ;
 cacontology-taskforce:CoordinationMechanism rdf:type owl:Class ;
     rdfs:label "Coordination Mechanism"@en ;
     rdfs:comment "Formal mechanism for coordinating task force activities."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, cac-core:Situation .
+    rdfs:subClassOf cac-core:Situation .
 
 cacontology-taskforce:TaskForceAlliance rdf:type owl:Class ;
     rdfs:label "Task Force Alliance"@en ;

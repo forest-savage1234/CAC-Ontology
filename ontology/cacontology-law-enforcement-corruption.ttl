@@ -499,10 +499,9 @@ cacontology-corruption:participatesIn rdf:type owl:ObjectProperty ;
 
 cacontology-corruption:isDetectedBy rdf:type owl:ObjectProperty ;
     rdfs:label "is detected by"@en ;
-    rdfs:comment "Links corruption to detection activities - gUFO participation relation."@en ;
+    rdfs:comment "Links a corruption event to a distinct detection event. It is intentionally not a subproperty of gufo:participatedIn, which relates an object participant to an event."@en ;
     rdfs:domain cacontology-corruption:LawEnforcementCorruption ;
-    rdfs:range cacontology-corruption:InsiderThreatDetection ;
-    rdfs:subPropertyOf gufo:participatedIn .
+    rdfs:range cacontology-corruption:InsiderThreatDetection .
 
 # Qualified relations for corruption networks
 cacontology-corruption:standsInQualifiedCorruption rdf:type owl:ObjectProperty ;

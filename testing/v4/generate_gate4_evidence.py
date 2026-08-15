@@ -6,7 +6,6 @@ from __future__ import annotations
 import importlib.util
 import json
 import re
-import shutil
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -32,11 +31,21 @@ SPARQL = load_module("audit_shacl_sparql", HERE / "audit_shacl_sparql.py")
 LEVELS = load_module(
     "audit_shape_level_assumptions", HERE / "audit_shape_level_assumptions.py"
 )
+DEP_OWLAPI = load_module(
+    "audit_dependency_owlapi_structures", HERE / "audit_dependency_owlapi_structures.py"
+)
+DEP_TURTLE = load_module(
+    "audit_dependency_turtle", HERE / "audit_dependency_turtle.py"
+)
 
 
 def git(*args: str) -> str:
     return subprocess.run(
-        ["git", *args], cwd=REPO, check=True, capture_output=True, text=True
+        ["git", "-c", f"safe.directory={REPO}", *args],
+        cwd=REPO,
+        check=True,
+        capture_output=True,
+        text=True,
     ).stdout.strip()
 
 
@@ -57,7 +66,7 @@ def main() -> int:
     dependency = json.loads((HERE / "dependency-lock.json").read_text(encoding="utf-8"))
 
     configurations: dict[str, object] = {}
-    for config in ("C3", "C5"):
+    for config in ("C2", "C3", "C4", "C5"):
         configurations[config] = {}
         for inference in ("asserted", "rdfs"):
             report = ARCH.build_report(REPO, config, inference)
@@ -92,6 +101,10 @@ def main() -> int:
     write_json("shacl-sparql-syntax.json", sparql)
     level_inventory = LEVELS.inventory(REPO / "ontology")
     write_json("shape-level-assumptions.json", level_inventory)
+    dependency_owlapi = DEP_OWLAPI.audit()
+    write_json("dependency-owlapi-rdf-structures.json", dependency_owlapi)
+    dependency_turtle = DEP_TURTLE.audit()
+    write_json("dependency-turtle-syntax.json", dependency_turtle)
 
     baseline = json.loads(
         (HERE / "baselines" / "c1-v3.1-asserted.json").read_text(encoding="utf-8")
@@ -107,19 +120,19 @@ def main() -> int:
     ]
     changed_paths = git("diff", "--name-only", f"{BASE}..HEAD").splitlines()
 
-    docker = shutil.which("docker")
-    docker_server = False
-    if docker:
-        docker_check = subprocess.run(
-            [docker, "version", "--format", "{{json .Server}}"],
-            cwd=REPO,
-            capture_output=True,
-            text=True,
-        )
-        docker_server = docker_check.returncode == 0 and docker_check.stdout.strip() not in {
-            "",
-            "null",
-        }
+    owl_summary_path = REPORTS / "owl2dl-summary.json"
+    owl_summary = (
+        json.loads(owl_summary_path.read_text(encoding="utf-8"))
+        if owl_summary_path.is_file()
+        else None
+    )
+    owl_diagnostic_pass = bool(owl_summary) and all(
+        value["diagnostic_projection"]["hermit"]["status"] == "pass"
+        for value in owl_summary["configurations"].values()
+    )
+    owl_normative_pass = bool(owl_summary) and all(
+        value["status"] == "pass" for value in owl_summary["configurations"].values()
+    )
 
     summary = {
         "schema_version": 1,
@@ -142,13 +155,15 @@ def main() -> int:
                 "source_commit": BASE,
             },
             "C2": {
-                "status": "blocked",
-                "blocker": "Pinned UCO gUFO Profile bytes at 4b98b9881aa29ed80f39b589d15725fa696c921a are unavailable locally; official Git and browser retrieval failed.",
+                **configurations["C2"],
+                "gate": False,
+                "scope_note": "Exact profile ontology applied to the frozen base; imported submodule closure is not included.",
             },
             "C3": configurations["C3"],
             "C4": {
-                "status": "blocked",
-                "blocker": "Same unavailable pinned UCO gUFO Profile bytes as C2.",
+                **configurations["C4"],
+                "gate": True,
+                "scope_note": "Exact profile ontology applied to the candidate; imported submodule closure is not included.",
             },
             "C5": configurations["C5"],
         },
@@ -166,20 +181,38 @@ def main() -> int:
         "dependencies": {
             "imports": len(imports),
             "resolved_local": sum(i["status"] == "resolved-local" for i in imports),
+            "resolved_vendored": sum(i["status"] == "resolved-vendored" for i in imports),
             "unresolved_remote": sum(i["status"] == "unresolved-remote" for i in imports),
             "uco_gufo_profile": dependency["uco_gufo_profile"],
+            "owlapi_rdf_structures": {
+                "status": dependency_owlapi["status"],
+                "finding_count": dependency_owlapi["finding_count"],
+                "report": "testing/v4/reports/dependency-owlapi-rdf-structures.json",
+            },
+            "turtle_syntax": {
+                "status": dependency_turtle["status"],
+                "files_audited": dependency_turtle["files_audited"],
+                "finding_count": dependency_turtle["finding_count"],
+                "report": "testing/v4/reports/dependency-turtle-syntax.json",
+            },
         },
         "owl_2_dl": {
-            "status": "blocked",
-            "java": shutil.which("java"),
-            "robot": shutil.which("robot"),
-            "docker_client": docker,
-            "docker_server_available": docker_server,
-            "claim": "No HermiT/ROBOT OWL 2 DL consistency or unsatisfiable-class result is claimed.",
+            "status": "pass" if owl_normative_pass else "fail",
+            "diagnostic_projection_status": "pass" if owl_diagnostic_pass else "fail",
+            "summary": "testing/v4/reports/owl2dl-summary.json" if owl_summary else None,
+            "claim": (
+                "The non-normative diagnostic projections are coherent under HermiT, but they do not satisfy the full-import OWL 2 DL gate."
+                if owl_diagnostic_pass and not owl_normative_pass
+                else "See the pinned ROBOT/HermiT summary for the exact normative result."
+            ),
         },
         "gate4_recommendation": {
-            "status": "hold",
-            "reason": "Applicable local diagnostics pass, but deterministic imports, C4 overlay execution, and normative OWL 2 DL reasoning remain release blockers.",
+            "status": "ready" if owl_normative_pass else "hold",
+            "reason": (
+                "All normative configuration gates pass."
+                if owl_normative_pass
+                else "CAC-only and exact-profile diagnostic projections are coherent, but the unmodified full import closure fails the normative OWL 2 DL gate: profile violations span CAC and pinned dependencies, exact upstream profile RDF structures are malformed, and imported SWRL built-ins are unsupported by HermiT."
+            ),
             "github_mutation_authorized": False,
         },
         "sensitive_data": "Synthetic fixtures only; no real investigative, victim, or adopter data is present.",
