@@ -564,7 +564,7 @@ cacontology-custodial:CustodialParticipationShape rdf:type sh:NodeShape ;
     rdfs:label "Custodial Participation Shape"@en ;
     rdfs:comment "Validates coherent participation in custodial relationships."@en ;
     sh:sparql [
-        sh:message "Custodial relationship must have coherent role and event participation"@en ;
+        sh:message "Custodial relationship must reference an operational authority-role record."@en ;
         sh:prefixes [
             sh:declare [
                 sh:prefix "cacontology-custodial" ;
@@ -582,7 +582,7 @@ cacontology-custodial:CustodialParticipationShape rdf:type sh:NodeShape ;
                 ?this cacontology-custodial:involvesCustodian ?custodian .
                 ?custodian cacontology-custodial:hasAuthority ?authorityRole .
                 FILTER NOT EXISTS {
-                    ?authorityRole a gufo:Role .
+                    ?authorityRole a cacontology-custodial:AuthorityFigure .
                 }
             }
         """

@@ -647,16 +647,14 @@ cacontology-enterprises:GufoKindIdentityBusinessRule rdf:type sh:NodeShape ;
             }
         """     ] .
 
-cacontology-enterprises:GufoRoleAntiRigidityRule rdf:type sh:NodeShape ;
+cacontology-enterprises:OperationalRoleLevelSeparationRule rdf:type sh:NodeShape ;
     sh:targetClass cac-core:Role ;
     sh:sparql [
-        sh:message "gUFO Roles are anti-rigid and cannot be essential to their instances."@en ;
+        sh:message "Operational role records must not also be gUFO Role classifiers."@en ;
         sh:prefixes gufo: ;
         sh:select """
             SELECT $this WHERE {
                 $this rdf:type gufo:Role .
-                $this rdfs:subClassOf ?kind .
-                ?kind rdf:type gufo:Kind .
             }
         """     ] .
 
@@ -777,7 +775,7 @@ cacontology-enterprises:GufoCoercionEventValidation rdf:type sh:NodeShape ;
                     }
                     UNION
                     {
-                        ?person uco-identity:Person .
+                        ?person a uco-identity:Person .
                         ?person cacontology-enterprises:participatesInCoercion $this .
                     }
                 }
@@ -808,7 +806,6 @@ cacontology-enterprises:GufoRoleInstantiationValidation rdf:type sh:NodeShape ;
         sh:select """
             SELECT $this WHERE {
                 $this rdf:type cacontology-enterprises:EnterpriseRole .
-                $this rdf:type gufo:Role .
                 FILTER NOT EXISTS {
                     ?person rdf:type uco-identity:Person .
                     ?person ?roleProperty $this .
