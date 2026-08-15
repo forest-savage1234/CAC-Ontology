@@ -44,7 +44,7 @@ cacontology-custodial:CustodialRelationship rdf:type owl:Class, gufo:Kind ;
     rdfs:comment "Legal or informal relationship involving custody, care, or supervision of a child. Modeled as gUFO Object with Kind typing for rigid identity criteria."@en ;
     rdfs:subClassOf uco-core:Relationship, cac-core:EnduringEntity .
 
-cacontology-custodial:PositionOfTrust rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:PositionOfTrust rdf:type owl:Class ;
     rdfs:label "Position of Trust"@en ;
     rdfs:comment "Role or position that grants special access to or authority over children. Modeled as anti-rigid gUFO Role with temporal participation."@en ;
     rdfs:subClassOf cac-core:Role .
@@ -74,47 +74,47 @@ cacontology-custodial:TemporaryCustody rdf:type owl:Class ;
 # =============================================================================
 
 # Base Authority Figure as gUFO Role
-cacontology-custodial:AuthorityFigure rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:AuthorityFigure rdf:type owl:Class ;
     rdfs:label "Authority Figure"@en ;
     rdfs:comment "Individual in position of authority, trust, or power over children. Modeled as anti-rigid gUFO Role with relational foundation."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-custodial:Guardian rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:Guardian rdf:type owl:Class ;
     rdfs:label "Guardian"@en ;
     rdfs:comment "Legal or appointed guardian responsible for child's welfare. Modeled as anti-rigid gUFO Role with legal authority."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .
 
-cacontology-custodial:Babysitter rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:Babysitter rdf:type owl:Class ;
     rdfs:label "Babysitter"@en ;
     rdfs:comment "Individual temporarily caring for children in parents' absence. Modeled as anti-rigid gUFO Role with temporary scope."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .
 
-cacontology-custodial:Relative rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:Relative rdf:type owl:Class ;
     rdfs:label "Relative"@en ;
     rdfs:comment "Family member in position of trust or authority over child. Modeled as anti-rigid gUFO Role with familial basis."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .
 
-cacontology-custodial:Teacher rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:Teacher rdf:type owl:Class ;
     rdfs:label "Teacher"@en ;
     rdfs:comment "Educational professional with authority over students. Modeled as anti-rigid gUFO Role with institutional authority."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .
 
-cacontology-custodial:Coach rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:Coach rdf:type owl:Class ;
     rdfs:label "Coach"@en ;
     rdfs:comment "Sports or activity coach with authority over young participants. Modeled as anti-rigid gUFO Role with activity-based authority."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .
 
-cacontology-custodial:Mentor rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:Mentor rdf:type owl:Class ;
     rdfs:label "Mentor"@en ;
     rdfs:comment "Adult mentor or role model with trusted relationship with child. Modeled as anti-rigid gUFO Role with developmental basis."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .
 
-cacontology-custodial:ChildcareProvider rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:ChildcareProvider rdf:type owl:Class ;
     rdfs:label "Childcare Provider"@en ;
     rdfs:comment "Professional childcare or daycare provider. Modeled as anti-rigid gUFO Role with professional care obligations."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .
 
-cacontology-custodial:FamilyFriend rdf:type owl:Class, gufo:Role ;
+cacontology-custodial:FamilyFriend rdf:type owl:Class ;
     rdfs:label "Family Friend"@en ;
     rdfs:comment "Friend of family with trusted access to children. Modeled as anti-rigid gUFO Role with social trust basis."@en ;
     rdfs:subClassOf cacontology-custodial:AuthorityFigure .

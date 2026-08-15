@@ -19,7 +19,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -109,17 +109,17 @@ cacontology-undercover:PlatformAccount rdf:type owl:Class ;
 # UNDERCOVER ROLE CLASSES (extending UCO Role with gUFO Role)
 # =============================================================================
 
-cacontology-undercover:UndercoverAgent rdf:type owl:Class, gufo:Role ;
+cacontology-undercover:UndercoverAgent rdf:type owl:Class ;
     rdfs:label "Undercover Agent"@en ;
     rdfs:comment "Law enforcement officer or authorized civilian operating under false identity in an investigation."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-undercover:OperationHandler rdf:type owl:Class, gufo:Role ;
+cacontology-undercover:OperationHandler rdf:type owl:Class ;
     rdfs:label "Operation Handler"@en ;
     rdfs:comment "Supervising officer responsible for managing undercover operations and agent safety."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-undercover:TechnicalSupport rdf:type owl:Class, gufo:Role ;
+cacontology-undercover:TechnicalSupport rdf:type owl:Class ;
     rdfs:label "Technical Support"@en ;
     rdfs:comment "Personnel providing technical infrastructure and monitoring for undercover operations."@en ;
     rdfs:subClassOf cac-core:Role .
@@ -997,4 +997,4 @@ cacontology-undercover:arrangedForMeeting rdf:type owl:ObjectProperty ;
     rdfs:label "arranged for meeting"@en ;
     rdfs:comment "Links a meeting location arrangement action to the meeting location."@en ;
     rdfs:domain cacontology-undercover:MeetingLocationArrangement ;
-    rdfs:range cacontology-undercover:MeetingLocation . 
+    rdfs:range cacontology-undercover:MeetingLocation .

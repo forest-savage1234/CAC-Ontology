@@ -88,5 +88,45 @@
     "inferred_delta": "tier entries no longer infer hierarchy-object, phase-occurrence, or phase-classifier identity",
     "fixture_ids": "CQ-05|CQ-06|M-T1",
     "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/production#Producer": {
+    "primary_level": "role-record",
+    "v4_action": "split",
+    "replacement_iri": "https://cacontology.projectvic.org/production#ProducerClassifier",
+    "migration_mode": "conditional",
+    "asserted_delta": "retain role-linked nodes as Producer records; move evidenced enduring bearer nodes to ProducerClassifier",
+    "inferred_delta": "records retain UCO role identity; bearer nodes gain person-like non-rigid classifier semantics without record identity",
+    "fixture_ids": "RQ-08|M-R3",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/production#ProductionVictim": {
+    "primary_level": "role-record",
+    "v4_action": "split",
+    "replacement_iri": "https://cacontology.projectvic.org/production#ProductionVictimClassifier",
+    "migration_mode": "conditional",
+    "asserted_delta": "retain role-linked nodes as ProductionVictim records; move evidenced enduring bearer nodes to ProductionVictimClassifier",
+    "inferred_delta": "records retain UCO role identity; bearer nodes gain person-like non-rigid classifier semantics without record identity",
+    "fixture_ids": "RQ-08|M-R3",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/production#ProducerClassifier": {
+    "primary_level": "role-classifier",
+    "v4_action": "add-term",
+    "replacement_iri": "",
+    "migration_mode": "conditional",
+    "asserted_delta": "new person-like gufo:Role classifier for evidenced producer bearers",
+    "inferred_delta": "classifier instances infer enduring person-like identity, not operational role-record identity",
+    "fixture_ids": "RQ-02|RQ-08|M-R3",
+    "reviewer_status": "reviewed"
+  },
+  "https://cacontology.projectvic.org/production#ProductionVictimClassifier": {
+    "primary_level": "role-classifier",
+    "v4_action": "add-term",
+    "replacement_iri": "",
+    "migration_mode": "conditional",
+    "asserted_delta": "new person-like gufo:Role classifier for evidenced production-victim bearers",
+    "inferred_delta": "classifier instances infer enduring person-like identity, not operational role-record identity",
+    "fixture_ids": "RQ-02|RQ-08|M-R3",
+    "reviewer_status": "reviewed"
   }
 }

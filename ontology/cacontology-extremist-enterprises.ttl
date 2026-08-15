@@ -43,13 +43,6 @@ cacontology-enterprises:ExtremistNetworkCell rdf:type gufo:SubKind .
 cacontology-enterprises:CyberExtremistNetwork rdf:type gufo:SubKind .
 
 # Enterprise Roles as Roles (anti-rigid relationally dependent)
-cacontology-enterprises:EnterpriseRole rdf:type gufo:Role .
-cacontology-enterprises:EnterpriseLeaderRole rdf:type gufo:Role .
-cacontology-enterprises:InnerCoreMemberRole rdf:type gufo:Role .
-cacontology-enterprises:ContentProducerRole rdf:type gufo:Role .
-cacontology-enterprises:RecruitmentSpecialistRole rdf:type gufo:Role .
-cacontology-enterprises:CoordinatorRole rdf:type gufo:Role .
-
 # Content and Artifacts as Kinds
 cacontology-enterprises:Lorebook rdf:type gufo:Kind .
 cacontology-enterprises:VictimContentCompilation rdf:type gufo:SubKind .

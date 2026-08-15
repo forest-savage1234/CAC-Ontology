@@ -20,7 +20,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -125,32 +125,32 @@ cacontology-taskforce:TrainingUnit rdf:type owl:Class ;
 # TASK FORCE MEMBER CLASSES (extending UCO Role with gUFO Role)
 # =============================================================================
 
-cacontology-taskforce:TaskForceMember rdf:type owl:Class, gufo:Role ;
+cacontology-taskforce:TaskForceMember rdf:type owl:Class ;
     rdfs:label "Task Force Member"@en ;
     rdfs:comment "Individual member of an CAC task force with specialized training."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-taskforce:TaskForceCommander rdf:type owl:Class, gufo:Role ;
+cacontology-taskforce:TaskForceCommander rdf:type owl:Class ;
     rdfs:label "Task Force Commander"@en ;
     rdfs:comment "Command-level officer responsible for task force operations."@en ;
     rdfs:subClassOf cacontology-taskforce:TaskForceMember .
 
-cacontology-taskforce:TaskForceCoordinator rdf:type owl:Class, gufo:Role ;
+cacontology-taskforce:TaskForceCoordinator rdf:type owl:Class ;
     rdfs:label "Task Force Coordinator"@en ;
     rdfs:comment "Coordinator responsible for inter-agency cooperation and resource management."@en ;
     rdfs:subClassOf cacontology-taskforce:TaskForceMember .
 
-cacontology-taskforce:TaskForceInvestigator rdf:type owl:Class, gufo:Role ;
+cacontology-taskforce:TaskForceInvestigator rdf:type owl:Class ;
     rdfs:label "Task Force Investigator"@en ;
     rdfs:comment "Investigator specializing in CAC cases and child exploitation."@en ;
     rdfs:subClassOf cacontology-taskforce:TaskForceMember .
 
-cacontology-taskforce:TaskForceAnalyst rdf:type owl:Class, gufo:Role ;
+cacontology-taskforce:TaskForceAnalyst rdf:type owl:Class ;
     rdfs:label "Task Force Analyst"@en ;
     rdfs:comment "Analyst specializing in CAC intelligence and data analysis."@en ;
     rdfs:subClassOf cacontology-taskforce:TaskForceMember .
 
-cacontology-taskforce:TaskForceForensicExaminer rdf:type owl:Class, gufo:Role ;
+cacontology-taskforce:TaskForceForensicExaminer rdf:type owl:Class ;
     rdfs:label "Task Force Forensic Examiner"@en ;
     rdfs:comment "Digital forensic examiner specializing in CAC evidence."@en ;
     rdfs:subClassOf cacontology-taskforce:TaskForceMember .
@@ -1139,4 +1139,4 @@ cacontology-taskforce:coordinatesWithCivilian rdf:type owl:ObjectProperty ;
     rdfs:domain cacontology-taskforce:MilitaryICACtaskForce ;
     rdfs:range cacontology-taskforce:ICACtaskForce ;
     rdfs:label "coordinates with civilian"@en ;
-    rdfs:comment "Links military task force to civilian task forces for coordination."@en . 
+    rdfs:comment "Links military task force to civilian task forces for coordination."@en .

@@ -20,7 +20,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -608,37 +608,37 @@ cacontology-legal-outcomes:publicLawCitation rdf:type owl:DatatypeProperty ;
 # =============================================================================
 
 # Legal System Roles as gUFO Roles (anti-rigid)
-cacontology-legal-outcomes:JudgeRole rdf:type owl:Class, gufo:Role ;
+cacontology-legal-outcomes:JudgeRole rdf:type owl:Class ;
     rdfs:label "Judge Role"@en ;
     rdfs:comment "Role of judge presiding over CAC legal proceedings. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-legal-outcomes:ProsecutorRole rdf:type owl:Class, gufo:Role ;
+cacontology-legal-outcomes:ProsecutorRole rdf:type owl:Class ;
     rdfs:label "Prosecutor Role"@en ;
     rdfs:comment "Role of prosecutor handling CAC criminal charges. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-legal-outcomes:DefenseAttorneyRole rdf:type owl:Class, gufo:Role ;
+cacontology-legal-outcomes:DefenseAttorneyRole rdf:type owl:Class ;
     rdfs:label "Defense Attorney Role"@en ;
     rdfs:comment "Role of defense attorney representing CAC defendants. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-legal-outcomes:DefendantRole rdf:type owl:Class, gufo:Role ;
+cacontology-legal-outcomes:DefendantRole rdf:type owl:Class ;
     rdfs:label "Defendant Role"@en ;
     rdfs:comment "Role of individual charged with CAC crimes. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-legal-outcomes:VictimRole rdf:type owl:Class, gufo:Role ;
+cacontology-legal-outcomes:VictimRole rdf:type owl:Class ;
     rdfs:label "Victim Role"@en ;
     rdfs:comment "Role of victim in CAC legal proceedings. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-legal-outcomes:JuryRole rdf:type owl:Class, gufo:Role ;
+cacontology-legal-outcomes:JuryRole rdf:type owl:Class ;
     rdfs:label "Jury Role"@en ;
     rdfs:comment "Role of jury members in CAC trial proceedings. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-legal-outcomes:ProbationOfficerRole rdf:type owl:Class, gufo:Role ;
+cacontology-legal-outcomes:ProbationOfficerRole rdf:type owl:Class ;
     rdfs:label "Probation Officer Role"@en ;
     rdfs:comment "Role of probation officer supervising CAC offenders. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .

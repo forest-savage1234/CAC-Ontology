@@ -210,20 +210,30 @@ cacontology-production:ControlledEnvironment rdf:type owl:Class ;
     rdfs:subClassOf cacontology-production:ProductionLocation .
 
 # =============================================================================
-# VICTIM RELATIONSHIP CLASSES (extending UCO Role with gUFO Role anti-rigid)
+# OPERATIONAL ROLE RECORDS AND BEARER CLASSIFIERS
 # =============================================================================
 
-cacontology-production:ProductionVictim rdf:type owl:Class, gufo:Role ;
+cacontology-production:ProductionVictim rdf:type owl:Class ;
     rdfs:label "Production Victim"@en ;
-    rdfs:comment "Child victim directly involved in production of sexual abuse material."@en ;
+    rdfs:comment "Operational role record documenting a child victim's involvement in production of sexual abuse material. Use ProductionVictimClassifier on the enduring bearer."@en ;
     rdfs:subClassOf uco-role:VictimRole , cac-core:Role .
 
-cacontology-production:Producer rdf:type owl:Class, gufo:Role ;
+cacontology-production:Producer rdf:type owl:Class ;
     rdfs:label "Producer"@en ;
-    rdfs:comment "Individual who creates, directs, or facilitates the production of child sexual abuse material."@en ;
+    rdfs:comment "Operational role record documenting that an individual creates, directs, or facilitates production of child sexual abuse material. Use ProducerClassifier on the enduring bearer."@en ;
     rdfs:subClassOf uco-role:OffenderRole , cac-core:Role .
 
-cacontology-production:ProductionFacilitator rdf:type owl:Class, gufo:Role ;
+cacontology-production:ProductionVictimClassifier rdf:type owl:Class, gufo:Role ;
+    rdfs:label "Production Victim Classifier"@en ;
+    rdfs:comment "Non-rigid bearer classifier for an enduring person victimized in a production context. This class is distinct from the operational ProductionVictim role record."@en ;
+    rdfs:subClassOf cac-core:PersonLikeEntity .
+
+cacontology-production:ProducerClassifier rdf:type owl:Class, gufo:Role ;
+    rdfs:label "Producer Classifier"@en ;
+    rdfs:comment "Non-rigid bearer classifier for an enduring person acting as a producer in a production context. This class is distinct from the operational Producer role record."@en ;
+    rdfs:subClassOf cac-core:PersonLikeEntity .
+
+cacontology-production:ProductionFacilitator rdf:type owl:Class ;
     rdfs:label "Production Facilitator"@en ;
     rdfs:comment "Individual who assists in or enables production activities without directly producing content."@en ;
     rdfs:subClassOf uco-role:OffenderRole , cac-core:Role .

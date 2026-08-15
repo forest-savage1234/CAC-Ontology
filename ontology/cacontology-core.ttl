@@ -162,27 +162,27 @@ cacontology:Sextortion rdf:type owl:Class ;
 # =============================================================================
 
 # CAC Roles as gUFO Roles (anti-rigid)
-cacontology:VictimRole rdf:type owl:Class, gufo:Role ;
+cacontology:VictimRole rdf:type owl:Class ;
     rdfs:label "Victim Role"@en ;
     rdfs:comment "Role of a person who is a victim of child sexual abuse or exploitation. Modeled as anti-rigid gUFO Role. When the victim's age is known at the time of a specific event or phase, it SHOULD be captured via one or more cacontology-temporal:AgeAtTimeSituation instances linked to the underlying person."@en ;
     rdfs:subClassOf cac-core:Role , uco-role:VictimRole .
 
-cacontology:OffenderRole rdf:type owl:Class, gufo:Role ;
+cacontology:OffenderRole rdf:type owl:Class ;
     rdfs:label "Offender Role"@en ;
     rdfs:comment "Role of a person who commits child sexual abuse or exploitation. Modeled as anti-rigid gUFO Role. When offender age or age-gap reasoning is relevant (e.g., Romeo-and-Juliet scenarios), age SHOULD be represented via cacontology-temporal:AgeAtTimeSituation instances for the corresponding person."@en ;
     rdfs:subClassOf cac-core:Role , uco-role:OffenderRole .
 
-cacontology:RescuerRole rdf:type owl:Class, gufo:Role ;
+cacontology:RescuerRole rdf:type owl:Class ;
     rdfs:label "Rescuer Role"@en ;
     rdfs:comment "Role of a person involved in rescuing or protecting victims (e.g., law enforcement, NGO worker). Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology:InvestigatorRole rdf:type owl:Class, gufo:Role ;
+cacontology:InvestigatorRole rdf:type owl:Class ;
     rdfs:label "Investigator Role"@en ;
     rdfs:comment "Role of law enforcement officer or analyst conducting CAC investigation. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology:AnalystRole rdf:type owl:Class, gufo:Role ;
+cacontology:AnalystRole rdf:type owl:Class ;
     rdfs:label "Analyst Role"@en ;
     rdfs:comment "Role of professional analyzing cybertips and digital evidence. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .

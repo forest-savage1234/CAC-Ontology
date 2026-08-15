@@ -21,7 +21,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
@@ -251,22 +251,22 @@ cacontology-detection:FalsePositiveManagementSituation rdf:type owl:Class ;
 # =============================================================================
 
 # Detection Process Roles as gUFO Roles (anti-rigid)
-cacontology-detection:ContentAnalystRole rdf:type owl:Class, gufo:Role ;
+cacontology-detection:ContentAnalystRole rdf:type owl:Class ;
     rdfs:label "Content Analyst Role"@en ;
     rdfs:comment "Role of professional analyzing flagged content for classification. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-detection:HashAnalystRole rdf:type owl:Class, gufo:Role ;
+cacontology-detection:HashAnalystRole rdf:type owl:Class ;
     rdfs:label "Hash Analyst Role"@en ;
     rdfs:comment "Role of specialist working with hash databases and matching systems. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-detection:MachineLearningSpecialistRole rdf:type owl:Class, gufo:Role ;
+cacontology-detection:MachineLearningSpecialistRole rdf:type owl:Class ;
     rdfs:label "Machine Learning Specialist Role"@en ;
     rdfs:comment "Role of specialist developing and maintaining ML detection systems. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-detection:QualityAssuranceAnalystRole rdf:type owl:Class, gufo:Role ;
+cacontology-detection:QualityAssuranceAnalystRole rdf:type owl:Class ;
     rdfs:label "Quality Assurance Analyst Role"@en ;
     rdfs:comment "Role focused on validating detection accuracy and managing quality metrics. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
@@ -499,4 +499,4 @@ cacontology-detection:generatedHash rdf:type owl:ObjectProperty ;
     rdfs:label "generated hash"@en ;
     rdfs:comment "Links a hashing action to the hash that was generated."@en ;
     rdfs:domain cacontology-detection:ContentHashingAction ;
-    rdfs:range uco-types:Hash . 
+    rdfs:range uco-types:Hash .

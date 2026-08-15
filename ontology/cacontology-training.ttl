@@ -17,7 +17,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/training/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://cacontology.projectvic.org/core/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> .
 
@@ -179,27 +179,27 @@ cacontology-training:ProfessionalDevelopment rdf:type owl:Class ;
 # =============================================================================
 
 # Training Roles as gUFO Roles (anti-rigid)
-cacontology-training:InternationalTrainer rdf:type owl:Class, gufo:Role ;
+cacontology-training:InternationalTrainer rdf:type owl:Class ;
     rdfs:subClassOf cac-core:Role ;
     rdfs:label "International Trainer"@en ;
     rdfs:comment "Trainer delivering international training programs. Modeled as anti-rigid gUFO Role."@en .
 
-cacontology-training:TrainingCoordinator rdf:type owl:Class, gufo:Role ;
+cacontology-training:TrainingCoordinator rdf:type owl:Class ;
     rdfs:subClassOf cac-core:Role ;
     rdfs:label "Training Coordinator"@en ;
     rdfs:comment "Coordinator responsible for organizing training programs. Modeled as anti-rigid gUFO Role."@en .
 
-cacontology-training:SubjectMatterExpert rdf:type owl:Class, gufo:Role ;
+cacontology-training:SubjectMatterExpert rdf:type owl:Class ;
     rdfs:subClassOf cac-core:Role ;
     rdfs:label "Subject Matter Expert"@en ;
     rdfs:comment "Expert providing specialized knowledge in training. Modeled as anti-rigid gUFO Role."@en .
 
-cacontology-training:TrainingParticipant rdf:type owl:Class, gufo:Role ;
+cacontology-training:TrainingParticipant rdf:type owl:Class ;
     rdfs:subClassOf cac-core:Role ;
     rdfs:label "Training Participant"@en ;
     rdfs:comment "Professional participating in training programs. Modeled as anti-rigid gUFO Role."@en .
 
-cacontology-training:CertifiedProfessional rdf:type owl:Class, gufo:Role ;
+cacontology-training:CertifiedProfessional rdf:type owl:Class ;
     rdfs:subClassOf cac-core:Role ;
     rdfs:label "Certified Professional"@en ;
     rdfs:comment "Professional who has achieved certification. Modeled as anti-rigid gUFO Role."@en .
@@ -527,4 +527,4 @@ cacontology-training:improvesProficiency rdf:type owl:ObjectProperty ;
     rdfs:domain cacontology-training:InternationalTraining ;
     rdfs:range uco-core:UcoObject ;
     rdfs:label "improves proficiency"@en ;
-    rdfs:comment "Area of proficiency improved by training."@en . 
+    rdfs:comment "Area of proficiency improved by training."@en .

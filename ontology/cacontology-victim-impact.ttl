@@ -22,7 +22,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-12-19"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/identity/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
@@ -247,27 +247,27 @@ cacontology-impact:ResilienceFactors rdf:type owl:Class ;
 # VICTIM ROLES (gUFO Role anti-rigid modeling)
 # =============================================================================
 
-cacontology-impact:TraumatizedVictim rdf:type owl:Class, gufo:Role ;
+cacontology-impact:TraumatizedVictim rdf:type owl:Class ;
     rdfs:label "Traumatized Victim"@en ;
     rdfs:comment "Role of a child victim experiencing psychological trauma. Where age at time of victimization or at time of assessment is analytically relevant, that age SHOULD be expressed via cacontology-temporal:AgeAtTimeSituation rather than ad-hoc age literals."@en ;
     rdfs:subClassOf uco-role:VictimRole , cac-core:Role .
 
-cacontology-impact:VictimInRecovery rdf:type owl:Class, gufo:Role ;
+cacontology-impact:VictimInRecovery rdf:type owl:Class ;
     rdfs:label "Victim in Recovery"@en ;
     rdfs:comment "Role of a victim actively engaged in recovery process."@en ;
     rdfs:subClassOf uco-role:VictimRole , cac-core:Role .
 
-cacontology-impact:TherapyParticipant rdf:type owl:Class, gufo:Role ;
+cacontology-impact:TherapyParticipant rdf:type owl:Class ;
     rdfs:label "Therapy Participant"@en ;
     rdfs:comment "Role of victim participating in therapeutic interventions."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-impact:VictimAdvocateRole rdf:type owl:Class, gufo:Role ;
+cacontology-impact:VictimAdvocateRole rdf:type owl:Class ;
     rdfs:label "Victim Advocate Role"@en ;
     rdfs:comment "Role of professional providing advocacy support to victims."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-impact:TherapistRole rdf:type owl:Class, gufo:Role ;
+cacontology-impact:TherapistRole rdf:type owl:Class ;
     rdfs:label "Therapist Role"@en ;
     rdfs:comment "Role of mental health professional providing therapeutic services."@en ;
     rdfs:subClassOf cac-core:Role .

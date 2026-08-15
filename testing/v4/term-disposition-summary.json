@@ -1,7 +1,7 @@
 {
-  "pending": 267,
+  "pending": 154,
   "policy": "A pending or ambiguous row is not authorized for semantic edit.",
-  "reviewed": 30,
-  "rows": 297,
+  "reviewed": 145,
+  "rows": 299,
   "schema_version": 1
 }

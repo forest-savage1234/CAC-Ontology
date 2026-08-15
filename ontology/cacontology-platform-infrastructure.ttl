@@ -221,22 +221,22 @@ cacontology-infrastructure:InfrastructureDecommissionPhase rdf:type owl:Class ;
 # TECHNICAL ROLES (gUFO Role - Anti-Rigid)
 # =============================================================================
 
-cacontology-infrastructure:SystemAdministratorRole rdf:type owl:Class, gufo:Role ;
+cacontology-infrastructure:SystemAdministratorRole rdf:type owl:Class ;
     rdfs:label "System Administrator Role"@en ;
     rdfs:comment "Role of person responsible for infrastructure system administration (gUFO Role - anti-rigid)."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-infrastructure:SecurityOperatorRole rdf:type owl:Class, gufo:Role ;
+cacontology-infrastructure:SecurityOperatorRole rdf:type owl:Class ;
     rdfs:label "Security Operator Role"@en ;
     rdfs:comment "Role of person managing security infrastructure and operations (gUFO Role - anti-rigid)."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-infrastructure:AnalystRole rdf:type owl:Class, gufo:Role ;
+cacontology-infrastructure:AnalystRole rdf:type owl:Class ;
     rdfs:label "Analyst Role"@en ;
     rdfs:comment "Role of person conducting infrastructure analysis (gUFO Role - anti-rigid)."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-infrastructure:TakedownOperatorRole rdf:type owl:Class, gufo:Role ;
+cacontology-infrastructure:TakedownOperatorRole rdf:type owl:Class ;
     rdfs:label "Takedown Operator Role"@en ;
     rdfs:comment "Role of law enforcement personnel conducting takedown operations (gUFO Role - anti-rigid)."@en ;
     rdfs:subClassOf cac-core:Role .

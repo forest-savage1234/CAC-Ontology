@@ -22,7 +22,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/law-enforcement-corruption/3.1.0> ;
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <http://purl.org/nemo/gufo#/1.0.0> ,
                 <https://cacontology.projectvic.org/core/3.1.0> .
 
@@ -73,7 +73,7 @@ cacontology-corruption:OfficerChildTrafficking rdf:type owl:Class ;
 cacontology-corruption:CorruptLawEnforcementOfficer rdf:type owl:Class ;
     rdfs:label "Corrupt Law Enforcement Officer"@en ;
     rdfs:comment "Law enforcement officer engaged in child exploitation activities."@en ;
-    rdfs:subClassOf uco-role:Role , cac-core:Role ;
+    rdfs:subClassOf cac-core:PersonLikeEntity ;
     rdf:type gufo:Role .
 
 cacontology-corruption:CorruptStateTrooper rdf:type owl:Class ;
@@ -515,4 +515,4 @@ cacontology-corruption:concernsCorruptOfficer rdf:type owl:ObjectProperty ;
     rdfs:label "concerns corrupt officer"@en ;
     rdfs:comment "Links corruption situations to the officers involved - gUFO qualified relation."@en ;
     rdfs:domain gufo:ParticipationSituation ;
-    rdfs:range cacontology-corruption:CorruptLawEnforcementOfficer . 
+    rdfs:range cacontology-corruption:CorruptLawEnforcementOfficer .

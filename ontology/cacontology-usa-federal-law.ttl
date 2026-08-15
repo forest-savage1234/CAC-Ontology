@@ -60,13 +60,6 @@ cacontology-usa-federal:ObscenityTransportation rdf:type gufo:EventType .
 cacontology-usa-federal:ObscenityImportation rdf:type gufo:EventType .
 cacontology-usa-federal:OnlineObscenityDistribution rdf:type gufo:EventType .
 
-# Federal Law Enforcement Roles as Roles (anti-rigid relationally dependent)
-cacontology-usa-federal:FederalProsecutorRole rdf:type gufo:Role .
-cacontology-usa-federal:CEOSAttorneyRole rdf:type gufo:Role .
-cacontology-usa-federal:FederalInvestigatorRole rdf:type gufo:Role .
-cacontology-usa-federal:FederalDefendantRole rdf:type gufo:Role .
-cacontology-usa-federal:FederalVictimRole rdf:type gufo:Role .
-
 # Situational Contexts as Situations
 cacontology-usa-federal:ChildSupportExploitationLink rdf:type gufo:SituationType .
 cacontology-usa-federal:FinancialControlPattern rdf:type gufo:SituationType .
@@ -329,28 +322,28 @@ cacontology-usa-federal:OnlineObscenityDistribution rdf:type owl:Class ;
 # =============================================================================
 
 # Federal Law Enforcement Roles as gUFO Roles (anti-rigid)
-cacontology-usa-federal:FederalProsecutorRole rdf:type owl:Class, gufo:Role ;
+cacontology-usa-federal:FederalProsecutorRole rdf:type owl:Class ;
     rdfs:label "Federal Prosecutor Role"@en ;
     rdfs:comment "Role of federal prosecutor handling child exploitation cases. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-usa-federal:CEOSAttorneyRole rdf:type owl:Class, gufo:Role ;
+cacontology-usa-federal:CEOSAttorneyRole rdf:type owl:Class ;
     rdfs:label "CEOS Attorney Role"@en ;
     rdfs:comment "Role of DOJ CEOS attorney specializing in child exploitation prosecution. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cacontology-usa-federal:FederalProsecutorRole .
 
-cacontology-usa-federal:FederalInvestigatorRole rdf:type owl:Class, gufo:Role ;
+cacontology-usa-federal:FederalInvestigatorRole rdf:type owl:Class ;
     rdfs:label "Federal Investigator Role"@en ;
     rdfs:comment "Role of federal investigator (FBI, ICE, etc.) investigating child exploitation. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role .
 
-cacontology-usa-federal:FederalDefendantRole rdf:type owl:Class, gufo:Role ;
+cacontology-usa-federal:FederalDefendantRole rdf:type owl:Class ;
     rdfs:label "Federal Defendant Role"@en ;
     rdfs:comment "Role of individual charged in federal child exploitation case. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role ;
     owl:equivalentClass cacontology-usa-federal:FederalDefendantRole .
 
-cacontology-usa-federal:FederalVictimRole rdf:type owl:Class, gufo:Role ;
+cacontology-usa-federal:FederalVictimRole rdf:type owl:Class ;
     rdfs:label "Federal Victim Role"@en ;
     rdfs:comment "Role of victim in federal child exploitation prosecution. Modeled as anti-rigid gUFO Role."@en ;
     rdfs:subClassOf cac-core:Role ;

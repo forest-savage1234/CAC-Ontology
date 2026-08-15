@@ -18,7 +18,7 @@
     owl:versionIRI <https://cacontology.projectvic.org/investigation-coordination/3.1.0> ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2025-01-27"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:versionInfo "3.1.0" ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0> ,
                 <https://ontology.caseontology.org/case/case/1.5.0> ,
@@ -263,44 +263,37 @@ cacontology-coord:JointOperationsPlan rdf:type owl:Class ;
 cacontology-coord:LiaisonOfficer rdf:type owl:Class ;
     rdfs:label "Liaison Officer"@en ;
     rdfs:comment "Designated officer responsible for maintaining communication and coordination between agencies."@en ;
-    rdfs:subClassOf uco-role:Role , cac-core:Role ;
-    rdf:type gufo:Role .
+    rdfs:subClassOf uco-role:Role , cac-core:Role .
 
 cacontology-coord:PrimaryLiaison rdf:type owl:Class ;
     rdfs:label "Primary Liaison"@en ;
     rdfs:comment "Primary liaison officer with full authority for inter-agency communication and coordination."@en ;
-    rdfs:subClassOf cacontology-coord:LiaisonOfficer ;
-    rdf:type gufo:Role .
+    rdfs:subClassOf cacontology-coord:LiaisonOfficer .
 
 cacontology-coord:SecondaryLiaison rdf:type owl:Class ;
     rdfs:label "Secondary Liaison"@en ;
     rdfs:comment "Secondary liaison officer providing backup and specialized coordination support."@en ;
-    rdfs:subClassOf cacontology-coord:LiaisonOfficer ;
-    rdf:type gufo:Role .
+    rdfs:subClassOf cacontology-coord:LiaisonOfficer .
 
 cacontology-coord:TechnicalLiaison rdf:type owl:Class ;
     rdfs:label "Technical Liaison"@en ;
     rdfs:comment "Technical liaison officer specializing in technical coordination and information sharing."@en ;
-    rdfs:subClassOf cacontology-coord:LiaisonOfficer ;
-    rdf:type gufo:Role .
+    rdfs:subClassOf cacontology-coord:LiaisonOfficer .
 
 cacontology-coord:LegalLiaison rdf:type owl:Class ;
     rdfs:label "Legal Liaison"@en ;
     rdfs:comment "Legal liaison officer handling legal aspects of inter-agency coordination and agreements."@en ;
-    rdfs:subClassOf cacontology-coord:LiaisonOfficer ;
-    rdf:type gufo:Role .
+    rdfs:subClassOf cacontology-coord:LiaisonOfficer .
 
 cacontology-coord:IntelligenceLiaison rdf:type owl:Class ;
     rdfs:label "Intelligence Liaison"@en ;
     rdfs:comment "Intelligence liaison officer managing intelligence sharing and coordination activities."@en ;
-    rdfs:subClassOf cacontology-coord:LiaisonOfficer ;
-    rdf:type gufo:Role .
+    rdfs:subClassOf cacontology-coord:LiaisonOfficer .
 
 cacontology-coord:OperationalLiaison rdf:type owl:Class ;
     rdfs:label "Operational Liaison"@en ;
     rdfs:comment "Operational liaison officer coordinating operational activities and tactical coordination."@en ;
-    rdfs:subClassOf cacontology-coord:LiaisonOfficer ;
-    rdf:type gufo:Role .
+    rdfs:subClassOf cacontology-coord:LiaisonOfficer .
 
 # =============================================================================
 # METRICS AND PERFORMANCE CLASSES (gUFO: Object)
@@ -1090,4 +1083,4 @@ cacontology-coord:concernsTemporaryPart rdf:type owl:ObjectProperty ;
     rdfs:label "concerns temporary part"@en ;
     rdfs:comment "Links part-whole situations to the part entity - gUFO qualified relation."@en ;
     rdfs:domain gufo:TemporaryParthoodSituation ;
-    rdfs:range [ owl:unionOf ( uco-identity:Organization case-investigation:Investigation ) ] . 
+    rdfs:range [ owl:unionOf ( uco-identity:Organization case-investigation:Investigation ) ] .
