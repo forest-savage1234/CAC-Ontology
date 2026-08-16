@@ -1,59 +1,68 @@
-# CAC v4 Foundational Proposal — Gate 4 Review
+# CAC v4 Foundational Proposal — Gate 4.1 Implementation Review
 
-**Recommendation:** **HOLD the strict release gate; retain the candidate for remediation and maintainer review. The candidate is published only as a draft in the contributor's personal fork.**
+**Recommendation:** **Advance the local candidate to Gate 4.2 publication review, while retaining HOLD on any v4.0.0 release claim.**
 
-Gate 4 is now executed against the exact UCO gUFO Profile revision and a content-addressed runtime import closure. The candidate's bounded architecture is coherent in all gated diagnostic configurations, but the unmodified full import closure does not satisfy the normative OWL 2 DL gate. This is a foundational proposal under issue #44, not a v4.0.0 release artifact.
+Gate 4.1 is complete on the dedicated issue-44 proposal branch. All accepted first-party semantic, datatype, and vocabulary policies are implemented and regression-controlled. The unmodified full-import closure still does not satisfy the normative OWL 2 DL gate, but the recognized C3/C5 remainder is now entirely attributable to pinned upstream dependencies. This is a reviewable foundational proposal, not a release artifact.
+
+No GitHub mutation occurred during Gate 4.1.
 
 ## Source identity
 
 | Item | Value |
 |---|---|
 | Frozen base | `93de063951b758dd68a27611638c177fcf910eab` (`v3.1.0`) |
-| Clean evidence candidate | `129fc1f1efe772e8eac5a2a9be4c819d5f7af49a` |
-| Candidate tree | `96a78e3dbacc941936111a8f7ce5b61311508c64` |
-| Local commits from base | 19 |
-| Missing DCO sign-offs | 0 |
-| Tracked source dirty during evidence run | No |
-| Detection-shape file changed | No |
-| GitHub publication | Contributor-fork draft only; no upstream mutation |
+| Sealed source candidate | `b5a14aa1d8d28403ef200203a698d423879d166b` |
+| Candidate tree | `3cb21428b326b340de02a3b2d387fa207cecd4e9` |
+| Branch | `proposal/issue-44-v4-foundational-architecture` |
+| Local commits added by Gate 4.1 | 2, both DCO-signed |
+| Pre-existing unsigned commits reported by the manifest | 3 |
+| Tracked source dirty during final evidence run | No |
+| GitHub publication | Not authorized; branch remains local and ahead of the fork |
 
-## Evidence outcome
+## Gate 4.1 acceptance outcome
 
-| Configuration/layer | Result | Meaning |
-|---|---|---|
-| C1 frozen v3.1 asserted baseline | Observed: 148 findings | Preserved baseline evidence, not a v4 failure |
-| C2 v3.1 + exact profile | Asserted: 263; RDFS: 271 findings | Baseline overlay demonstrates the pre-v4 incompatibility |
-| C3 v4 architecture | Asserted/RDFS pass: 0 findings | Proposed architecture satisfies the bounded diagnostics |
-| C4 v4 + exact profile | Asserted/RDFS pass: 0 findings | Exact profile overlay does not restore the diagnosed level conflicts |
-| C5 v4 + bounded compatibility | Asserted/RDFS pass: 0 findings | Compatibility axioms do not restore the diagnosed conflation |
-| Executable unit/fixture tests | Pass: 62/62 | Original Gate 4 controls plus REM-014 decomposition, ownership-priority, and repair regressions pass |
-| Embedded SHACL SPARQL | 459 audited; 0 proposal failures | Seven failures remain isolated to the untouched detection shapes owned by PR #48 |
-| Dependency closure | Pass: 75/75 imports resolved | 48 local and 27 vendored resolutions; zero unresolved imports |
-| Dependency Turtle syntax | Pass: 27/27 locked Turtle artifacts | Every content-addressed Turtle artifact in the runtime closure parses |
-| Exact profile OWL/RDF structures | Fail upstream: 8 findings | Four malformed negative assertions and four malformed reified axioms block OWLAPI |
-| HermiT diagnostic projections | Pass: C3, C4, C5 | No remaining named-class/property incoherence in the bounded projections |
-| Strict full-closure OWL 2 DL | Fail: C3, C4, C5 | Normative gate remains unsatisfied |
+| Control | Result |
+|---|---|
+| C3 architecture, asserted/RDFS | Pass/pass; 0 findings |
+| C4 architecture, asserted/RDFS | Pass/pass; 0 findings |
+| C5 architecture, asserted/RDFS | Pass/pass; 0 findings |
+| Executable tests | Pass; 89/89 |
+| Import closure | Pass; 75/75 resolved, 0 remote gaps |
+| Locked Turtle dependencies | Pass; 28/28 parse |
+| Proposal-owned SHACL SPARQL syntax | Pass; 0 failures |
+| Diagnostic HermiT projections | Pass for C3, C4, and C5 |
+| C3 strict profile | 6,116 findings: 0 CAC, 0 shared, 6,116 upstream |
+| C5 strict profile | 6,116 findings: 0 CAC, 0 shared, 6,116 upstream |
+| C4 strict ingestion | Upstream failure before classification due to malformed exact-profile RDF structures |
+| Normative full-import OWL 2 DL | HOLD; upstream/tool-route blockers remain |
 
-## Gate 4 repairs completed locally
+## Implemented policy surface
 
-- Vendored and hashed the exact UCO gUFO Profile and its runtime dependency closure, including exact UCO, CDO-Shapes-gufo, Collections, SPAR Error, CASE, and W3C SHACL artifacts.
-- Added pinned Java 21 and ROBOT 1.9.10 runtime evidence and deterministic strict-profile report compression.
-- Corrected five CAC bridge metadata records that were malformed as incomplete `owl:Axiom` resources.
-- Removed the UCO object/inherent-characterization contradiction from the CAC perceptual-hash classes.
-- Corrected property alignments whose domains, ranges, or inverse direction forced bottom properties under the profile.
-- Corrected 28 exact-profile class-category collisions across hotline, evidence, production, taskforce, and victim-impact branches.
-- Added regression controls for hash categories, OWLAPI structures, profile category compatibility, and property coherence.
+1. Applied all twenty reviewed semantic mapping families, including event/role direction, qualified participation, lifecycle, record/classifier, service/device/call, norm/artifact, planning-artifact, phone-account/facet, and temporal-ordering corrections.
+2. Replaced unsupported normative `xsd:duration` and `xsd:gYear` usage with the approved lexical-string and integer-year policies while preserving all fourteen existing duration values exactly.
+3. Added positive and negative SHACL fixtures for datatype behavior and structured phone-account traces.
+4. Added bounded SKOS/DCMI declarations with content-addressed authoritative snapshots; no uncontrolled full standards import was introduced.
+5. Centralized the six CAC design-note predicates as annotation properties and removed literal-valued `skos:exactMatch` assertions.
+6. Regenerated the dependency lock, architecture reports, strict-profile reports, REM-014 decomposition, and complete regression transcript.
 
-## Strict blockers preserved for remediation
+## Measured REM-014 result
 
-1. REM-014 established true C3/C5 baselines of 6,947 and 6,949 recognized ROBOT violation headers; the earlier 7,287/7,289 figures counted multiline report text. Three bounded repair slices removed 113 CAC-owned violations: 21 single-operand equivalence findings, all 25 class-as-datatype findings, all 27 CAC property-punning findings, 34 coupled declaration findings, and all six C3 reserved-`owl:Class` domain/range findings. Current totals are 6,834/6,836; the two remaining property-punning findings belong to pinned UCO and the two C5 reserved-vocabulary findings belong to the compatibility layer. The remaining findings are decomposed in `rem-014-decomposition.*`; strict OWL 2 DL conformance is not yet claimed.
-2. The exact UCO gUFO Profile contains eight malformed OWL/RDF structures. These cause the C4 strict profile and HermiT routes to fail before logical classification.
-3. The pinned UCO profile makes `uco-action:phase` a subproperty of `uco-action:subaction` while their inherited range categories are disjoint, producing an upstream bottom-property condition.
-4. The pinned Collections ontology contains SWRL built-in atoms unsupported by the selected HermiT execution route, blocking strict C3/C5 classification through that route.
-5. The seven detection-shape SPARQL findings remain external to this branch and require PR #48 integration or maintainer disposition.
+- C3 moved from 6,947 to 6,116 recognized findings: **831 removed**.
+- C5 moved from 6,949 to 6,116 recognized findings: **833 removed**.
+- C3 CAC-owned findings moved from 812 to **0**.
+- C3 shared/header findings moved from 19 to **0**.
+- The 6,116 upstream-owned findings did not change.
+- C3 and C5 now have exact parity; the compatibility artifact adds no strict-profile finding.
 
-The diagnostic projection removes only explicitly inventoried upstream/tooling blockers to isolate logical root causes. Its pass is evidence that the repaired CAC candidate is coherent under that bounded projection; it is not a substitute for the strict gate.
+## Preserved boundaries and residual risks
 
-## Gate decision
+- The exact pinned dependency bytes were not edited.
+- C3/C5 HermiT strict reasoning still encounters imported SWRL built-ins unsupported by the pinned route.
+- The exact profile still contains malformed OWL/RDF structures that block C4 OWLAPI ingestion.
+- Diagnostic projections demonstrate bounded CAC coherence but are not represented as normative full-import conformance.
+- PR #48 and issue/PR #46 remain outside this Gate 4.1 change.
+- The exhaustive post-v4 remediation charter remains active for upstream coordination, tooling alternatives, documentation, and future findings.
 
-Gate 4 is **complete as an evaluation** and **HOLD as a release decision**. The candidate, dependency closure, tests, reasoner results, and remediation records are ready for continued work. Later authorization permitted publication as a draft in the contributor's personal fork; Project VIC's upstream repository remains untouched.
+## Gate 4.2 boundary
+
+Gate 4.1 authorizes this review packet only. Gate 4.2 must separately decide whether to push the local commits to `forest-savage1234/CAC-Ontology`, publish/update the dedicated issue-44 proposal branch, and prepare a draft PR. Gate 4.2 must not authorize a release claim, merge, tag, or modification of PR #48 unless those actions are separately and explicitly approved.

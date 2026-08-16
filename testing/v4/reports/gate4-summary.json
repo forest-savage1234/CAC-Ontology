@@ -23,25 +23,25 @@
       "asserted": {
         "diagnostic_findings": 0,
         "status": "pass",
-        "triples": 23972
+        "triples": 24049
       },
       "rdfs": {
         "diagnostic_findings": 0,
         "status": "pass",
-        "triples": 47012
+        "triples": 47376
       }
     },
     "C4": {
       "asserted": {
         "diagnostic_findings": 0,
         "status": "pass",
-        "triples": 24180
+        "triples": 24257
       },
       "gate": true,
       "rdfs": {
         "diagnostic_findings": 0,
         "status": "pass",
-        "triples": 48302
+        "triples": 48742
       },
       "scope_note": "Exact profile ontology applied to the candidate; imported submodule closure is not included."
     },
@@ -49,12 +49,12 @@
       "asserted": {
         "diagnostic_findings": 0,
         "status": "pass",
-        "triples": 23988
+        "triples": 24065
       },
       "rdfs": {
         "diagnostic_findings": 0,
         "status": "pass",
-        "triples": 47038
+        "triples": 47403
       }
     }
   },
@@ -68,7 +68,7 @@
     "resolved_local": 48,
     "resolved_vendored": 27,
     "turtle_syntax": {
-      "files_audited": 27,
+      "files_audited": 28,
       "finding_count": 0,
       "report": "testing/v4/reports/dependency-turtle-syntax.json",
       "status": "pass"
@@ -250,10 +250,10 @@
   },
   "gate4_recommendation": {
     "github_mutation_authorized": false,
-    "reason": "CAC-only and exact-profile diagnostic projections are coherent, but the unmodified full import closure fails the normative OWL 2 DL gate: profile violations span CAC and pinned dependencies, exact upstream profile RDF structures are malformed, and imported SWRL built-ins are unsupported by HermiT.",
+    "reason": "CAC-only and exact-profile diagnostic projections are coherent, and recognized C3/C5 profile violations are now entirely upstream-owned. The unmodified full import closure still fails the normative OWL 2 DL gate because the exact upstream profile contains malformed RDF structures and imported SWRL built-ins are unsupported by HermiT.",
     "status": "hold"
   },
-  "generated_at": "2026-08-15T22:56:57.088987+00:00",
+  "generated_at": "2026-08-16T02:30:36.147470+00:00",
   "owl_2_dl": {
     "claim": "The non-normative diagnostic projections are coherent under HermiT, but they do not satisfy the full-import OWL 2 DL gate.",
     "diagnostic_projection_status": "pass",
@@ -270,24 +270,18 @@
   "source": {
     "base_commit": "93de063951b758dd68a27611638c177fcf910eab",
     "branch": "proposal/issue-44-v4-foundational-architecture",
-    "candidate_commit": "b92a830e8e4d3ce875b70c7292392a76eb756717",
-    "candidate_tree": "dddc7376b82dea37f9164da1a55f89905df21bc0",
-    "changed_paths": 209,
-    "commits": 26,
+    "candidate_commit": "b5a14aa1d8d28403ef200203a698d423879d166b",
+    "candidate_tree": "3cb21428b326b340de02a3b2d387fa207cecd4e9",
+    "changed_paths": 245,
+    "commits": 29,
     "detection_shapes_changed": true,
-    "tracked_dirty": true,
+    "tracked_dirty": false,
     "tracked_evidence_dirty": true,
-    "tracked_source_changes": [
-      "M ontology/cacontology-hotlines-shapes.ttl",
-      " M ontology/cacontology-hotlines.ttl",
-      " M ontology/cacontology-legal-harmonization.ttl",
-      " M testing/v4/dependency-lock.json",
-      " M testing/v4/test_rem014_decomposition.py",
-      " M testing/v4/test_rem014_external_references.py"
-    ],
+    "tracked_source_changes": [],
     "unsigned_commits": [
       "f1e5246c74f6678d659141044ee082acfdfbd96c",
-      "b92a830e8e4d3ce875b70c7292392a76eb756717"
+      "b92a830e8e4d3ce875b70c7292392a76eb756717",
+      "d989276f969953bab6b2e3eb1cbb737ec0c22604"
     ]
   },
   "term_dispositions": {
@@ -300,6 +294,6 @@
   "tests": {
     "return_code": 0,
     "status": "pass",
-    "tests_run": 70
+    "tests_run": 89
   }
 }

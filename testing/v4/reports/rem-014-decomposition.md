@@ -4,32 +4,25 @@ The earlier 7,287/7,289 figures were non-empty line counts. Multiline SPARQL ann
 
 - C3 REM-014 baseline: **6,947**
 - C5 REM-014 baseline: **6,949**
-- C3 actual violations: **6,705**
-- C5 actual violations: **6,707**
-- C3 reduction from baseline: **-242**
-- C5 reduction from baseline: **-242**
-- C5 compatibility delta: **+2**
+- C3 actual violations: **6,116**
+- C5 actual violations: **6,116**
+- C3 reduction from baseline: **-831**
+- C5 reduction from baseline: **-833**
+- C5 compatibility delta: **+0**
 
 ## Ownership
 
 | Owner | C3 occurrences |
 |---|---:|
-| cac | 570 |
-| shared-or-unattributed | 19 |
 | upstream | 6,116 |
 
 ## Prioritized remediation units
 
 | Priority | Root cause | Scope | CAC occurrences | Total occurrences | Unique IRIs | Score |
 |---:|---|---|---:|---:|---:|---:|
-| 1 | invalid-or-version-mismatched-external-reference | cac-actionable | 64 | 64 | 20 | 30 |
-| 2 | unsupported-xsd-datatype-policy | cac-actionable | 68 | 68 | 2 | 21 |
-| 3 | unsupported-defined-datatype-literal | cac-actionable | 14 | 14 | 1 | 21 |
-| 4 | unimported-shared-vocabulary | cac-actionable | 31 | 31 | 2 | 18 |
-| 5 | annotation-vocabulary-not-declared-for-owlapi | cac-actionable | 393 | 412 | 19 | 15 |
-| 6 | embedded-shacl-vocabulary-not-declared-for-owlapi | external | 0 | 5,537 | 26 | 0 |
-| 7 | missing-or-invalid-upstream-declaration | external | 0 | 577 | 6 | 0 |
-| 8 | property-kind-punning | external | 0 | 2 | 1 | 0 |
+| 1 | embedded-shacl-vocabulary-not-declared-for-owlapi | external | 0 | 5,537 | 26 | 0 |
+| 2 | missing-or-invalid-upstream-declaration | external | 0 | 577 | 6 | 0 |
+| 3 | property-kind-punning | external | 0 | 2 | 1 | 0 |
 
 ## Interpretation boundary
 

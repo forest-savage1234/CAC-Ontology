@@ -9,7 +9,7 @@
       "error_type": "ParseException",
       "file": "cacontology-detection-shapes.ttl",
       "ordinal": 5,
-      "owner": "n5c40116dce894ad99d65fc23ee1c6931b36",
+      "owner": "na4e15475436a4ebab4720e6c39d6e47ab36",
       "query_type": "select"
     },
     {
@@ -17,7 +17,7 @@
       "error_type": "ParseException",
       "file": "cacontology-detection-shapes.ttl",
       "ordinal": 7,
-      "owner": "n5c40116dce894ad99d65fc23ee1c6931b64",
+      "owner": "na4e15475436a4ebab4720e6c39d6e47ab64",
       "query_type": "select"
     },
     {
@@ -25,7 +25,7 @@
       "error_type": "ParseException",
       "file": "cacontology-detection-shapes.ttl",
       "ordinal": 9,
-      "owner": "n5c40116dce894ad99d65fc23ee1c6931b71",
+      "owner": "na4e15475436a4ebab4720e6c39d6e47ab71",
       "query_type": "select"
     },
     {
@@ -33,7 +33,7 @@
       "error_type": "ParseException",
       "file": "cacontology-detection-shapes.ttl",
       "ordinal": 10,
-      "owner": "n5c40116dce894ad99d65fc23ee1c6931b74",
+      "owner": "na4e15475436a4ebab4720e6c39d6e47ab74",
       "query_type": "select"
     },
     {
@@ -41,7 +41,7 @@
       "error_type": "ParseException",
       "file": "cacontology-detection-shapes.ttl",
       "ordinal": 11,
-      "owner": "n5c40116dce894ad99d65fc23ee1c6931b77",
+      "owner": "na4e15475436a4ebab4720e6c39d6e47ab77",
       "query_type": "select"
     },
     {
@@ -49,7 +49,7 @@
       "error_type": "ParseException",
       "file": "cacontology-detection-shapes.ttl",
       "ordinal": 12,
-      "owner": "n5c40116dce894ad99d65fc23ee1c6931b80",
+      "owner": "na4e15475436a4ebab4720e6c39d6e47ab80",
       "query_type": "select"
     },
     {
@@ -57,9 +57,9 @@
       "error_type": "ParseException",
       "file": "cacontology-detection-shapes.ttl",
       "ordinal": 13,
-      "owner": "n5c40116dce894ad99d65fc23ee1c6931b83",
+      "owner": "na4e15475436a4ebab4720e6c39d6e47ab83",
       "query_type": "select"
     }
   ],
-  "shape_files": 49
+  "shape_files": 50
 }
