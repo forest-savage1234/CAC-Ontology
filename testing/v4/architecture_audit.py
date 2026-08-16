@@ -30,6 +30,11 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def canonical_lf_bytes(path: Path) -> bytes:
+    """Return the repository-canonical bytes for first-party text inputs."""
+    return path.read_bytes().replace(b"\r\n", b"\n")
+
+
 def git_value(repo: Path, *args: str) -> str:
     return subprocess.run(
         ["git", "-c", f"safe.directory={repo}", *args],
@@ -98,12 +103,14 @@ def load_configuration_graph(repo: Path, configuration: str) -> tuple[Graph, lis
             )
     else:
         for path in ontology_files(repo, configuration):
-            graph.parse(path, format="turtle")
+            data = canonical_lf_bytes(path)
+            graph.parse(data=data.decode("utf-8"), format="turtle")
             inputs.append(
                 {
                     "path": path.relative_to(repo).as_posix(),
-                    "bytes": path.stat().st_size,
-                    "sha256": sha256(path),
+                    "bytes": len(data),
+                    "sha256": hashlib.sha256(data).hexdigest(),
+                    "canonicalization": "utf-8-lf",
                 }
             )
 

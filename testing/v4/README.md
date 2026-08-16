@@ -35,6 +35,9 @@ normative imports resolve locally.
 The lock hashes first-party and vendored RDF text after CRLF-to-LF
 normalization. This changes neither committed nor upstream snapshot bytes; it
 ensures Git-equivalent Windows and Unix checkouts produce the same identities.
+First-party ontology files are also checked out with LF endings, and the graph
+loader canonicalizes those bytes defensively before parsing and recording
+reasoner-input identities.
 The executable reproducibility controls also require every locked dependency
 and every recorded profile-snapshot member to exist and match in a clean
 checkout.

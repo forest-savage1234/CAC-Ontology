@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -17,6 +18,33 @@ REPO = HERE.parents[1]
 
 
 class DependencyLockReproducibilityTests(unittest.TestCase):
+    def test_first_party_ontology_checkout_enforces_lf(self):
+        paths = sorted((REPO / "ontology").glob("*.ttl"))
+        completed = subprocess.run(
+            [
+                "git",
+                "-c",
+                f"safe.directory={REPO}",
+                "check-attr",
+                "text",
+                "eol",
+                "--",
+                *(str(path.relative_to(REPO)) for path in paths),
+            ],
+            cwd=REPO,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        lines = completed.stdout.splitlines()
+        self.assertEqual(len(paths) * 2, len(lines))
+        self.assertTrue(
+            all(
+                line.endswith(": text: set") or line.endswith(": eol: lf")
+                for line in lines
+            )
+        )
+
     def test_local_ontology_hashes_use_canonical_lf_bytes(self):
         lock = json.loads((HERE / "dependency-lock.json").read_text(encoding="utf-8"))
         self.assertIn("CRLF-to-LF", lock["first_party_text_hash_policy"])
