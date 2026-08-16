@@ -23,6 +23,8 @@ test_rhode_island_temporary_custody_nodes_do_not_infer_phase (test_custody_archi
 test_state_classes_have_only_the_state_root (test_custody_architecture.CustodyAxiomTests.test_state_classes_have_only_the_state_root) ... ok
 test_positive_history_conforms (test_custody_architecture.CustodyShapeTests.test_positive_history_conforms) ... ok
 test_relationship_state_overlap_fails (test_custody_architecture.CustodyShapeTests.test_relationship_state_overlap_fails) ... ok
+test_git_equivalent_line_endings_produce_the_same_record (test_dependency_lock_reproducibility.DependencyLockReproducibilityTests.test_git_equivalent_line_endings_produce_the_same_record) ... ok
+test_local_ontology_hashes_use_canonical_lf_bytes (test_dependency_lock_reproducibility.DependencyLockReproducibilityTests.test_local_ontology_hashes_use_canonical_lf_bytes) ... ok
 test_hash_classes_remain_on_uco_hash_branch_only (test_detection_hash_consistency.DetectionHashConsistencyTests.test_hash_classes_remain_on_uco_hash_branch_only) ... ok
 test_all_four_year_properties_are_integer_and_bounded (test_gate41_datatype_policy.Gate41DatatypePolicyTests.test_all_four_year_properties_are_integer_and_bounded) ... ok
 test_every_duration_property_is_a_string_and_is_targeted_once (test_gate41_datatype_policy.Gate41DatatypePolicyTests.test_every_duration_property_is_a_string_and_is_targeted_once) ... ok
@@ -89,6 +91,6 @@ test_audit_detects_a_malformed_query (test_shacl_sparql.RepositoryShaclSparqlCon
 test_role_and_phase_mentions_do_not_reintroduce_level_conflation (test_shacl_sparql.RepositoryShaclSparqlControls.test_role_and_phase_mentions_do_not_reintroduce_level_conflation) ... ok
 
 ----------------------------------------------------------------------
-Ran 89 tests in 98.182s
+Ran 91 tests in 59.800s
 
 OK

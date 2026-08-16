@@ -11,13 +11,13 @@ No GitHub mutation occurred during Gate 4.1.
 | Item | Value |
 |---|---|
 | Frozen base | `93de063951b758dd68a27611638c177fcf910eab` (`v3.1.0`) |
-| Sealed source candidate | `b5a14aa1d8d28403ef200203a698d423879d166b` |
-| Candidate tree | `3cb21428b326b340de02a3b2d387fa207cecd4e9` |
+| Sealed source candidate | `3dbea97053b8fd212b1ff14cfd531cd7415d43cf` |
+| Candidate tree | `9ab6e3cae18cdc2a5bf06d632d6abfe075330388` |
 | Branch | `proposal/issue-44-v4-foundational-architecture` |
-| Local commits added by Gate 4.1 | 2, both DCO-signed |
-| Pre-existing unsigned commits reported by the manifest | 3 |
+| DCO status | All 31 local commits from the frozen base contain sign-off trailers |
+| Pre-existing unsigned commits reported by the manifest | 0 |
 | Tracked source dirty during final evidence run | No |
-| GitHub publication | Not authorized; branch remains local and ahead of the fork |
+| GitHub publication | Gate 4.2 authorized; not yet pushed at evidence time |
 
 ## Gate 4.1 acceptance outcome
 
@@ -26,7 +26,7 @@ No GitHub mutation occurred during Gate 4.1.
 | C3 architecture, asserted/RDFS | Pass/pass; 0 findings |
 | C4 architecture, asserted/RDFS | Pass/pass; 0 findings |
 | C5 architecture, asserted/RDFS | Pass/pass; 0 findings |
-| Executable tests | Pass; 89/89 |
+| Executable tests | Pass; 91/91 |
 | Import closure | Pass; 75/75 resolved, 0 remote gaps |
 | Locked Turtle dependencies | Pass; 28/28 parse |
 | Proposal-owned SHACL SPARQL syntax | Pass; 0 failures |
@@ -44,6 +44,7 @@ No GitHub mutation occurred during Gate 4.1.
 4. Added bounded SKOS/DCMI declarations with content-addressed authoritative snapshots; no uncontrolled full standards import was introduced.
 5. Centralized the six CAC design-note predicates as annotation properties and removed literal-valued `skos:exactMatch` assertions.
 6. Regenerated the dependency lock, architecture reports, strict-profile reports, REM-014 decomposition, and complete regression transcript.
+7. Canonicalized first-party text hashing so Git-equivalent LF and CRLF checkouts produce identical dependency identities.
 
 ## Measured REM-014 result
 
@@ -65,4 +66,4 @@ No GitHub mutation occurred during Gate 4.1.
 
 ## Gate 4.2 boundary
 
-Gate 4.1 authorizes this review packet only. Gate 4.2 must separately decide whether to push the local commits to `forest-savage1234/CAC-Ontology`, publish/update the dedicated issue-44 proposal branch, and prepare a draft PR. Gate 4.2 must not authorize a release claim, merge, tag, or modification of PR #48 unless those actions are separately and explicitly approved.
+Gate 4.2 authorizes pushing the dedicated issue-44 branch and opening one draft PR after DCO and identity-sensitive controls pass. It does not authorize a release claim, merge, tag, or modification of PR #48 or issue/PR #46.
