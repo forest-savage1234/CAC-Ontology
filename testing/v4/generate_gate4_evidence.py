@@ -220,7 +220,7 @@ def main() -> int:
             "reason": (
                 "All normative configuration gates pass."
                 if owl_normative_pass
-                else "CAC-only and exact-profile diagnostic projections are coherent, but the unmodified full import closure fails the normative OWL 2 DL gate: profile violations span CAC and pinned dependencies, exact upstream profile RDF structures are malformed, and imported SWRL built-ins are unsupported by HermiT."
+                else "CAC-only and exact-profile diagnostic projections are coherent, and recognized C3/C5 profile violations are now entirely upstream-owned. The unmodified full import closure still fails the normative OWL 2 DL gate because the exact upstream profile contains malformed RDF structures and imported SWRL built-ins are unsupported by HermiT."
             ),
             "github_mutation_authorized": False,
         },

@@ -315,11 +315,11 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 31707,
+      "bytes": 31706,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-ai-csam.ttl",
       "requested_iri": "https://cacontology.projectvic.org/ai-csam/3.1.0",
-      "sha256": "497a23b1c7db2b57582aad41c3845f26cd771fd3161e8c7140803bd0948d03f7",
+      "sha256": "07a9dfdea96402bb29a9ceafdf49cced7fe24ee66eb1a62c389785b74b3f6046",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -540,11 +540,11 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 61596,
+      "bytes": 61595,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-platforms.ttl",
       "requested_iri": "https://cacontology.projectvic.org/platforms/3.1.0",
-      "sha256": "fd3316c59c01d54258706e6c0f06faec13a0f3dfeced136f7369bc4cc93af0ea",
+      "sha256": "0f660fb4657d6ef616a0b5086a7ae7af28d610037f8c9adda138e0c0950017f2",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -594,11 +594,11 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 34566,
+      "bytes": 34565,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-sextortion.ttl",
       "requested_iri": "https://cacontology.projectvic.org/sextortion/3.1.0",
-      "sha256": "81e3fe573a731c7a1618d43179148186c3c947a892184c7a77e377f636f20a82",
+      "sha256": "43debcde8951dbb7130f68f2aac54e13f81e5c9e95c36440936fb5a4e7ed8921",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -693,11 +693,11 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 25916,
+      "bytes": 25915,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-us-ncmec.ttl",
       "requested_iri": "https://cacontology.projectvic.org/us/ncmec/3.1.0",
-      "sha256": "867834779052878b3d91aa571790a7f0c186e6ffb3c09a4de482892fafdab35f",
+      "sha256": "457fbaef36e60526caef1675d49d9b8d73d26a6311731361deb69b9c18f6bf4e",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -928,10 +928,10 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 31707,
+      "bytes": 31706,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-ai-csam.ttl",
-      "sha256": "497a23b1c7db2b57582aad41c3845f26cd771fd3161e8c7140803bd0948d03f7",
+      "sha256": "07a9dfdea96402bb29a9ceafdf49cced7fe24ee66eb1a62c389785b74b3f6046",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -1192,10 +1192,10 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 40322,
+      "bytes": 40321,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-institutional-exploitation-shapes.ttl",
-      "sha256": "982acc908fa340f4b0d7008c1ac10980e8447c0accae07bed61b6de66cb3f544",
+      "sha256": "bdbc5a87ae552d272f57506559443123fab18d6f21fce17d13cc723ae3dda37d",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -1368,10 +1368,10 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 61596,
+      "bytes": 61595,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-platforms.ttl",
-      "sha256": "fd3316c59c01d54258706e6c0f06faec13a0f3dfeced136f7369bc4cc93af0ea",
+      "sha256": "0f660fb4657d6ef616a0b5086a7ae7af28d610037f8c9adda138e0c0950017f2",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -1496,10 +1496,10 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 34566,
+      "bytes": 34565,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-sextortion.ttl",
-      "sha256": "81e3fe573a731c7a1618d43179148186c3c947a892184c7a77e377f636f20a82",
+      "sha256": "43debcde8951dbb7130f68f2aac54e13f81e5c9e95c36440936fb5a4e7ed8921",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
@@ -1664,10 +1664,10 @@
       "status": "resolved-local"
     },
     {
-      "bytes": 25916,
+      "bytes": 25915,
       "license": "Apache-2.0",
       "path": "ontology/cacontology-us-ncmec.ttl",
-      "sha256": "867834779052878b3d91aa571790a7f0c186e6ffb3c09a4de482892fafdab35f",
+      "sha256": "457fbaef36e60526caef1675d49d9b8d73d26a6311731361deb69b9c18f6bf4e",
       "source": "CAC proposal worktree",
       "status": "resolved-local"
     },
