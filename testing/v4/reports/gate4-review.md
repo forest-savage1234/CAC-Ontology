@@ -11,13 +11,13 @@ No GitHub mutation occurred during Gate 4.4 evidence generation.
 | Item | Value |
 |---|---|
 | Frozen base | `93de063951b758dd68a27611638c177fcf910eab` (`v3.1.0`) |
-| Sealed source candidate | `4deaac706c368debe7035809c4d66b45c439f6af` |
-| Candidate tree | `2df8e285fbfce5bd0207b93e92d573590b861f1f` |
+| Sealed source candidate | `41cc0049cf0304681801582d0e5ae1e2755ada12` |
+| Candidate tree | `473a15f5b9e1c453ecc1d8c5cbb7ab731561616d` |
 | Branch | `proposal/issue-44-v4-foundational-architecture` |
-| DCO status | All 33 local commits from the frozen base contain sign-off trailers |
+| DCO status | All 35 local commits from the frozen base contain sign-off trailers |
 | Pre-existing unsigned commits reported by the manifest | 0 |
 | Tracked source dirty during final evidence run | No |
-| Commit convention | All 33 subjects satisfy the repository's Conventional Commits convention |
+| Commit convention | All 35 subjects satisfy the repository's Conventional Commits convention |
 | GitHub publication | Existing draft PR #49; corrected history not yet pushed at evidence time |
 
 ## Gate 4.1 acceptance outcome
@@ -27,7 +27,7 @@ No GitHub mutation occurred during Gate 4.4 evidence generation.
 | C3 architecture, asserted/RDFS | Pass/pass; 0 findings |
 | C4 architecture, asserted/RDFS | Pass/pass; 0 findings |
 | C5 architecture, asserted/RDFS | Pass/pass; 0 findings |
-| Executable tests | Pass; 93/93 |
+| Executable tests | Pass; 94/94 |
 | Import closure | Pass; 75/75 resolved, 0 remote gaps |
 | Locked Turtle dependencies | Pass; 28/28 parse |
 | Proposal-owned SHACL SPARQL syntax | Pass; 0 failures |
@@ -48,7 +48,8 @@ No GitHub mutation occurred during Gate 4.4 evidence generation.
 7. Canonicalized first-party text hashing so Git-equivalent LF and CRLF checkouts produce identical dependency identities.
 8. Restored the exact locked DCMI reference and gUFO-profile exemplar, canonicalized vendored RDF text identities without altering committed bytes, and added clean-checkout presence/hash regression controls.
 9. Added the required unreleased changelog, README, user-documentation, glossary, and dependency-policy guidance.
-10. Replayed eleven historical subjects into Conventional Commit form while preserving all 33 commit trees and DCO trailers.
+10. Replayed eleven historical subjects into Conventional Commit form while preserving all 33 pre-correction commit trees and DCO trailers.
+11. Enforced LF checkout for first-party ontology files and canonicalized reasoner-input identities, with an executable regression proving the Git attribute contract on every ontology module.
 
 ## Measured REM-014 result
 

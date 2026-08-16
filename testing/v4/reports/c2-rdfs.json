@@ -302,7 +302,7 @@
       "https://cacontology.projectvic.org/victim-impact#VictimInRecovery"
     ]
   },
-  "generated_at": "2026-08-16T04:41:29.012380+00:00",
+  "generated_at": "2026-08-16T05:13:54.945941+00:00",
   "inference": "rdfs",
   "inputs": [
     {
@@ -571,9 +571,9 @@
   "sensitive_data": "Synthetic fixtures only; no real sensitive case data.",
   "source": {
     "branch": "proposal/issue-44-v4-foundational-architecture",
-    "commit": "4deaac706c368debe7035809c4d66b45c439f6af",
+    "commit": "41cc0049cf0304681801582d0e5ae1e2755ada12",
     "dirty": true,
-    "tree": "2df8e285fbfce5bd0207b93e92d573590b861f1f"
+    "tree": "473a15f5b9e1c453ecc1d8c5cbb7ab731561616d"
   },
   "status": "fail"
 }

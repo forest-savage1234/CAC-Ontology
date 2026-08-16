@@ -23,6 +23,7 @@ test_rhode_island_temporary_custody_nodes_do_not_infer_phase (test_custody_archi
 test_state_classes_have_only_the_state_root (test_custody_architecture.CustodyAxiomTests.test_state_classes_have_only_the_state_root) ... ok
 test_positive_history_conforms (test_custody_architecture.CustodyShapeTests.test_positive_history_conforms) ... ok
 test_relationship_state_overlap_fails (test_custody_architecture.CustodyShapeTests.test_relationship_state_overlap_fails) ... ok
+test_first_party_ontology_checkout_enforces_lf (test_dependency_lock_reproducibility.DependencyLockReproducibilityTests.test_first_party_ontology_checkout_enforces_lf) ... ok
 test_git_equivalent_line_endings_produce_the_same_record (test_dependency_lock_reproducibility.DependencyLockReproducibilityTests.test_git_equivalent_line_endings_produce_the_same_record) ... ok
 test_local_ontology_hashes_use_canonical_lf_bytes (test_dependency_lock_reproducibility.DependencyLockReproducibilityTests.test_local_ontology_hashes_use_canonical_lf_bytes) ... ok
 test_profile_snapshot_manifest_is_complete (test_dependency_lock_reproducibility.DependencyLockReproducibilityTests.test_profile_snapshot_manifest_is_complete) ... ok
@@ -93,6 +94,6 @@ test_audit_detects_a_malformed_query (test_shacl_sparql.RepositoryShaclSparqlCon
 test_role_and_phase_mentions_do_not_reintroduce_level_conflation (test_shacl_sparql.RepositoryShaclSparqlControls.test_role_and_phase_mentions_do_not_reintroduce_level_conflation) ... ok
 
 ----------------------------------------------------------------------
-Ran 93 tests in 55.608s
+Ran 94 tests in 38.587s
 
 OK
