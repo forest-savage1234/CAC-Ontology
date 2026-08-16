@@ -24,15 +24,29 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def file_record(repo: Path, path: Path, *, status: str, source: str, license_id: str) -> dict:
-    return {
+def file_record(
+    repo: Path,
+    path: Path,
+    *,
+    status: str,
+    source: str,
+    license_id: str,
+    canonical_text: bool = False,
+) -> dict:
+    data = path.read_bytes()
+    if canonical_text:
+        data = data.replace(b"\r\n", b"\n")
+    record = {
         "path": path.relative_to(repo).as_posix(),
-        "bytes": path.stat().st_size,
-        "sha256": sha256(path),
+        "bytes": len(data),
+        "sha256": hashlib.sha256(data).hexdigest(),
         "status": status,
         "source": source,
         "license": license_id,
     }
+    if canonical_text:
+        record["canonicalization"] = "utf-8-lf"
+    return record
 
 
 def main() -> int:
@@ -96,6 +110,7 @@ def main() -> int:
             status="resolved-local",
             source="CAC proposal worktree",
             license_id="Apache-2.0",
+            canonical_text=True,
         )
         for ontology in graph.subjects(RDF.type, OWL.Ontology):
             if isinstance(ontology, URIRef):
@@ -160,6 +175,7 @@ def main() -> int:
     result = {
         "schema_version": 2,
         "policy": "All direct and transitive imports are resolved to locally vendored, content-addressed bytes; no evidence run retrieves mutable remote content.",
+        "first_party_text_hash_policy": "Hash UTF-8 first-party Turtle after CRLF-to-LF normalization so Git-equivalent checkouts have stable identities.",
         "runtime": {package: version(package) for package in PACKAGES},
         "uco_gufo_profile": {
             "revision_prefix": OVERLAY_REVISION[:8],
