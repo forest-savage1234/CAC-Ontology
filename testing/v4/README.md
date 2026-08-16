@@ -32,6 +32,13 @@ commit `4b98b9881aa29ed80f39b589d15725fa696c921a`. Its runtime submodule closure
 is reconstructed from exact commits and pinned in `dependency-lock.json`; all
 normative imports resolve locally.
 
+The lock hashes first-party and vendored RDF text after CRLF-to-LF
+normalization. This changes neither committed nor upstream snapshot bytes; it
+ensures Git-equivalent Windows and Unix checkouts produce the same identities.
+The executable reproducibility controls also require every locked dependency
+and every recorded profile-snapshot member to exist and match in a clean
+checkout.
+
 Pinned OWL 2 DL execution uses the runtime artifacts recorded in
 `reasoner-runtime.lock.json`:
 

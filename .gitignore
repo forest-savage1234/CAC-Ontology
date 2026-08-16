@@ -67,6 +67,7 @@ Ed_graph.ttl
 # reconstructed upstream development trees.
 !testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/ontology/*.ttl
 !testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/shapes/*.ttl
+!testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/tests/exemplars.ttl
 testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/**
 !testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/
 !testing/v4/dependencies/uco-gufo-profile/4b98b9881aa29ed80f39b589d15725fa696c921a/dependencies/UCO/LICENSE
@@ -98,6 +99,7 @@ testing/v4/dependencies/case/**
 !testing/v4/dependencies/case/8073d5a0a4f8741799adfe0c494d58fd6472acaa/ontology/**/
 !testing/v4/dependencies/case/8073d5a0a4f8741799adfe0c494d58fd6472acaa/ontology/**/*.ttl
 !testing/v4/dependencies/w3c/*.ttl
+!testing/v4/dependencies/standards/dublin-core-terms-2012-06-14.ttl
 
 # Ontospy cache
 .ontospy_cache/

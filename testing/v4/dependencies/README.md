@@ -11,5 +11,7 @@ These files provide a deterministic, offline ontology and SHACL import closure f
 | Collections Ontology | `619e7b02646321174635fd04be658e338bf7d1d7` | UCO dependency |
 | SPAR Error Ontology | `101aca952ef854505f49725d852de00e6e192344` | Collections Ontology dependency |
 | W3C SHACL vocabulary | official bytes retrieved `2026-08-15` | Resolves `http://www.w3.org/ns/shacl#` |
+| W3C SKOS reference | Recommendation bytes dated `2009-08-18` | Bounded standards-profile evidence |
+| DCMI Metadata Terms | Vocabulary bytes modified `2012-06-14` | Bounded standards-profile evidence |
 
-`testing/v4/dependency-lock.json` records every executed file's local byte length and SHA-256 plus every direct and transitive `owl:imports` resolution. Validation scripts do not retrieve remote imports.
+`testing/v4/dependency-lock.json` records every executed file's canonical text length and SHA-256 plus every direct and transitive `owl:imports` resolution. CRLF is normalized to LF for identity only, so Git-equivalent checkouts are stable while committed vendored snapshots remain untouched. The lock also inventories the exact UCO gUFO Profile source snapshot, including its exemplar. Validation scripts do not retrieve remote imports.

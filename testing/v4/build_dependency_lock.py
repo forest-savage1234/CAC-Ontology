@@ -20,6 +20,11 @@ SPAR_ERROR_REVISION = "101aca952ef854505f49725d852de00e6e192344"
 CASE_REVISION = "8073d5a0a4f8741799adfe0c494d58fd6472acaa"
 
 
+def canonical_lf_bytes(path: Path) -> bytes:
+    """Return text bytes with Git-equivalent CRLF normalized to LF."""
+    return path.read_bytes().replace(b"\r\n", b"\n")
+
+
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -33,9 +38,7 @@ def file_record(
     license_id: str,
     canonical_text: bool = False,
 ) -> dict:
-    data = path.read_bytes()
-    if canonical_text:
-        data = data.replace(b"\r\n", b"\n")
+    data = canonical_lf_bytes(path) if canonical_text else path.read_bytes()
     record = {
         "path": path.relative_to(repo).as_posix(),
         "bytes": len(data),
@@ -134,6 +137,7 @@ def main() -> int:
             status="resolved-vendored",
             source=source,
             license_id=license_id,
+            canonical_text=True,
         )
         dependency_files.append(record)
         for ontology in graph.subjects(RDF.type, OWL.Ontology):
@@ -176,6 +180,7 @@ def main() -> int:
         "schema_version": 2,
         "policy": "All direct and transitive imports are resolved to locally vendored, content-addressed bytes; no evidence run retrieves mutable remote content.",
         "first_party_text_hash_policy": "Hash UTF-8 first-party Turtle after CRLF-to-LF normalization so Git-equivalent checkouts have stable identities.",
+        "vendored_text_hash_policy": "Hash vendored RDF text after CRLF-to-LF normalization so Git-equivalent checkouts retain stable identities while the committed snapshots remain unmodified.",
         "runtime": {package: version(package) for package in PACKAGES},
         "uco_gufo_profile": {
             "revision_prefix": OVERLAY_REVISION[:8],
@@ -197,6 +202,8 @@ def main() -> int:
                 }
                 for path in sorted(overlay_root.rglob("*"))
                 if path.is_file()
+                and "__pycache__" not in path.parts
+                and path.suffix != ".pyc"
                 and not any(
                     parent in path.parents
                     for parent in (uco_root, cdo_root)
