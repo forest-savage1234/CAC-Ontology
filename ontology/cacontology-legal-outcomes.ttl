@@ -712,23 +712,23 @@ cacontology-legal-outcomes:proceedingDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "proceeding duration"@en ;
     rdfs:comment "Duration of legal proceeding from start to completion."@en ;
     rdfs:domain cacontology-legal-outcomes:LegalProceeding ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-legal-outcomes:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "Duration of legal phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-legal-outcomes:sentenceDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "sentence duration"@en ;
     rdfs:comment "Duration of criminal sentence."@en ;
     rdfs:domain cacontology-legal-outcomes:CriminalSentence ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-legal-outcomes:sentenceDurationMonths rdf:type owl:DatatypeProperty ;
     rdfs:label "sentence duration in months"@en ;
-    rdfs:comment "Duration of a criminal sentence expressed as a whole number of months, as stated on the judgment (e.g. AO 245B, https://www.uscourts.gov/forms/criminal-judgment-forms/judgment-criminal-case-0). Convenience companion to sentenceDuration (xsd:duration) for direct numeric comparison in analytics (e.g. sentences over 120 months)."@en ;
+    rdfs:comment "Duration of a criminal sentence expressed as a whole number of months, as stated on the judgment (e.g. AO 245B, https://www.uscourts.gov/forms/criminal-judgment-forms/judgment-criminal-case-0). Convenience companion to sentenceDuration (xsd:string) for direct numeric comparison in analytics (e.g. sentences over 120 months)."@en ;
     rdfs:domain cacontology-legal-outcomes:CriminalSentence ;
     rdfs:range xsd:integer ;
     dcterms:source "AO 245B Judgment in a Criminal Case (U.S. Courts)."@en ;
@@ -738,7 +738,7 @@ cacontology-legal-outcomes:roleDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "role duration"@en ;
     rdfs:comment "Duration of individual's legal role."@en ;
     rdfs:domain cac-core:Role ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # LEGAL SYSTEM PROPERTIES

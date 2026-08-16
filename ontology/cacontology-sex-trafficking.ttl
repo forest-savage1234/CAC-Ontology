@@ -6,6 +6,7 @@
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix uco-identity: <https://ontology.unifiedcyberontology.org/uco/identity/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix uco-victim: <https://ontology.unifiedcyberontology.org/uco/victim/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix cac-core: <https://cacontology.projectvic.org/core#> .
 @prefix cacontology-trafficking: <https://cacontology.projectvic.org/trafficking#> .
@@ -91,7 +92,7 @@ cacontology-trafficking:VictimControlSituation rdf:type owl:Class ;
 cacontology-trafficking:TraffickerRole rdf:type owl:Class ;
     rdfs:label "Trafficker Role"@en ;
     rdfs:comment "Role of individual involved in sex trafficking operations. Modeled as anti-rigid gUFO Role."@en ;
-    rdfs:subClassOf uco-role:OffenderRole , cac-core:Role .
+    rdfs:subClassOf uco-role:MaliciousRole , cac-core:Role .
 
 cacontology-trafficking:PrimaryTraffickerRole rdf:type owl:Class ;
     rdfs:label "Primary Trafficker Role"@en ;
@@ -166,7 +167,7 @@ cacontology-trafficking:EarningsCollection rdf:type owl:Class ;
 cacontology-trafficking:TraffickingVictimRole rdf:type owl:Class ;
     rdfs:label "Trafficking Victim Role"@en ;
     rdfs:comment "Role of person being exploited through sex trafficking. Modeled as anti-rigid gUFO Role."@en ;
-    rdfs:subClassOf uco-role:VictimRole , cac-core:Role .
+    rdfs:subClassOf uco-victim:Victim , cac-core:Role .
 
 cacontology-trafficking:MinorTraffickingVictimRole rdf:type owl:Class ;
     rdfs:label "Minor Trafficking Victim Role"@en ;
@@ -299,19 +300,19 @@ cacontology-trafficking:enterpriseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "enterprise duration"@en ;
     rdfs:comment "Duration of trafficking enterprise operations."@en ;
     rdfs:domain cac-core:OrganizationLikeEntity ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-trafficking:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "Duration of trafficking enterprise phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-trafficking:roleDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "role duration"@en ;
     rdfs:comment "Duration of individual's trafficking role."@en ;
     rdfs:domain cac-core:Role ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # TRAFFICKING ORGANIZATION PROPERTIES  
@@ -372,7 +373,7 @@ cacontology-trafficking:earningsPeriod rdf:type owl:DatatypeProperty ;
     rdfs:label "earnings period"@en ;
     rdfs:comment "Time period over which earnings were collected."@en ;
     rdfs:domain cacontology-trafficking:EarningsCollection ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # Transportation Properties
 cacontology-trafficking:originLocation rdf:type owl:ObjectProperty ;

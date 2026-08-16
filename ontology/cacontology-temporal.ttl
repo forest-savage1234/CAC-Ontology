@@ -84,11 +84,11 @@ cacontology-temporal:CompletedPhase rdf:type owl:Class ;
 # PHASE 2: INVESTIGATION LIFECYCLE TEMPORAL MODELING
 # =============================================================================
 
-# Investigation Lifecycle as Structured Process (Kind with temporal phases)
-cacontology-temporal:InvestigationLifecycle rdf:type owl:Class, gufo:Kind ;
+# Investigation Lifecycle as a typed event with temporal phases
+cacontology-temporal:InvestigationLifecycle rdf:type owl:Class, gufo:EventType ;
     rdfs:label "Investigation Lifecycle"@en ;
-    rdfs:comment "Complete temporal structure of CAC investigation from initiation to closure. Modeled as gUFO Kind with definite phase sequence and temporal constraints."@en ;
-    rdfs:subClassOf gufo:Process .
+    rdfs:comment "Complete investigation lifecycle occurrence from initiation to closure. Modeled as an event class and typed as a gUFO EventType, with definite phase sequence and temporal constraints."@en ;
+    rdfs:subClassOf cac-core:Event .
 
 # Lifecycle State Transitions (Events connecting phases)
 cacontology-temporal:PhaseTransitionEvent rdf:type owl:Class ;
@@ -167,19 +167,19 @@ cacontology-temporal:hasMinimumDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "has minimum duration"@en ;
     rdfs:comment "Minimum required duration for investigation phase based on legal or procedural requirements."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-temporal:hasMaximumDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "has maximum duration"@en ;
     rdfs:comment "Maximum allowable duration for investigation phase based on legal or policy constraints."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-temporal:hasTypicalDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "has typical duration"@en ;
     rdfs:comment "Typical expected duration for investigation phase based on historical patterns."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # Deadline and Urgency Properties
 cacontology-temporal:hasLegalDeadline rdf:type owl:DatatypeProperty ;
@@ -268,25 +268,25 @@ cacontology-temporal:hasTimeToFirstAction rdf:type owl:DatatypeProperty ;
     rdfs:label "has time to first action"@en ;
     rdfs:comment "Duration from investigation initiation to first investigative action."@en ;
     rdfs:domain cacontology:CACInvestigation ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-temporal:hasTimeToResolution rdf:type owl:DatatypeProperty ;
     rdfs:label "has time to resolution"@en ;
     rdfs:comment "Total duration from investigation initiation to resolution."@en ;
     rdfs:domain cacontology:CACInvestigation ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-temporal:hasActiveDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "has active duration"@en ;
     rdfs:comment "Total duration investigation was in active state (excluding suspended periods)."@en ;
     rdfs:domain cacontology:CACInvestigation ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-temporal:hasSuspendedDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "has suspended duration"@en ;
     rdfs:comment "Total duration investigation was in suspended state."@en ;
     rdfs:domain cacontology:CACInvestigation ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # Phase Performance Metrics
 cacontology-temporal:phaseEfficiency rdf:type owl:DatatypeProperty ;
@@ -308,8 +308,7 @@ cacontology-temporal:phaseCompletionRate rdf:type owl:DatatypeProperty ;
 # Investigation Temporal Relationships
 cacontology-temporal:temporallyPrecedes rdf:type owl:ObjectProperty ;
     rdfs:label "temporally precedes"@en ;
-    rdfs:comment "Links investigation event/phase to temporally subsequent event/phase."@en ;
-    rdfs:subPropertyOf gufo:precedes ;
+    rdfs:comment "Links an investigation event or phase to a temporally subsequent event or phase. Ordering is expressed locally because the pinned gUFO vocabulary does not define gufo:precedes."@en ;
     rdfs:domain [ owl:unionOf ( cac-core:Event cac-core:Phase ) ] ;
     rdfs:range [ owl:unionOf ( cac-core:Event cac-core:Phase ) ] .
 
@@ -398,9 +397,15 @@ cacontology-temporal:PhaseTransitionEvent rdfs:subClassOf [
 ] .
 
 # Investigation must have lifecycle
+cacontology-temporal:hasInvestigationLifecycle rdf:type owl:ObjectProperty ;
+    rdfs:label "has investigation lifecycle"@en ;
+    rdfs:comment "Links a CAC investigation to the single lifecycle event that structures its progression. This is an investigation-to-lifecycle relation, not event participation."@en ;
+    rdfs:domain cacontology:CACInvestigation ;
+    rdfs:range cacontology-temporal:InvestigationLifecycle .
+
 cacontology:CACInvestigation rdfs:subClassOf [
     rdf:type owl:Restriction ;
-    owl:onProperty gufo:participatesIn ;
+    owl:onProperty cacontology-temporal:hasInvestigationLifecycle ;
     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     owl:onClass cacontology-temporal:InvestigationLifecycle
 ] .

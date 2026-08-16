@@ -223,7 +223,7 @@ cacontology-forensics:forensicPhaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "forensic phase duration"@en ;
     rdfs:comment "Duration of forensic phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # FORENSIC PROPERTIES

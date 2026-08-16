@@ -325,19 +325,19 @@ cacontology-detection:detectionDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "detection duration"@en ;
     rdfs:comment "Duration of detection action from start to completion."@en ;
     rdfs:domain cacontology-detection:AutomatedDetectionAction ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-detection:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "Duration of detection phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-detection:roleDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "role duration"@en ;
     rdfs:comment "Duration of individual's detection role."@en ;
     rdfs:domain cac-core:Role ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # DETECTION PROPERTIES

@@ -326,25 +326,25 @@ cacontology-partnerships:partnershipDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "partnership duration"@en ;
     rdfs:comment "Duration of partnership from formation to termination."@en ;
     rdfs:domain cacontology-partnerships:PublicPrivatePartnership ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-partnerships:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "Duration of partnership phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-partnerships:cooperationDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "cooperation duration"@en ;
     rdfs:comment "Duration of cooperation event."@en ;
     rdfs:domain cacontology-partnerships:TechnologyCooperation ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-partnerships:roleDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "role duration"@en ;
     rdfs:comment "Duration of partner role."@en ;
     rdfs:domain cac-core:Role ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # PARTNERSHIP RELATIONSHIPS

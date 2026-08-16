@@ -439,7 +439,7 @@ cacontology-corruption-shapes:OfficerParticipationShape rdf:type sh:NodeShape ;
 cacontology-corruption-shapes:QualifiedCorruptionParticipationShape rdf:type sh:NodeShape ;
     rdfs:label "Qualified Corruption Participation Shape"@en ;
     rdfs:comment "Validates qualified participation relationships in corruption according to gUFO patterns."@en ;
-    sh:targetClass gufo:ParticipationSituation ;
+    sh:targetClass cac-core:QualifiedParticipationSituation ;
     sh:property [
         sh:path cacontology-corruption:concernsCorruptOfficer ;
         sh:class cacontology-corruption:CorruptLawEnforcementOfficer ;

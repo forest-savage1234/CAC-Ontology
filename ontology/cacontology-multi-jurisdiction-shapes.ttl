@@ -973,7 +973,7 @@ cacontology-multi:CoordinationRoleShape rdf:type sh:NodeShape ;
 # =============================================================================
 
 cacontology-multi:QualifiedCoordinationParticipationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:ParticipationSituation ;
+    sh:targetClass cac-core:QualifiedParticipationSituation ;
     rdfs:label "Qualified Coordination Participation Shape"@en ;
     rdfs:comment "Validates gUFO qualified participation situations in multi-jurisdictional coordination."@en ;
     sh:sparql [
@@ -981,7 +981,7 @@ cacontology-multi:QualifiedCoordinationParticipationShape rdf:type sh:NodeShape 
         sh:select """
             SELECT $this
             WHERE {
-                $this rdf:type gufo:ParticipationSituation .
+                $this rdf:type cac-core:QualifiedParticipationSituation .
                 $this gufo:standsInQualifiedParticipation ?role .
                 $this cacontology-multi:concernsCoordinationEvent ?event .
                 FILTER NOT EXISTS {

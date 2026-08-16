@@ -203,7 +203,7 @@ cacontology-ai:AIContentGenerationShape rdf:type sh:NodeShape ;
     # gUFO temporal properties validation
     sh:property [
         sh:path cacontology-gufo:generationDuration ;
-        sh:datatype xsd:duration ;
+        sh:datatype xsd:string ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
         sh:message "Generation duration should use gUFO temporal framework"@en

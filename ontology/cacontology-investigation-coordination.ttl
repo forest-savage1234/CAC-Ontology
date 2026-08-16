@@ -1059,7 +1059,7 @@ cacontology-coord:standsInQualifiedParticipation rdf:type owl:ObjectProperty ;
     rdfs:label "stands in qualified participation"@en ;
     rdfs:comment "Links entities to qualified participation situations in coordination - gUFO qualified relation."@en ;
     rdfs:domain [ owl:unionOf ( uco-identity:Organization uco-identity:Person ) ] ;
-    rdfs:range gufo:ParticipationSituation .
+    rdfs:range cac-core:QualifiedParticipationSituation .
 
 cacontology-coord:standsInQualifiedParthood rdf:type owl:ObjectProperty ;
     rdfs:label "stands in qualified parthood"@en ;
@@ -1070,7 +1070,7 @@ cacontology-coord:standsInQualifiedParthood rdf:type owl:ObjectProperty ;
 cacontology-coord:concernsParticipant rdf:type owl:ObjectProperty ;
     rdfs:label "concerns participant"@en ;
     rdfs:comment "Links participation situations to the participating entities - gUFO qualified relation."@en ;
-    rdfs:domain gufo:ParticipationSituation ;
+    rdfs:domain cac-core:QualifiedParticipationSituation ;
     rdfs:range [ owl:unionOf ( uco-identity:Organization uco-identity:Person ) ] .
 
 cacontology-coord:concernsTemporaryWhole rdf:type owl:ObjectProperty ;

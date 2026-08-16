@@ -321,7 +321,7 @@ hotline:HotlinePhaseShape rdf:type sh:NodeShape ;
     sh:property [
         sh:path hotline:phaseDuration ;
         sh:maxCount 1 ;
-        sh:datatype xsd:duration ;
+        sh:datatype xsd:string ;
         sh:message "Phases can have duration specifications"@en
     ] ;
     # Phase transition validation

@@ -29,6 +29,7 @@
                 <https://ontology.unifiedcyberontology.org/uco/action/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/observable/1.5.0> ,
                 <https://ontology.unifiedcyberontology.org/uco/role/1.5.0> ,
+                <https://ontology.unifiedcyberontology.org/uco/victim/1.5.0> ,
                 <https://ontology.caseontology.org/case/investigation/1.5.0> .
 
 # =============================================================================
@@ -108,6 +109,12 @@ cac-core:ExploitationEvent a owl:Class ;
     rdfs:subClassOf cac-core:Event ;
     skos:scopeNote "Use when: modeling grooming interactions, abuse incidents, trafficking transfer events, or other exploitation occurrences."@en .
 
+cac-core:OffenseEvent a owl:Class ;
+    rdfs:label "Offense Event"@en ;
+    rdfs:comment "A CAC exploitation event that is also represented as a UCO action. This local interoperability class replaces references to the nonexistent UCO Crime class without asserting that every UCO action is an offense."@en ;
+    rdfs:subClassOf cac-core:ExploitationEvent , uco-action:Action ;
+    skos:scopeNote "Use for an alleged or established offense occurrence. Legal conclusions, charges, statutes, and documentary carriers remain separate entities."@en .
+
 cac-core:DetectionEvent a owl:Class ;
     rdfs:label "Detection Event"@en ;
     rdfs:comment "An event representing the detection, identification, or flagging of content, behavior, or indicators relevant to child exploitation."@en ;
@@ -147,6 +154,12 @@ cac-core:Situation a owl:Class ;
     rdfs:comment "A context, state, or configuration that holds at a time and may involve multiple participants. Aligned to gUFO Situation."@en ;
     rdfs:subClassOf cac-core:Entity , gufo:Situation ;
     skos:scopeNote "Use when: the concept is a state rather than an occurrence, holds over some interval, and contextualizes participants or events. Do not use when: the concept is something that happens — use cac-core:Event instead."@en .
+
+cac-core:QualifiedParticipationSituation a owl:Class ;
+    rdfs:label "Qualified Participation Situation"@en ;
+    rdfs:comment "A CAC situation used to qualify an entity's participation, compliance, corruption, or other contextual involvement without claiming that the situation is itself a gUFO Participation event portion."@en ;
+    rdfs:subClassOf cac-core:Situation ;
+    skos:scopeNote "Use when a participation-like relationship needs its own contextual node and properties. Keep the participating entity, the contextual situation, and any event occurrence distinct."@en .
 
 # =============================================================================
 # ROLE BRANCH

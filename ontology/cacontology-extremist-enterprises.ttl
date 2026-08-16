@@ -833,14 +833,14 @@ cacontology-enterprises:participatesInCoercion rdf:type owl:ObjectProperty ;
     rdfs:comment "Links persons to coercion events they participate in."@en ;
     rdfs:domain uco-identity:Person ;
     rdfs:range cacontology-enterprises:SelfHarmCoercion ;
-    rdfs:subPropertyOf gufo:participatesIn .
+    rdfs:subPropertyOf gufo:participatedIn .
 
 cacontology-enterprises:participatesInRecruitment rdf:type owl:ObjectProperty ;
     rdfs:label "participates in recruitment"@en ;
     rdfs:comment "Links persons to recruitment events they participate in."@en ;
     rdfs:domain uco-identity:Person ;
     rdfs:range cacontology-enterprises:ContentBasedRecruitment ;
-    rdfs:subPropertyOf gufo:participatesIn .
+    rdfs:subPropertyOf gufo:participatedIn .
 
 # =============================================================================
 # GUFO TEMPORAL DATA PROPERTIES

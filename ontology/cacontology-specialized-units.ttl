@@ -367,22 +367,22 @@ cacontology-specialized:unitDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "unit duration"@en ;
     rdfs:comment "Duration of specialized unit operation."@en ;
     rdfs:domain cacontology-specialized:SpecializedInvestigativeUnit ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-specialized:operationDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "operation duration"@en ;
     rdfs:comment "Duration of named operation."@en ;
     rdfs:domain cacontology-specialized:NamedOperation ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-specialized:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "Duration of operational phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-specialized:roleDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "role duration"@en ;
     rdfs:comment "Duration of specialized role."@en ;
     rdfs:domain cac-core:Role ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .

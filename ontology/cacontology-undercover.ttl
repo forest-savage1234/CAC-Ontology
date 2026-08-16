@@ -189,7 +189,7 @@ cacontology-undercover:operationPhaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "operation phase duration"@en ;
     rdfs:comment "Duration of undercover operation phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # UNDERCOVER OPERATION PROPERTIES
@@ -243,7 +243,7 @@ cacontology-undercover:communicationPlatform rdf:type owl:ObjectProperty ;
     rdfs:label "communication platform"@en ;
     rdfs:comment "Digital platform where undercover communication took place."@en ;
     rdfs:domain cacontology-undercover:UndercoverCommunication ;
-    rdfs:range uco-observable:DigitalService .
+    rdfs:range uco-observable:OnlineService .
 
 cacontology-undercover:containsCriminalContent rdf:type owl:DatatypeProperty ;
     rdfs:label "contains criminal content"@en ;
@@ -535,7 +535,7 @@ cacontology-undercover:monitorsPhoneCommunication rdf:type owl:ObjectProperty ;
     rdfs:label "monitors phone communication"@en ;
     rdfs:comment "Links investigation to phone communications being monitored."@en ;
     rdfs:domain cacontology-undercover:PhoneInstructionMonitoring ;
-    rdfs:range uco-observable:PhoneCall .
+    rdfs:range uco-observable:Call .
 
 cacontology-undercover:interceptsInstruction rdf:type owl:ObjectProperty ;
     rdfs:label "intercepts instruction"@en ;

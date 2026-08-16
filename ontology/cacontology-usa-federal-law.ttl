@@ -403,19 +403,19 @@ cacontology-usa-federal:prosecutionDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "prosecution duration"@en ;
     rdfs:comment "Duration of federal prosecution from charge to resolution."@en ;
     rdfs:domain cacontology-usa-federal:FederalProsecution ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-usa-federal:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "Duration of federal legal phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-usa-federal:roleDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "role duration"@en ;
     rdfs:comment "Duration of individual's federal role."@en ;
     rdfs:domain cac-core:Role ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # gUFO PARTICIPATION AND PART-WHOLE RELATIONSHIPS
@@ -424,29 +424,25 @@ cacontology-usa-federal:roleDuration rdf:type owl:DatatypeProperty ;
 # Participation Properties (connecting Events to Objects)
 cacontology-usa-federal:prosecutedBy rdf:type owl:ObjectProperty ;
     rdfs:label "prosecuted by"@en ;
-    rdfs:comment "Links federal prosecution event to prosecuting attorney (gUFO participation)."@en ;
-    rdfs:subPropertyOf gufo:participantIn ;
+    rdfs:comment "Links a federal prosecution event to its prosecuting-attorney role record. The event-to-role-record direction is intentionally local."@en ;
     rdfs:domain cacontology-usa-federal:FederalProsecution ;
     rdfs:range cacontology-usa-federal:FederalProsecutorRole .
 
 cacontology-usa-federal:investigatedBy rdf:type owl:ObjectProperty ;
     rdfs:label "investigated by"@en ;
-    rdfs:comment "Links federal investigation event to investigating agent (gUFO participation)."@en ;
-    rdfs:subPropertyOf gufo:participantIn ;
+    rdfs:comment "Links a federal investigation event to its investigating-agent role record. The event-to-role-record direction is intentionally local."@en ;
     rdfs:domain cacontology-usa-federal:FederalInvestigation ;
     rdfs:range cacontology-usa-federal:FederalInvestigatorRole .
 
 cacontology-usa-federal:defendedBy rdf:type owl:ObjectProperty ;
     rdfs:label "defended by"@en ;
-    rdfs:comment "Links criminal event to defendant (gUFO participation)."@en ;
-    rdfs:subPropertyOf gufo:participantIn ;
+    rdfs:comment "Links a criminal event to its defendant role record. The event-to-role-record direction is intentionally local."@en ;
     rdfs:domain cac-core:Event ;
     rdfs:range cacontology-usa-federal:FederalDefendantRole .
 
 cacontology-usa-federal:victimizedBy rdf:type owl:ObjectProperty ;
     rdfs:label "victimized by"@en ;
-    rdfs:comment "Links criminal event to victim (gUFO participation)."@en ;
-    rdfs:subPropertyOf gufo:participantIn ;
+    rdfs:comment "Links a criminal event to its victim role record. The event-to-role-record direction is intentionally local."@en ;
     rdfs:domain cac-core:Event ;
     rdfs:range cacontology-usa-federal:FederalVictimRole .
 

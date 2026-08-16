@@ -217,8 +217,12 @@ cacontology-grooming:OnlinePredator rdf:type owl:Class, gufo:Role ;
 
 cacontology-grooming:VictimVulnerability rdf:type owl:Class ;
     rdfs:label "Victim Vulnerability"@en ;
-    rdfs:comment "Characteristics or circumstances that make a child more susceptible to grooming."@en ;
-    rdfs:subClassOf uco-core:UcoObject, gufo:IntrinsicMoment .
+    rdfs:comment "An intrinsic vulnerability mode inhering in a child and making that child more susceptible to grooming. Contextual circumstances are represented separately as VictimVulnerabilitySituation."@en ;
+    rdfs:subClassOf gufo:IntrinsicMode , [
+        rdf:type owl:Restriction ;
+        owl:onProperty gufo:inheresIn ;
+        owl:someValuesFrom uco-identity:Person
+    ] .
 
 # =============================================================================
 # gUFO TEMPORAL PROPERTIES
@@ -256,7 +260,7 @@ cacontology-grooming:groomingPhaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "grooming phase duration"@en ;
     rdfs:comment "Duration of grooming phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # GROOMING BEHAVIOR PROPERTIES
@@ -433,7 +437,7 @@ cacontology-grooming:primaryPlatform rdf:type owl:ObjectProperty ;
     rdfs:label "primary platform"@en ;
     rdfs:comment "Main digital platform where grooming communication occurred."@en ;
     rdfs:domain cacontology-grooming:GroomingBehavior ;
-    rdfs:range uco-observable:DigitalService .
+    rdfs:range uco-observable:OnlineService .
 
 cacontology-grooming:timeOfContact rdf:type owl:DatatypeProperty ;
     rdfs:label "time of contact"@en ;
@@ -488,7 +492,7 @@ cacontology-grooming:AnonymousInitiation rdf:type owl:Class ;
 cacontology-grooming:PlatformAnonymityFeature rdf:type owl:Class ;
     rdfs:label "Platform Anonymity Feature"@en ;
     rdfs:comment "Platform features that enable anonymous communication (guest messaging, temporary accounts, no profile requirements)."@en ;
-    rdfs:subClassOf uco-observable:DigitalServiceFeature .
+    rdfs:subClassOf uco-observable:OnlineServiceFacet .
 
 cacontology-grooming:TrustThroughAnonymity rdf:type owl:Class ;
     rdfs:label "Trust Through Anonymity"@en ;

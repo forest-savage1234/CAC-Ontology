@@ -8,6 +8,7 @@
 @prefix uco-observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix uco-victim: <https://ontology.unifiedcyberontology.org/uco/victim/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix cacontology-impact: <https://cacontology.projectvic.org/victim-impact#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
@@ -96,8 +97,12 @@ cacontology-impact:LongTermMonitoringPhase rdf:type owl:Class ;
 
 cacontology-impact:PsychologicalHarm rdf:type owl:Class ;
     rdfs:label "Psychological Harm"@en ;
-    rdfs:comment "Mental or emotional harm experienced by child victims."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, gufo:IntrinsicMoment .
+    rdfs:comment "An intrinsic mental or emotional harm mode inhering in a child victim. Observable indicators and assessment artifacts are modeled separately."@en ;
+    rdfs:subClassOf gufo:IntrinsicMode , [
+        rdf:type owl:Restriction ;
+        owl:onProperty gufo:inheresIn ;
+        owl:someValuesFrom uco-identity:Person
+    ] .
 
 cacontology-impact:AcuteTrauma rdf:type owl:Class ;
     rdfs:label "Acute Trauma"@en ;
@@ -251,8 +256,23 @@ cacontology-impact:LongTermEffect rdf:type owl:Class ;
 
 cacontology-impact:ResilienceFactors rdf:type owl:Class ;
     rdfs:label "Resilience Factors"@en ;
-    rdfs:comment "Protective factors that promote victim resilience and recovery."@en ;
-    rdfs:subClassOf uco-observable:ObservableObject, gufo:IntrinsicMoment .
+    rdfs:comment "Deprecated ambiguous grouping of intrinsic dispositions and contextual protective circumstances. Use ResilienceDisposition or ResilienceContext."@en ;
+    owl:deprecated true ;
+    dcterms:isReplacedBy cacontology-impact:ResilienceDisposition , cacontology-impact:ResilienceContext .
+
+cacontology-impact:ResilienceDisposition rdf:type owl:Class ;
+    rdfs:label "Resilience Disposition"@en ;
+    rdfs:comment "An intrinsic protective disposition inhering in a person and supporting recovery or adaptation."@en ;
+    rdfs:subClassOf gufo:IntrinsicMode , [
+        rdf:type owl:Restriction ;
+        owl:onProperty gufo:inheresIn ;
+        owl:someValuesFrom uco-identity:Person
+    ] .
+
+cacontology-impact:ResilienceContext rdf:type owl:Class ;
+    rdfs:label "Resilience Context"@en ;
+    rdfs:comment "A contextual configuration of protective relationships, resources, or circumstances that supports recovery without being an intrinsic aspect of the person."@en ;
+    rdfs:subClassOf cac-core:Situation .
 
 # =============================================================================
 # VICTIM ROLES (gUFO Role anti-rigid modeling)
@@ -261,12 +281,12 @@ cacontology-impact:ResilienceFactors rdf:type owl:Class ;
 cacontology-impact:TraumatizedVictim rdf:type owl:Class ;
     rdfs:label "Traumatized Victim"@en ;
     rdfs:comment "Role of a child victim experiencing psychological trauma. Where age at time of victimization or at time of assessment is analytically relevant, that age SHOULD be expressed via cacontology-temporal:AgeAtTimeSituation rather than ad-hoc age literals."@en ;
-    rdfs:subClassOf uco-role:VictimRole , cac-core:Role .
+    rdfs:subClassOf uco-victim:Victim , cac-core:Role .
 
 cacontology-impact:VictimInRecovery rdf:type owl:Class ;
     rdfs:label "Victim in Recovery"@en ;
     rdfs:comment "Role of a victim actively engaged in recovery process."@en ;
-    rdfs:subClassOf uco-role:VictimRole , cac-core:Role .
+    rdfs:subClassOf uco-victim:Victim , cac-core:Role .
 
 cacontology-impact:TherapyParticipant rdf:type owl:Class ;
     rdfs:label "Therapy Participant"@en ;
@@ -319,13 +339,13 @@ cacontology-impact:impactPhaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "impact phase duration"@en ;
     rdfs:comment "Duration of impact phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-impact:recoveryTimeframe rdf:type owl:DatatypeProperty ;
     rdfs:label "recovery timeframe"@en ;
     rdfs:comment "Expected or actual timeframe for recovery process."@en ;
     rdfs:domain cacontology-impact:RecoveryProcess ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # IMPACT ASSESSMENT PROPERTIES
@@ -534,7 +554,7 @@ cacontology-impact:resultedFrom rdf:type owl:ObjectProperty ;
     rdfs:label "resulted from"@en ;
     rdfs:comment "Links psychological harm to the criminal action that caused it."@en ;
     rdfs:domain cacontology-impact:PsychologicalHarm ;
-    rdfs:range uco-action:Crime .
+    rdfs:range cac-core:OffenseEvent .
 
 # Treatment Relationships
 cacontology-impact:addressesHarm rdf:type owl:ObjectProperty ;

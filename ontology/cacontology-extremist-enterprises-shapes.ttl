@@ -697,7 +697,7 @@ cacontology-enterprises:GufoSituationFactualRule rdf:type sh:NodeShape ;
             SELECT $this WHERE {
                 $this rdf:type gufo:Situation .
                 FILTER NOT EXISTS {
-                    { ?object gufo:participatesIn $this . }
+                    { ?object gufo:participatedIn $this . }
                     UNION
                     { ?event gufo:occursDuring $this . }
                     UNION  

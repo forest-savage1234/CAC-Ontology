@@ -358,19 +358,19 @@ cacontology-training:trainingDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "training duration"@en ;
     rdfs:comment "Duration of training program from start to completion."@en ;
     rdfs:domain cacontology-training:InternationalTraining ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-training:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "Duration of training phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-training:roleDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "role duration"@en ;
     rdfs:comment "Duration of individual's training role."@en ;
     rdfs:domain cac-core:Role ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # PROPERTIES FOR TRAINING DATA

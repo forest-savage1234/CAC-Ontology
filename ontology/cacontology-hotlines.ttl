@@ -21,7 +21,7 @@
     owl:versionInfo "3.1.0" ;
     dcterms:creator "CAC Ontology Team" ;
     dcterms:issued "2024-03-20"^^xsd:date ;
-    dcterms:modified "2026-08-09"^^xsd:date ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
     owl:imports <https://ontology.unifiedcyberontology.org/uco/core/1.5.0>,
                 <https://cacontology.projectvic.org/core/3.1.0> ,
                 <http://purl.org/nemo/gufo#/1.0.0> .
@@ -128,8 +128,7 @@ cacontology-hotlines:AutomatedReporterAgent rdf:type owl:Class ;
 cacontology-hotlines:ReporterRole rdf:type owl:Class ;
     rdfs:label "Reporter Role"@en ;
     rdfs:comment "The role of a person or organization submitting a report to a hotline. Enhanced as anti-rigid gUFO Role supporting dynamic role assignment and temporal constraints."@en ;
-    rdfs:subClassOf uco-role:SubjectRole,
-                    cac-core:Role .
+    rdfs:subClassOf cac-core:Role .
 
 cacontology-hotlines:IntakeChannel rdf:type owl:Class ;
     rdfs:label "Intake Channel"@en ;
@@ -140,8 +139,7 @@ cacontology-hotlines:IntakeChannel rdf:type owl:Class ;
 cacontology-hotlines:EvidenceItem rdf:type owl:Class ;
     rdfs:label "Evidence Item"@en ;
     rdfs:comment "A piece of evidence associated with a hotline report. Enhanced as gUFO Object for comprehensive digital artifact modeling."@en ;
-    rdfs:subClassOf uco-observable:DigitalArtifact,
-                    cac-core:Artifact .
+    rdfs:subClassOf cac-core:Artifact .
 
 cacontology-hotlines:ImageEvidence rdf:type owl:Class ;
     rdfs:label "Image Evidence"@en ;
@@ -373,7 +371,7 @@ cacontology-hotlines:phaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "phase duration"@en ;
     rdfs:comment "The duration of a particular phase in ISO 8601 format."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-hotlines:roleAssignmentTime rdf:type owl:DatatypeProperty ;
     rdfs:label "role assignment time"@en ;

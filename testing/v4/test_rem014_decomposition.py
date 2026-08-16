@@ -26,14 +26,13 @@ class Rem014DecompositionTests(unittest.TestCase):
                 decomposition.REM014_BASELINE[name]["violation_count"],
             )
 
-    def test_compatibility_delta_is_two_reserved_vocabulary_findings(self):
+    def test_compatibility_layer_adds_no_strict_profile_findings(self):
         c3 = self.report["configurations"]["C3"]
         c5 = self.report["configurations"]["C5"]
-        self.assertEqual(2, c5["violation_count"] - c3["violation_count"])
-        self.assertEqual(
-            2,
-            c5["by_root_cause"].get("reserved-owl-vocabulary-as-domain-or-range", 0)
-            - c3["by_root_cause"].get("reserved-owl-vocabulary-as-domain-or-range", 0),
+        self.assertEqual(0, c5["violation_count"] - c3["violation_count"])
+        self.assertNotIn(
+            "reserved-owl-vocabulary-as-domain-or-range",
+            c5["by_root_cause"],
         )
 
     def test_completed_high_confidence_roots_leave_the_priority_queue(self):
@@ -46,15 +45,13 @@ class Rem014DecompositionTests(unittest.TestCase):
         self.assertNotIn("class-used-as-datatype", roots)
         self.assertNotIn("missing-local-declaration", roots)
 
-    def test_remaining_first_party_declaration_findings_are_decomposed(self):
-        roots = self.report["configurations"]["C3"]["by_owner_and_root_cause"]["cac"]
-        expected = {
-            "invalid-or-version-mismatched-external-reference": 64,
-            "unsupported-xsd-datatype-policy": 68,
-            "unimported-shared-vocabulary": 31,
-        }
-        self.assertEqual(expected, {root: roots[root] for root in expected})
-        self.assertEqual(163, sum(roots[root] for root in expected))
+    def test_no_first_party_profile_findings_remain(self):
+        c3 = self.report["configurations"]["C3"]
+        self.assertEqual(0, c3["by_owner"].get("cac", 0))
+        self.assertNotIn("cac", c3["by_owner_and_root_cause"])
+        self.assertNotIn("invalid-or-version-mismatched-external-reference", c3["by_root_cause"])
+        self.assertNotIn("unsupported-xsd-datatype-policy", c3["by_root_cause"])
+        self.assertNotIn("unimported-shared-vocabulary", c3["by_root_cause"])
 
     def test_priority_queue_puts_cac_work_before_external_findings(self):
         units = self.report["priority_units"]
@@ -68,19 +65,25 @@ class Rem014DecompositionTests(unittest.TestCase):
 
     def test_remediation_reduces_only_cac_owned_findings(self):
         c3 = self.report["configurations"]["C3"]
-        self.assertLessEqual(self.report["delta_from_baseline"]["C3"], -21)
+        self.assertEqual(-831, self.report["delta_from_baseline"]["C3"])
         self.assertEqual(
             self.report["delta_from_baseline"]["C3"],
-            c3["by_owner"]["cac"]
-            - decomposition.REM014_BASELINE["C3"]["cac_owned_count"],
+            (
+                c3["by_owner"].get("cac", 0)
+                - decomposition.REM014_BASELINE["C3"]["cac_owned_count"]
+            )
+            + (
+                c3["by_owner"].get("shared-or-unattributed", 0)
+                - decomposition.REM014_BASELINE["C3"]["shared_or_unattributed_count"]
+            ),
         )
         self.assertEqual(
             decomposition.REM014_BASELINE["C3"]["upstream_owned_count"],
             c3["by_owner"]["upstream"],
         )
         self.assertEqual(
-            decomposition.REM014_BASELINE["C3"]["shared_or_unattributed_count"],
-            c3["by_owner"]["shared-or-unattributed"],
+            0,
+            c3["by_owner"].get("shared-or-unattributed", 0),
         )
 
     def test_object_property_targets_have_explicit_class_declarations(self):

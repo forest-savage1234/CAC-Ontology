@@ -29,10 +29,10 @@ cac-custody:hasCustodyPhase a owl:ObjectProperty ;
     dcterms:isReplacedBy cac-custody:hasCustodyState ;
     rdfs:seeAlso cac-compat:CustodyPropertyMigration .
 
-cac-compat:CustodyPropertyMigration a rdfs:Resource ;
+cac-compat:CustodyPropertyMigration a owl:NamedIndividual ;
     rdfs:label "Custody property migration notice"@en ;
     rdfs:comment "Replace inCustodyPhase with currentCustodyState and hasCustodyPhase with hasCustodyState. State values remain operational CustodyState occurrences, never gufo:Phase classifiers."@en .
 
-cac-compat:RolePhaseMigration a rdfs:Resource ;
+cac-compat:RolePhaseMigration a owl:NamedIndividual ;
     rdfs:label "Role and phase level-separation migration notice"@en ;
     rdfs:comment "Historical operational role and phase resources cannot be bridged to gufo:Role or gufo:Phase by equivalence or subclass axioms. Migrate role records through RoleAssignment and phase data as distinct occurrences."@en .

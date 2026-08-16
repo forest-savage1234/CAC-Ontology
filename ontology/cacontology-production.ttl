@@ -7,6 +7,7 @@
 @prefix uco-action: <https://ontology.unifiedcyberontology.org/uco/action/> .
 @prefix uco-location: <https://ontology.unifiedcyberontology.org/uco/location/> .
 @prefix uco-role: <https://ontology.unifiedcyberontology.org/uco/role/> .
+@prefix uco-victim: <https://ontology.unifiedcyberontology.org/uco/victim/> .
 @prefix cacontology: <https://cacontology.projectvic.org#> .
 @prefix cacontology-production: <https://cacontology.projectvic.org/production#> .
 @prefix gufo: <http://purl.org/nemo/gufo#> .
@@ -37,7 +38,7 @@
 cacontology-production:ProductionOffense rdf:type owl:Class ;
     rdfs:label "Production Offense"@en ;
     rdfs:comment "Criminal offense involving the production, creation, or manufacturing of child sexual abuse material."@en ;
-    rdfs:subClassOf cac-core:ExploitationEvent, uco-action:Crime .
+    rdfs:subClassOf cac-core:OffenseEvent .
 
 cacontology-production:LiveProductionEvent rdf:type owl:Class ;
     rdfs:label "Live Production Event"@en ;
@@ -168,7 +169,7 @@ cacontology-production:EditingEquipment rdf:type owl:Class ;
 cacontology-production:ProducedContent rdf:type owl:Class ;
     rdfs:label "Produced Content"@en ;
     rdfs:comment "Child sexual abuse material created through production activities."@en ;
-    rdfs:subClassOf uco-observable:DigitalArtifact, cac-core:Artifact .
+    rdfs:subClassOf cac-core:Artifact .
 
 cacontology-production:ProducedImage rdf:type owl:Class ;
     rdfs:label "Produced Image"@en ;
@@ -216,12 +217,12 @@ cacontology-production:ControlledEnvironment rdf:type owl:Class ;
 cacontology-production:ProductionVictim rdf:type owl:Class ;
     rdfs:label "Production Victim"@en ;
     rdfs:comment "Operational role record documenting a child victim's involvement in production of sexual abuse material. Use ProductionVictimClassifier on the enduring bearer."@en ;
-    rdfs:subClassOf uco-role:VictimRole , cac-core:Role .
+    rdfs:subClassOf uco-victim:Victim , cac-core:Role .
 
 cacontology-production:Producer rdf:type owl:Class ;
     rdfs:label "Producer"@en ;
     rdfs:comment "Operational role record documenting that an individual creates, directs, or facilitates production of child sexual abuse material. Use ProducerClassifier on the enduring bearer."@en ;
-    rdfs:subClassOf uco-role:OffenderRole , cac-core:Role .
+    rdfs:subClassOf uco-role:MaliciousRole , cac-core:Role .
 
 cacontology-production:ProductionVictimClassifier rdf:type owl:Class, gufo:Role ;
     rdfs:label "Production Victim Classifier"@en ;
@@ -236,7 +237,7 @@ cacontology-production:ProducerClassifier rdf:type owl:Class, gufo:Role ;
 cacontology-production:ProductionFacilitator rdf:type owl:Class ;
     rdfs:label "Production Facilitator"@en ;
     rdfs:comment "Individual who assists in or enables production activities without directly producing content."@en ;
-    rdfs:subClassOf uco-role:OffenderRole , cac-core:Role .
+    rdfs:subClassOf uco-role:MaliciousRole , cac-core:Role .
 
 # =============================================================================
 # gUFO TEMPORAL PROPERTIES

@@ -265,7 +265,7 @@ cacontology-multi:coordinationPhaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "coordination phase duration"@en ;
     rdfs:comment "Duration of coordination phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # INTERSTATE TRANSPORTATION FRAMEWORK (Buffalo/Vermont Case Enhancement)

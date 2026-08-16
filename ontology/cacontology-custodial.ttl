@@ -587,4 +587,4 @@ cacontology-custodial:aggravatingFactor rdf:type owl:ObjectProperty ;
     rdfs:label "aggravating factor"@en ;
     rdfs:comment "Links trust violation to criminal offense as aggravating factor. Enhanced with gUFO causal patterns."@en ;
     rdfs:domain cacontology-custodial:TrustViolation ;
-    rdfs:range uco-action:Crime .
+    rdfs:range cac-core:OffenseEvent .

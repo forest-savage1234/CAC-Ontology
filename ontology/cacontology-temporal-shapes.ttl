@@ -35,21 +35,21 @@ cacontology-temporal-shapes:PhaseTemporalPropertiesShape rdf:type sh:NodeShape ;
     sh:targetClass cac-core:Phase ;
     sh:property [
         sh:path cacontology-temporal:hasMinimumDuration ;
-        sh:datatype xsd:duration ;
+        sh:datatype xsd:string ;
         sh:maxCount 1 ;
-        sh:message "hasMinimumDuration, when provided, must be a single xsd:duration value."@en
+        sh:message "hasMinimumDuration, when provided, must be a single xsd:string value."@en
     ] ;
     sh:property [
         sh:path cacontology-temporal:hasMaximumDuration ;
-        sh:datatype xsd:duration ;
+        sh:datatype xsd:string ;
         sh:maxCount 1 ;
-        sh:message "hasMaximumDuration, when provided, must be a single xsd:duration value."@en
+        sh:message "hasMaximumDuration, when provided, must be a single xsd:string value."@en
     ] ;
     sh:property [
         sh:path cacontology-temporal:hasTypicalDuration ;
-        sh:datatype xsd:duration ;
+        sh:datatype xsd:string ;
         sh:maxCount 1 ;
-        sh:message "hasTypicalDuration, when provided, must be a single xsd:duration value."@en
+        sh:message "hasTypicalDuration, when provided, must be a single xsd:string value."@en
     ] ;
     sh:property [
         sh:path cacontology-temporal:hasLegalDeadline ;

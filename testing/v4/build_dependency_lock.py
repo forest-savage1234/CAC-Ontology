@@ -56,6 +56,9 @@ def main() -> int:
     gufo_shapes = cdo_root / "shapes" / "sh-gufo.ttl"
     case_root = repo / "testing" / "v4" / "dependencies" / "case" / CASE_REVISION
     shacl = repo / "testing" / "v4" / "dependencies" / "w3c" / "shacl-2026-08-15.ttl"
+    standards_root = repo / "testing" / "v4" / "dependencies" / "standards"
+    skos = standards_root / "skos-2009-08-18.rdf"
+    dcterms = standards_root / "dublin-core-terms-2012-06-14.ttl"
 
     dependency_specs: list[tuple[Path, str, str, str]] = [
         (overlay_ontology, "turtle", f"ucoProject/UCO-Profile-gufo@{OVERLAY_REVISION}", "Apache-2.0"),
@@ -65,6 +68,8 @@ def main() -> int:
         (collections, "xml", f"collections-ontology/collections-ontology@{COLLECTIONS_REVISION}", "see-vendored-source"),
         (spar_error, "turtle", f"SPAROntologies/error@{SPAR_ERROR_REVISION}", "CC-BY-4.0"),
         (shacl, "turtle", "https://www.w3.org/ns/shacl.ttl retrieved 2026-08-15", "W3C-Document-License"),
+        (skos, "xml", "W3C SKOS Recommendation 2009-08-18", "W3C-Document-License"),
+        (dcterms, "turtle", "DCMI Metadata Terms 2012-06-14", "CC-BY-4.0"),
     ]
     dependency_specs.extend(
         (path, "turtle", f"ucoProject/UCO@{UCO_REVISION}", "Apache-2.0")

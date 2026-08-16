@@ -508,10 +508,10 @@ cacontology-corruption:standsInQualifiedCorruption rdf:type owl:ObjectProperty ;
     rdfs:label "stands in qualified corruption"@en ;
     rdfs:comment "Links entities to qualified corruption situations - gUFO qualified relation."@en ;
     rdfs:domain [ owl:unionOf ( cacontology-corruption:CorruptLawEnforcementOfficer uco-identity:Organization ) ] ;
-    rdfs:range gufo:ParticipationSituation .
+    rdfs:range cac-core:QualifiedParticipationSituation .
 
 cacontology-corruption:concernsCorruptOfficer rdf:type owl:ObjectProperty ;
     rdfs:label "concerns corrupt officer"@en ;
     rdfs:comment "Links corruption situations to the officers involved - gUFO qualified relation."@en ;
-    rdfs:domain gufo:ParticipationSituation ;
+    rdfs:domain cac-core:QualifiedParticipationSituation ;
     rdfs:range cacontology-corruption:CorruptLawEnforcementOfficer .

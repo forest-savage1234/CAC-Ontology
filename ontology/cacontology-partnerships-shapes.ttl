@@ -1102,7 +1102,7 @@ cacontology-partnerships-shapes:InformationSharingCompositionShape rdf:type sh:N
 # =============================================================================
 
 cacontology-partnerships-shapes:QualifiedPartnershipParticipationShape rdf:type sh:NodeShape ;
-    sh:targetClass gufo:ParticipationSituation ;
+    sh:targetClass cac-core:QualifiedParticipationSituation ;
     rdfs:label "Qualified Partnership Participation Shape"@en ;
     rdfs:comment "Validates gUFO qualified participation situations in partnerships."@en ;
     sh:sparql [
@@ -1110,8 +1110,8 @@ cacontology-partnerships-shapes:QualifiedPartnershipParticipationShape rdf:type 
         sh:select """
             SELECT $this
             WHERE {
-                $this rdf:type gufo:ParticipationSituation .
-                $this gufo:participatesIn ?partnership .
+                $this rdf:type cac-core:QualifiedParticipationSituation .
+                $this gufo:participatedIn ?partnership .
                 ?partnership rdf:type cacontology-partnerships:PublicPrivatePartnership .
                 FILTER NOT EXISTS {
                     ?org cacontology-partnerships:hasRole ?role .

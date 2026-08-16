@@ -288,13 +288,13 @@ cacontology-taskforce:operationPhaseDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "operation phase duration"@en ;
     rdfs:comment "Duration of operation phase."@en ;
     rdfs:domain cac-core:Phase ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 cacontology-taskforce:coordinationDuration rdf:type owl:DatatypeProperty ;
     rdfs:label "coordination duration"@en ;
     rdfs:comment "Duration of coordination mechanism."@en ;
     rdfs:domain cacontology-taskforce:CoordinationMechanism ;
-    rdfs:range xsd:duration .
+    rdfs:range xsd:string .
 
 # =============================================================================
 # TASK FORCE PROPERTIES
@@ -724,7 +724,7 @@ cacontology-taskforce:teachersEducated rdf:type owl:DatatypeProperty ;
 # Historical Timeline Properties
 cacontology-taskforce:reportingYear rdf:type owl:DatatypeProperty ;
     rdfs:domain cacontology-taskforce:AnnualPerformance ;
-    rdfs:range xsd:gYear ;
+    rdfs:range xsd:integer ;
     rdfs:label "reporting year"@en ;
     rdfs:comment "Year for which performance metrics are reported."@en .
 

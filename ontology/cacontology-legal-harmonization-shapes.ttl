@@ -571,7 +571,7 @@ cacontology-legal-shapes:TreatyFrameworkCompositionShape rdf:type sh:NodeShape ;
 cacontology-legal-shapes:QualifiedComplianceParticipationShape rdf:type sh:NodeShape ;
     rdfs:label "Qualified Compliance Participation Shape"@en ;
     rdfs:comment "Validates qualified participation relationships in legal compliance according to gUFO patterns."@en ;
-    sh:targetClass gufo:ParticipationSituation ;
+    sh:targetClass cac-core:QualifiedParticipationSituation ;
     sh:property [
         sh:path cacontology-legal:concernsLegalFramework ;
         sh:class cacontology-legal:NationalLegislation ;
@@ -900,7 +900,7 @@ cacontology-legal-shapes:StatuteShape rdf:type sh:NodeShape ;
     sh:property [
         sh:path rdfs:subClassOf ;
         sh:qualifiedValueShape [
-            sh:class gufo:Norm
+            sh:class cacontology-legal:LegalNorm
         ] ;
         sh:qualifiedMinCount 1 ;
         sh:severity sh:Violation ;
