@@ -253,7 +253,7 @@
     "reason": "CAC-only and exact-profile diagnostic projections are coherent, and recognized C3/C5 profile violations are now entirely upstream-owned. The unmodified full import closure still fails the normative OWL 2 DL gate because the exact upstream profile contains malformed RDF structures and imported SWRL built-ins are unsupported by HermiT.",
     "status": "hold"
   },
-  "generated_at": "2026-08-16T03:06:33.585422+00:00",
+  "generated_at": "2026-08-16T04:45:32.720197+00:00",
   "owl_2_dl": {
     "claim": "The non-normative diagnostic projections are coherent under HermiT, but they do not satisfy the full-import OWL 2 DL gate.",
     "diagnostic_projection_status": "pass",
@@ -270,10 +270,10 @@
   "source": {
     "base_commit": "93de063951b758dd68a27611638c177fcf910eab",
     "branch": "proposal/issue-44-v4-foundational-architecture",
-    "candidate_commit": "3dbea97053b8fd212b1ff14cfd531cd7415d43cf",
-    "candidate_tree": "9ab6e3cae18cdc2a5bf06d632d6abfe075330388",
-    "changed_paths": 246,
-    "commits": 31,
+    "candidate_commit": "4deaac706c368debe7035809c4d66b45c439f6af",
+    "candidate_tree": "2df8e285fbfce5bd0207b93e92d573590b861f1f",
+    "changed_paths": 252,
+    "commits": 33,
     "detection_shapes_changed": true,
     "tracked_dirty": false,
     "tracked_evidence_dirty": true,
@@ -290,6 +290,6 @@
   "tests": {
     "return_code": 0,
     "status": "pass",
-    "tests_run": 91
+    "tests_run": 93
   }
 }

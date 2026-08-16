@@ -9,7 +9,7 @@
     "role_branch_classes": 161,
     "triples": 48742
   },
-  "dependency_lock_sha256": "0174b2927ee97a6be67169722a546b09f67190700f35dc63db590abd636e717d",
+  "dependency_lock_sha256": "da9d4ecb42502130c74efd4805041a63e9cfe8cdb1ec151e9f1c0fca630b7653",
   "diagnostics": {
     "META001_OPERATIONAL_ROLE_AS_GUFO_CLASSIFIER": [],
     "META002_OPERATIONAL_PHASE_AS_GUFO_CLASSIFIER": [],
@@ -23,7 +23,7 @@
     "META010_OPERATIONAL_PHASE_EVENT_OVERLAP": [],
     "META011_GUFO_ROLE_CLASSIFIER_WITHOUT_ENDURING_BEARER_BRANCH": []
   },
-  "generated_at": "2026-08-16T03:04:15.829295+00:00",
+  "generated_at": "2026-08-16T04:43:23.198742+00:00",
   "inference": "rdfs",
   "inputs": [
     {
@@ -302,9 +302,9 @@
   "sensitive_data": "Synthetic fixtures only; no real sensitive case data.",
   "source": {
     "branch": "proposal/issue-44-v4-foundational-architecture",
-    "commit": "3dbea97053b8fd212b1ff14cfd531cd7415d43cf",
+    "commit": "4deaac706c368debe7035809c4d66b45c439f6af",
     "dirty": true,
-    "tree": "9ab6e3cae18cdc2a5bf06d632d6abfe075330388"
+    "tree": "2df8e285fbfce5bd0207b93e92d573590b861f1f"
   },
   "status": "pass"
 }

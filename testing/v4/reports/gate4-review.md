@@ -1,23 +1,24 @@
-# CAC v4 Foundational Proposal — Gate 4.1 Implementation Review
+# CAC v4 Foundational Proposal — Gate 4.4 Reproducibility Review
 
-**Recommendation:** **Advance the local candidate to Gate 4.2 publication review, while retaining HOLD on any v4.0.0 release claim.**
+**Recommendation:** **Publish the corrected candidate to the existing draft PR #49, while retaining HOLD on maintainer-review readiness until PR #48 is integrated and HOLD on every v4.0.0 release claim.**
 
-Gate 4.1 is complete on the dedicated issue-44 proposal branch. All accepted first-party semantic, datatype, and vocabulary policies are implemented and regression-controlled. The unmodified full-import closure still does not satisfy the normative OWL 2 DL gate, but the recognized C3/C5 remainder is now entirely attributable to pinned upstream dependencies. This is a reviewable foundational proposal, not a release artifact.
+Gate 4.4 repairs the clean-checkout reproducibility and contributor-guideline defects found by independent verification. All accepted first-party semantic, datatype, and vocabulary policies remain implemented and regression-controlled. The unmodified full-import closure still does not satisfy the normative OWL 2 DL gate, but the recognized C3/C5 remainder remains entirely attributable to pinned upstream dependencies. This is a reviewable foundational proposal, not a release artifact.
 
-No GitHub mutation occurred during Gate 4.1.
+No GitHub mutation occurred during Gate 4.4 evidence generation.
 
 ## Source identity
 
 | Item | Value |
 |---|---|
 | Frozen base | `93de063951b758dd68a27611638c177fcf910eab` (`v3.1.0`) |
-| Sealed source candidate | `3dbea97053b8fd212b1ff14cfd531cd7415d43cf` |
-| Candidate tree | `9ab6e3cae18cdc2a5bf06d632d6abfe075330388` |
+| Sealed source candidate | `4deaac706c368debe7035809c4d66b45c439f6af` |
+| Candidate tree | `2df8e285fbfce5bd0207b93e92d573590b861f1f` |
 | Branch | `proposal/issue-44-v4-foundational-architecture` |
-| DCO status | All 31 local commits from the frozen base contain sign-off trailers |
+| DCO status | All 33 local commits from the frozen base contain sign-off trailers |
 | Pre-existing unsigned commits reported by the manifest | 0 |
 | Tracked source dirty during final evidence run | No |
-| GitHub publication | Gate 4.2 authorized; not yet pushed at evidence time |
+| Commit convention | All 33 subjects satisfy the repository's Conventional Commits convention |
+| GitHub publication | Existing draft PR #49; corrected history not yet pushed at evidence time |
 
 ## Gate 4.1 acceptance outcome
 
@@ -26,7 +27,7 @@ No GitHub mutation occurred during Gate 4.1.
 | C3 architecture, asserted/RDFS | Pass/pass; 0 findings |
 | C4 architecture, asserted/RDFS | Pass/pass; 0 findings |
 | C5 architecture, asserted/RDFS | Pass/pass; 0 findings |
-| Executable tests | Pass; 91/91 |
+| Executable tests | Pass; 93/93 |
 | Import closure | Pass; 75/75 resolved, 0 remote gaps |
 | Locked Turtle dependencies | Pass; 28/28 parse |
 | Proposal-owned SHACL SPARQL syntax | Pass; 0 failures |
@@ -45,6 +46,9 @@ No GitHub mutation occurred during Gate 4.1.
 5. Centralized the six CAC design-note predicates as annotation properties and removed literal-valued `skos:exactMatch` assertions.
 6. Regenerated the dependency lock, architecture reports, strict-profile reports, REM-014 decomposition, and complete regression transcript.
 7. Canonicalized first-party text hashing so Git-equivalent LF and CRLF checkouts produce identical dependency identities.
+8. Restored the exact locked DCMI reference and gUFO-profile exemplar, canonicalized vendored RDF text identities without altering committed bytes, and added clean-checkout presence/hash regression controls.
+9. Added the required unreleased changelog, README, user-documentation, glossary, and dependency-policy guidance.
+10. Replayed eleven historical subjects into Conventional Commit form while preserving all 33 commit trees and DCO trailers.
 
 ## Measured REM-014 result
 
@@ -61,9 +65,10 @@ No GitHub mutation occurred during Gate 4.1.
 - C3/C5 HermiT strict reasoning still encounters imported SWRL built-ins unsupported by the pinned route.
 - The exact profile still contains malformed OWL/RDF structures that block C4 OWLAPI ingestion.
 - Diagnostic projections demonstrate bounded CAC coherence but are not represented as normative full-import conformance.
-- PR #48 and issue/PR #46 remain outside this Gate 4.1 change.
+- PR #48 remains unchanged and is a merge-readiness dependency for the seven known detection-shape SPARQL syntax failures.
+- Issue/PR #46 remains an independent v3.x path and is unchanged; this v4 proposal contains the equivalent systemic platform-range correction and discloses that overlap.
 - The exhaustive post-v4 remediation charter remains active for upstream coordination, tooling alternatives, documentation, and future findings.
 
-## Gate 4.2 boundary
+## Publication boundary
 
-Gate 4.2 authorizes pushing the dedicated issue-44 branch and opening one draft PR after DCO and identity-sensitive controls pass. It does not authorize a release claim, merge, tag, or modification of PR #48 or issue/PR #46.
+Gate 4.4 authorizes a lease-protected update only to the dedicated issue-44 branch and accurate edits only to existing draft PR #49 after clean-room controls pass. It does not authorize a release claim, merge, tag, modification of PR #48 or issue/PR #46, or representation of diagnostic projections as normative OWL 2 DL conformance.

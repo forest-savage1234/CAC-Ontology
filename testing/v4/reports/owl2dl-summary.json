@@ -8,8 +8,8 @@
           "log": "testing/v4/reports/c3-diagnostic-hermit.log",
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "output_excerpt": "",
-          "reasoned_bytes": 6581256,
-          "reasoned_sha256": "d17a2cdd98a2bb23e1e7ae3b75c1fd6f319c9bda83315555f299f1b4e2148624",
+          "reasoned_bytes": 6581240,
+          "reasoned_sha256": "14bcde31c1b30f8d34a259a525312c259e33fbd6fa64c9dd84c79fa335f2a548",
           "return_code": 0,
           "status": "pass"
         },
@@ -27,12 +27,12 @@
       "profile": {
         "failure_kind": "owl2dl-profile-violations",
         "log": "testing/v4/reports/c3-owl2dl-profile.log",
-        "log_sha256": "6921b93e0a38a27feb71d8f672c0bd8195858d1a7cae234dc1823e3fd7612163",
-        "output_excerpt": "PROFILE VIOLATION ERROR https://ontology.unifiedcyberontology.org/uco/observable violates profile DL\nFor details see: http://robot.obolibrary.org/validate-profile#profile-violation-error\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
+        "log_sha256": "542defcf3040c7a3ba79f40543f83002b10ec743ee05dd83374d3c2a425c5878",
+        "output_excerpt": "PROFILE VIOLATION ERROR https://cacontology.projectvic.org/analyst-wellbeing violates profile DL\nFor details see: http://robot.obolibrary.org/validate-profile#profile-violation-error\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
         "report": "testing/v4/reports/c3-owl2dl-profile.txt.gz",
-        "report_bytes": 90021,
+        "report_bytes": 90464,
         "report_compression": "gzip-mtime-0",
-        "report_sha256": "fb12ab93fbbe2514287d990fd9deb91d499e120a5fba1c341ebd58b00c40d855",
+        "report_sha256": "6328d1f677aa397ba3fd8756f5ca76266cfc2160f2ca206a701c4c67759f69b0",
         "return_code": 1,
         "status": "fail",
         "summary": {
@@ -60,8 +60,8 @@
           "log": "testing/v4/reports/c4-diagnostic-hermit.log",
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "output_excerpt": "",
-          "reasoned_bytes": 6598254,
-          "reasoned_sha256": "a1c7e6567d1435b883f714fcdfa99b9392846c5092043a13baaf59e04fc95542",
+          "reasoned_bytes": 6598238,
+          "reasoned_sha256": "e53cab6a8f4574094dadd4a69673073e2059a4c34de91c169b59755edba028e3",
           "return_code": 0,
           "status": "pass"
         },
@@ -94,8 +94,8 @@
           "log": "testing/v4/reports/c5-diagnostic-hermit.log",
           "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
           "output_excerpt": "",
-          "reasoned_bytes": 6583079,
-          "reasoned_sha256": "0e77d96b94f811f3a8d5a1b49a057aa2180b4ee72aafa8d35baab2f7a857fc23",
+          "reasoned_bytes": 6583063,
+          "reasoned_sha256": "3fa19aefd9f58795b423d0da0cbc0b9ef4709a83a41a35c619a02e9f859a119a",
           "return_code": 0,
           "status": "pass"
         },
@@ -113,12 +113,12 @@
       "profile": {
         "failure_kind": "owl2dl-profile-violations",
         "log": "testing/v4/reports/c5-owl2dl-profile.log",
-        "log_sha256": "6921b93e0a38a27feb71d8f672c0bd8195858d1a7cae234dc1823e3fd7612163",
-        "output_excerpt": "PROFILE VIOLATION ERROR https://ontology.unifiedcyberontology.org/uco/observable violates profile DL\nFor details see: http://robot.obolibrary.org/validate-profile#profile-violation-error\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
+        "log_sha256": "542defcf3040c7a3ba79f40543f83002b10ec743ee05dd83374d3c2a425c5878",
+        "output_excerpt": "PROFILE VIOLATION ERROR https://cacontology.projectvic.org/analyst-wellbeing violates profile DL\nFor details see: http://robot.obolibrary.org/validate-profile#profile-violation-error\nUse the -vvv option to show the stack trace.\nUse the --help option to see usage information.",
         "report": "testing/v4/reports/c5-owl2dl-profile.txt.gz",
-        "report_bytes": 90145,
+        "report_bytes": 90109,
         "report_compression": "gzip-mtime-0",
-        "report_sha256": "6f3c90cdaf36b20f517dc858d11a8adedfdfa9b247ec183e70887d77064a5d8c",
+        "report_sha256": "02f89d85d8a0b22461e2290749813ef0b5c245966ba0beb82bb2b535c23b8a95",
         "return_code": 1,
         "status": "fail",
         "summary": {
@@ -139,7 +139,7 @@
       "status": "fail"
     }
   },
-  "generated_at": "2026-08-16T01:52:51.037900+00:00",
+  "generated_at": "2026-08-16T04:38:32.766294+00:00",
   "runtime": {
     "java": "openjdk version \"21.0.12\" 2026-07-21 LTS\nOpenJDK Runtime Environment Temurin-21.0.12+8 (build 21.0.12+8-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12+8 (build 21.0.12+8-LTS, mixed mode, sharing)",
     "robot": "ROBOT version 1.9.10",
