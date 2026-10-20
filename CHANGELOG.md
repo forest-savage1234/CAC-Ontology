@@ -5,6 +5,13 @@ All notable changes to the CAC ontology family will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- Scope forensic and USA-federal event participation shapes to their own declared event branches instead of every `cac-core:Event` (#58). Unrelated support events no longer require forensic or prosecution participants. Existing participant alternatives remain required for the targeted domain events and their subclasses.
+- Add focused positive, negative, cross-domain and RDFS-subclass regression checks in `testing/test_event_participation_scope.py`.
+
 ## [3.1.0] - 2026-08-09
 
 ### Added - Conditioning Phase (offense-trajectory macro phase)
